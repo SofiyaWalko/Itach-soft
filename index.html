@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Итач-софт — IT-решения для бизнеса: сайты, Битрикс24, IP-телефония</title>
+    <meta
+      name="description"
+      content="Автоматизируем бизнес под ключ: разработка сайтов, внедрение Битрикс24 и IP-телефонии на Asterisk. 50+ сертифицированных специалистов, гарантия до 24 месяцев."
+    />
+    <script>document.documentElement.classList.add("js");</script>
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="assets/img/logos/logo.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+    <script src="assets/js/hero-gl.js" defer></script>
+    <script src="assets/js/cursor-halo.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="cursor-halo" aria-hidden="true" data-cursor-halo></div>
+
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <linearGradient id="gradient-contour" gradientUnits="userSpaceOnUse" x1="3" y1="3" x2="21" y2="21">
+        <stop offset="0" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <linearGradient id="gradient-number" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0.5" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <rect x="6.5" y="2" width="11" height="20" rx="3" />
+        <path d="M10.5 18.5h3" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <path
+          d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1.1 4.3 2.8 5.7L4.7 21l4.5-2.2c.9.2 1.8.3 2.8.3 5.1 0 9-3.6 9-8.1S17.1 3 12 3z"
+        />
+      </symbol>
+      <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+        <path d="M7 17 17 7" />
+        <path d="M8 7h9v9" />
+      </symbol>
+      <symbol id="icon-expand" viewBox="0 0 24 24">
+        <path d="M4 10V4h6" />
+        <path d="M20 14v6h-6" />
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path d="M4 6h16" />
+        <path d="M4 12h16" />
+        <path d="M4 18h16" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </symbol>
+    </svg>
+
+    <header class="site-header" data-header>
+      <div class="container">
+        <div class="site-header__bar glass">
+          <a class="site-header__logo" href="/" aria-label="Итач-софт, на главную">
+            <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+          </a>
+
+          <nav class="site-header__nav" id="site-nav" aria-label="Основное меню">
+            <ul class="nav__list">
+              <li><a class="nav__link" href="#services">Услуги</a></li>
+              <li><a class="nav__link" href="#cases">Портфолио</a></li>
+              <li><a class="nav__link" href="#about">Компания</a></li>
+              <li><a class="nav__link" href="#news">Блог</a></li>
+              <li><a class="nav__link" href="#contacts">Контакты</a></li>
+            </ul>
+            <a class="nav__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="nav__phone" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+          </nav>
+
+          <div class="site-header__actions">
+            <a class="site-header__contact site-header__email" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+            <a class="site-header__contact site-header__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="btn btn--primary btn--sm site-header__cta" href="#lead">
+              Заказать проект
+            </a>
+            <button
+              class="site-header__burger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-nav"
+              aria-label="Меню"
+              data-menu-toggle
+            >
+              <svg class="icon icon--open" aria-hidden="true"><use href="#icon-menu" /></svg>
+              <svg class="icon icon--close" aria-hidden="true"><use href="#icon-close" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <canvas class="hero__gl" aria-hidden="true" data-hero-gl></canvas>
+
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <h1 class="hero__title reveal" id="hero-title" style="--i: 0">
+              <span class="hero__title-line">АВТОМАТИЗИРУЕМ</span>
+              <span class="hero__title-line">
+                БИЗНЕС <span class="hero__title-accent">ПОД КЛЮЧ</span>
+              </span>
+            </h1>
+
+            <p class="hero__lead reveal" style="--i: 1">
+              Внедряем CRM, разрабатываем цифровые решения и объединяем бизнес-процессы в единую систему — от анализа задач до запуска и технической поддержки
+            </p>
+
+            <div class="hero__actions reveal" style="--i: 2">
+              <a class="btn btn--primary" href="#calculator">
+                Рассчитать стоимость
+              </a>
+              <a class="btn btn--ghost" href="#lead">
+                Получить консультацию
+              </a>
+            </div>
+          </div>
+
+          <ul class="stats">
+            <li class="stat glass reveal" style="--i: 3">
+              <span class="stat__value">50+</span>
+              <span class="stat__label">специалистов</span>
+              <span class="stat__note">В команде IT-экспертов</span>
+            </li>
+            <li class="stat glass reveal" style="--i: 4">
+              <span class="stat__value">1 млн+</span>
+              <span class="stat__label">рабочих часов</span>
+              <span class="stat__note">Практического опыта команды</span>
+            </li>
+            <li class="stat glass reveal" style="--i: 5">
+              <span class="stat__value">ТОП-3</span>
+              <span class="stat__label">партнёр Bitrix24</span>
+              <span class="stat__note">В Беларуси</span>
+            </li>
+            <li class="stat glass reveal" style="--i: 6">
+              <span class="stat__value">24/7</span>
+              <span class="stat__label">техническая поддержка</span>
+              <span class="stat__note">Помощь в работе систем</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="clients" aria-label="Нам доверяют">
+        <div class="clients__track">
+          <ul class="clients__list">
+              <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="ЕРИП" /></li>
+              <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="Autolight Express" /></li>
+              <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="Zepter Bank" /></li>
+              <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="Гиппо" /></li>
+              <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="World Class" /></li>
+              <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="Helix" /></li>
+              <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="Санта" /></li>
+              <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="Xiaomi" /></li>
+              <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="БГМУ" /></li>
+              <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="Розы.Бел" /></li>
+              <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="Imkliva Insurance" /></li>
+              <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="БНБ-Банк" /></li>
+              <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="А-100" /></li>
+          </ul>
+          <ul class="clients__list" aria-hidden="true">
+              <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="" /></li>
+              <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="" /></li>
+              <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="" /></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="tasks" aria-labelledby="tasks-title">
+        <div class="container">
+          <h2 class="section-title" id="tasks-title">Какие задачи <span class="section-title__muted">решаем</span></h2>
+          <ol class="task-list" data-task-list>
+            <li class="task-card glow-card" style="--i: 0">
+              <svg class="task-card__number" viewBox="0 0 84 60" aria-hidden="true"><text x="0" y="50">01</text></svg>
+              <p class="task-card__text">Заявки теряются, а менеджеры забывают о клиентах</p>
+            </li>
+            <li class="task-card glow-card" style="--i: 1">
+              <svg class="task-card__number" viewBox="0 0 84 60" aria-hidden="true"><text x="0" y="50">02</text></svg>
+              <p class="task-card__text">Сотрудники тратят время на ручную работу</p>
+            </li>
+            <li class="task-card glow-card" style="--i: 2">
+              <svg class="task-card__number" viewBox="0 0 84 60" aria-hidden="true"><text x="0" y="50">03</text></svg>
+              <p class="task-card__text">Системы не обмениваются данными</p>
+            </li>
+            <li class="task-card glow-card" style="--i: 3">
+              <svg class="task-card__number" viewBox="0 0 84 60" aria-hidden="true"><text x="0" y="50">04</text></svg>
+              <p class="task-card__text">Сайт не справляется с задачами бизнеса</p>
+            </li>
+            <li class="task-card glow-card" style="--i: 4">
+              <svg class="task-card__number" viewBox="0 0 84 60" aria-hidden="true"><text x="0" y="50">05</text></svg>
+              <p class="task-card__text">Не хватает ресурсов для развития IT-продукта</p>
+            </li>
+          </ol>
+          <div class="section-action">
+            <a class="btn btn--outline" href="#lead">Найти решение для моей задачи</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" id="services" aria-labelledby="services-title">
+        <div class="container">
+          <h2 class="section-title" id="services-title">
+            Направления <span class="section-title__muted">услуг</span>
+          </h2>
+          <ol class="service-stack" style="--count: 6" data-service-stack>
+            <li class="service-card" style="--i: 0">
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+              <h3 class="service-card__title">Сайты</h3>
+              <ul class="service-card__tags">
+                <li class="service-card__tag">Корпоративные сайты</li>
+                <li class="service-card__tag">Интернет-магазины</li>
+                <li class="service-card__tag">Сайты-визитки</li>
+                <li class="service-card__tag">Разработка сайта на готовых шаблонах</li>
+                <li class="service-card__tag">Лендинги</li>
+                <li class="service-card__tag">Сайты государственных организаций</li>
+                <li class="service-card__tag">Сайты на Битрикс</li>
+                <li class="service-card__tag">Техническая поддержка сайтов</li>
+                <li class="service-card__tag">Доработка сайтов</li>
+                <li class="service-card__tag">Разработка веб-порталов</li>
+                <li class="service-card__tag">Комплексный аудит сайта</li>
+                <li class="service-card__tag">Разработка веб-дизайна сайта</li>
+                <li class="service-card__tag">Разработка личного кабинета</li>
+                <li class="service-card__tag">Разработка приложений на React JS</li>
+                <li class="service-card__tag">Интеграция 1С с сайтом</li>
+              </ul>
+            </li>
+            <li class="service-card" style="--i: 1">
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+              <h3 class="service-card__title">Битрикс24</h3>
+              <ul class="service-card__tags">
+                <li class="service-card__tag">Внедрение и настройка Битрикс24</li>
+                <li class="service-card__tag">Доработка Битрикс24</li>
+                <li class="service-card__tag">Интеграция Битрикс24</li>
+                <li class="service-card__tag">Автоматизация бизнес-процессов в Битрикс24</li>
+                <li class="service-card__tag">IP-телефония для Битрикс24</li>
+                <li class="service-card__tag">Техническая поддержка Битрикс24</li>
+                <li class="service-card__tag">Обучение Битрикс24</li>
+                <li class="service-card__tag">Перенос Битрикс24 из облака в коробку</li>
+              </ul>
+            </li>
+            <li class="service-card" style="--i: 2">
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+              <h3 class="service-card__title">IP-АТС на базе Asterisk</h3>
+              <ul class="service-card__tags">
+                <li class="service-card__tag">Внедрение IP-АТС на базе Asterisk</li>
+                <li class="service-card__tag">Настройка VoIP Asterisk</li>
+                <li class="service-card__tag">Обеспечение безопасности VoIP-АТС</li>
+                <li class="service-card__tag">Техническая поддержка VoIP-телефонных станций</li>
+              </ul>
+            </li>
+            <li class="service-card" style="--i: 3">
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+              <h3 class="service-card__title">Разработка веб-сервисов</h3>
+              <ul class="service-card__tags">
+                <li class="service-card__tag">Разработка веб-сервисов с нуля</li>
+                <li class="service-card__tag">Интеграция сложных систем</li>
+                <li class="service-card__tag">Техническая поддержка ПО</li>
+              </ul>
+            </li>
+            <li class="service-card" style="--i: 4">
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+              <h3 class="service-card__title">Техническая поддержка</h3>
+              <ul class="service-card__tags">
+                <li class="service-card__tag">Техническая поддержка сайтов</li>
+                <li class="service-card__tag">Техническая поддержка Битрикс24</li>
+                <li class="service-card__tag">Техническая поддержка VoIP-телефонных станций</li>
+                <li class="service-card__tag">Техническая поддержка ПО</li>
+              </ul>
+            </li>
+            <li class="service-card" style="--i: 5">
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+              <h3 class="service-card__title">Аутстаффинг и IT-услуги</h3>
+              <ul class="service-card__tags">
+                <li class="service-card__tag">IT-аутстаффинг</li>
+                <li class="service-card__tag">Предоставление IT-специалистов под задачи бизнеса</li>
+                <li class="service-card__tag">IT-консультации</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="cases" id="cases" aria-labelledby="cases-title">
+        <div class="container">
+          <h2 class="section-title" id="cases-title">
+            Наши <span class="section-title__muted">кейсы</span>
+          </h2>
+          <ul class="case-grid">
+            <li class="case-card glow-card">
+              <h3 class="case-card__title">ЕРИП <span class="section-title__muted">контакт-центр на базе Asterisk и Битрикс24</span></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/cases/erip.jpg" width="1440" height="960" alt="Контакт-центр ЕРИП" loading="lazy" />
+            </li>
+            <li class="case-card glow-card">
+              <h3 class="case-card__title">Паритетбанк <span class="section-title__muted">автоматизация B2B-направления</span></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/cases/paritetbank.jpg" width="1440" height="960" alt="Автоматизация B2B-направления в Паритетбанке" loading="lazy" />
+            </li>
+            <li class="case-card glow-card">
+              <h3 class="case-card__title">Helix <span class="section-title__muted">доработка Битрикс24 для лаборатории</span></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/cases/helix.jpg" width="1440" height="940" alt="Доработка Битрикс24 для лаборатории Helix" loading="lazy" />
+            </li>
+            <li class="case-card glow-card">
+              <h3 class="case-card__title">Imkliva Insurance <span class="section-title__muted">обработка обращений в Битрикс24</span></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/cases/imkliva.jpg" width="1440" height="940" alt="Система обработки обращений Imkliva Insurance" loading="lazy" />
+            </li>
+            <li class="case-card glow-card">
+              <h3 class="case-card__title">А-100 <span class="section-title__muted">Telegram и PWA-приложение для клиентов АЗС</span></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot case-card__shot--bare" src="assets/img/cases/a-100.png" width="1440" height="960" alt="Telegram и PWA-приложение для клиентов АЗС А-100" loading="lazy" />
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="websites" aria-labelledby="websites-title">
+        <div class="container">
+          <h2 class="section-title" id="websites-title">
+            Сайты, <span class="section-title__muted">которые мы разработали</span>
+          </h2>
+        </div>
+        <div class="sites" data-sites>
+          <div class="sites__track" data-sites-track>
+            <ul class="sites__list">
+              <li class="sites__card" style="--z: 20"><img src="assets/img/sites/rozy-bel.jpg" width="1440" height="940" alt="Сайт Розы.Бел" /></li>
+              <li class="sites__card" style="--z: 19"><img src="assets/img/sites/divanboss.jpg" width="1440" height="940" alt="Сайт Divan Boss" /></li>
+              <li class="sites__card" style="--z: 18"><img src="assets/img/sites/bsmu.jpg" width="1440" height="940" alt="Сайт БГМУ" /></li>
+              <li class="sites__card" style="--z: 17"><img src="assets/img/sites/autolight.jpg" width="1440" height="940" alt="Сайт Автолайт Экспресс" /></li>
+              <li class="sites__card" style="--z: 16"><img src="assets/img/sites/autogroup.jpg" width="1440" height="940" alt="Сайт Автогрупп" /></li>
+              <li class="sites__card" style="--z: 15"><img src="assets/img/sites/rozy-bel.jpg" width="1440" height="940" alt="Сайт Розы.Бел" /></li>
+              <li class="sites__card" style="--z: 14"><img src="assets/img/sites/divanboss.jpg" width="1440" height="940" alt="Сайт Divan Boss" /></li>
+              <li class="sites__card" style="--z: 13"><img src="assets/img/sites/bsmu.jpg" width="1440" height="940" alt="Сайт БГМУ" /></li>
+              <li class="sites__card" style="--z: 12"><img src="assets/img/sites/autolight.jpg" width="1440" height="940" alt="Сайт Автолайт Экспресс" /></li>
+              <li class="sites__card" style="--z: 11"><img src="assets/img/sites/autogroup.jpg" width="1440" height="940" alt="Сайт Автогрупп" /></li>
+            </ul>
+            <ul class="sites__list" aria-hidden="true">
+              <li class="sites__card" style="--z: 10"><img src="assets/img/sites/rozy-bel.jpg" width="1440" height="940" alt="" /></li>
+              <li class="sites__card" style="--z: 9"><img src="assets/img/sites/divanboss.jpg" width="1440" height="940" alt="" /></li>
+              <li class="sites__card" style="--z: 8"><img src="assets/img/sites/bsmu.jpg" width="1440" height="940" alt="" /></li>
+              <li class="sites__card" style="--z: 7"><img src="assets/img/sites/autolight.jpg" width="1440" height="940" alt="" /></li>
+              <li class="sites__card" style="--z: 6"><img src="assets/img/sites/autogroup.jpg" width="1440" height="940" alt="" /></li>
+              <li class="sites__card" style="--z: 5"><img src="assets/img/sites/rozy-bel.jpg" width="1440" height="940" alt="" /></li>
+              <li class="sites__card" style="--z: 4"><img src="assets/img/sites/divanboss.jpg" width="1440" height="940" alt="" /></li>
+              <li class="sites__card" style="--z: 3"><img src="assets/img/sites/bsmu.jpg" width="1440" height="940" alt="" /></li>
+              <li class="sites__card" style="--z: 2"><img src="assets/img/sites/autolight.jpg" width="1440" height="940" alt="" /></li>
+              <li class="sites__card" style="--z: 1"><img src="assets/img/sites/autogroup.jpg" width="1440" height="940" alt="" /></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container section-action">
+          <a class="btn btn--outline" href="#cases">Все кейсы</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,471 @@
+/* ---------- Кнопка ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-block-size: 3.25rem;
+  padding: 0.875rem 1.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--primary {
+  background: var(--color-drop-orange);
+  color: var(--color-surface);
+  box-shadow: var(--shadow-glass);
+}
+
+/* При наведении проявляется оранжево-розовый градиент, который плавно течёт */
+.btn--primary {
+  isolation: isolate;
+  overflow: hidden;
+  border: 0;
+}
+
+.btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn--primary:hover::before {
+    animation: gradient-flow 3s linear infinite;
+  }
+}
+
+.btn--primary:hover:not(:disabled, [aria-disabled="true"])::before {
+  opacity: 1;
+}
+
+.btn--primary:hover {
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  transform: scale(0.98);
+}
+
+/* Стеклянная кнопка: та же поверхность, что у карточек с цифрами */
+.btn--ghost {
+  background: var(--color-glass);
+  border-color: var(--color-glass-stroke);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  box-shadow: var(--shadow-glass);
+  color: var(--color-text);
+}
+
+.btn--ghost:hover {
+  background: rgb(255 255 255 / 0.92);
+  box-shadow: var(--shadow-glass-lg);
+  transform: translateY(-1px);
+}
+
+/* Контурная кнопка: градиентный контур всегда виден и плавно течёт; при наведении градиентом заливается вся кнопка.
+   Контур сделан настоящей рамкой (градиент на border-box), а не маской: так он ровный по всему периметру */
+.btn--outline {
+  isolation: isolate;
+  border: var(--contour-width) solid transparent;
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    var(--gradient-flow) border-box;
+  background-size: auto, 200% 100%;
+  color: var(--color-text);
+  transition:
+    color var(--duration-base) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+/* Заливка при наведении: течёт синхронно с рамкой */
+.btn--outline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.btn--outline:hover {
+  color: var(--color-surface);
+  transform: translateY(-1px);
+}
+
+.btn--outline:hover::after {
+  opacity: 1;
+}
+
+@keyframes gradient-flow {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* То же для элементов, у которых градиент лежит вторым слоем фона (рамка) */
+@keyframes border-flow {
+  to {
+    background-position: 0 0, 200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn--outline {
+    animation: border-flow 4s linear infinite;
+  }
+
+  .btn--outline::after {
+    animation: gradient-flow 4s linear infinite;
+  }
+}
+
+.btn--sm {
+  min-block-size: 2.75rem;
+  padding: 0.75rem 1.375rem;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  background: var(--color-line);
+  border-color: transparent;
+  color: var(--color-text-2);
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.btn[aria-busy="true"] {
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn[aria-busy="true"]::after {
+  content: "";
+  position: absolute;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border: 2px solid rgb(255 255 255 / 0.4);
+  border-block-start-color: var(--color-surface);
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Карточка с градиентным контуром ----------
+   Контур проявляется при наведении и следует за курсором (--mx/--my выставляет скрипт) */
+@property --mx {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+.glow-card {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+}
+
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: var(--contour-width);
+  border-radius: inherit;
+  /* Оранжево-розовое пятно у курсора; радиус можно задать карточке через --glow-radius */
+  background: radial-gradient(
+    circle var(--glow-radius, 147px) at var(--mx) var(--my),
+    var(--color-drop-orange) 35%,
+    var(--color-drop-pink) 75%,
+    transparent
+  );  /* Оставляем только рамку: вырезаем внутреннюю часть */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+}
+
+/* ---------- Стеклянная поверхность ---------- */
+.glass {
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-stroke);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  box-shadow: var(--shadow-glass);
+}
+
+/* ---------- Шапка ---------- */
+.site-header {
+  position: fixed;
+  inset-block-start: var(--header-top);
+  inset-inline: 0;
+  z-index: 50;
+}
+
+.site-header__bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  block-size: var(--header-height);
+  padding-inline: var(--space-2) 0.5rem;
+  border-radius: var(--radius-pill);
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.site-header.is-scrolled .site-header__bar {
+  background: rgb(255 255 255 / 0.78);
+  box-shadow: var(--shadow-glass-lg);
+}
+
+.site-header__logo {
+  display: block;
+  flex: none;
+  border-radius: var(--radius-md);
+}
+
+.site-header__logo img {
+  inline-size: auto;
+  block-size: 2.5rem;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.site-header__contact {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.site-header__contact:hover {
+  color: var(--color-accent-strong);
+}
+
+.site-header__cta {
+  display: none;
+}
+
+.site-header__burger {
+  display: grid;
+  place-items: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.site-header__burger:hover {
+  background: rgb(20 21 26 / 0.06);
+}
+
+.site-header__burger .icon {
+  grid-area: 1 / 1;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
+.site-header__burger[aria-expanded="false"] .icon--close,
+.site-header__burger[aria-expanded="true"] .icon--open {
+  display: none;
+}
+
+/* Меню: на мобильных выпадающая панель, на десктопе в строке */
+.site-header__nav {
+  position: absolute;
+  inset-block-start: calc(100% + 0.5rem);
+  inset-inline: 0;
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-glass-lg);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out),
+    visibility 0s linear var(--duration-base);
+}
+
+.site-header.is-menu-open .site-header__nav {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.nav__list {
+  display: grid;
+}
+
+.nav__link {
+  display: block;
+  padding-block: 0.875rem;
+  border-block-end: 1px solid var(--color-line);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.nav__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  .site-header__cta {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1280px) {
+  .site-header__email {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header__bar {
+    padding-inline-start: var(--space-3);
+  }
+
+  .site-header__logo img {
+    block-size: 2.75rem;
+  }
+
+  .site-header__burger,
+  .nav__phone {
+    display: none;
+  }
+
+  .site-header__phone {
+    display: inline-flex;
+  }
+
+  .site-header__nav {
+    position: static;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    display: block;
+  }
+
+  .nav__list {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .nav__link {
+    position: relative;
+    padding-block: 0.5rem;
+    border: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  /* Подчёркивание рисуется слева направо при наведении и уходит вправо, когда курсор убран */
+  .nav__link::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    block-size: 2px;
+    border-radius: 1px;
+    background: linear-gradient(90deg, var(--color-drop-orange), var(--color-drop-pink));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 350ms var(--ease-out);
+  }
+
+  .nav__link:hover::after,
+  .nav__link:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* ---------- Стеклянный круг вместо курсора ---------- */
+/* Системный курсор скрыт только там, где скрипт включил круг; в полях ввода остаётся обычный */
+.has-custom-cursor,
+.has-custom-cursor :where(a, button, [role="button"], label, summary) {
+  cursor: none;
+}
+
+.cursor-halo {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 100;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.25);
+  -webkit-backdrop-filter: blur(6px) saturate(1.4);
+  backdrop-filter: blur(6px) saturate(1.4);
+  box-shadow: var(--shadow-glass);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.cursor-halo.is-visible {
+  opacity: 1;
+}

@@ -1,0 +1,772 @@
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+  min-block-size: 100svh;
+  background: var(--color-bg);
+  border-end-start-radius: var(--radius-lg);
+  border-end-end-radius: var(--radius-lg);
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-6)) var(--space-5);
+  overflow: clip;
+}
+
+/* WebGL-поверхность на всю площадь hero; на узких экранах приглушена, чтобы не спорить с текстом */
+.hero__gl {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  inline-size: 100%;
+  block-size: 100%;
+  opacity: 0.4;
+  pointer-events: none;
+  /* Лёгкое размытие сглаживает силуэт складок: поверхность считается в сниженном разрешении */
+  filter: blur(0.6px);
+}
+
+.hero__inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.hero__content {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+  margin-block: auto;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 0.6rem + 4.9vw, 5rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.hero__title-line {
+  display: block;
+}
+
+.hero__title-accent {
+  color: var(--color-drop-orange);
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero__lead {
+  max-inline-size: 41rem;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--color-text-2);
+  text-wrap: pretty;
+}
+
+.hero__actions {
+  display: grid;
+  gap: var(--space-2);
+  inline-size: 100%;
+}
+
+@media (min-width: 640px) {
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    inline-size: auto;
+  }
+}
+
+/* Карточки с цифрами */
+.stats {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.stat {
+  display: grid;
+  align-content: start;
+  gap: 0.375rem;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass-lg);
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 0.6rem + 2.4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+
+.stat__label {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.stat__note {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--color-text-2);
+}
+
+@media (min-width: 768px) {
+  .hero__gl {
+    opacity: 1;
+  }
+
+  .hero__lead {
+    font-size: 1.25rem;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .stat {
+    padding: var(--space-3) var(--space-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Лента клиентов: на всю ширину экрана ---------- */
+.clients {
+  overflow: hidden;
+  padding-block: var(--space-6);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.clients__track {
+  display: flex;
+  inline-size: max-content;
+}
+
+.clients__list {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-8);
+  padding-inline-end: var(--space-8);
+}
+
+.clients__list img {
+  inline-size: auto;
+  block-size: 2.5rem;
+}
+
+/* Файл БГМУ подготовлен выше остальных (224 px против 120), поэтому и в ленте он выше в той же пропорции */
+.clients__list .clients__logo--tall {
+  block-size: 4.6667rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .clients__track {
+    animation: marquee 50s linear infinite;
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients {
+    overflow-x: auto;
+  }
+
+  .clients__list[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/* ---------- Общие для секций ---------- */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 0.8rem + 3.2vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.section-title__muted {
+  color: var(--color-text-2);
+}
+
+/* ---------- Какие задачи решаем ---------- */
+.tasks {
+  padding-block: var(--space-12);
+}
+
+.section-action {
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--space-6);
+}
+
+.task-list {
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+  margin-block-start: var(--space-6);
+}
+
+/* Светлая карточка; контур при наведении и пробеге задаёт общий .glow-card */
+.task-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-6);
+  min-block-size: 15rem;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-glass-stroke);
+  background: var(--color-bg);
+}
+
+/* Карточки скрыты, пока блок не дошёл до экрана; без JS остаются видимыми */
+.js .task-list:not(.is-revealed) .task-card {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .task-list.is-revealed .task-card {
+    animation: card-in 800ms var(--ease-out) calc(var(--i) * 150ms) both;
+  }
+
+  /* Контур пробегает по карточке одновременно с её появлением */
+  .task-list.is-revealed .task-card::before {
+    animation: border-sweep 800ms linear calc(var(--i) * 150ms);
+  }
+
+  @keyframes card-in {
+    from {
+      opacity: 0;
+      transform: translateY(2.5rem) scale(0.95);
+      filter: blur(8px);
+    }
+  }
+
+  @keyframes border-sweep {
+    0% {
+      --mx: -25%;
+      opacity: 0;
+    }
+
+    15%,
+    85% {
+      opacity: 1;
+    }
+
+    100% {
+      --mx: 125%;
+      opacity: 0;
+    }
+  }
+}
+
+/* Цифра с градиентной заливкой: в SVG градиент задаётся прямо на fill текста */
+.task-card__number {
+  inline-size: 5.25rem;
+  block-size: auto;
+  overflow: visible;
+}
+
+.task-card__number text {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  fill: url(#gradient-number);
+}
+
+.task-card__text {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+@media (min-width: 640px) {
+  .task-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .task-card:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1100px) {
+  .task-list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .task-card:last-child {
+    grid-column: auto;
+  }
+
+  .task-card {
+    min-block-size: 18rem;
+  }
+}
+
+/* ---------- Кейсы: два крупных блока и три поменьше (пропорции как у Ramp) ---------- */
+.case-grid {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+  padding: 0;
+}
+
+.case-card {
+  /* Карточки большие: пятно контура шире, чтобы оно доставало до рамки и при наведении в центр */
+  --glow-radius: 340px;
+  position: relative;
+  isolation: isolate;
+  min-block-size: 26rem;
+  overflow: hidden;
+  padding: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+/* Контур при наведении (общий .glow-card) поверх точек и скриншота */
+.case-card::before {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .case-card {
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .case-card:hover {
+    transform: scale(1.012);
+  }
+}
+
+/* Лёгкая сетка: яркая у левого и правого краёв, плавно гаснет к центру */
+.case-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    linear-gradient(rgb(20 21 26 / 0.045) 1px, transparent 1px) 0 0 / 2.5rem 2.5rem,
+    linear-gradient(90deg, rgb(20 21 26 / 0.045) 1px, transparent 1px) 0 0 / 2.5rem 2.5rem;
+  -webkit-mask-image: linear-gradient(90deg, #000, transparent 40%, transparent 60%, #000);
+  mask-image: linear-gradient(90deg, #000, transparent 40%, transparent 60%, #000);
+  pointer-events: none;
+}
+
+/* Квадратная кнопка «развернуть» в углу карточки: мягкая заливка и угловые скобки с градиентом */
+.card-expand {
+  position: absolute;
+  inset-block-start: var(--space-4);
+  inset-inline-end: var(--space-4);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.875rem;
+  background: color-mix(in srgb, var(--color-drop-orange) 10%, var(--color-bg));
+}
+
+.card-expand::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.card-expand .icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  stroke-width: 2.5;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+/* При наведении на карточку квадрат заливается градиентом, скобки расходятся к углам */
+.case-card:hover .card-expand::before {
+  opacity: 1;
+}
+
+.case-card:hover .card-expand .icon {
+  stroke: var(--color-surface);
+  transform: scale(1.12);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .case-card:hover .card-expand::before {
+    animation: gradient-flow 3s linear infinite;
+  }
+}
+
+.case-card__title {
+  position: relative;
+  max-inline-size: calc(100% - 4rem);
+  font-size: clamp(1.375rem, 1rem + 1vw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Скриншот выходит за нижний край карточки, как интерфейс в референсе */
+.case-card__shot {
+  position: absolute;
+  inset-inline: var(--space-4);
+  inset-block-end: 0;
+  inline-size: calc(100% - var(--space-4) * 2);
+  block-size: 56%;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--color-line);
+  border-block-end: 0;
+  border-radius: 0.75rem 0.75rem 0 0;
+  box-shadow: var(--shadow-glass-lg);
+}
+
+/* Изображение с прозрачным фоном (телефоны): без рамки и тени, иначе вокруг него появится пустая плашка */
+.case-card__shot--bare {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (min-width: 900px) {
+  .case-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .case-card {
+    grid-column: span 2;
+    aspect-ratio: 416 / 520;
+    min-block-size: 0;
+  }
+
+  .case-card:nth-child(-n + 2) {
+    grid-column: span 3;
+    aspect-ratio: 637 / 483;
+  }
+
+  /* В узких карточках скриншот прижат к правому краю и шире карточки: справа он обрезается */
+  .case-card:nth-child(n + 3) .case-card__shot {
+    inset-inline: var(--space-4) auto;
+    inline-size: 135%;
+    object-position: left top;
+    border-inline-end: 0;
+    border-start-end-radius: 0;
+  }
+}
+
+/* ---------- Сайты, которые мы разработали ---------- */
+.services,
+.cases {
+  padding-block: 0 var(--space-12);
+}
+
+/* Стопка карточек направлений: каждая прилипает к верху и следующая наезжает на неё.
+   --depth (0…n) выставляет скрипт: сколько карточек уже легло сверху */
+.service-stack {
+  --stack-top: calc(var(--header-top) + var(--header-height) + var(--space-3));
+  --stack-peek: 0.875rem;
+  /* flex, а не grid: у grid-элемента sticky ограничен его ячейкой и не закрепился бы */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+  padding: 0;
+}
+
+/* Запас внизу, чтобы последняя карточка тоже закрепилась в стопке. Padding не подходит: sticky
+   двигается только в границах содержимого контейнера, а пустой flex-элемент в них входит */
+.service-stack::after {
+  content: "";
+  flex: none;
+  block-size: 8rem;
+}
+
+.service-card {
+  --depth: 0;
+  position: sticky;
+  inset-block-start: calc(var(--stack-top) + var(--i) * var(--stack-peek));
+  /* Раньше нижней границы списка достигла бы самая нижняя в стопке карточка и поползла бы одна.
+     Нижний отступ уменьшается на шаг стопки с каждой карточкой, поэтому все отрываются разом
+     и стопка уезжает целиком */
+  margin-block-end: calc((var(--count) - 1 - var(--i)) * var(--stack-peek));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  /* Высоту всех карточек выравнивает скрипт по самой высокой */
+  min-block-size: var(--card-height, 0);
+  padding: var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  transform: scale(calc(1 - var(--depth) * 0.035));
+  transform-origin: top center;
+  will-change: transform;
+}
+
+/* Лёгкая сетка: яркая у левого и правого краёв, плавно гаснет к центру */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    linear-gradient(rgb(20 21 26 / 0.045) 1px, transparent 1px) 0 0 / 2.5rem 2.5rem,
+    linear-gradient(90deg, rgb(20 21 26 / 0.045) 1px, transparent 1px) 0 0 / 2.5rem 2.5rem;
+  -webkit-mask-image: linear-gradient(90deg, #000, transparent 40%, transparent 60%, #000);
+  mask-image: linear-gradient(90deg, #000, transparent 40%, transparent 60%, #000);
+  pointer-events: none;
+}
+
+/* Затемнение карточки, которую накрывают сверху */
+.service-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(20 21 26 / calc(var(--depth) * 0.012));
+  pointer-events: none;
+}
+
+.service-card__title {
+  /* Справа место под круглую стрелку */
+  padding-inline-end: 4rem;
+  font-size: clamp(1.75rem, 1rem + 2.4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+/* Круглая стрелка в правом верхнем углу: подсказывает, что карточка ведёт в раздел */
+.card-arrow {
+  position: absolute;
+  inset-block-start: var(--space-3);
+  inset-inline-end: var(--space-3);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.875rem;
+  /* Цвета и эффект наведения как у оранжевой кнопки в шапке */
+  background: var(--color-drop-orange);
+  box-shadow: var(--shadow-glass);
+  color: var(--color-surface);
+}
+
+.card-arrow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.card-arrow:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-arrow:hover::before {
+    animation: gradient-flow 3s linear infinite;
+  }
+}
+
+.card-arrow .icon {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+/* Стрелка двигается только когда курсор на самом кружке, а не на всей карточке */
+.card-arrow:hover .icon {
+  transform: translate(2px, -2px);
+}
+
+/* Пилюли начинаются сразу под названием, свободное место остаётся внизу карточки */
+.service-card__tags {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.service-card__tag {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  block-size: 2.75rem;
+  padding-inline: 1.5rem;
+  /* Градиентная рамка настоящим border (градиент на border-box): ровная по всему периметру */
+  border: var(--contour-width) solid transparent;
+  border-radius: var(--radius-pill);
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    var(--gradient-flow) border-box;
+  background-size: auto, 200% 100%;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.service-card__tag:hover {
+  color: var(--color-surface);
+}
+
+/* При наведении градиентом заливается вся пилюля, рамка и заливка текут синхронно */
+.service-card__tag::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.service-card__tag:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .service-card__tag:hover {
+    animation: border-flow 3s linear infinite;
+  }
+
+  .service-card__tag:hover::after {
+    animation: gradient-flow 3s linear infinite;
+  }
+}
+
+.websites {
+  padding-block: 0 var(--space-12);
+  overflow: clip;
+}
+
+/* Лента «экранов» сайтов, как в Made in Webflow: обычный горизонтальный скриншот, скошенный по оси Y,
+   карточки перекрывают друг друга, левая поверх правой, лента двигается перетаскиванием и прокруткой страницы */
+.sites {
+  --card-width: clamp(11rem, 25.5vw, 28rem);
+  --card-step: 0.62;
+  --card-skew: 0.564;
+  --card-tilt: matrix(1, var(--card-skew), 0, 1, 0, 0);
+  margin-block-start: var(--space-4);
+  /* Перекос уводит правый край карточки вниз за её рамку, оставляем под него место */
+  padding-block: var(--space-3) calc(var(--card-width) * var(--card-skew) + var(--space-5));
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sites__track {
+  display: flex;
+  inline-size: max-content;
+  will-change: transform;
+}
+
+.sites__list {
+  display: flex;
+  flex: none;
+}
+
+.sites__card {
+  flex: none;
+  inline-size: var(--card-width);
+  aspect-ratio: 1440 / 940;
+  margin-inline-end: calc(var(--card-width) * (var(--card-step) - 1));
+  overflow: hidden;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 0.25rem;
+  background: var(--color-bg);
+  /* Левая карточка лежит поверх правой: z-index убывает слева направо */
+  z-index: var(--z);
+  transform-origin: 0 0;
+  transform: translateY(0) var(--card-tilt);
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    opacity var(--duration-base) var(--ease-out);
+}
+
+.sites__card img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: top;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* Наведение: карточка под курсором приподнимается, остальные бледнеют */
+@media (hover: hover) {
+  .sites__card:hover {
+    transform: translateY(-0.75rem) var(--card-tilt);
+  }
+
+  .sites:has(.sites__card:hover) .sites__card:not(:hover) {
+    opacity: 0.75;
+  }
+}
+
+/* ---------- Появление при загрузке ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: rise 700ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+      filter: blur(6px);
+    }
+  }
+}

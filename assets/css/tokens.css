@@ -1,0 +1,78 @@
+:root {
+  /* Цвет: значения 1:1 с токенами макета */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-text: #14151a;
+  --color-text-2: #595c66;
+  --color-line: #e3e4e8;
+  --color-line-strong: #c9cbd3;
+  --color-accent: #f2501f;
+  --color-accent-strong: #d63b16;
+  --color-accent-deep: #b22f10;
+  --color-accent-soft: #fde8e1;
+  --color-glass: rgb(255 255 255 / 0.7);
+  --color-glass-stroke: rgb(20 21 26 / 0.08);
+
+  --color-drop-orange: #ff7a1f;
+  --color-drop-pink: #ff7aa8;
+  /* Толщина всех градиентных контуров: целое число физических пикселей, иначе линия
+     получается то тоньше, то толще. Около 1,5 px, на обычных экранах 2 px */
+  --contour-width: 2px;
+  --gradient-flow: linear-gradient(90deg, var(--color-drop-orange), var(--color-drop-pink), var(--color-drop-orange));
+  /* Градиент цифр и акцентных надписей: оранжевый до середины, дальше в розовый */
+  --gradient-text: linear-gradient(90deg, var(--color-drop-orange) 50%, var(--color-drop-pink) 100%);
+
+  /* Типографика */
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-body);
+  /* Отступы: шаг 8pt */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 2.5rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-12: 6rem;
+
+  /* Радиусы */
+  --radius-sm: 1rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+
+  --shadow-glass: 0 8px 32px rgb(20 21 26 / 0.08);
+  --shadow-glass-lg: 0 12px 40px rgb(20 21 26 / 0.1);
+
+  /* Движение */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+
+  /* Лэйаут */
+  --container-max: 1280px;
+  --gutter: clamp(1.25rem, 5.5vw, 5rem);
+  --header-top: 1rem;
+  --header-height: 4rem;
+  --blur-glass: blur(20px) saturate(140%);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-top: 1.5rem;
+    --header-height: 4.5rem;
+  }
+}
+
+@media (min-resolution: 1.25dppx) {
+  :root {
+    --contour-width: 1.6px;
+  }
+}
+
+@media (min-resolution: 2dppx) {
+  :root {
+    --contour-width: 1.5px;
+  }
+}
