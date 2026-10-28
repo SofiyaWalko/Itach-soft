@@ -340,12 +340,11 @@
 }
 
 .case-card {
-  /* Карточки большие: пятно контура шире, чтобы оно доставало до рамки и при наведении в центр */
-  --glow-radius: 340px;
   position: relative;
   isolation: isolate;
   min-block-size: 26rem;
-  overflow: hidden;
+  /* Обрезка по внешнему краю рамки: overflow: hidden резал бы по внутреннему и срезал градиентный контур */
+  clip-path: inset(0 round var(--radius-lg));
   padding: var(--space-4);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
@@ -493,7 +492,9 @@
 .services,
 .cases,
 .process,
-.reviews {
+.reviews,
+.news,
+.faq {
   padding-block: 0 var(--space-12);
 }
 
@@ -1048,5 +1049,273 @@
       transform: translateY(1.25rem);
       filter: blur(6px);
     }
+  }
+}
+
+/* ---------- Остались вопросы ---------- */
+.faq__layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.faq__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.faq__title {
+  text-align: start;
+}
+
+/* Вопросы — светлые карточки; при наведении заливаются градиентом слева направо, как строки новостей */
+.faq__list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+}
+
+.faq__item {
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-lg);
+  /* Светлая градиентная заливка, при наведении растёт слева направо */
+  background:
+    linear-gradient(90deg, rgb(255 122 31 / 0.08), rgb(255 122 168 / 0.08)) no-repeat 0 0 / 0 100%,
+    var(--color-bg);
+}
+
+.faq__item:hover {
+  background-size: 100% 100%, auto;
+}
+
+.faq__question {
+  margin: 0;
+  font: inherit;
+}
+
+.faq__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  inline-size: 100%;
+  padding: var(--space-3);
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  text-align: start;
+  cursor: pointer;
+}
+
+.faq__text {
+  font-size: clamp(1.125rem, 0.95rem + 0.7vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Плюс на оранжевой подложке (как стрелка в карточках услуг): при открытии поворачивается в крестик */
+.faq__toggle {
+  position: relative;
+  flex: none;
+  inline-size: 3rem;
+  block-size: 3rem;
+  border-radius: 0.875rem;
+  background: var(--color-drop-orange);
+  box-shadow: var(--shadow-glass);
+}
+
+.faq__toggle::before,
+.faq__toggle::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  inline-size: 1.125rem;
+  block-size: 2px;
+  border-radius: 1px;
+  background: var(--color-surface);
+  translate: -50% -50%;
+  transition: rotate var(--duration-base) var(--ease-out);
+}
+
+.faq__toggle::after {
+  rotate: 90deg;
+}
+
+.faq__trigger:hover .faq__toggle {
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+}
+
+/* Открытый вопрос: плюс поворачивается в крестик, сама подложка остаётся ровной */
+.faq__trigger[aria-expanded="true"] .faq__toggle::before {
+  rotate: 45deg;
+}
+
+.faq__trigger[aria-expanded="true"] .faq__toggle::after {
+  rotate: 135deg;
+}
+
+/* Высота ответа анимируется через grid-template-rows 0fr → 1fr */
+.faq__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-base) var(--ease-out);
+}
+
+.faq__item:has(.faq__trigger[aria-expanded="true"]) .faq__answer {
+  grid-template-rows: 1fr;
+}
+
+.faq__answer-inner {
+  overflow: hidden;
+  color: var(--color-text-2);
+  line-height: 1.6;
+}
+
+.faq__answer-inner p {
+  max-inline-size: 40rem;
+  margin: 0;
+  padding: 0 var(--space-3) var(--space-3);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq__item {
+    transition: background-size 550ms var(--ease-out);
+  }
+
+  .faq__text {
+    transition: transform 400ms var(--ease-out);
+  }
+
+  .faq__trigger:hover .faq__text {
+    transform: translateX(0.75rem);
+  }
+
+  .faq__trigger:hover .faq__toggle {
+    animation: gradient-flow 3s linear infinite;
+  }
+}
+
+/* Заголовок и кнопка выровнены по верхнему краю блока вопросов */
+@media (min-width: 900px) {
+  .faq__layout {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  /* Заголовок и кнопка закрепляются под шапкой, пока прокручиваются вопросы */
+  .faq__intro {
+    position: sticky;
+    inset-block-start: calc(var(--header-top) + var(--header-height) + var(--space-8));
+  }
+}
+
+/* ---------- Что нового ---------- */
+.news__list {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+}
+
+/* Светлая карточка; контур при наведении задаёт общий .glow-card */
+.news-card {
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+.news-card__link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  block-size: 100%;
+  min-block-size: 20rem;
+  padding: var(--space-3);
+  border-radius: inherit;
+}
+
+.news-card__link:focus-visible {
+  outline-offset: 4px;
+}
+
+.news-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  inline-size: 100%;
+  margin-block-end: var(--space-3);
+}
+
+/* Рубрика: пилюля с градиентной рамкой (настоящий border, как у пилюль в карточках услуг) */
+.news-card__tag {
+  padding: 0.375rem 0.875rem;
+  border: var(--contour-width) solid transparent;
+  border-radius: var(--radius-pill);
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    var(--gradient-flow) border-box;
+  background-size: auto, 200% 100%;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.news-card__date {
+  color: var(--color-text-2);
+  font-size: 0.875rem;
+}
+
+.news-card__title {
+  margin: 0 0 var(--space-3);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Стрелка внизу справа; relative (не static), чтобы градиентный слой ::before заливал только её */
+.news .card-arrow {
+  position: relative;
+  inset: auto;
+  flex: none;
+  margin-block-start: auto;
+  margin-inline-start: auto;
+}
+
+.news-card__link:hover .card-arrow::before {
+  opacity: 1;
+}
+
+.news-card__link:hover .card-arrow .icon {
+  transform: translate(2px, -2px);
+}
+
+/* При наведении на карточку рамка рубрики и заливка стрелки текут градиентом */
+@media (prefers-reduced-motion: no-preference) {
+  .news-card__link:hover .news-card__tag {
+    animation: border-flow 3s linear infinite;
+  }
+
+  .news-card__link:hover .card-arrow::before {
+    animation: gradient-flow 3s linear infinite;
+  }
+}
+
+@media (min-width: 640px) {
+  .news__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .news__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }

@@ -60,16 +60,17 @@
 
 ## 4. Обложки новостей
 
-**Файлы:** `assets/img/news/award-2025.webp`, `rating-2025.webp`, `bitrix24-article.webp`  
-**Размер:** 1000×500 px. Без текста.
+**Файлы:** `assets/img/news/award-2025.webp`, `rating-2025.webp`, `bitrix24-article.webp`, `asterisk-voip.webp`
+**Размер:** 1200x800 px (3:2), WebP до 80 КБ. Реалистичные фотографии, без текста, логотипов и узнаваемых лиц.
 
-**Основа:**
-> Abstract 3D composition on a warm off-white background with soft coral and peach light, made of translucent iridescent glass shapes in warm orange-red and pink tones, soft caustics, rim light, clean studio lighting, high-end 3D render, plenty of empty space on the left, no text, no logos.
+**Основа (добавлять к каждому):**
+> Realistic editorial photograph, natural soft daylight, shallow depth of field, clean modern look, warm neutral tones with subtle orange accents, high-end commercial photography, 35mm lens, sharp focus on the subject, no text, no letters, no logos, no watermark, no recognizable faces.
 
-Добавить к основе предмет:
-- **award-2025:** a glass trophy cup with a small star.
-- **rating-2025:** a glass podium with three steps, the second step highlighted.
-- **bitrix24-article:** interlocking glass cubes connected by thin glowing lines, like an automation flow.
+Предмет:
+- **award-2025:** a modern glass award trophy on a light wooden table in a bright contemporary office, softly blurred team celebrating in the background.
+- **rating-2025:** a close-up of a laptop screen showing an abstract ranking chart on a desk, a hand holding a coffee cup, bright modern workspace.
+- **bitrix24-article:** two colleagues around a laptop discussing business process workflow on a monitor, sticky notes and a notebook on the desk, bright modern open-space office.
+- **asterisk-voip:** a modern office desk with a professional headset and a desk IP phone beside a laptop, warm window light.
 
 ---
 

@@ -271,6 +271,13 @@ function initSites() {
   }
 }
 
+function initFaq(root) {
+  root?.addEventListener("click", (event) => {
+    const trigger = event.target.closest(".faq__trigger");
+    trigger?.setAttribute("aria-expanded", String(trigger.getAttribute("aria-expanded") !== "true"));
+  });
+}
+
 initHeader();
 initGlowCards();
 initTaskSweep();
@@ -280,3 +287,4 @@ document.querySelectorAll("[data-drag-scroll]").forEach(initDragScroll);
 initProcess();
 initCursorHalo(document.querySelector("[data-cursor-halo]"));
 initHeroGl(document.querySelector("[data-hero-gl]"));
+initFaq(document.querySelector("[data-faq]"));
