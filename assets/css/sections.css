@@ -491,7 +491,8 @@
 
 /* ---------- Сайты, которые мы разработали ---------- */
 .services,
-.cases {
+.cases,
+.process {
   padding-block: 0 var(--space-12);
 }
 
@@ -752,6 +753,188 @@
 
   .sites:has(.sites__card:hover) .sites__card:not(:hover) {
     opacity: 0.75;
+  }
+}
+
+/* ---------- Как мы работаем ----------
+   Цифры слева, линия посередине рисуется по мере прокрутки (--progress выставляет скрипт),
+   тексты шагов серые, пока до них не доехали (.is-active) */
+.process-steps {
+  --line-x: 0.5rem;
+  --line-width: 2px;
+  position: relative;
+  margin-block-start: var(--space-8);
+  padding: 0 0 0 2rem;
+}
+
+.process-steps::before,
+.process-steps::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: var(--line-x);
+  inline-size: var(--line-width);
+  border-radius: var(--line-width);
+  translate: -50% 0;
+}
+
+.process-steps::before {
+  block-size: 100%;
+  background: var(--color-line);
+}
+
+.process-steps::after {
+  block-size: calc(var(--progress, 0) * 100%);
+  background: linear-gradient(180deg, var(--color-drop-orange), var(--color-drop-pink));
+}
+
+.process-step {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+  color: #b4b7c0;
+  transition: color 500ms var(--ease-out);
+}
+
+/* Точка на линии: серая, пока шаг не достигнут, потом градиентная */
+.process-step::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 2.1rem;
+  inset-inline-start: calc(var(--line-x) - 2rem);
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  border: var(--line-width) solid var(--color-line-strong);
+  border-radius: 50%;
+  background: var(--color-bg);
+  translate: -50% 0;
+  transition:
+    border-color 500ms var(--ease-out),
+    background-color 500ms var(--ease-out);
+}
+
+.process-step.is-active {
+  color: var(--color-text);
+}
+
+.process-step.is-active .process-step__text {
+  color: var(--color-text-2);
+}
+
+.process-step.is-active::before {
+  border-color: var(--color-drop-orange);
+  background: var(--color-drop-orange);
+}
+
+.process-step__number {
+  font-size: clamp(3rem, 2rem + 4vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: grayscale(1);
+  opacity: 0.35;
+  transition:
+    filter 500ms var(--ease-out),
+    opacity 500ms var(--ease-out);
+}
+
+.process-step.is-active .process-step__number {
+  filter: none;
+  opacity: 1;
+}
+
+.process-step__title {
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.process-step__text {
+  max-inline-size: 42rem;
+  margin-block-start: var(--space-2);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* Результат шага: карточка с тонкой рамкой; метка с градиентом, как у цифры, серая до достижения шага */
+.process-step__result {
+  display: grid;
+  gap: 0.5rem;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.process-step__result-label {
+  inline-size: fit-content;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: grayscale(1);
+  opacity: 0.35;
+  transition:
+    filter 500ms var(--ease-out),
+    opacity 500ms var(--ease-out);
+}
+
+.process-step.is-active .process-step__result-label {
+  filter: none;
+  opacity: 1;
+}
+
+.process-step__result-text {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .process-steps {
+    --line-x: 13rem;
+    padding-inline-start: 0;
+  }
+
+  .process-step {
+    grid-template-columns: 11rem 1fr;
+    column-gap: 4rem;
+    align-items: start;
+    padding-block: var(--space-6);
+  }
+
+  .process-step::before {
+    inset-block-start: 3.4rem;
+    inset-inline-start: var(--line-x);
+  }
+
+  /* Пока места мало, результат стоит под описанием */
+  .process-step__result {
+    grid-column: 2;
+    max-inline-size: 24rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .process-step {
+    grid-template-columns: 11rem 1fr 17rem;
+  }
+
+  .process-step__result {
+    grid-column: 3;
+    grid-row: 1;
   }
 }
 

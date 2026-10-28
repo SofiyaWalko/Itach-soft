@@ -116,6 +116,39 @@ function initServiceStack() {
   update();
 }
 
+// «Как мы работаем»: линия рисуется по мере прокрутки, шаги оживают, когда линия до них дошла
+function initProcess() {
+  const list = document.querySelector("[data-process-steps]");
+  const steps = [...list.querySelectorAll(".process-step")];
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FOCUS_LINE = 0.6;
+  let frame = 0;
+
+  function update() {
+    frame = 0;
+    const focusY = window.innerHeight * FOCUS_LINE;
+    const { top, height } = list.getBoundingClientRect();
+    // У самого низа страницы блок может не доехать до линии фокуса: считаем всё пройденным
+    const isPageEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    const progress = isPageEnd ? 1 : Math.min(Math.max((focusY - top) / height, 0), 1);
+    list.style.setProperty("--progress", reducedMotion ? 1 : progress.toFixed(4));
+    steps.forEach((step) => {
+      const active = reducedMotion || isPageEnd || step.getBoundingClientRect().top + 24 < focusY;
+      step.classList.toggle("is-active", active);
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    },
+    { passive: true },
+  );
+  window.addEventListener("resize", update);
+  update();
+}
+
 // Лента сайтов: двигается перетаскиванием и прокруткой страницы, по кругу, без автопрокрутки
 function initSites() {
   const viewport = document.querySelector("[data-sites]");
@@ -198,5 +231,6 @@ initGlowCards();
 initTaskSweep();
 initSites();
 initServiceStack();
+initProcess();
 initCursorHalo(document.querySelector("[data-cursor-halo]"));
 initHeroGl(document.querySelector("[data-hero-gl]"));
