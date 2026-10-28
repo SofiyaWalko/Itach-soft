@@ -469,3 +469,31 @@
 .cursor-halo.is-visible {
   opacity: 1;
 }
+
+/* Над лентой, которую можно тянуть, кружок вырастает и подписывается */
+.cursor-halo {
+  display: grid;
+  place-items: center;
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    inline-size var(--duration-base) var(--ease-out),
+    block-size var(--duration-base) var(--ease-out);
+}
+
+.cursor-halo::after {
+  content: "Тяните";
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.cursor-halo.is-drag {
+  inline-size: 5rem;
+  block-size: 5rem;
+}
+
+.cursor-halo.is-drag::after {
+  opacity: 1;
+}

@@ -28,6 +28,27 @@ function initCursorHalo(halo) {
     frame = isSettled ? 0 : requestAnimationFrame(render);
   }
 
+  // Страница может уехать из-под неподвижного курсора, и pointermove не придёт: состояние над лентой
+  // пересчитываем по тому, что сейчас лежит под курсором
+  function syncDragState() {
+    if (!isPlaced) return;
+    const element = document.elementFromPoint(targetX, targetY);
+    halo.classList.toggle("is-drag", Boolean(element?.closest("[data-drag-cursor]")));
+  }
+
+  let syncFrame = 0;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (syncFrame) return;
+      syncFrame = requestAnimationFrame(() => {
+        syncFrame = 0;
+        syncDragState();
+      });
+    },
+    { passive: true },
+  );
+
   window.addEventListener(
     "pointermove",
     (event) => {
@@ -40,6 +61,7 @@ function initCursorHalo(halo) {
         isPlaced = true;
         halo.classList.add("is-visible");
       }
+      halo.classList.toggle("is-drag", Boolean(event.target.closest("[data-drag-cursor]")));
       if (!frame) frame = requestAnimationFrame(render);
     },
     { passive: true },

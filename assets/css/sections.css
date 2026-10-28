@@ -492,7 +492,8 @@
 /* ---------- Сайты, которые мы разработали ---------- */
 .services,
 .cases,
-.process {
+.process,
+.reviews {
   padding-block: 0 var(--space-12);
 }
 
@@ -940,6 +941,98 @@
     grid-column: 3;
     grid-row: 1;
   }
+}
+
+/* ---------- Отзывы: горизонтальная лента, следующая карточка выглядывает справа ---------- */
+.reviews__scroller {
+  margin-block-start: var(--space-6);
+  padding-block: var(--space-1);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.reviews__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Карточки начинаются на линии контейнера и уходят за правый край экрана */
+.reviews__list {
+  --edge: max(var(--gutter), calc((100% - var(--container-max)) / 2));
+  display: flex;
+  gap: var(--space-3);
+  inline-size: max-content;
+  min-inline-size: 100%;
+  margin: 0;
+  padding-inline: var(--edge);
+}
+
+.review-card {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  inline-size: clamp(18rem, 33vw, 30rem);
+  padding: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+.review-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.review-card__logo {
+  inline-size: auto;
+  max-inline-size: 70%;
+  block-size: 2.5rem;
+  object-fit: contain;
+  object-position: left center;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.review-card__quote {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 0.7;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.review-card__text {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-2);
+}
+
+.review-card__text p + p {
+  margin-block-start: 0.75rem;
+}
+
+.review-card__author {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.review-card__name {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.review-card__job {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--color-text-2);
 }
 
 /* ---------- Появление при загрузке ---------- */

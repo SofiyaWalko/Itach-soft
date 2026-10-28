@@ -149,6 +149,51 @@ function initProcess() {
   update();
 }
 
+// Горизонтальная лента с перетаскиванием мышью и инерцией (касание и трекпад прокручивают сами)
+const DRAG_FRICTION = 0.95;
+const DRAG_STOP_SPEED = 0.3;
+
+function initDragScroll(scroller) {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let isDragging = false;
+  let startX = 0;
+  let startScroll = 0;
+  let lastX = 0;
+  let velocity = 0;
+  let frame = 0;
+
+  function coast() {
+    scroller.scrollLeft -= velocity;
+    velocity *= DRAG_FRICTION;
+    frame = Math.abs(velocity) > DRAG_STOP_SPEED ? requestAnimationFrame(coast) : 0;
+  }
+
+  scroller.addEventListener("pointerdown", (event) => {
+    if (event.pointerType !== "mouse") return;
+    cancelAnimationFrame(frame);
+    isDragging = true;
+    startX = lastX = event.clientX;
+    startScroll = scroller.scrollLeft;
+    velocity = 0;
+    scroller.setPointerCapture(event.pointerId);
+  });
+
+  scroller.addEventListener("pointermove", (event) => {
+    if (!isDragging) return;
+    velocity = event.clientX - lastX;
+    lastX = event.clientX;
+    scroller.scrollLeft = startScroll - (event.clientX - startX);
+  });
+
+  const stop = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    if (!reducedMotion) frame = requestAnimationFrame(coast);
+  };
+  scroller.addEventListener("pointerup", stop);
+  scroller.addEventListener("pointercancel", stop);
+}
+
 // Лента сайтов: двигается перетаскиванием и прокруткой страницы, по кругу, без автопрокрутки
 function initSites() {
   const viewport = document.querySelector("[data-sites]");
@@ -231,6 +276,7 @@ initGlowCards();
 initTaskSweep();
 initSites();
 initServiceStack();
+document.querySelectorAll("[data-drag-scroll]").forEach(initDragScroll);
 initProcess();
 initCursorHalo(document.querySelector("[data-cursor-halo]"));
 initHeroGl(document.querySelector("[data-hero-gl]"));
