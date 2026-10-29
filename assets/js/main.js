@@ -302,6 +302,7 @@ function initLeadForm(form) {
   if (!form) return;
   const status = form.querySelector("[data-lead-status]");
   const submit = form.querySelector('[type="submit"]');
+  const submitLabel = submit.textContent;
 
   const setError = (control, message) => {
     const error = document.getElementById(control.getAttribute("aria-describedby"));
@@ -354,7 +355,7 @@ function initLeadForm(form) {
       setStatus("Не удалось отправить заявку. Попробуйте ещё раз или напишите на info@itach-soft.ru.", "error");
     } finally {
       submit.disabled = false;
-      submit.textContent = "Получить консультацию";
+      submit.textContent = submitLabel;
     }
   });
 }
@@ -474,5 +475,6 @@ initFaq(document.querySelector("[data-faq]"));
 document.querySelectorAll("[data-lead-form]").forEach(initLeadForm);
 initLeadModal(document.querySelector("[data-lead-modal]"));
 initLeadWave(document.querySelector("[data-lead-wave]"));
+initCalculator(document.querySelector("[data-calc]"));
 initDetail(document.querySelector("[data-detail-modal]"));
 initCookieBanner(document.querySelector("[data-cookie]"));
