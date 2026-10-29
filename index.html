@@ -25,6 +25,7 @@
     <script src="assets/js/hero-gl.js" defer></script>
     <script src="assets/js/lead-wave.js" defer></script>
     <script src="assets/js/cursor-halo.js" defer></script>
+    <script src="assets/js/calculator.js" defer></script>
     <script src="assets/js/main.js" defer></script>
   </head>
 
@@ -395,6 +396,74 @@
         </div>
         <div class="container section-action" data-reveal>
           <a class="btn btn--outline" href="#cases">Все кейсы</a>
+        </div>
+      </section>
+
+      <section class="calc" id="calculator" aria-labelledby="calc-title">
+        <div class="container calc__layout" data-calc>
+          <div class="calc__intro" data-reveal>
+            <h2 class="section-title calc__title" id="calc-title">Рассчитайте стоимость работ <span class="section-title__muted">за 2 минуты</span></h2>
+          </div>
+          <div class="calc__panel glow-card" data-reveal>
+            <p class="calc__counter" data-calc-counter>Шаг 1 из 4</p>
+            <ol class="calc__tracker" data-calc-tracker>
+              <li><span class="visually-hidden">1. Услуга</span></li>
+              <li><span class="visually-hidden">2. Задача</span></li>
+              <li><span class="visually-hidden">3. Подробности</span></li>
+              <li><span class="visually-hidden">4. Контакты</span></li>
+            </ol>
+            <div class="calc__stage" tabindex="-1" data-calc-stage>
+              <h3 class="calc__title-step" data-calc-title>Выберите услугу</h3>
+              <div data-calc-body></div>
+              <div class="calc__contact" data-calc-contact hidden>
+                <h3 class="calc__title-step">Почти готово!</h3>
+                <p class="calc__summary" data-calc-summary></p>
+                <p class="calc__text">Теперь у нас есть верхнеуровневые требования к вашему проекту. Заполните контактные данные ниже, и наши менеджеры оперативно свяжутся, чтобы сориентировать вас по стоимости и срокам реализации проекта.</p>
+                <form class="lead-form calc__form" method="post" novalidate data-lead-form data-endpoint="">
+                  <input type="hidden" name="brief" data-calc-brief />
+                  <div class="lead-form__row">
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="calc-name">Имя</label>
+                      <input class="lead-form__control" id="calc-name" name="name" type="text" autocomplete="name" required aria-describedby="calc-name-error" data-error="Укажите, как к вам обращаться" />
+                      <p class="lead-form__error" id="calc-name-error"></p>
+                    </div>
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="calc-company">Название компании</label>
+                      <input class="lead-form__control" id="calc-company" name="company" type="text" autocomplete="organization" required aria-describedby="calc-company-error" data-error="Укажите название компании" />
+                      <p class="lead-form__error" id="calc-company-error"></p>
+                    </div>
+                  </div>
+                  <div class="lead-form__row">
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="calc-phone">Телефон</label>
+                      <input class="lead-form__control" id="calc-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="calc-phone-error" data-error="Укажите телефон для связи" />
+                      <p class="lead-form__error" id="calc-phone-error"></p>
+                    </div>
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="calc-email">E-mail</label>
+                      <input class="lead-form__control" id="calc-email" name="email" type="email" autocomplete="email" required aria-describedby="calc-email-error" data-error="Укажите корректный e-mail" />
+                      <p class="lead-form__error" id="calc-email-error"></p>
+                    </div>
+                  </div>
+                  <div class="lead-form__field">
+                    <label class="lead-form__label" for="calc-message">Сообщение</label>
+                    <textarea class="lead-form__control lead-form__control--area" id="calc-message" name="message" rows="3" placeholder="Детали проекта, сроки, технологии и другая важная информация" aria-describedby="calc-message-error"></textarea>
+                    <p class="lead-form__error" id="calc-message-error"></p>
+                  </div>
+                  <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+                  <div class="calc__form-actions">
+                    <button class="btn btn--primary lead-form__submit" type="submit">Отправить</button>
+                    <button class="btn btn--outline" type="button" data-calc-back-contact>Назад</button>
+                  </div>
+                  <p class="lead-form__status" role="status" data-lead-status></p>
+                </form>
+              </div>
+            </div>
+            <div class="calc__nav">
+              <button class="btn btn--outline btn--sm" type="button" data-calc-back hidden>Назад</button>
+              <button class="btn btn--primary btn--sm" type="button" data-calc-next disabled>Далее</button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -941,7 +1010,7 @@
                     </div>
                     <div class="lead-form__field">
                       <label class="lead-form__label" for="modal-task">Ваша задача</label>
-                      <textarea class="lead-form__control lead-form__control--area" id="modal-task" name="task" rows="4" required aria-describedby="modal-task-error" data-error="Коротко опишите задачу"></textarea>
+                      <textarea class="lead-form__control lead-form__control--area" id="modal-task" name="task" rows="3" required aria-describedby="modal-task-error" data-error="Коротко опишите задачу"></textarea>
                       <p class="lead-form__error" id="modal-task-error"></p>
                     </div>
                     <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
