@@ -471,17 +471,22 @@
 /* ---------- Стеклянный круг вместо курсора ---------- */
 /* Системный курсор скрыт только там, где скрипт включил круг; в полях ввода остаётся обычный */
 .has-custom-cursor,
-.has-custom-cursor :where(a, button, [role="button"], label, summary) {
+/* Класс повторён намеренно: правило должно перебивать «cursor: pointer» у любых карточек и кнопок */
+.has-custom-cursor.has-custom-cursor :not(input, textarea, select) {
   cursor: none;
 }
 
+/* Скрипт делает кружок popover: он живёт в верхнем слое и остаётся над открытыми окнами, а сброс нужен
+   против стилей popover по умолчанию */
 .cursor-halo {
   position: fixed;
-  inset-block-start: 0;
-  inset-inline-start: 0;
+  inset: 0 auto auto 0;
   z-index: 100;
   inline-size: 1.75rem;
   block-size: 1.75rem;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
   border: 1px solid var(--color-glass-stroke);
   border-radius: 50%;
   background: rgb(255 255 255 / 0.25);
@@ -500,15 +505,6 @@
 /* Над полями ввода кружок прячется, возвращается системный курсор-текст */
 .cursor-halo.is-visible.is-hidden {
   opacity: 0;
-}
-
-/* Пока открыт попап, возвращается системный курсор: кружок остался бы под слоем диалога */
-.has-custom-cursor:has(dialog[open]) {
-  cursor: auto;
-}
-
-.has-custom-cursor dialog :where(a, button, label) {
-  cursor: pointer;
 }
 
 .has-custom-cursor :where(input, textarea) {

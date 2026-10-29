@@ -12,6 +12,20 @@ function initCursorHalo(halo) {
 
   document.documentElement.classList.add("has-custom-cursor");
 
+  // Открытые окна лежат в верхнем слое поверх всего; кружок тоже там и поднимается над каждым новым окном
+  halo.popover = "manual";
+  function raiseHalo() {
+    if (halo.matches(":popover-open")) halo.hidePopover();
+    halo.showPopover();
+  }
+  raiseHalo();
+  const dialogWatcher = new MutationObserver((records) => {
+    if (records.some((record) => record.target.open)) raiseHalo();
+  });
+  document.querySelectorAll("dialog").forEach((dialog) => {
+    dialogWatcher.observe(dialog, { attributes: true, attributeFilter: ["open"] });
+  });
+
   let targetX = 0;
   let targetY = 0;
   let currentX = 0;

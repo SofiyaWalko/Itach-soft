@@ -697,6 +697,25 @@
     opacity var(--duration-base) var(--ease-out);
 }
 
+.sites__card[data-site] {
+  cursor: pointer;
+}
+
+.sites__link {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.sites__link:focus-visible {
+  outline: none;
+}
+
+.sites__card:has(.sites__link:focus-visible) {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 .sites__card img {
   inline-size: 100%;
   block-size: 100%;
@@ -1904,3 +1923,472 @@ html:has(dialog[open]) {
     padding: var(--space-5) var(--space-4) var(--space-4);
   }
 }
+
+/* ---------- Детальное окно кейса и новости ----------
+   Окно занимает весь экран и прокручивается целиком (полоса прокрутки стоит у края экрана, как у страницы).
+   Белая панель начинается ниже верхнего края и уходит за нижний, скругление снизу видно, когда дочитали до конца.
+   Порядок: заголовок и кнопка → изображение на всю ширину → «Проект включал» → плашки → описание */
+.case-card__link {
+  color: inherit;
+}
+
+/* Вся карточка кейса кликабельна: клик по ней открывает окно (скрипт), ссылка в заголовке остаётся целью для клавиатуры */
+.case-card {
+  cursor: pointer;
+}
+
+.case-card__link:focus-visible {
+  outline: none;
+}
+
+.case-card:has(.case-card__link:focus-visible) {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* У новостей значок «развернуть» вместо стрелки */
+.news-card .card-arrow .icon {
+  stroke-width: 2.5;
+}
+
+.news-card__link:hover .card-arrow .icon {
+  transform: scale(1.12);
+}
+
+.detail {
+  position: fixed;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  max-inline-size: none;
+  max-block-size: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.detail::backdrop {
+  background: rgb(20 21 26 / 0.38);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+/* Фокус на самом окне не подсвечиваем: подсвечиваются элементы внутри */
+.detail:focus-visible,
+.detail__panel:focus-visible {
+  outline: none;
+}
+
+/* Окно прокручивается само, своя полоса прокрутки у края экрана: резерв места под полосу страницы
+   давал бы рядом с ней пустую белую колонку */
+html:has(.detail[open]) {
+  scrollbar-gutter: auto;
+}
+
+.detail__panel {
+  position: relative;
+  inline-size: min(100% - 1rem, 76rem);
+  margin: var(--space-6) auto var(--space-3);
+  padding: var(--space-3) var(--space-3) var(--space-5);
+  border-radius: calc(var(--radius-lg) + 0.5rem);
+  background: var(--color-bg);
+}
+
+/* Крестик лежит в углу панели и уезжает вместе с содержимым */
+.detail__close {
+  position: absolute;
+  inset-block-start: var(--space-3);
+  inset-inline-end: var(--space-3);
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  border: 0;
+  border-radius: 1rem;
+  background: none;
+  color: var(--color-text);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.detail__close:hover {
+  color: var(--color-accent);
+}
+
+.detail__close .icon {
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+}
+
+/* ----- Шапка ----- */
+.detail__head {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  padding-block: var(--space-4) var(--space-4);
+  padding-inline-end: 4.5rem;
+}
+
+.detail__eyebrow {
+  margin: 0;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.detail__title {
+  max-inline-size: 56rem;
+  font-size: clamp(1.75rem, 1.1rem + 2.4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.detail__subtitle {
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.detail__lead {
+  max-inline-size: 48rem;
+  margin: 0 0 var(--space-1);
+  color: var(--color-text-2);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+/* Кнопка заявки и ссылка на сайт рядом: ссылка тише, как вторичное действие */
+.detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.detail__site .icon {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  flex: none;
+}
+
+/* ----- Изображение на всю ширину ----- */
+.detail__hero {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+/* Изображение показывается целиком, в своих пропорциях: на всю ширину, без обрезки */
+.detail__hero img {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+/* Диплом, сертификат и другие изображения не обрезаются и не растягиваются */
+.detail__hero--fit img {
+  max-block-size: 34rem;
+  object-fit: contain;
+}
+
+/* ----- «Проект включал» ----- */
+.detail__points {
+  margin-block-start: var(--space-4);
+}
+
+.detail__points-title {
+  margin: 0 0 var(--space-2);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Список с галочками в бледно-оранжевых кружках */
+.detail__check {
+  display: grid;
+  gap: 0.875rem var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.detail__check li {
+  position: relative;
+  padding-inline-start: 2.25rem;
+  line-height: 1.4;
+}
+
+.detail__check li::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -0.0625rem;
+  inset-inline-start: 0;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fff0e6'/%3E%3Cpath d='M7 12.5l3.2 3.2L17 8.8' fill='none' stroke='%23ff7a1f' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Короткий список (меньше пяти пунктов) всегда в один столбец */
+.detail__check.detail__check--single {
+  grid-template-columns: 1fr;
+}
+
+/* ----- Плашки: статистика и дополнительные изображения ----- */
+.detail__bento {
+  display: grid;
+  /* auto-fill, а не auto-fit: две-три плашки занимают свои колонки и не растягиваются на всю ширину */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-2);
+  margin-block-start: var(--space-4);
+}
+
+.detail-tile {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.detail-tile--image {
+  min-block-size: 14rem;
+  border: 1px solid var(--color-glass-stroke);
+  background: color-mix(in srgb, var(--color-drop-orange) 6%, var(--color-bg));
+}
+
+.detail-tile--image img {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.detail-tile--contain img {
+  inset: var(--space-3);
+  inline-size: calc(100% - 2 * var(--space-3));
+  block-size: calc(100% - 2 * var(--space-3));
+  object-fit: contain;
+}
+
+/* Плашка со статистикой — как карточка «Какие задачи решаем»: белая, с тонкой рамкой, градиентной цифрой
+   сверху и подписью снизу; контур при наведении задаёт общий .glow-card */
+.detail-tile--stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  min-block-size: 14rem;
+  padding: var(--space-3);
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  overflow: visible;
+}
+
+.detail-tile__value {
+  margin: 0;
+  /* По ширине самих цифр, чтобы градиент оранжевый → розовый уместился в них целиком */
+  inline-size: fit-content;
+  background: linear-gradient(90deg, var(--color-drop-orange) 55%, var(--color-drop-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.detail-tile__label {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.detail-tile__list {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text-2);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+}
+
+/* ----- Отзыв клиента: карточка отзывов с главной, но во всю ширину ----- */
+.detail-review {
+  inline-size: auto;
+  margin-block: var(--space-3);
+  padding: var(--space-4);
+}
+
+.detail-review__side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.detail-review .review-card__text {
+  font-size: 1.0625rem;
+}
+
+.detail-review .review-card__text p {
+  margin: 0;
+}
+
+.detail-review .review-card__text p + p {
+  margin-block-start: 0.75rem;
+}
+
+/* ----- Описание ----- */
+/* Без кнопки анонс заканчивает шапку: лишнего отступа под ним нет, расстояние до следующего блока задаёт сама шапка */
+.detail__lead:last-child {
+  margin-block-end: 0;
+}
+
+/* Текст сразу под шапкой (новость без изображения) отделяется тем же отступом, что и остальные блоки */
+.detail__head + .detail__article {
+  margin-block-start: 0;
+}
+
+.detail__article {
+  margin: var(--space-6) 0 0;
+  line-height: 1.65;
+}
+
+.detail__article p {
+  margin: 0 0 var(--space-2);
+}
+
+.detail__h,
+.detail__prose h2 {
+  margin: var(--space-6) 0 var(--space-2);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.detail__article > .detail__h:first-child,
+.detail__prose > h2:first-child {
+  margin-block-start: 0;
+}
+
+.detail__subh,
+.detail__prose h3 {
+  margin: var(--space-4) 0 var(--space-1);
+  font-size: 1.1875rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Списки: и маркированные, и нумерованные — с оранжевыми кружочками */
+.detail__article ul,
+.detail__article ol {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.detail__article li {
+  position: relative;
+  padding-inline-start: 1.375rem;
+}
+
+.detail__article li::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.6em;
+  inset-inline-start: 0.125rem;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-drop-orange);
+}
+
+.detail__article a {
+  /* Ссылка и подчёркивание — нашим градиентом */
+  background: var(--gradient-text) 0 100% / 100% 0.09em no-repeat, var(--gradient-text);
+  -webkit-background-clip: border-box, text;
+  background-clip: border-box, text;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding-block-end: 0.12em;
+  color: transparent;
+  text-decoration: none;
+}
+
+.detail__figure {
+  margin: var(--space-3) 0;
+  overflow: hidden;
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.detail__figure img {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+/* Вертикальные изображения не растягиваем на всю ширину окна */
+.detail__figure--portrait {
+  max-inline-size: 20rem;
+  margin-inline: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .detail[open] {
+    animation: modal-in 300ms var(--ease-out);
+  }
+
+  .detail[open]::backdrop {
+    animation: modal-fade 300ms var(--ease-out);
+  }
+}
+
+@media (min-width: 640px) {
+  .detail__panel {
+    margin-block-start: var(--space-8);
+    margin-block-end: var(--space-4);
+    padding: var(--space-4) var(--space-5) var(--space-6);
+  }
+
+  .detail__check {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .detail-review {
+    flex-direction: row;
+    gap: var(--space-6);
+    padding: var(--space-5);
+  }
+
+  .detail-review__side {
+    flex: 0 0 15rem;
+  }
+
+  }

@@ -3,6 +3,8 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 
 const SCROLLED_OFFSET = 8;
 const SITES_SCROLL_RATIO = 0.6;
+// Сдвиг указателя дольше этого — перетаскивание ленты, а не клик по карточке
+const SITES_CLICK_SLOP = 6;
 const SITES_FOLLOW = 0.14;
 const SITES_FRICTION = 0.94;
 const SITES_STOP_SPEED = 0.1;
@@ -46,14 +48,19 @@ function initHeader() {
 // Градиентный контур карточек следует за курсором; координаты переводим в систему самой карточки
 // (она может быть уменьшена transform: scale, как в стопке услуг)
 function initGlowCards() {
-  for (const card of document.querySelectorAll(".glow-card")) {
-    card.addEventListener("pointermove", (event) => {
+  // Один обработчик на документ: карточки в окнах кейсов появляются позже, при открытии
+  document.addEventListener(
+    "pointermove",
+    (event) => {
+      const card = event.target.closest?.(".glow-card");
+      if (!card) return;
       const rect = card.getBoundingClientRect();
       const scale = card.offsetWidth / rect.width;
       card.style.setProperty("--mx", `${(event.clientX - rect.left) * scale}px`);
       card.style.setProperty("--my", `${(event.clientY - rect.top) * scale}px`);
-    });
-  }
+    },
+    { passive: true },
+  );
 }
 
 // Стопка карточек услуг: чем больше карточек легло сверху, тем сильнее нижняя уменьшается и темнеет
@@ -194,6 +201,7 @@ function initSites() {
   let velocity = 0;
   let isDragging = false;
   let lastPointerX = 0;
+  let dragDistance = 0;
   let lastScrollY = window.scrollY;
   let frame = 0;
 
@@ -223,6 +231,7 @@ function initSites() {
     isDragging = true;
     velocity = 0;
     lastPointerX = event.clientX;
+    dragDistance = 0;
     viewport.setPointerCapture(event.pointerId);
     wake();
   });
@@ -231,6 +240,7 @@ function initSites() {
     if (!isDragging) return;
     const delta = event.clientX - lastPointerX;
     lastPointerX = event.clientX;
+    dragDistance += Math.abs(delta);
     target += delta;
     velocity = delta;
   });
@@ -242,6 +252,13 @@ function initSites() {
   };
   viewport.addEventListener("pointerup", stopDragging);
   viewport.addEventListener("pointercancel", stopDragging);
+
+  // Захват указателя переадресует клик на ленту, поэтому карточку под курсором ищем по координатам
+  viewport.addEventListener("click", (event) => {
+    if (event.detail === 0 || dragDistance > SITES_CLICK_SLOP) return;
+    const card = document.elementsFromPoint(event.clientX, event.clientY).find((el) => el.matches("[data-site]"));
+    if (card) document.querySelector(`[data-detail-open="${card.dataset.site}"]`)?.click();
+  });
 
   // Горизонтальная прокрутка тачпадом или Shift + колесо двигает ленту; вертикальная прокручивает страницу как обычно
   viewport.addEventListener(
@@ -383,6 +400,67 @@ function initLeadModal(modal) {
   });
 }
 
+// Детальное окно кейса или новости: содержимое лежит в <template id="detail-…"> и копируется в диалог при открытии.
+// Адрес страницы получает якорь (#case-erip), поэтому на окно можно дать ссылку
+function initDetail(modal) {
+  if (!modal) return;
+  const content = modal.querySelector("[data-detail-content]");
+  const panel = modal.querySelector("[data-detail-panel]");
+  const leadModal = document.querySelector("[data-lead-modal]");
+  let currentId = "";
+
+  function open(id) {
+    const template = document.getElementById(`detail-${id}`);
+    if (!template) return;
+    currentId = id;
+    content.replaceChildren(template.content.cloneNode(true));
+    if (!modal.open) modal.showModal();
+    // Позиция прокрутки задаётся уже после показа: у скрытого диалога она не применяется
+    modal.scrollTop = 0;
+    // Фокус на панели, а не на крестике: иначе при открытии крестик обведён рамкой фокуса
+    panel.focus({ preventScroll: true });
+    history.replaceState(null, "", `#${id}`);
+  }
+
+  document.querySelectorAll("[data-detail-open]").forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      open(trigger.dataset.detailOpen);
+    });
+  });
+
+  // Карточка кейса открывается кликом по любому месту, а не только по заголовку
+  document.querySelectorAll(".case-card").forEach((card) => {
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a")) return;
+      card.querySelector("[data-detail-open]").click();
+    });
+  });
+
+  modal.querySelector("[data-detail-close]").addEventListener("click", () => modal.close());
+
+  // Клик по затемнению рядом с панелью (целью становится сам dialog) закрывает окно
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) modal.close();
+  });
+
+  // Кнопка «Обсудить…» внутри окна: закрываем деталь и открываем форму заявки
+  content.addEventListener("click", (event) => {
+    if (!event.target.closest("[data-detail-lead]")) return;
+    modal.close();
+    leadModal?.showModal();
+  });
+
+  modal.addEventListener("close", () => {
+    // Событие приходит с задержкой: если за это время уже открыли другое окно, адрес не трогаем
+    if (modal.open) return;
+    if (location.hash === `#${currentId}`) history.replaceState(null, "", location.pathname + location.search);
+    currentId = "";
+  });
+
+  if (location.hash.length > 1) open(location.hash.slice(1));
+}
+
 initHeader();
 initScrollReveal();
 initGlowCards();
@@ -396,3 +474,5 @@ initFaq(document.querySelector("[data-faq]"));
 document.querySelectorAll("[data-lead-form]").forEach(initLeadForm);
 initLeadModal(document.querySelector("[data-lead-modal]"));
 initLeadWave(document.querySelector("[data-lead-wave]"));
+initDetail(document.querySelector("[data-detail-modal]"));
+initCookieBanner(document.querySelector("[data-cookie]"));
