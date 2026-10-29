@@ -291,7 +291,6 @@ function initLeadForm(form) {
     if (message) control.setAttribute("aria-invalid", "true");
     else control.removeAttribute("aria-invalid");
     error.textContent = message;
-    error.hidden = !message;
   };
 
   const setStatus = (message, state) => {

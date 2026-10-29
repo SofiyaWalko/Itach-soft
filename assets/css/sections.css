@@ -1349,7 +1349,8 @@
 
 .lead-form {
   display: grid;
-  gap: var(--space-2);
+  /* Между полями промежутков нет: их заменяет зарезервированное место под ошибку */
+  gap: 0;
   padding: var(--space-3);
   border: calc(var(--contour-width) + 1px) solid transparent;
   border-radius: var(--radius-lg);
@@ -1367,7 +1368,7 @@
 
 .lead-form__row {
   display: grid;
-  gap: var(--space-2);
+  column-gap: var(--space-2);
 }
 
 .lead-form__field {
@@ -1379,11 +1380,6 @@
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.3;
-}
-
-.lead-form__hint {
-  color: var(--color-text-2);
-  font-weight: 400;
 }
 
 .lead-form__control {
@@ -1421,15 +1417,18 @@
   border-color: var(--color-error);
 }
 
+/* Место под сообщение зарезервировано всегда (одна строка), поэтому форма не растёт и не прыгает,
+   когда появляется ошибка. Текст короткий, в одну строку */
 .lead-form__error {
-  margin: 0;
+  min-block-size: 1.0625rem;
+  margin: -0.125rem 0 0.25rem;
   color: var(--color-error);
   font-size: 0.8125rem;
   line-height: 1.3;
 }
 
 .lead-form__consent {
-  margin: 0;
+  margin: 0.5rem 0 0.75rem;
   color: var(--color-text-2);
   font-size: 0.8125rem;
   line-height: 1.4;
@@ -1445,7 +1444,7 @@
 }
 
 .lead-form__status {
-  margin: 0;
+  margin: 0.75rem 0 0;
   font-size: 0.9375rem;
   line-height: 1.4;
 }
@@ -1859,13 +1858,13 @@ html:has(dialog[open]) {
   block-size: 2.75rem;
   border: 0;
   border-radius: 0.875rem;
-  background: var(--color-line);
+  background: none;
   color: var(--color-text);
-  transition: background-color var(--duration-fast) var(--ease-out);
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .modal__close:hover {
-  background: var(--color-line-strong);
+  color: var(--color-accent);
 }
 
 .modal__close .icon {
