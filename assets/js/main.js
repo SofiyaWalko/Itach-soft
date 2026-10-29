@@ -6,6 +6,7 @@ const SITES_SCROLL_RATIO = 0.6;
 const SITES_FOLLOW = 0.14;
 const SITES_FRICTION = 0.94;
 const SITES_STOP_SPEED = 0.1;
+const SITES_WHEEL_LINE_PX = 16;
 const DESKTOP_QUERY = window.matchMedia("(min-width: 1024px)");
 
 function updateHeaderState() {
@@ -53,19 +54,6 @@ function initGlowCards() {
       card.style.setProperty("--my", `${(event.clientY - rect.top) * scale}px`);
     });
   }
-}
-
-function initTaskSweep() {
-  const list = document.querySelector("[data-task-list]");
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (!entry.isIntersecting) return;
-      list.classList.add("is-revealed");
-      observer.disconnect();
-    },
-    { threshold: 0.4 },
-  );
-  observer.observe(list);
 }
 
 // Стопка карточек услуг: чем больше карточек легло сверху, тем сильнее нижняя уменьшается и темнеет
@@ -255,6 +243,19 @@ function initSites() {
   viewport.addEventListener("pointerup", stopDragging);
   viewport.addEventListener("pointercancel", stopDragging);
 
+  // Горизонтальная прокрутка тачпадом или Shift + колесо двигает ленту; вертикальная прокручивает страницу как обычно
+  viewport.addEventListener(
+    "wheel",
+    (event) => {
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      event.preventDefault();
+      const lineHeight = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? SITES_WHEEL_LINE_PX : 1;
+      target -= event.deltaX * lineHeight;
+      wake();
+    },
+    { passive: false },
+  );
+
   if (!reducedMotion) {
     window.addEventListener(
       "scroll",
@@ -278,9 +279,114 @@ function initFaq(root) {
   });
 }
 
+const LEAD_DEMO_DELAY = 700;
+
+function initLeadForm(form) {
+  if (!form) return;
+  const status = form.querySelector("[data-lead-status]");
+  const submit = form.querySelector('[type="submit"]');
+
+  const setError = (control, message) => {
+    const error = document.getElementById(control.getAttribute("aria-describedby"));
+    if (message) control.setAttribute("aria-invalid", "true");
+    else control.removeAttribute("aria-invalid");
+    error.textContent = message;
+    error.hidden = !message;
+  };
+
+  const setStatus = (message, state) => {
+    status.classList.remove("is-error", "is-success");
+    if (state) status.classList.add(`is-${state}`);
+    status.textContent = message;
+  };
+
+  // Адрес приёма заявок задаётся в data-endpoint. Пока он пуст, заявка никуда не уходит: показываем только сообщение об успехе
+  const send = async () => {
+    if (form.dataset.endpoint) {
+      const response = await fetch(form.dataset.endpoint, { method: "POST", body: new FormData(form) });
+      if (!response.ok) throw new Error(response.statusText);
+      return;
+    }
+    console.warn("Форма заявки: не задан data-endpoint, заявка не отправлена.");
+    await new Promise((resolve) => setTimeout(resolve, LEAD_DEMO_DELAY));
+  };
+
+  form.addEventListener("input", (event) => {
+    if (event.target.hasAttribute("aria-invalid")) setError(event.target, "");
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    setStatus("");
+
+    const invalid = [...form.elements].filter((control) => control.willValidate && !control.checkValidity());
+    form.querySelectorAll(".lead-form__control").forEach((control) => {
+      setError(control, invalid.includes(control) ? control.dataset.error : "");
+    });
+    if (invalid.length) {
+      invalid[0].focus();
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = "Отправляем…";
+    try {
+      await send();
+      form.reset();
+      setStatus("Заявка отправлена. Мы свяжемся с вами в ближайшее время.", "success");
+    } catch {
+      setStatus("Не удалось отправить заявку. Попробуйте ещё раз или напишите на info@itach-soft.ru.", "error");
+    } finally {
+      submit.disabled = false;
+      submit.textContent = "Получить консультацию";
+    }
+  });
+}
+
+// Появление блоков и заголовков при прокрутке: одиночные [data-reveal] и группы [data-reveal-stagger]
+function initScrollReveal() {
+  const targets = document.querySelectorAll("[data-reveal], [data-reveal-stagger]");
+
+  document.querySelectorAll("[data-reveal-stagger]").forEach((group) => {
+    [...group.children].forEach((child, index) => child.style.setProperty("--i", index));
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        // Блоки, которые остались выше экрана (перезагрузка посреди страницы), показываем сразу
+        if (!entry.isIntersecting && entry.boundingClientRect.top >= 0) return;
+        entry.target.classList.add("is-revealed");
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+  );
+  targets.forEach((target) => observer.observe(target));
+}
+
+// Попап с формой заявки: открывается по кнопкам и ссылкам на #lead. Без JS те же ссылки ведут к форме внизу страницы
+function initLeadModal(modal) {
+  if (!modal) return;
+
+  document.querySelectorAll('a[href="#lead"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      modal.showModal();
+    });
+  });
+
+  modal.querySelector("[data-modal-close]").addEventListener("click", () => modal.close());
+
+  // Клик по затемнению (целью становится сам dialog, панель занимает всю его область) закрывает попап
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) modal.close();
+  });
+}
+
 initHeader();
+initScrollReveal();
 initGlowCards();
-initTaskSweep();
 initSites();
 initServiceStack();
 document.querySelectorAll("[data-drag-scroll]").forEach(initDragScroll);
@@ -288,3 +394,6 @@ initProcess();
 initCursorHalo(document.querySelector("[data-cursor-halo]"));
 initHeroGl(document.querySelector("[data-hero-gl]"));
 initFaq(document.querySelector("[data-faq]"));
+document.querySelectorAll("[data-lead-form]").forEach(initLeadForm);
+initLeadModal(document.querySelector("[data-lead-modal]"));
+initLeadWave(document.querySelector("[data-lead-wave]"));

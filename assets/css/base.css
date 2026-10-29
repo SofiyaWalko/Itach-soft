@@ -22,6 +22,21 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Лёгкая сетка на фоне страницы, как в карточках услуг: по краям заметнее, к центру тает, чтобы не мешать тексту.
+   Закреплена на экране (fixed): контент и карточки скользят поверх неподвижного рисунка */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgb(20 21 26 / 0.06) 1px, transparent 1px) 0 0 / 3rem 3rem,
+    linear-gradient(90deg, rgb(20 21 26 / 0.06) 1px, transparent 1px) 0 0 / 3rem 3rem;
+  -webkit-mask-image: linear-gradient(90deg, #000, transparent 32%, transparent 68%, #000);
+  mask-image: linear-gradient(90deg, #000, transparent 32%, transparent 68%, #000);
+  pointer-events: none;
+}
+
 h1,
 h2,
 h3,

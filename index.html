@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="assets/css/components.css" />
     <link rel="stylesheet" href="assets/css/sections.css" />
     <script src="assets/js/hero-gl.js" defer></script>
+    <script src="assets/js/lead-wave.js" defer></script>
     <script src="assets/js/cursor-halo.js" defer></script>
     <script src="assets/js/main.js" defer></script>
   </head>
@@ -78,11 +79,11 @@
 
           <nav class="site-header__nav" id="site-nav" aria-label="Основное меню">
             <ul class="nav__list">
-              <li><a class="nav__link" href="#services">Услуги</a></li>
-              <li><a class="nav__link" href="#cases">Портфолио</a></li>
-              <li><a class="nav__link" href="#about">Компания</a></li>
-              <li><a class="nav__link" href="#news">Блог</a></li>
-              <li><a class="nav__link" href="#contacts">Контакты</a></li>
+              <li><a class="nav__link" href="#services"><span class="nav__text">Услуги</span></a></li>
+              <li><a class="nav__link" href="#cases"><span class="nav__text">Портфолио</span></a></li>
+              <li><a class="nav__link" href="#about"><span class="nav__text">Компания</span></a></li>
+              <li><a class="nav__link" href="#news"><span class="nav__text">Блог</span></a></li>
+              <li><a class="nav__link" href="#contacts"><span class="nav__text">Контакты</span></a></li>
             </ul>
             <a class="nav__phone" href="tel:+74812280296">
               <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
@@ -174,7 +175,7 @@
         </div>
       </section>
 
-      <section class="clients" aria-label="Нам доверяют">
+      <section class="clients" aria-label="Нам доверяют" data-reveal>
         <div class="clients__track">
           <ul class="clients__list">
               <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="ЕРИП" /></li>
@@ -211,8 +212,8 @@
 
       <section class="tasks" aria-labelledby="tasks-title">
         <div class="container">
-          <h2 class="section-title" id="tasks-title">Какие задачи <span class="section-title__muted">решаем</span></h2>
-          <ol class="task-list" data-task-list>
+          <h2 class="section-title" data-reveal id="tasks-title">Какие задачи <span class="section-title__muted">решаем</span></h2>
+          <ol class="task-list" data-reveal-stagger>
             <li class="task-card glow-card" style="--i: 0">
               <svg class="task-card__number" viewBox="0 0 84 60" aria-hidden="true"><text x="0" y="50">01</text></svg>
               <p class="task-card__text">Заявки теряются, а менеджеры забывают о клиентах</p>
@@ -234,7 +235,7 @@
               <p class="task-card__text">Не хватает ресурсов для развития IT-продукта</p>
             </li>
           </ol>
-          <div class="section-action">
+          <div class="section-action" data-reveal>
             <a class="btn btn--outline" href="#lead">Найти решение для моей задачи</a>
           </div>
         </div>
@@ -242,7 +243,7 @@
 
       <section class="services" id="services" aria-labelledby="services-title">
         <div class="container">
-          <h2 class="section-title" id="services-title">
+          <h2 class="section-title" data-reveal id="services-title">
             Направления <span class="section-title__muted">услуг</span>
           </h2>
           <ol class="service-stack" style="--count: 6" data-service-stack>
@@ -325,10 +326,10 @@
 
       <section class="cases" id="cases" aria-labelledby="cases-title">
         <div class="container">
-          <h2 class="section-title" id="cases-title">
+          <h2 class="section-title" data-reveal id="cases-title">
             Наши <span class="section-title__muted">кейсы</span>
           </h2>
-          <ul class="case-grid">
+          <ul class="case-grid" data-reveal-stagger>
             <li class="case-card glow-card">
               <h3 class="case-card__title">ЕРИП <span class="section-title__muted">контакт-центр на базе Asterisk и Битрикс24</span></h3>
               <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
@@ -360,11 +361,11 @@
 
       <section class="websites" aria-labelledby="websites-title">
         <div class="container">
-          <h2 class="section-title" id="websites-title">
+          <h2 class="section-title" data-reveal id="websites-title">
             Сайты, <span class="section-title__muted">которые мы разработали</span>
           </h2>
         </div>
-        <div class="sites" data-sites>
+        <div class="sites" data-sites data-reveal>
           <div class="sites__track" data-sites-track>
             <ul class="sites__list">
               <li class="sites__card" style="--z: 20"><img src="assets/img/sites/rozy-bel.jpg" width="1440" height="940" alt="Сайт Розы.Бел" /></li>
@@ -392,14 +393,14 @@
             </ul>
           </div>
         </div>
-        <div class="container section-action">
+        <div class="container section-action" data-reveal>
           <a class="btn btn--outline" href="#cases">Все кейсы</a>
         </div>
       </section>
 
       <section class="process" id="process" aria-labelledby="process-title">
         <div class="container">
-          <h2 class="section-title" id="process-title">
+          <h2 class="section-title" data-reveal id="process-title">
             Как мы <span class="section-title__muted">работаем</span>
           </h2>
           <ol class="process-steps" data-process-steps>
@@ -460,19 +461,19 @@
             </li>
           </ol>
         </div>
-        <div class="container section-action">
+        <div class="container section-action" data-reveal>
           <a class="btn btn--outline" href="#lead">Обсудить сотрудничество</a>
         </div>
       </section>
 
       <section class="reviews" id="reviews" aria-labelledby="reviews-title">
         <div class="container">
-          <h2 class="section-title" id="reviews-title">
+          <h2 class="section-title" data-reveal id="reviews-title">
             Отзывы <span class="section-title__muted">клиентов</span>
           </h2>
         </div>
-        <div class="reviews__scroller" data-drag-scroll data-drag-cursor tabindex="0" role="region" aria-label="Отзывы клиентов, прокручивается по горизонтали">
-          <ul class="reviews__list">
+        <div class="reviews__scroller" data-drag-scroll tabindex="0" role="region" aria-label="Отзывы клиентов, прокручивается по горизонтали">
+          <ul class="reviews__list" data-reveal-stagger>
             <li class="review-card glow-card">
               <div class="review-card__top">
                 <img class="review-card__logo" src="assets/img/reviews/sberlizing.svg" width="300" height="42" alt="Сберлизинг" loading="lazy" />
@@ -580,10 +581,10 @@
 
       <section class="news" id="news" aria-labelledby="news-title">
         <div class="container">
-          <h2 class="section-title" id="news-title">
+          <h2 class="section-title" data-reveal id="news-title">
             Что нового <span class="section-title__muted">в Итач-софт</span>
           </h2>
-          <ul class="news__list">
+          <ul class="news__list" data-reveal-stagger>
             <li class="news-card glow-card">
               <a class="news-card__link" href="https://itach-soft.ru/news/chto-takoe-asterisk-i-pochemu-eto-luchshaya-osnova-dlya-korporativnoy-voip-telefonii/">
                 <span class="news-card__top">
@@ -626,19 +627,19 @@
             </li>
           </ul>
         </div>
-        <div class="container section-action">
+        <div class="container section-action" data-reveal>
           <a class="btn btn--outline" href="https://itach-soft.ru/news/">Все новости</a>
         </div>
       </section>
 
       <section class="faq" id="faq" aria-labelledby="faq-title">
         <div class="container faq__layout" data-faq>
-          <div class="faq__intro">
+          <div class="faq__intro" data-reveal>
             <h2 class="section-title faq__title" id="faq-title">Часто задаваемые <span class="section-title__muted">вопросы</span></h2>
-            <a class="btn btn--outline" href="#lead">Задать свой</a>
+            <a class="btn btn--outline" href="#lead">Задать свой вопрос</a>
           </div>
-          <ul class="faq__list">
-            <li class="faq__item">
+          <ul class="faq__list" data-reveal-stagger>
+            <li class="faq__item glow-card">
               <h3 class="faq__question">
                 <button class="faq__trigger" type="button" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
                   <span class="faq__text">От чего зависит стоимость проекта?</span>
@@ -649,7 +650,7 @@
                 <div class="faq__answer-inner"><p>Стоимость зависит от объёма задач, числа интеграций и сложности процессов. Поэтому мы сначала анализируем ваши процессы, затем предлагаем решение и оцениваем проект — вы заранее знаете, из чего складывается бюджет.</p></div>
               </div>
             </li>
-            <li class="faq__item">
+            <li class="faq__item glow-card">
               <h3 class="faq__question">
                 <button class="faq__trigger" type="button" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
                   <span class="faq__text">Сколько времени занимает внедрение?</span>
@@ -660,7 +661,7 @@
                 <div class="faq__answer-inner"><p>Срок зависит от масштаба проекта: от небольших настроек до комплексного внедрения с интеграциями. Сроки по этапам мы согласуем с вами до старта работ.</p></div>
               </div>
             </li>
-            <li class="faq__item">
+            <li class="faq__item glow-card">
               <h3 class="faq__question">
                 <button class="faq__trigger" type="button" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
                   <span class="faq__text">С чего начинается работа?</span>
@@ -671,7 +672,7 @@
                 <div class="faq__answer-inner"><p>С анализа процессов и задач. Мы разбираемся, как устроен ваш бизнес сейчас, и только потом предлагаем решение и оцениваем проект.</p></div>
               </div>
             </li>
-            <li class="faq__item">
+            <li class="faq__item glow-card">
               <h3 class="faq__question">
                 <button class="faq__trigger" type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
                   <span class="faq__text">Какие решения вы разрабатываете?</span>
@@ -682,7 +683,7 @@
                 <div class="faq__answer-inner"><p>Внедряем и настраиваем Битрикс24, разрабатываем сайты и порталы, создаём CRM-системы и интеграции, объединяя бизнес-процессы в единую систему.</p></div>
               </div>
             </li>
-            <li class="faq__item">
+            <li class="faq__item glow-card">
               <h3 class="faq__question">
                 <button class="faq__trigger" type="button" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
                   <span class="faq__text">Можно ли интегрировать систему с нашим ПО?</span>
@@ -693,7 +694,7 @@
                 <div class="faq__answer-inner"><p>Да. Мы реализуем интеграции Битрикс24 с учётными системами, IP-телефонией и другим ПО — например, звонки автоматически записываются и сохраняются в карточках клиентов.</p></div>
               </div>
             </li>
-            <li class="faq__item">
+            <li class="faq__item glow-card">
               <h3 class="faq__question">
                 <button class="faq__trigger" type="button" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
                   <span class="faq__text">Остаётся ли поддержка после запуска?</span>
@@ -704,7 +705,7 @@
                 <div class="faq__answer-inner"><p>Да. После запуска мы обучаем сотрудников и сопровождаем систему: вносим доработки и помогаем с возникающими вопросами. Техническая поддержка работает 24/7.</p></div>
               </div>
             </li>
-            <li class="faq__item">
+            <li class="faq__item glow-card">
               <h3 class="faq__question">
                 <button class="faq__trigger" type="button" id="faq-q7" aria-expanded="false" aria-controls="faq-a7">
                   <span class="faq__text">Как проходит обучение сотрудников?</span>
@@ -715,7 +716,7 @@
                 <div class="faq__answer-inner"><p>После запуска мы обучаем вашу команду работать в системе, чтобы сотрудники быстро освоились и использовали её возможности на практике.</p></div>
               </div>
             </li>
-            <li class="faq__item">
+            <li class="faq__item glow-card">
               <h3 class="faq__question">
                 <button class="faq__trigger" type="button" id="faq-q8" aria-expanded="false" aria-controls="faq-a8">
                   <span class="faq__text">Можно ли доработать уже работающую систему?</span>
@@ -729,6 +730,210 @@
           </ul>
         </div>
       </section>
+
+      <section class="lead" id="lead" aria-labelledby="lead-title">
+        <div class="container">
+          <div class="lead__panel" data-reveal>
+            <canvas class="lead__wave" aria-hidden="true" data-lead-wave></canvas>
+            <div class="lead__intro">
+              <h2 class="section-title lead__title" id="lead-title">
+                Расскажите, что хотите <span class="section-title__muted">улучшить в бизнесе</span>
+              </h2>
+              <p class="lead__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+            </div>
+            <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-name">Имя</label>
+                  <input class="lead-form__control" id="lead-name" name="name" type="text" autocomplete="name" required aria-describedby="lead-name-error" data-error="Укажите, как к вам обращаться" />
+                  <p class="lead-form__error" id="lead-name-error" hidden></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-company">Компания</label>
+                  <input class="lead-form__control" id="lead-company" name="company" type="text" autocomplete="organization" required aria-describedby="lead-company-error" data-error="Укажите название компании" />
+                  <p class="lead-form__error" id="lead-company-error" hidden></p>
+                </div>
+              </div>
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-phone">Телефон</label>
+                  <input class="lead-form__control" id="lead-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="lead-phone-error" data-error="Укажите телефон для связи" />
+                  <p class="lead-form__error" id="lead-phone-error" hidden></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-email">E-mail <span class="lead-form__hint">(необязательно)</span></label>
+                  <input class="lead-form__control" id="lead-email" name="email" type="email" autocomplete="email" aria-describedby="lead-email-error" data-error="Проверьте адрес e-mail" />
+                  <p class="lead-form__error" id="lead-email-error" hidden></p>
+                </div>
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="lead-task">Ваша задача</label>
+                <textarea class="lead-form__control lead-form__control--area" id="lead-task" name="task" rows="4" required aria-describedby="lead-task-error" data-error="Коротко опишите задачу"></textarea>
+                <p class="lead-form__error" id="lead-task-error" hidden></p>
+              </div>
+              <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+              <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+              <p class="lead-form__status" role="status" data-lead-status></p>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__inner">
+          <div class="site-footer__top" data-reveal>
+            <a class="site-footer__logo" href="./" aria-label="Итач-софт, на главную">
+              <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+            </a>
+            <ul class="site-footer__socials" aria-label="Мы в соцсетях">
+              <li><a class="site-footer__social site-footer__social--telegram" href="https://t.me/Itachsoft_bot" target="_blank" rel="noopener" aria-label="Telegram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--youtube" href="https://www.youtube.com/@_ItachSoft_" target="_blank" rel="noopener" aria-label="YouTube"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--instagram" href="https://www.instagram.com/itach_soft/" target="_blank" rel="noopener" aria-label="Instagram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--tiktok" href="https://www.tiktok.com/@itach_soft_team" target="_blank" rel="noopener" aria-label="TikTok"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--linkedin" href="https://www.linkedin.com/company/80693063/" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--facebook" href="https://www.facebook.com/itachbelarus" target="_blank" rel="noopener" aria-label="Facebook"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+          <nav class="site-footer__columns" aria-label="Разделы сайта" data-reveal-stagger>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/bitriks24/">Битрикс24</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/vnedrenie-i-nastroyka-bitriks24/">Внедрение и настройка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/dorabotka-bitriks24/">Доработка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/integratsiya-bitriks24/">Интеграция Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/avtomatizatsiya-biznes-protsessov-v-bitriks24/">Автоматизация Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/ip-telefoniya-dlya-bitriks24/">IP-телефония для Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Тех. поддержка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/obuchenie-bitriks24/">Обучение Битрикс24</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/sayty/">Сайты</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/korporativnye-sayty/">Корпоративные сайты</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/internet-magaziny/">Интернет-магазины</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/sayty-vizitki/">Сайты-визитки</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/sayty-gosudarstvennykh-organizatsiy/">Сайты госорганизаций</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/lending/">Лендинг</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/razrabotka-sayta-na-gotovykh-shablonakh/">Разработка сайта на готовых шаблонах</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/tekhnicheskaya-podderzhka-saytov/">Техническая поддержка сайтов</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/">IP-АТС на базе Asterisk</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/vnedrenie-ip-atc-na-baze-asterisk/">Внедрение IP-АТС на базе Asterisk</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/nastroyka-voip-asterisk/">Настройка VoIP Asterisk</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/obespechenie-bezopasnosti-voip-ats/">Безопасность VoIP-АТС</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Поддержка VoIP-станций</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/">Веб-сервисы</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/razrabotka-veb-servisov-s-nulya/">Разработка веб-сервисов с нуля</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/integratsiya-slozhnykh-sistem/">Интеграция сложных систем</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Техническая поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/tekhnicheskaya-podderzhka/">Техническая поддержка</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/tekhnicheskaya-podderzhka-saytov/">Поддержка сайтов</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Обслуживание Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Поддержка VoIP-станций</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title">Компания</h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/portfolio/">Портфолио</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/garantii/">Гарантия</a></li>
+                <li><a class="site-footer__link" href="#reviews">Отзывы</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/news/">Новости</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/faq/">Вопросы и ответы</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/contacts/">Контакты</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="site-footer__offices" data-reveal-stagger>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в Беларуси</h3>
+              <p class="site-footer__address">220083, Республика Беларусь, г. Минск, пр-т Дзержинского, 104-141, оф. 1201Б</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach.by">info@itach.by</a>
+              <a class="site-footer__link" href="tel:+375173884530">+375 17 388-45-30</a>
+            </address>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в России</h3>
+              <p class="site-footer__address">214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach-soft.ru">info@itach-soft.ru</a>
+              <a class="site-footer__link" href="tel:+74812280296">+7 (481) 228-02-96</a>
+            </address>
+          </div>
+          <div class="site-footer__bottom" data-reveal>
+            <p class="site-footer__legal">
+              ООО «Итач-софт». Юридический адрес: Республика Беларусь, г. Минск, 220141, пр. Независимости, д. 172, пом. 22.
+              УНП 192324962, регистрационный номер в Торговом реестре 466118 от 20.11.2019.
+              Техподдержка 24/7: <a class="site-footer__link" href="mailto:helpdesk@itach.by">helpdesk@itach.by</a>
+            </p>
+            <div class="site-footer__copy">
+              <p>© 2026 ООО «Итач-софт» — разработка программного обеспечения</p>
+              <a class="site-footer__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Политика конфиденциальности</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <dialog class="modal" id="lead-modal" aria-labelledby="lead-modal-title" data-lead-modal>
+      <div class="modal__panel">
+        <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close>
+          <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+        </button>
+        <h2 class="modal__title" id="lead-modal-title">
+          Расскажите, что хотите <span class="section-title__muted">улучшить в бизнесе</span>
+        </h2>
+        <p class="modal__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+        <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-name">Имя</label>
+                        <input class="lead-form__control" id="modal-name" autofocus name="name" type="text" autocomplete="name" required aria-describedby="modal-name-error" data-error="Укажите, как к вам обращаться" />
+                        <p class="lead-form__error" id="modal-name-error" hidden></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-company">Компания</label>
+                        <input class="lead-form__control" id="modal-company" name="company" type="text" autocomplete="organization" required aria-describedby="modal-company-error" data-error="Укажите название компании" />
+                        <p class="lead-form__error" id="modal-company-error" hidden></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-phone">Телефон</label>
+                        <input class="lead-form__control" id="modal-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="modal-phone-error" data-error="Укажите телефон для связи" />
+                        <p class="lead-form__error" id="modal-phone-error" hidden></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-email">E-mail <span class="lead-form__hint">(необязательно)</span></label>
+                        <input class="lead-form__control" id="modal-email" name="email" type="email" autocomplete="email" aria-describedby="modal-email-error" data-error="Проверьте адрес e-mail" />
+                        <p class="lead-form__error" id="modal-email-error" hidden></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="modal-task">Ваша задача</label>
+                      <textarea class="lead-form__control lead-form__control--area" id="modal-task" name="task" rows="4" required aria-describedby="modal-task-error" data-error="Коротко опишите задачу"></textarea>
+                      <p class="lead-form__error" id="modal-task-error" hidden></p>
+                    </div>
+                    <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+                    <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+                    <p class="lead-form__status" role="status" data-lead-status></p>
+                  </form>
+      </div>
+    </dialog>
   </body>
 </html>

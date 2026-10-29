@@ -3,6 +3,7 @@
 
 const FOLLOW_SPEED = 0.38;
 const SETTLE_DISTANCE = 0.1;
+const TEXT_FIELD_SELECTOR = "input, textarea, select";
 
 function initCursorHalo(halo) {
   const canTrack = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -28,12 +29,16 @@ function initCursorHalo(halo) {
     frame = isSettled ? 0 : requestAnimationFrame(render);
   }
 
-  // Страница может уехать из-под неподвижного курсора, и pointermove не придёт: состояние над лентой
+  // Над полями ввода кружок прячется: там нужен системный курсор-текст
+  function updateState(element) {
+    halo.classList.toggle("is-hidden", Boolean(element?.closest(TEXT_FIELD_SELECTOR)));
+  }
+
+  // Страница может уехать из-под неподвижного курсора, и pointermove не придёт: состояние
   // пересчитываем по тому, что сейчас лежит под курсором
-  function syncDragState() {
+  function syncState() {
     if (!isPlaced) return;
-    const element = document.elementFromPoint(targetX, targetY);
-    halo.classList.toggle("is-drag", Boolean(element?.closest("[data-drag-cursor]")));
+    updateState(document.elementFromPoint(targetX, targetY));
   }
 
   let syncFrame = 0;
@@ -43,7 +48,7 @@ function initCursorHalo(halo) {
       if (syncFrame) return;
       syncFrame = requestAnimationFrame(() => {
         syncFrame = 0;
-        syncDragState();
+        syncState();
       });
     },
     { passive: true },
@@ -61,7 +66,7 @@ function initCursorHalo(halo) {
         isPlaced = true;
         halo.classList.add("is-visible");
       }
-      halo.classList.toggle("is-drag", Boolean(event.target.closest("[data-drag-cursor]")));
+      updateState(event.target);
       if (!frame) frame = requestAnimationFrame(render);
     },
     { passive: true },

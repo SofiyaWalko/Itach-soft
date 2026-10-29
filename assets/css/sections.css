@@ -243,27 +243,12 @@
   background: var(--color-bg);
 }
 
-/* Карточки скрыты, пока блок не дошёл до экрана; без JS остаются видимыми */
-.js .task-list:not(.is-revealed) .task-card {
-  opacity: 0;
-}
-
+/* Карточки появляются общей системой (data-reveal-stagger). Контур пробегает по ним
+   одновременно с появлением: задачи и новости, тот же темп, что у rise */
 @media (prefers-reduced-motion: no-preference) {
-  .task-list.is-revealed .task-card {
-    animation: card-in 800ms var(--ease-out) calc(var(--i) * 150ms) both;
-  }
-
-  /* Контур пробегает по карточке одновременно с её появлением */
-  .task-list.is-revealed .task-card::before {
-    animation: border-sweep 800ms linear calc(var(--i) * 150ms);
-  }
-
-  @keyframes card-in {
-    from {
-      opacity: 0;
-      transform: translateY(2.5rem) scale(0.95);
-      filter: blur(8px);
-    }
+  .task-list.is-revealed > .task-card::before,
+  .news__list.is-revealed > .news-card::before {
+    animation: border-sweep 700ms linear calc(min(var(--i, 0), 6) * 90ms);
   }
 
   @keyframes border-sweep {
@@ -364,21 +349,6 @@
   .case-card:hover {
     transform: scale(1.012);
   }
-}
-
-/* Лёгкая сетка: яркая у левого и правого краёв, плавно гаснет к центру */
-.case-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background:
-    linear-gradient(rgb(20 21 26 / 0.045) 1px, transparent 1px) 0 0 / 2.5rem 2.5rem,
-    linear-gradient(90deg, rgb(20 21 26 / 0.045) 1px, transparent 1px) 0 0 / 2.5rem 2.5rem;
-  -webkit-mask-image: linear-gradient(90deg, #000, transparent 40%, transparent 60%, #000);
-  mask-image: linear-gradient(90deg, #000, transparent 40%, transparent 60%, #000);
-  pointer-events: none;
 }
 
 /* Квадратная кнопка «развернуть» в углу карточки: мягкая заливка и угловые скобки с градиентом */
@@ -494,7 +464,8 @@
 .process,
 .reviews,
 .news,
-.faq {
+.faq,
+.lead {
   padding-block: 0 var(--space-12);
 }
 
@@ -539,21 +510,6 @@
   transform: scale(calc(1 - var(--depth) * 0.035));
   transform-origin: top center;
   will-change: transform;
-}
-
-/* Лёгкая сетка: яркая у левого и правого краёв, плавно гаснет к центру */
-.service-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background:
-    linear-gradient(rgb(20 21 26 / 0.045) 1px, transparent 1px) 0 0 / 2.5rem 2.5rem,
-    linear-gradient(90deg, rgb(20 21 26 / 0.045) 1px, transparent 1px) 0 0 / 2.5rem 2.5rem;
-  -webkit-mask-image: linear-gradient(90deg, #000, transparent 40%, transparent 60%, #000);
-  mask-image: linear-gradient(90deg, #000, transparent 40%, transparent 60%, #000);
-  pointer-events: none;
 }
 
 /* Затемнение карточки, которую накрывают сверху */
@@ -605,12 +561,14 @@
   transition: opacity var(--duration-base) var(--ease-out);
 }
 
-.card-arrow:hover::before {
+.card-arrow:hover::before,
+.service-card:hover .card-arrow::before {
   opacity: 1;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .card-arrow:hover::before {
+  .card-arrow:hover::before,
+  .service-card:hover .card-arrow::before {
     animation: gradient-flow 3s linear infinite;
   }
 }
@@ -621,8 +579,9 @@
   transition: transform var(--duration-base) var(--ease-out);
 }
 
-/* Стрелка двигается только когда курсор на самом кружке, а не на всей карточке */
-.card-arrow:hover .icon {
+/* Наведение на карточку услуги оживляет стрелку так же, как наведение на неё саму */
+.card-arrow:hover .icon,
+.service-card:hover .card-arrow .icon {
   transform: translate(2px, -2px);
 }
 
@@ -1052,6 +1011,23 @@
   }
 }
 
+/* ---------- Появление при прокрутке ----------
+   [data-reveal] — один элемент всплывает, когда доходит до экрана;
+   [data-reveal-stagger] — его прямые потомки всплывают по очереди (--i задаёт скрипт).
+   Анимация та же, что у hero (rise). Без JS и при reduced motion всё видно сразу */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal]:not(.is-revealed),
+  .js [data-reveal-stagger]:not(.is-revealed) > * {
+    opacity: 0;
+  }
+
+  [data-reveal].is-revealed,
+  [data-reveal-stagger].is-revealed > * {
+    animation: rise 700ms var(--ease-out) backwards;
+    animation-delay: calc(min(var(--i, 0), 6) * 90ms);
+  }
+}
+
 /* ---------- Остались вопросы ---------- */
 .faq__layout {
   display: grid;
@@ -1069,7 +1045,7 @@
   text-align: start;
 }
 
-/* Вопросы — светлые карточки; при наведении заливаются градиентом слева направо, как строки новостей */
+/* Вопросы — светлые карточки; контур при наведении задаёт общий .glow-card */
 .faq__list {
   display: grid;
   gap: var(--space-2);
@@ -1080,14 +1056,7 @@
 .faq__item {
   border: 1px solid var(--color-glass-stroke);
   border-radius: var(--radius-lg);
-  /* Светлая градиентная заливка, при наведении растёт слева направо */
-  background:
-    linear-gradient(90deg, rgb(255 122 31 / 0.08), rgb(255 122 168 / 0.08)) no-repeat 0 0 / 0 100%,
-    var(--color-bg);
-}
-
-.faq__item:hover {
-  background-size: 100% 100%, auto;
+  background: var(--color-bg);
 }
 
 .faq__question {
@@ -1182,10 +1151,6 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .faq__item {
-    transition: background-size 550ms var(--ease-out);
-  }
-
   .faq__text {
     transition: transform 400ms var(--ease-out);
   }
@@ -1297,8 +1262,18 @@
   transform: translate(2px, -2px);
 }
 
-/* При наведении на карточку рамка рубрики и заливка стрелки текут градиентом */
+/* При наведении на карточку рубрика и заголовок сдвигаются вправо, рамка рубрики и заливка стрелки текут градиентом */
 @media (prefers-reduced-motion: no-preference) {
+  .news-card__tag,
+  .news-card__title {
+    transition: transform 400ms var(--ease-out);
+  }
+
+  .news-card__link:hover .news-card__tag,
+  .news-card__link:hover .news-card__title {
+    transform: translateX(0.75rem);
+  }
+
   .news-card__link:hover .news-card__tag {
     animation: border-flow 3s linear infinite;
   }
@@ -1317,5 +1292,616 @@
 @media (min-width: 1100px) {
   .news__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Форма заявки ---------- */
+/* Светлая панель в цветах сайта: оранжево-розовая «капля» поверх белого, как ткань в hero */
+.lead__panel {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--space-3);
+  overflow: hidden;
+  border-radius: calc(var(--radius-lg) + 0.5rem);
+  background:
+    radial-gradient(60% 90% at 100% 0%, color-mix(in srgb, var(--color-drop-orange) 38%, transparent), transparent 70%),
+    radial-gradient(55% 80% at 0% 100%, color-mix(in srgb, var(--color-drop-pink) 42%, transparent), transparent 70%),
+    linear-gradient(135deg, color-mix(in srgb, var(--color-drop-orange) 16%, var(--color-bg)), color-mix(in srgb, var(--color-drop-pink) 20%, var(--color-bg)));
+  color: var(--color-text);
+}
+
+/* Волна из линий лежит за формой, на весь размер панели */
+.lead__wave {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+}
+
+.lead__title {
+  text-align: start;
+}
+
+.lead__text {
+  max-inline-size: 28rem;
+  margin: var(--space-3) 0 0;
+  color: var(--color-text-2);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* Белая карточка: оранжево-розовая рамка, световое пятно плавно бежит по периметру */
+@property --lead-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes lead-border-spin {
+  to {
+    --lead-angle: 360deg;
+  }
+}
+
+.lead-form {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: calc(var(--contour-width) + 1px) solid transparent;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    conic-gradient(from var(--lead-angle), var(--color-drop-orange), var(--color-drop-pink), var(--color-drop-orange)) border-box;
+  color: var(--color-text);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lead-form {
+    animation: lead-border-spin 6s linear infinite;
+  }
+}
+
+.lead-form__row {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.lead-form__field {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.lead-form__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.lead-form__hint {
+  color: var(--color-text-2);
+  font-weight: 400;
+}
+
+.lead-form__control {
+  inline-size: 100%;
+  min-block-size: 3.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: inherit;
+  font: inherit;
+  line-height: 1.4;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.lead-form__control--area {
+  resize: vertical;
+  min-block-size: 7rem;
+}
+
+.lead-form__control:hover {
+  border-color: var(--color-text-2);
+}
+
+.lead-form__control:focus-visible {
+  border-color: var(--color-text);
+  border-radius: var(--radius-sm);
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(255 122 31 / 0.25);
+}
+
+.lead-form__control[aria-invalid] {
+  border-color: var(--color-error);
+}
+
+.lead-form__error {
+  margin: 0;
+  color: var(--color-error);
+  font-size: 0.8125rem;
+  line-height: 1.3;
+}
+
+.lead-form__consent {
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.lead-form__submit {
+  justify-self: start;
+}
+
+.lead-form__submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.lead-form__status {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.lead-form__status:empty {
+  display: none;
+}
+
+.lead-form__status.is-error {
+  color: var(--color-error);
+}
+
+/* Успех: обычный цвет текста и оранжевая галочка */
+.lead-form__status.is-success {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.lead-form__status.is-success::before {
+  content: "";
+  flex: none;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  background: var(--color-drop-orange);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+@media (min-width: 640px) {
+  .lead-form__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lead-form {
+    padding: var(--space-4);
+  }
+}
+
+@media (min-width: 900px) {
+  .lead__panel {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--space-8);
+    align-items: center;
+    padding: var(--space-8) var(--space-6);
+  }
+}
+
+/* Сдвиг заголовка при наведении на кликабельную карточку: кейсы и направления, как в FAQ и новостях */
+@media (prefers-reduced-motion: no-preference) {
+  .case-card__title,
+  .service-card__title {
+    transition: transform 400ms var(--ease-out);
+  }
+
+  .case-card:hover .case-card__title,
+  .service-card:hover .service-card__title {
+    transform: translateX(0.75rem);
+  }
+}
+
+/* ---------- Футер ---------- */
+.site-footer {
+  padding-block: 0 var(--space-6);
+}
+
+/* Белая скруглённая панель по ширине контейнера, как панель формы: закрывает фоновую сетку, а не тянется на весь экран */
+.site-footer__inner {
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-5) var(--space-3);
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: calc(var(--radius-lg) + 0.5rem);
+  background: var(--color-bg);
+}
+
+.site-footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.site-footer__logo {
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+.site-footer__logo img {
+  inline-size: auto;
+  block-size: 3rem;
+}
+
+.site-footer__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Квадратная плитка со скруглением, как стрелка в карточках: без заливки, с градиентным контуром;
+   сам значок залит нашим градиентом. При наведении градиент течёт, плитка приподнимается */
+.site-footer__social {
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  /* Контур настоящим border (градиент на border-box): ровный по всему периметру */
+  border: var(--contour-width) solid transparent;
+  border-radius: 0.875rem;
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    var(--gradient-flow) border-box;
+  background-size: auto, 200% 100%;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* При наведении плитка заливается градиентом, значок белеет */
+.site-footer__social::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.site-footer__social:hover::before,
+.site-footer__social:focus-visible::before {
+  opacity: 1;
+}
+
+/* Наведение считаем по <li>, чтобы область осталась на месте и курсор у нижнего края не дрожал вместе с поднятой плиткой */
+@media (prefers-reduced-motion: no-preference) {
+  .site-footer__social {
+    transition: transform 300ms var(--ease-out);
+  }
+
+  .site-footer__social:hover,
+  .site-footer__social:focus-visible {
+    animation: border-flow 3s linear infinite;
+  }
+
+  .site-footer__social:hover::before,
+  .site-footer__social:focus-visible::before {
+    animation: gradient-flow 3s linear infinite;
+  }
+
+  .site-footer__socials li:hover .site-footer__social,
+  .site-footer__social:focus-visible {
+    transform: translateY(-0.1875rem);
+  }
+}
+
+.site-footer__social--telegram {
+  --icon: url("data:image/svg+xml,%3Csvg viewBox='5.2 6.8 12.6 10.6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.906 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'/%3E%3C/svg%3E");
+}
+
+.site-footer__social--youtube {
+  --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z'/%3E%3C/svg%3E");
+}
+
+.site-footer__social--instagram {
+  --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077'/%3E%3C/svg%3E");
+}
+
+.site-footer__social--tiktok {
+  --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z'/%3E%3C/svg%3E");
+}
+
+.site-footer__social--linkedin {
+  --icon: url("data:image/svg+xml,%3Csvg viewBox='3 3 18 18' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z'/%3E%3C/svg%3E");
+}
+
+.site-footer__social--facebook {
+  --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z'/%3E%3C/svg%3E");
+}
+
+.site-footer__icon {
+  position: relative;
+  inline-size: 1.375rem;
+  block-size: 1.375rem;
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+/* Белый слой поверх градиентного значка проявляется при наведении (маска значка действует и на него) */
+.site-footer__icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-surface);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.site-footer__social:hover .site-footer__icon::after,
+.site-footer__social:focus-visible .site-footer__icon::after {
+  opacity: 1;
+}
+
+/* Ссылки: серые, при наведении темнеют и сдвигаются вправо, как заголовки карточек */
+.site-footer__link {
+  display: inline-block;
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.site-footer__link:hover {
+  color: var(--color-text);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-footer__link {
+    transition:
+      color var(--duration-fast) var(--ease-out),
+      transform 400ms var(--ease-out);
+  }
+
+  .site-footer__link:hover {
+    transform: translateX(0.5rem);
+  }
+}
+
+.site-footer__columns {
+  display: grid;
+  gap: var(--space-5) var(--space-3);
+}
+
+.site-footer__title {
+  margin: 0 0 var(--space-2);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.site-footer__title-link:hover {
+  color: var(--color-accent);
+}
+
+.site-footer__list {
+  display: grid;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__offices {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--color-line);
+}
+
+.site-footer__office {
+  display: grid;
+  justify-items: start;
+  gap: 0.375rem;
+  font-style: normal;
+}
+
+.site-footer__office .site-footer__title {
+  margin-block-end: 0.25rem;
+}
+
+.site-footer__address,
+.site-footer__hours {
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.site-footer__bottom {
+  display: grid;
+  gap: var(--space-3);
+  color: var(--color-text-2);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.site-footer__legal,
+.site-footer__copy p {
+  margin: 0;
+}
+
+.site-footer__bottom .site-footer__link {
+  font-size: inherit;
+}
+
+.site-footer__copy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  justify-content: space-between;
+}
+
+.lead-form__link {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.lead-form__link:hover {
+  color: var(--color-text);
+}
+
+@media (min-width: 900px) {
+  .site-footer__inner {
+    padding: var(--space-8) var(--space-6);
+  }
+}
+
+@media (min-width: 640px) {
+  .site-footer__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-footer__offices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .site-footer__columns {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Попап с формой ---------- */
+/* Полоса прокрутки занимает место всегда, поэтому страница не прыгает, когда попап блокирует прокрутку */
+html {
+  scrollbar-gutter: stable;
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+.modal {
+  inline-size: min(100% - 2rem, 40rem);
+  max-inline-size: none;
+  max-block-size: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  overflow: visible;
+}
+
+.modal::backdrop {
+  background: rgb(20 21 26 / 0.4);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* Панель — белая карточка с бегущим градиентным контуром, как форма внизу страницы */
+.modal__panel {
+  position: relative;
+  max-block-size: calc(100dvh - 2rem);
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-3) var(--space-3);
+  border: calc(var(--contour-width) + 1px) solid transparent;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    conic-gradient(from var(--lead-angle), var(--color-drop-orange), var(--color-drop-pink), var(--color-drop-orange)) border-box;
+}
+
+.modal__title {
+  max-inline-size: 28rem;
+  padding-inline-end: 3.5rem;
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.modal__text {
+  margin: var(--space-2) 0 var(--space-3);
+  color: var(--color-text-2);
+  line-height: 1.5;
+}
+
+/* Форма внутри попапа без собственной рамки: рамку даёт панель */
+.modal .lead-form {
+  padding: 0;
+  border: 0;
+  background: none;
+  animation: none;
+}
+
+.modal__close {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-2);
+  display: grid;
+  place-items: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border: 0;
+  border-radius: 0.875rem;
+  background: var(--color-line);
+  color: var(--color-text);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.modal__close:hover {
+  background: var(--color-line-strong);
+}
+
+.modal__close .icon {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .modal__panel {
+    animation: lead-border-spin 6s linear infinite;
+  }
+
+  .modal[open] {
+    animation: modal-in 300ms var(--ease-out);
+  }
+
+  .modal[open]::backdrop {
+    animation: modal-fade 300ms var(--ease-out);
+  }
+
+  @keyframes modal-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem) scale(0.97);
+    }
+  }
+
+  @keyframes modal-fade {
+    from {
+      opacity: 0;
+    }
+  }
+}
+
+@media (min-width: 640px) {
+  .modal__panel {
+    padding: var(--space-5) var(--space-4) var(--space-4);
   }
 }
