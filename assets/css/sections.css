@@ -3052,3 +3052,10 @@ html:has(.detail[open]) {
     order: 3;
   }
 }
+
+/* Телефон: заголовки блоков крупнее (35px на 390px, 30px на самых узких экранах) */
+@media (max-width: 639px) {
+  .section-title {
+    font-size: clamp(1.875rem, 9vw, 2.75rem);
+  }
+}
