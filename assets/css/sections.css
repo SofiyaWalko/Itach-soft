@@ -3283,6 +3283,14 @@ html:has(.detail[open]) {
       transparent 360deg
     );
     opacity: 0;
+    transition: opacity 700ms ease;
+  }
+
+  /* Дуга бежит у всех карточек всё время и лишь проявляется у текущей: появляется и гаснет плавно, не начиная круг заново */
+  @media (prefers-reduced-motion: no-preference) {
+    .glow-card::before {
+      animation: glow-orbit 9s linear infinite !important;
+    }
   }
 
   /* Пробег контура при появлении карточек нужен только мыши */
@@ -3293,6 +3301,5 @@ html:has(.detail[open]) {
 
   .glow-card.is-glow::before {
     opacity: 1;
-    animation: glow-orbit 9s linear infinite !important;
   }
 }

@@ -230,9 +230,10 @@ function initGlowFocus() {
   if (!window.matchMedia("(hover: none)").matches) return;
 
   const MIN_VISIBLE_SHARE = 0.6;
+  const SWITCH_MARGIN = 80;
+  const lastActive = new WeakMap();
   // Вопросы FAQ подсвечиваются, когда открыты; остальные карточки — когда перед глазами
   const faqItems = [...document.querySelectorAll(".faq__item")];
-  const cards = [...document.querySelectorAll(".glow-card:not(.faq__item)")];
   let frame = 0;
 
   function update() {
@@ -240,6 +241,9 @@ function initGlowFocus() {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     const best = new Map();
+    const candidates = new Map();
+    // Карточки ищем заново: плашки в окнах кейсов появляются в странице только при открытии окна
+    const cards = [...document.querySelectorAll(".glow-card:not(.faq__item)")];
 
     cards.forEach((card) => {
       const rect = card.getBoundingClientRect();
@@ -251,8 +255,18 @@ function initGlowFocus() {
       if (Number.parseFloat(card.style.getPropertyValue("--depth")) > 0.5) return;
       if ((visibleWidth * visibleHeight) / (rect.width * rect.height) < MIN_VISIBLE_SHARE) return;
       const distance = Math.hypot(rect.left + rect.width / 2 - viewportWidth / 2, rect.top + rect.height / 2 - viewportHeight / 2);
+      candidates.set(card, distance);
       const current = best.get(card.parentElement);
       if (!current || distance < current.distance) best.set(card.parentElement, { card, distance });
+    });
+
+    // Гистерезис: пока прежняя карточка списка ещё хорошо видна, контур с неё уходит только когда другая заметно ближе к центру
+    best.forEach((entry, parent) => {
+      const previous = lastActive.get(parent);
+      if (previous && previous !== entry.card && candidates.has(previous) && candidates.get(previous) - entry.distance < SWITCH_MARGIN) {
+        best.set(parent, { card: previous, distance: candidates.get(previous) });
+      }
+      lastActive.set(parent, best.get(parent).card);
     });
 
     const active = new Set([...best.values()].map((entry) => entry.card));
