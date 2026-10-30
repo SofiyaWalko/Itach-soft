@@ -381,6 +381,13 @@
   display: grid;
 }
 
+/* Выпадающее меню (телефон и планшет, до 1024px): у первой ссылки свой отступ сверху 0.875rem, поэтому у панели сверху он меньше, и до текста сверху и снизу выходит поровну */
+@media (max-width: 1023px) {
+  .site-header__nav {
+    padding-block-start: calc(var(--space-3) - 0.875rem);
+  }
+}
+
 .nav__link {
   display: block;
   padding-block: 0.875rem;

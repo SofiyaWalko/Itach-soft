@@ -442,6 +442,7 @@ function initDetail(modal) {
   if (!modal) return;
   const content = modal.querySelector("[data-detail-content]");
   const panel = modal.querySelector("[data-detail-panel]");
+  const closeButton = modal.querySelector("[data-detail-close]");
   const leadModal = document.querySelector("[data-lead-modal]");
   let currentId = "";
 
@@ -449,10 +450,11 @@ function initDetail(modal) {
     const template = document.getElementById(`detail-${id}`);
     if (!template) return;
     currentId = id;
-    content.replaceChildren(template.content.cloneNode(true));
+    content.replaceChildren(closeButton, template.content.cloneNode(true));
     if (!modal.open) modal.showModal();
     // Позиция прокрутки задаётся уже после показа: у скрытого диалога она не применяется
     modal.scrollTop = 0;
+    content.scrollTop = 0;
     // Фокус на панели, а не на крестике: иначе при открытии крестик обведён рамкой фокуса
     panel.focus({ preventScroll: true });
     history.replaceState(null, "", `#${id}`);
@@ -473,7 +475,7 @@ function initDetail(modal) {
     });
   });
 
-  modal.querySelector("[data-detail-close]").addEventListener("click", () => modal.close());
+  closeButton.addEventListener("click", () => modal.close());
 
   // Клик по затемнению рядом с панелью (целью становится сам dialog) закрывает окно
   modal.addEventListener("click", (event) => {
@@ -487,11 +489,65 @@ function initDetail(modal) {
     leadModal?.showModal();
   });
 
+  // Телефон: потянуть окно вниз за серую полоску сверху (или с самого верха содержимого), чтобы закрыть
+  const SWIPE_CLOSE_DISTANCE = 120;
+  const SWIPE_ANIMATION_MS = 200;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let swipeStartY = 0;
+  let swipeDistance = 0;
+  let isSwiping = false;
+
+  function resetSwipe() {
+    panel.style.transition = "";
+    panel.style.transform = "";
+  }
+
+  modal.addEventListener(
+    "touchstart",
+    (event) => {
+      isSwiping = Boolean(event.target.closest("[data-detail-handle]")) || (content.contains(event.target) && content.scrollTop <= 0);
+      swipeStartY = event.touches[0].clientY;
+      swipeDistance = 0;
+      panel.style.transition = "none";
+    },
+    { passive: true },
+  );
+
+  modal.addEventListener(
+    "touchmove",
+    (event) => {
+      if (!isSwiping) return;
+      swipeDistance = event.touches[0].clientY - swipeStartY;
+      if (swipeDistance <= 0) {
+        // Палец идёт вверх — это обычная прокрутка содержимого
+        if (swipeDistance < 0) isSwiping = false;
+        resetSwipe();
+        return;
+      }
+      event.preventDefault();
+      panel.style.transform = `translateY(${swipeDistance}px)`;
+    },
+    { passive: false },
+  );
+
+  modal.addEventListener("touchend", () => {
+    if (!isSwiping) return;
+    isSwiping = false;
+    panel.style.transition = reducedMotion ? "none" : `transform ${SWIPE_ANIMATION_MS}ms var(--ease-out)`;
+    if (swipeDistance > SWIPE_CLOSE_DISTANCE) {
+      panel.style.transform = "translateY(100vh)";
+      setTimeout(() => modal.close(), reducedMotion ? 0 : SWIPE_ANIMATION_MS);
+    } else {
+      resetSwipe();
+    }
+  });
+
   modal.addEventListener("close", () => {
     // Событие приходит с задержкой: если за это время уже открыли другое окно, адрес не трогаем
     if (modal.open) return;
     if (location.hash === `#${currentId}`) history.replaceState(null, "", location.pathname + location.search);
     currentId = "";
+    resetSwipe();
   });
 
   if (location.hash.length > 1) open(location.hash.slice(1));
