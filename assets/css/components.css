@@ -49,17 +49,23 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) {
   .btn--primary:hover::before {
-    animation: gradient-flow 3s linear infinite;
+      animation: gradient-flow 3s linear infinite;
+    }
+}
+}
+
+@media (hover: hover) {
+  .btn--primary:hover:not(:disabled, [aria-disabled="true"])::before {
+    opacity: 1;
   }
 }
 
-.btn--primary:hover:not(:disabled, [aria-disabled="true"])::before {
-  opacity: 1;
-}
-
-.btn--primary:hover {
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .btn--primary:hover {
+    transform: translateY(-1px);
+  }
 }
 
 .btn--primary:active {
@@ -76,10 +82,12 @@
   color: var(--color-text);
 }
 
-.btn--ghost:hover {
-  background: rgb(255 255 255 / 0.92);
-  box-shadow: var(--shadow-glass-lg);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .btn--ghost:hover {
+    background: rgb(255 255 255 / 0.92);
+    box-shadow: var(--shadow-glass-lg);
+    transform: translateY(-1px);
+  }
 }
 
 /* Контурная кнопка: градиентный контур всегда виден и плавно течёт; при наведении градиентом заливается вся кнопка.
@@ -117,12 +125,16 @@
   inset: 0 0 -0.25rem;
 }
 
-.btn--outline:hover {
-  color: var(--color-surface);
+@media (hover: hover) {
+  .btn--outline:hover {
+    color: var(--color-surface);
+  }
 }
 
-.btn--outline:hover::after {
-  opacity: 1;
+@media (hover: hover) {
+  .btn--outline:hover::after {
+    opacity: 1;
+  }
 }
 
 @keyframes gradient-flow {
@@ -139,9 +151,11 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) {
   .btn--outline:hover {
-    transform: translateY(-0.1875rem);
-  }
+      transform: translateY(-0.1875rem);
+    }
+}
 
   .btn--outline {
     animation: border-flow 4s linear infinite;
@@ -226,8 +240,10 @@
   transition: opacity var(--duration-base) var(--ease-out);
 }
 
-.glow-card:hover::before {
-  opacity: 1;
+@media (hover: hover) {
+  .glow-card:hover::before {
+    opacity: 1;
+  }
 }
 
 /* ---------- Стеклянная поверхность ---------- */
@@ -293,8 +309,10 @@
   transition: color var(--duration-fast) var(--ease-out);
 }
 
-.site-header__contact:hover {
-  color: var(--color-accent-strong);
+@media (hover: hover) {
+  .site-header__contact:hover {
+    color: var(--color-accent-strong);
+  }
 }
 
 .site-header__cta {
@@ -406,10 +424,15 @@
     transition: transform 350ms var(--ease-out);
   }
 
-  .nav__link:hover .nav__text,
   .nav__link:focus-visible .nav__text {
     transform: translateX(0.25rem);
   }
+
+@media (hover: hover) {
+  .nav__link:hover .nav__text {
+      transform: translateX(0.25rem);
+    }
+}
 }
 
 .nav__phone {
@@ -489,11 +512,17 @@
     transition: transform 350ms var(--ease-out);
   }
 
-  .nav__link:hover::after,
   .nav__link:focus-visible::after {
     transform: scaleX(1);
     transform-origin: left;
   }
+
+@media (hover: hover) {
+  .nav__link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+}
 }
 
 /* ---------- Стеклянный круг вместо курсора ---------- */

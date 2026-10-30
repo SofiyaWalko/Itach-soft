@@ -224,6 +224,58 @@ function initDragScroll(scroller) {
   scroller.addEventListener("pointercancel", stop);
 }
 
+// Сенсорные экраны: контур бежит по карточке, которая сейчас перед глазами. В каждом списке выбирается одна карточка:
+// видна не меньше чем на 60% и ближе всех к центру экрана. Остальные остаются с серым контуром
+function initGlowFocus() {
+  if (!window.matchMedia("(hover: none)").matches) return;
+
+  const MIN_VISIBLE_SHARE = 0.6;
+  // Вопросы FAQ подсвечиваются, когда открыты; остальные карточки — когда перед глазами
+  const faqItems = [...document.querySelectorAll(".faq__item")];
+  const cards = [...document.querySelectorAll(".glow-card:not(.faq__item)")];
+  let frame = 0;
+
+  function update() {
+    frame = 0;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const best = new Map();
+
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const visibleWidth = Math.min(rect.right, viewportWidth) - Math.max(rect.left, 0);
+      const visibleHeight = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
+      if (visibleWidth <= 0 || visibleHeight <= 0) return;
+      // В стопке услуг карточка, которую уже накрыла следующая, не считается
+      if (Number.parseFloat(card.style.getPropertyValue("--depth")) > 0.5) return;
+      if ((visibleWidth * visibleHeight) / (rect.width * rect.height) < MIN_VISIBLE_SHARE) return;
+      const distance = Math.hypot(rect.left + rect.width / 2 - viewportWidth / 2, rect.top + rect.height / 2 - viewportHeight / 2);
+      const current = best.get(card.parentElement);
+      if (!current || distance < current.distance) best.set(card.parentElement, { card, distance });
+    });
+
+    const active = new Set([...best.values()].map((entry) => entry.card));
+    cards.forEach((card) => card.classList.toggle("is-glow", active.has(card)));
+    faqItems.forEach((item) => {
+      item.classList.toggle("is-glow", item.querySelector(".faq__trigger").getAttribute("aria-expanded") === "true");
+    });
+  }
+
+  const schedule = () => {
+    if (!frame) frame = requestAnimationFrame(update);
+  };
+
+  // Прокрутка страницы, лент и окон (scroll не всплывает, поэтому слушаем в фазе перехвата)
+  document.addEventListener("scroll", schedule, { capture: true, passive: true });
+  window.addEventListener("resize", schedule);
+  window.addEventListener("orientationchange", schedule);
+  document.addEventListener("click", schedule);
+  // Окна и вкладки появляются без прокрутки
+  setInterval(schedule, 500);
+  update();
+}
+
 // Лента сайтов: двигается перетаскиванием и прокруткой страницы, по кругу, без автопрокрутки
 function initSites() {
   const viewport = document.querySelector("[data-sites]");
@@ -556,6 +608,7 @@ function initDetail(modal) {
 initHeader();
 initScrollReveal();
 initGlowCards();
+initGlowFocus();
 initSites();
 initServiceStack();
 document.querySelectorAll("[data-drag-scroll]").forEach(initDragScroll);
