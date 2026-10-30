@@ -1436,7 +1436,6 @@
   border-color: var(--color-text);
   border-radius: var(--radius-sm);
   outline: none;
-  box-shadow: 0 0 0 4px rgb(255 122 31 / 0.25);
 }
 
 .lead-form__control[aria-invalid] {

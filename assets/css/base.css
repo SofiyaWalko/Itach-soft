@@ -67,6 +67,16 @@ button {
   cursor: pointer;
 }
 
+/* Синяя системная рамка и подсветка при касании на телефонах (Safari, Chrome, Firefox) убираются; рамка в цвете сайта
+   остаётся только при управлении с клавиатуры */
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus {
+  outline: none;
+}
+
 :focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 3px;
