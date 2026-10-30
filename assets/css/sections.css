@@ -952,7 +952,6 @@
   display: flex;
   flex: none;
   flex-direction: column;
-  justify-content: space-between;
   gap: var(--space-4);
   inline-size: clamp(18rem, 33vw, 30rem);
   padding: var(--space-4);
@@ -963,7 +962,8 @@
 
 .review-card__top {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  min-block-size: 3.5rem;
   justify-content: space-between;
   gap: var(--space-2);
 }
@@ -979,6 +979,8 @@
 }
 
 .review-card__quote {
+  /* Блок по высоте самой кавычки (в глифе она занимает верх строки), иначе по центру оказывалась бы пустая часть строки */
+  block-size: 1.5rem;
   font-size: 5rem;
   font-weight: 800;
   line-height: 0.7;
@@ -989,6 +991,8 @@
 }
 
 .review-card__text {
+  /* Без боковых отступов, которые браузер добавляет цитате: текст стоит на одной линии с логотипом и автором */
+  margin: 0;
   font-size: 0.9375rem;
   line-height: 1.55;
   color: var(--color-text-2);
@@ -998,7 +1002,10 @@
   margin-block-start: 0.75rem;
 }
 
+/* Текст начинается на одном и том же расстоянии от логотипа во всех карточках; свободное место
+   у коротких отзывов остаётся между текстом и автором, автор прижат к низу */
 .review-card__author {
+  margin-block-start: auto;
   display: grid;
   gap: 0.125rem;
 }
@@ -2277,11 +2284,25 @@ html:has(.detail[open]) {
   padding: var(--space-4);
 }
 
-.detail-review__side {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* Отзыв в окне: первая строка — логотип и кавычки по краям, дальше текст, под ним автор */
+.detail-review {
   gap: var(--space-3);
+}
+
+.detail-review__side {
+  display: contents;
+}
+
+.detail-review .review-card__top {
+  order: 1;
+}
+
+.detail-review .review-card__text {
+  order: 2;
+}
+
+.detail-review .review-card__author {
+  order: 3;
 }
 
 .detail-review .review-card__text {
@@ -2418,13 +2439,7 @@ html:has(.detail[open]) {
   }
 
   .detail-review {
-    flex-direction: row;
-    gap: var(--space-6);
     padding: var(--space-5);
-  }
-
-  .detail-review__side {
-    flex: 0 0 15rem;
   }
 
   }
@@ -3009,5 +3024,32 @@ html:has(.detail[open]) {
   .detail__close {
     inset-block-start: 0.25rem;
     inset-inline-end: var(--space-2);
+  }
+}
+
+/* Телефон: в отзывах промежутки между логотипом, текстом и автором меньше; в окнах кейсов автор стоит под текстом отзыва */
+@media (max-width: 639px) {
+  .review-card {
+    gap: var(--space-2);
+  }
+
+  .review-card__top {
+    min-block-size: 2.5rem;
+  }
+
+  .detail-review__side {
+    display: contents;
+  }
+
+  .detail-review .review-card__top {
+    order: 1;
+  }
+
+  .detail-review .review-card__text {
+    order: 2;
+  }
+
+  .detail-review .review-card__author {
+    order: 3;
   }
 }
