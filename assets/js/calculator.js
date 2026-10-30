@@ -172,7 +172,6 @@ function initCalculator(root) {
   const body = root.querySelector("[data-calc-body]");
   const title = root.querySelector("[data-calc-title]");
   const contact = root.querySelector("[data-calc-contact]");
-  const summary = root.querySelector("[data-calc-summary]");
   const brief = root.querySelector("[data-calc-brief]");
   const counter = root.querySelector("[data-calc-counter]");
   const back = root.querySelector("[data-calc-back]");
@@ -253,7 +252,6 @@ function initCalculator(root) {
     } else if (state.step === 2) {
       body.innerHTML = need().questions.map(renderQuestion).join("");
     } else {
-      summary.textContent = `${service().name} → ${need().name}`;
       brief.value = briefLines().join("\n");
     }
     if (!onContact) title.textContent = CALC_STEP_TITLES[state.step];

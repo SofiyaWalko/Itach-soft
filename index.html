@@ -214,6 +214,7 @@
       <section class="tasks" aria-labelledby="tasks-title">
         <div class="container">
           <h2 class="section-title" data-reveal id="tasks-title">Какие задачи <span class="section-title__muted">решаем</span></h2>
+          <div class="tasks__scroller">
           <ol class="task-list" data-reveal-stagger>
             <li class="task-card glow-card" style="--i: 0">
               <svg class="task-card__number" viewBox="0 0 84 60" aria-hidden="true"><text x="0" y="50">01</text></svg>
@@ -236,6 +237,7 @@
               <p class="task-card__text">Не хватает ресурсов для развития IT-продукта</p>
             </li>
           </ol>
+          </div>
           <div class="section-action" data-reveal>
             <a class="btn btn--outline" href="#lead">Найти решение для моей задачи</a>
           </div>
@@ -330,6 +332,7 @@
           <h2 class="section-title" data-reveal id="cases-title">
             Наши <span class="section-title__muted">кейсы</span>
           </h2>
+          <div class="cases__scroller">
           <ul class="case-grid" data-reveal-stagger>
             <li class="case-card glow-card">
               <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/vnedrenie-kontakt-tsentra-na-baze-ip-asterisk/" data-detail-open="case-erip">ЕРИП <span class="section-title__muted">контакт-центр на базе Asterisk и Битрикс24</span></a></h3>
@@ -357,6 +360,7 @@
               <img class="case-card__shot case-card__shot--bare" src="assets/img/cases/a-100.png" width="1440" height="960" alt="Telegram и PWA-приложение для клиентов АЗС А-100" loading="lazy" />
             </li>
           </ul>
+          </div>
         </div>
       </section>
 
@@ -417,7 +421,6 @@
               <div data-calc-body></div>
               <div class="calc__contact" data-calc-contact hidden>
                 <h3 class="calc__title-step">Почти готово!</h3>
-                <p class="calc__summary" data-calc-summary></p>
                 <p class="calc__text">Теперь у нас есть верхнеуровневые требования к вашему проекту. Заполните контактные данные ниже, и наши менеджеры оперативно свяжутся, чтобы сориентировать вас по стоимости и срокам реализации проекта.</p>
                 <form class="lead-form calc__form" method="post" novalidate data-lead-form data-endpoint="">
                   <input type="hidden" name="brief" data-calc-brief />
@@ -653,6 +656,7 @@
           <h2 class="section-title" data-reveal id="news-title">
             Что нового <span class="section-title__muted">в Итач-софт</span>
           </h2>
+          <div class="news__scroller">
           <ul class="news__list" data-reveal-stagger>
             <li class="news-card glow-card">
               <a class="news-card__link" href="https://itach-soft.ru/news/chto-takoe-asterisk-i-pochemu-eto-luchshaya-osnova-dlya-korporativnoy-voip-telefonii/" data-detail-open="news-asterisk">
@@ -695,6 +699,7 @@
               </a>
             </li>
           </ul>
+          </div>
         </div>
         <div class="container section-action" data-reveal>
           <a class="btn btn--outline" href="https://itach-soft.ru/news/">Все новости</a>
@@ -797,6 +802,9 @@
               </div>
             </li>
           </ul>
+        </div>
+        <div class="container section-action faq__after" data-reveal>
+          <a class="btn btn--outline" href="#lead">Задать свой вопрос</a>
         </div>
       </section>
 

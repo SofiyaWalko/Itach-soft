@@ -298,7 +298,32 @@
 }
 
 .site-header__cta {
-  display: none;
+  display: inline-flex;
+}
+
+/* Телефон: кнопка остаётся в шапке между логотипом и бургером, компактнее, чтобы всё поместилось на 320px */
+@media (max-width: 639px) {
+  .site-header__bar {
+    gap: 0.5rem;
+  }
+
+  .site-header__actions {
+    gap: 0.25rem;
+  }
+
+  .site-header__cta {
+    min-block-size: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* Самые узкие экраны: чуть меньше, чтобы кнопка и бургер не вылезали за шапку */
+@media (max-width: 359px) {
+  .site-header__cta {
+    padding-inline: 0.625rem;
+    font-size: 0.8125rem;
+  }
 }
 
 .site-header__burger {
@@ -310,11 +335,7 @@
   border: 0;
   border-radius: 50%;
   background: transparent;
-  transition: background-color var(--duration-fast) var(--ease-out);
-}
-
-.site-header__burger:hover {
-  background: rgb(20 21 26 / 0.06);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .site-header__burger .icon {

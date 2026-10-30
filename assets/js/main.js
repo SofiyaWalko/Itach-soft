@@ -111,6 +111,41 @@ function initServiceStack() {
   update();
 }
 
+// Направления услуг на телефоне: табы с разделами, показывается карточка выбранного. На широких экранах табы скрыты стилями
+function initServiceTabs(list) {
+  if (!list) return;
+  const cards = [...list.children];
+  const tabs = document.createElement("div");
+  tabs.className = "service-tabs";
+  tabs.setAttribute("role", "tablist");
+  tabs.setAttribute("aria-label", "Направления услуг");
+  list.before(tabs);
+
+  const buttons = cards.map((card, index) => {
+    card.id = `service-panel-${index}`;
+    card.setAttribute("role", "tabpanel");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "service-tab";
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-controls", card.id);
+    button.textContent = card.querySelector(".service-card__title").textContent;
+    button.addEventListener("click", () => {
+      select(index);
+      button.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    });
+    tabs.append(button);
+    return button;
+  });
+
+  function select(active) {
+    cards.forEach((card, index) => card.classList.toggle("is-active", index === active));
+    buttons.forEach((button, index) => button.setAttribute("aria-selected", String(index === active)));
+  }
+
+  select(0);
+}
+
 // «Как мы работаем»: линия рисуется по мере прокрутки, шаги оживают, когда линия до них дошла
 function initProcess() {
   const list = document.querySelector("[data-process-steps]");
@@ -468,6 +503,7 @@ initGlowCards();
 initSites();
 initServiceStack();
 document.querySelectorAll("[data-drag-scroll]").forEach(initDragScroll);
+initServiceTabs(document.querySelector("[data-service-stack]"));
 initProcess();
 initCursorHalo(document.querySelector("[data-cursor-halo]"));
 initHeroGl(document.querySelector("[data-hero-gl]"));
