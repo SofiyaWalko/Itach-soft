@@ -107,6 +107,7 @@ function initContactsMap() {
   if (!canvas) return;
 
   const buttons = [...document.querySelectorAll("[data-map-city]")];
+  const offices = document.querySelector(".contacts__offices");
   const link = document.querySelector("[data-map-link]");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let activeCity = canvas.dataset.mapCity || "smolensk";
@@ -119,6 +120,8 @@ function initContactsMap() {
       button.setAttribute("aria-pressed", String(button.dataset.mapCity === activeCity));
     });
     canvas.setAttribute("aria-label", `Карта: офис в ${city.title}`);
+    // На телефоне показываем только карточку выбранного города
+    if (offices) offices.dataset.activeCity = activeCity;
     if (link) {
       link.href = city.mapsUrl;
       link.setAttribute("aria-label", `Открыть офис в ${city.title} на Яндекс.Картах`);

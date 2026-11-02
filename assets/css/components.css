@@ -568,3 +568,130 @@
 .has-custom-cursor select {
   cursor: default;
 }
+
+/* ---------- Баннер cookie ---------- */
+/* Стеклянная панель слева внизу: появляется с легким сдвигом, хранит выбор в localStorage.
+   Сетка: картинка слева, заголовок и текст справа, кнопки — на всю ширину под ними */
+.cookie {
+  position: fixed;
+  inset-block-end: var(--space-3);
+  inset-inline-start: var(--gutter);
+  z-index: 60;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.5rem var(--space-3);
+  inline-size: min(27rem, calc(100vw - 2 * var(--gutter)));
+  padding: var(--space-3);
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-lg);
+  background: var(--color-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  box-shadow: var(--shadow-glass-lg);
+  opacity: 0;
+  translate: -0.75rem 0;
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    translate var(--duration-base) var(--ease-out);
+}
+
+.cookie[hidden] {
+  display: none;
+}
+
+.cookie.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.cookie__image {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: center;
+  flex: none;
+  inline-size: 7rem;
+  block-size: 7rem;
+  object-fit: contain;
+  rotate: -8deg;
+  filter: drop-shadow(0 10px 18px rgb(20 21 26 / 0.16));
+}
+
+.cookie__body {
+  display: contents;
+}
+
+.cookie__title {
+  grid-column: 2;
+  grid-row: 1;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.cookie__text {
+  grid-column: 2;
+  grid-row: 2;
+  color: var(--color-text-2);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.cookie__link {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (hover: hover) {
+  .cookie__link:hover {
+    color: var(--color-text);
+  }
+}
+
+.cookie__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.375rem;
+  margin-block-start: 0.25rem;
+}
+
+.cookie__actions .btn {
+  padding-inline: 0.875rem;
+  font-size: 0.8125rem;
+}
+
+@media (min-width: 480px) {
+  .cookie {
+    padding-inline: var(--space-4);
+  }
+}
+
+@media (max-width: 479px) {
+  .cookie {
+    gap: 0.5rem var(--space-2);
+  }
+
+  .cookie__image {
+    inline-size: 4.5rem;
+    block-size: 4.5rem;
+  }
+
+  .cookie__title {
+    font-size: 1.125rem;
+  }
+}
+
+/* На самых узких экранах две кнопки физически не помещаются в строку */
+@media (max-width: 374px) {
+  .cookie__actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie {
+    transition: none;
+  }
+}

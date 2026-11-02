@@ -161,8 +161,13 @@
             </a>
           </div>
 
-          <div class="contacts__offices" data-reveal-stagger>
-            <article class="contact-office glow-card">
+          <div class="contacts-map__switch contacts__city-tabs" role="group" aria-label="Выберите офис">
+            <button class="calc-option contacts-map__tab" type="button" data-map-city="smolensk" aria-pressed="true">Россия</button>
+            <button class="calc-option contacts-map__tab" type="button" data-map-city="minsk" aria-pressed="false">Беларусь</button>
+          </div>
+
+          <div class="contacts__offices" data-active-city="smolensk" data-reveal-stagger>
+            <article class="contact-office glow-card" data-city="smolensk">
               <p class="contact-office__eyebrow">Офис в Российской Федерации</p>
               <h2 class="contact-office__city">Смоленск</h2>
               <address class="contact-office__address">214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60<button class="copy-button" type="button" data-copy="214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60" data-copy-done="Адрес скопирован" aria-label="Скопировать адрес офиса в Смоленске"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></address>
@@ -195,7 +200,7 @@
                 </div>
               </div>
             </article>
-            <article class="contact-office glow-card">
+            <article class="contact-office glow-card" data-city="minsk">
               <p class="contact-office__eyebrow">Офис в Республике Беларусь</p>
               <h2 class="contact-office__city">Минск</h2>
               <address class="contact-office__address">220116, Республика Беларусь, г. Минск, пр-т Дзержинского, 104Б, 12-й этаж, оф. 1205<button class="copy-button" type="button" data-copy="220116, Республика Беларусь, г. Минск, пр-т Дзержинского, 104Б, 12-й этаж, оф. 1205" data-copy-done="Адрес скопирован" aria-label="Скопировать адрес офиса в Минске"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></address>
@@ -235,10 +240,10 @@
       <section class="contacts-map" aria-labelledby="contacts-map-title">
         <div class="container">
           <div class="contacts-map__head" data-reveal>
-            <h2 class="contacts-map__title" id="contacts-map-title">Офисы на карте</h2>
+            <h2 class="contacts-map__title" id="contacts-map-title">Офис на карте</h2>
             <div class="contacts-map__switch" role="group" aria-label="Выберите офис на карте">
-              <button class="calc-option contacts-map__tab" type="button" data-map-city="smolensk" aria-pressed="true">Смоленск</button>
-              <button class="calc-option contacts-map__tab" type="button" data-map-city="minsk" aria-pressed="false">Минск</button>
+              <button class="calc-option contacts-map__tab" type="button" data-map-city="smolensk" aria-pressed="true">Россия</button>
+              <button class="calc-option contacts-map__tab" type="button" data-map-city="minsk" aria-pressed="false">Беларусь</button>
             </div>
           </div>
           <div class="contacts-map__frame glow-card" data-reveal>

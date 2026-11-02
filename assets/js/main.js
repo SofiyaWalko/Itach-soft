@@ -622,6 +622,52 @@ function initDetail(modal) {
   if (location.hash.length > 1) open(location.hash.slice(1));
 }
 
+const COOKIE_CHOICE_KEY = "itach-cookie-choice";
+const COOKIE_REVEAL_DELAY = 800;
+const COOKIE_HIDE_DELAY = 250;
+
+// Баннер cookie: показываем один раз, выбор храним в localStorage. Настройки cookie не выставляются:
+// баннер фиксирует только решение пользователя и больше не появляется
+function initCookieBanner(banner) {
+  if (!banner) return;
+
+  const readChoice = () => {
+    try {
+      return localStorage.getItem(COOKIE_CHOICE_KEY);
+    } catch {
+      return null;
+    }
+  };
+
+  const saveChoice = (choice) => {
+    try {
+      localStorage.setItem(COOKIE_CHOICE_KEY, choice);
+    } catch {
+      // Приватный режим или file://: решение запомнится только до конца визита
+    }
+  };
+
+  if (readChoice()) return;
+
+  const reveal = () => {
+    banner.hidden = false;
+    requestAnimationFrame(() => banner.classList.add("is-visible"));
+  };
+
+  const timer = setTimeout(reveal, COOKIE_REVEAL_DELAY);
+
+  banner.querySelectorAll("[data-cookie-choice]").forEach((button) => {
+    button.addEventListener("click", () => {
+      clearTimeout(timer);
+      saveChoice(button.dataset.cookieChoice);
+      banner.classList.remove("is-visible");
+      setTimeout(() => {
+        banner.hidden = true;
+      }, COOKIE_HIDE_DELAY);
+    });
+  });
+}
+
 initHeader();
 initScrollReveal();
 initGlowCards();

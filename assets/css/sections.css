@@ -4466,3 +4466,35 @@ html:has(.detail[open]) {
     transform: none;
   }
 }
+
+/* Мобильная версия: табы выбора офиса стоят над карточкой и управляют и карточкой, и картой */
+.contacts__city-tabs {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .contacts__city-tabs {
+    display: flex;
+    margin-block-start: var(--space-6);
+  }
+
+  .contacts-map__head .contacts-map__switch {
+    display: none;
+  }
+
+  .contacts__offices {
+    margin-block-start: var(--space-3);
+  }
+
+  .contacts__offices[data-active-city="smolensk"] .contact-office[data-city="minsk"],
+  .contacts__offices[data-active-city="minsk"] .contact-office[data-city="smolensk"] {
+    display: none;
+  }
+}
+
+/* На сенсорных экранах карта без бегущего градиентного контура */
+@media (hover: none) {
+  .contacts-map__frame::before {
+    content: none;
+  }
+}
