@@ -270,7 +270,8 @@
   justify-content: space-between;
   gap: var(--space-2);
   block-size: var(--header-height);
-  padding-inline: var(--space-2) 0.5rem;
+  /* Боковые отступы равны верхнему и нижнему: высота шапки минус самая высокая кнопка (2.75rem) */
+  padding: calc((var(--header-height) - 2.75rem) / 2);
   border-radius: var(--radius-pill);
   transition:
     background-color var(--duration-base) var(--ease-out),
@@ -455,10 +456,6 @@
 }
 
 @media (min-width: 1024px) {
-  .site-header__bar {
-    padding-inline-start: var(--space-3);
-  }
-
   .site-header__logo img {
     block-size: 2.75rem;
   }

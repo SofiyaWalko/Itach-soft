@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Контакты — Итач-софт</title>
+    <meta name="description" content="Контакты Итач-софт: офисы в Минске и Смоленске, телефоны, e-mail, техническая поддержка 24/7 и реквизиты компании." />
+    <script>document.documentElement.classList.add("js");</script>
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="assets/img/logos/logo.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+    <script src="assets/js/hero-gl.js" defer></script>
+    <script src="assets/js/lead-wave.js" defer></script>
+    <script src="assets/js/cursor-halo.js" defer></script>
+    <script src="assets/js/calculator.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/contacts.js" defer></script>
+  </head>
+
+  <body>
+    <div class="cursor-halo" aria-hidden="true" data-cursor-halo></div>
+
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <linearGradient id="gradient-contour" gradientUnits="userSpaceOnUse" x1="3" y1="3" x2="21" y2="21">
+        <stop offset="0" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <linearGradient id="gradient-number" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0.5" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <rect x="6.5" y="2" width="11" height="20" rx="3" />
+        <path d="M10.5 18.5h3" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <path
+          d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1.1 4.3 2.8 5.7L4.7 21l4.5-2.2c.9.2 1.8.3 2.8.3 5.1 0 9-3.6 9-8.1S17.1 3 12 3z"
+        />
+      </symbol>
+      <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+        <path d="M7 17 17 7" />
+        <path d="M8 7h9v9" />
+      </symbol>
+      <symbol id="icon-expand" viewBox="0 0 24 24">
+        <path d="M4 10V4h6" />
+        <path d="M20 14v6h-6" />
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path d="M4 6h16" />
+        <path d="M4 12h16" />
+        <path d="M4 18h16" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </symbol>
+      <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+        <path d="m6 9 6 6 6-6" />
+      </symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24">
+        <rect x="9" y="9" width="11" height="11" rx="2" />
+        <path d="M5 15V6a2 2 0 0 1 2-2h9" />
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="M5 12.5 9.5 17 19 7.5" />
+      </symbol>
+    </svg>
+
+    <header class="site-header" data-header>
+      <div class="container">
+        <div class="site-header__bar glass">
+          <a class="site-header__logo" href="index.html" aria-label="Итач-софт, на главную">
+            <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+          </a>
+
+          <nav class="site-header__nav" id="site-nav" aria-label="Основное меню">
+            <ul class="nav__list">
+              <li><a class="nav__link" href="index.html#services"><span class="nav__text">Услуги</span></a></li>
+              <li><a class="nav__link" href="portfolio.html"><span class="nav__text">Портфолио</span></a></li>
+              <li><a class="nav__link" href="index.html#about"><span class="nav__text">Компания</span></a></li>
+              <li><a class="nav__link" href="blog.html"><span class="nav__text">Блог</span></a></li>
+              <li><a class="nav__link" href="contacts.html"><span class="nav__text">Контакты</span></a></li>
+            </ul>
+            <a class="nav__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="nav__phone" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+          </nav>
+
+          <div class="site-header__actions">
+            <a class="site-header__contact site-header__email" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+            <a class="site-header__contact site-header__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="btn btn--primary btn--sm site-header__cta" href="#contacts-form">
+              Заказать проект
+            </a>
+            <button
+              class="site-header__burger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-nav"
+              aria-label="Меню"
+              data-menu-toggle
+            >
+              <svg class="icon icon--open" aria-hidden="true"><use href="#icon-menu" /></svg>
+              <svg class="icon icon--close" aria-hidden="true"><use href="#icon-close" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="contacts" aria-labelledby="contacts-title">
+        <div class="container">
+          <h1 class="section-title" data-reveal id="contacts-title">
+            Свяжитесь <span class="section-title__muted">с нами</span>
+          </h1>
+          <p class="contacts__lead" data-reveal>
+            Ответим на вопросы, проконсультируем по услугам и обсудим возможности сотрудничества.
+          </p>
+
+          <div class="contacts__quick" data-reveal-stagger>
+            <a class="quick-card" href="#contacts-form">
+              <span class="quick-card__title">Рассчитать проект</span>
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+            </a>
+            <a class="quick-card" href="#contacts-form">
+              <span class="quick-card__title">Забронировать звонок</span>
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+            </a>
+            <a class="quick-card" href="mailto:helpdesk@itach.by">
+              <span class="quick-card__title">Техническая поддержка 24/7</span>
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+            </a>
+            <a class="quick-card" href="mailto:info@itach.by">
+              <span class="quick-card__title">Другой вопрос</span>
+              <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+            </a>
+          </div>
+
+          <div class="contacts__offices" data-reveal-stagger>
+            <article class="contact-office glow-card">
+              <p class="contact-office__eyebrow">Офис в Российской Федерации</p>
+              <h2 class="contact-office__city">Смоленск</h2>
+              <address class="contact-office__address">214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60<button class="copy-button" type="button" data-copy="214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60" data-copy-done="Адрес скопирован" aria-label="Скопировать адрес офиса в Смоленске"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></address>
+              <div class="contact-office__body">
+                <ul class="contact-office__contacts">
+                  <li class="contact-office__contact">
+                    <a class="contact-office__link" href="tel:+74812280296"><svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>+7 (481) 228-02-96</a>
+                    <button class="copy-button" type="button" data-copy="+7 (481) 228-02-96" data-copy-done="Телефон скопирован" aria-label="Скопировать телефон офиса в Смоленске"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button>
+                  </li>
+                  <li class="contact-office__contact">
+                    <a class="contact-office__link" href="mailto:info@itach-soft.ru"><svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>info@itach-soft.ru</a>
+                    <button class="copy-button" type="button" data-copy="info@itach-soft.ru" data-copy-done="E-mail скопирован" aria-label="Скопировать e-mail офиса в Смоленске"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button>
+                  </li>
+                </ul>
+                <div class="contact-office__info">
+                  <div class="contact-office__info-block">
+                    <p class="contact-office__info-label">Отдел продаж</p>
+                    <p class="contact-office__info-text">Пн–Пт 9:00–18:00<br />Сб–Вс — выходные</p>
+                  </div>
+                </div>
+              </div>
+              <div class="contact-office__support">
+                <div class="contact-office__info-block">
+                  <p class="contact-office__info-label">Техническая поддержка</p>
+                  <p class="contact-office__info-text">Работаем 24/7</p>
+                </div>
+                <div class="contact-office__contact">
+                  <a class="contact-office__support-link" href="mailto:helpdesk@itach.by"><svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>helpdesk@itach.by</a>
+                  <button class="copy-button" type="button" data-copy="helpdesk@itach.by" data-copy-done="E-mail скопирован" aria-label="Скопировать e-mail техподдержки"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button>
+                </div>
+              </div>
+            </article>
+            <article class="contact-office glow-card">
+              <p class="contact-office__eyebrow">Офис в Республике Беларусь</p>
+              <h2 class="contact-office__city">Минск</h2>
+              <address class="contact-office__address">220116, Республика Беларусь, г. Минск, пр-т Дзержинского, 104Б, 12-й этаж, оф. 1205<button class="copy-button" type="button" data-copy="220116, Республика Беларусь, г. Минск, пр-т Дзержинского, 104Б, 12-й этаж, оф. 1205" data-copy-done="Адрес скопирован" aria-label="Скопировать адрес офиса в Минске"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></address>
+              <div class="contact-office__body">
+                <ul class="contact-office__contacts">
+                  <li class="contact-office__contact">
+                    <a class="contact-office__link" href="tel:+375173884530"><svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>+375 (17) 388-45-30</a>
+                    <button class="copy-button" type="button" data-copy="+375 (17) 388-45-30" data-copy-done="Телефон скопирован" aria-label="Скопировать телефон офиса в Минске"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button>
+                  </li>
+                  <li class="contact-office__contact">
+                    <a class="contact-office__link" href="mailto:info@itach.by"><svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>info@itach.by</a>
+                    <button class="copy-button" type="button" data-copy="info@itach.by" data-copy-done="E-mail скопирован" aria-label="Скопировать e-mail офиса в Минске"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button>
+                  </li>
+                </ul>
+                <div class="contact-office__info">
+                  <div class="contact-office__info-block">
+                    <p class="contact-office__info-label">Отдел продаж</p>
+                    <p class="contact-office__info-text">Пн–Пт 9:00–18:00<br />Сб–Вс — выходные</p>
+                  </div>
+                </div>
+              </div>
+              <div class="contact-office__support">
+                <div class="contact-office__info-block">
+                  <p class="contact-office__info-label">Техническая поддержка</p>
+                  <p class="contact-office__info-text">Работаем 24/7</p>
+                </div>
+                <div class="contact-office__contact">
+                  <a class="contact-office__support-link" href="mailto:helpdesk@itach.by"><svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>helpdesk@itach.by</a>
+                  <button class="copy-button" type="button" data-copy="helpdesk@itach.by" data-copy-done="E-mail скопирован" aria-label="Скопировать e-mail техподдержки"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contacts-map" aria-labelledby="contacts-map-title">
+        <div class="container">
+          <div class="contacts-map__head" data-reveal>
+            <h2 class="contacts-map__title" id="contacts-map-title">Офисы на карте</h2>
+            <div class="contacts-map__switch" role="group" aria-label="Выберите офис на карте">
+              <button class="calc-option contacts-map__tab" type="button" data-map-city="smolensk" aria-pressed="true">Смоленск</button>
+              <button class="calc-option contacts-map__tab" type="button" data-map-city="minsk" aria-pressed="false">Минск</button>
+            </div>
+          </div>
+          <div class="contacts-map__frame glow-card" data-reveal>
+            <div class="contacts-map__canvas" id="contacts-map" data-contacts-map data-map-city="smolensk" aria-busy="true" aria-label="Карта: офис в Смоленске">
+              <p class="contacts-map__placeholder">Загружаем карту…</p>
+            </div>
+          </div>
+          <a class="contacts-map__link" href="https://yandex.ru/maps/?ll=32.053075,54.783103&amp;z=17&amp;pt=32.053075,54.783103" target="_blank" rel="noopener noreferrer" data-map-link aria-label="Открыть офис в Смоленске на Яндекс.Картах">
+            Открыть в Яндекс.Картах
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="contacts-requisites" aria-labelledby="contacts-requisites-title">
+        <div class="container">
+          <div class="contacts-requisites__panel glow-card" data-reveal>
+            <div class="contacts-requisites__head">
+              <h2 class="contacts-requisites__title" id="contacts-requisites-title">Реквизиты</h2>
+              <p class="contacts-requisites__name">Общество с ограниченной ответственностью «Итач-софт»</p>
+            </div>
+            <dl class="contacts-requisites__list">
+              <div class="contacts-requisites__group">
+                <div class="contacts-requisites__row"><dt>УНП</dt><dd><span class="contacts-requisites__value">192324962</span><button class="copy-button" type="button" data-copy="192324962" data-copy-done="УНП скопирован" aria-label="Скопировать: УНП"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></dd></div>
+                <div class="contacts-requisites__row"><dt>Регистрационный номер в Торговом реестре</dt><dd><span class="contacts-requisites__value">466118 от 20.11.2019</span><button class="copy-button" type="button" data-copy="466118 от 20.11.2019" data-copy-done="Номер скопирован" aria-label="Скопировать: Регистрационный номер в Торговом реестре"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></dd></div>
+                <div class="contacts-requisites__row"><dt>Юридический адрес</dt><dd><span class="contacts-requisites__value">Республика Беларусь, г. Минск, 220141, пр. Независимости, д. 172, пом. 22</span><button class="copy-button" type="button" data-copy="Республика Беларусь, г. Минск, 220141, пр. Независимости, д. 172, пом. 22" data-copy-done="Адрес скопирован" aria-label="Скопировать: Юридический адрес"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></dd></div>
+                <div class="contacts-requisites__row"><dt>Банк</dt><dd><span class="contacts-requisites__value">ЗАО «Альфа-Банк», код ALFABY2X</span><button class="copy-button" type="button" data-copy="ЗАО «Альфа-Банк», код ALFABY2X" data-copy-done="Реквизиты банка скопированы" aria-label="Скопировать: Банк"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></dd></div>
+              </div>
+              <div class="contacts-requisites__group">
+                <div class="contacts-requisites__row"><dt>Адрес банка</dt><dd><span class="contacts-requisites__value">Республика Беларусь, г. Минск, ул. Сурганова, 43-47</span><button class="copy-button" type="button" data-copy="Республика Беларусь, г. Минск, ул. Сурганова, 43-47" data-copy-done="Адрес банка скопирован" aria-label="Скопировать: Адрес банка"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></dd></div>
+                <div class="contacts-requisites__row"><dt>Расчётный счёт</dt><dd><span class="contacts-requisites__value">BY38 ALFA 3012 2273 6000 3027 0000</span><button class="copy-button" type="button" data-copy="BY38 ALFA 3012 2273 6000 3027 0000" data-copy-done="Счёт скопирован" aria-label="Скопировать: Расчётный счёт"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></dd></div>
+                <div class="contacts-requisites__row"><dt>Платежи в российских рублях</dt><dd><span class="contacts-requisites__value">р/с BY23 ALFA 3012 2273 6000 4027 0000 в ЗАО «Альфа-Банк», код ALFABY2X</span><button class="copy-button" type="button" data-copy="р/с BY23 ALFA 3012 2273 6000 4027 0000 в ЗАО «Альфа-Банк», код ALFABY2X" data-copy-done="Счёт скопирован" aria-label="Скопировать: Платежи в российских рублях"><svg class="icon" aria-hidden="true"><use href="#icon-copy" /></svg></button></dd></div>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="contacts-form-section" id="contacts-form" aria-labelledby="contacts-form-title">
+        <div class="container">
+          <div class="contacts__form-panel lead__panel" data-reveal>
+            <canvas class="lead__wave" aria-hidden="true" data-lead-wave></canvas>
+            <div class="contacts__form-intro">
+              <h2 class="section-title contacts__form-title" id="contacts-form-title">
+                Расскажите, что хотите <span class="section-title__muted">улучшить в бизнесе</span>
+              </h2>
+              <p class="lead__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+            </div>
+            <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="contacts-name">Имя</label>
+                  <input class="lead-form__control" id="contacts-name" name="name" type="text" autocomplete="name" required aria-describedby="contacts-name-error" data-error="Укажите, как к вам обращаться" />
+                  <p class="lead-form__error" id="contacts-name-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="contacts-company">Компания</label>
+                  <input class="lead-form__control" id="contacts-company" name="company" type="text" autocomplete="organization" required aria-describedby="contacts-company-error" data-error="Укажите название компании" />
+                  <p class="lead-form__error" id="contacts-company-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="contacts-phone">Телефон</label>
+                  <input class="lead-form__control" id="contacts-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)](7,)" aria-describedby="contacts-phone-error" data-error="Укажите телефон для связи" />
+                  <p class="lead-form__error" id="contacts-phone-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="contacts-email">E-mail</label>
+                  <input class="lead-form__control" id="contacts-email" name="email" type="email" autocomplete="email" required aria-describedby="contacts-email-error" data-error="Укажите корректный e-mail" />
+                  <p class="lead-form__error" id="contacts-email-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="contacts-task">Ваша задача</label>
+                <textarea class="lead-form__control lead-form__control--area" id="contacts-task" name="task" rows="4" required aria-describedby="contacts-task-error" data-error="Коротко опишите задачу"></textarea>
+                <p class="lead-form__error" id="contacts-task-error"></p>
+              </div>
+              <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+              <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+              <p class="lead-form__status" role="status" data-lead-status></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+</main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__inner">
+          <div class="site-footer__top" data-reveal>
+            <a class="site-footer__logo" href="index.html" aria-label="Итач-софт, на главную">
+              <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+            </a>
+            <ul class="site-footer__socials" aria-label="Мы в соцсетях">
+              <li><a class="site-footer__social site-footer__social--telegram" href="https://t.me/Itachsoft_bot" target="_blank" rel="noopener" aria-label="Telegram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--youtube" href="https://www.youtube.com/@_ItachSoft_" target="_blank" rel="noopener" aria-label="YouTube"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--instagram" href="https://www.instagram.com/itach_soft/" target="_blank" rel="noopener" aria-label="Instagram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--tiktok" href="https://www.tiktok.com/@itach_soft_team" target="_blank" rel="noopener" aria-label="TikTok"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--linkedin" href="https://www.linkedin.com/company/80693063/" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--facebook" href="https://www.facebook.com/itachbelarus" target="_blank" rel="noopener" aria-label="Facebook"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+          <nav class="site-footer__columns" aria-label="Разделы сайта" data-reveal-stagger>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/bitriks24/">Битрикс24</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/vnedrenie-i-nastroyka-bitriks24/">Внедрение и настройка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/dorabotka-bitriks24/">Доработка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/integratsiya-bitriks24/">Интеграция Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/avtomatizatsiya-biznes-protsessov-v-bitriks24/">Автоматизация Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/ip-telefoniya-dlya-bitriks24/">IP-телефония для Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Тех. поддержка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/obuchenie-bitriks24/">Обучение Битрикс24</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/sayty/">Сайты</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/korporativnye-sayty/">Корпоративные сайты</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/internet-magaziny/">Интернет-магазины</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/sayty-vizitki/">Сайты-визитки</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/sayty-gosudarstvennykh-organizatsiy/">Сайты госорганизаций</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/lending/">Лендинг</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/razrabotka-sayta-na-gotovykh-shablonakh/">Разработка сайта на готовых шаблонах</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/tekhnicheskaya-podderzhka-saytov/">Техническая поддержка сайтов</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/">IP-АТС на базе Asterisk</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/vnedrenie-ip-atc-na-baze-asterisk/">Внедрение IP-АТС на базе Asterisk</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/nastroyka-voip-asterisk/">Настройка VoIP Asterisk</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/obespechenie-bezopasnosti-voip-ats/">Безопасность VoIP-АТС</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Поддержка VoIP-станций</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/">Веб-сервисы</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/razrabotka-veb-servisov-s-nulya/">Разработка веб-сервисов с нуля</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/integratsiya-slozhnykh-sistem/">Интеграция сложных систем</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Техническая поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/tekhnicheskaya-podderzhka/">Техническая поддержка</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/tekhnicheskaya-podderzhka-saytov/">Поддержка сайтов</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Обслуживание Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Поддержка VoIP-станций</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title">Компания</h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="portfolio.html">Портфолио</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/garantii/">Гарантия</a></li>
+                <li><a class="site-footer__link" href="index.html#reviews">Отзывы</a></li>
+                <li><a class="site-footer__link" href="blog.html">Новости</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/faq/">Вопросы и ответы</a></li>
+                <li><a class="site-footer__link" href="contacts.html">Контакты</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="site-footer__offices" data-reveal-stagger>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в Беларуси</h3>
+              <p class="site-footer__address">220083, Республика Беларусь, г. Минск, пр-т Дзержинского, 104-141, оф. 1201Б</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach.by">info@itach.by</a>
+              <a class="site-footer__link" href="tel:+375173884530">+375 17 388-45-30</a>
+            </address>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в России</h3>
+              <p class="site-footer__address">214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach-soft.ru">info@itach-soft.ru</a>
+              <a class="site-footer__link" href="tel:+74812280296">+7 (481) 228-02-96</a>
+            </address>
+          </div>
+          <div class="site-footer__bottom" data-reveal>
+            <p class="site-footer__legal">
+              ООО «Итач-софт». Юридический адрес: Республика Беларусь, г. Минск, 220141, пр. Независимости, д. 172, пом. 22.
+              УНП 192324962, регистрационный номер в Торговом реестре 466118 от 20.11.2019.
+              Техподдержка 24/7: <a class="site-footer__link" href="mailto:helpdesk@itach.by">helpdesk@itach.by</a>
+            </p>
+            <div class="site-footer__copy">
+              <p>© 2026 ООО «Итач-софт» — разработка программного обеспечения</p>
+              <a class="site-footer__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Политика конфиденциальности</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <section class="cookie" aria-labelledby="cookie-title" data-cookie hidden>
+      <img class="cookie__image" src="assets/img/kuki.webp" width="640" height="640" alt="" />
+      <div class="cookie__body">
+        <h2 class="cookie__title" id="cookie-title">Мы используем cookie</h2>
+        <p class="cookie__text">
+          Они помогают сайту работать стабильнее, а нам — понимать, что вам полезно.
+          <a class="cookie__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Подробнее</a>
+        </p>
+        <div class="cookie__actions">
+          <button class="btn btn--primary btn--sm" type="button" data-cookie-choice="all">Принять все</button>
+          <button class="btn btn--ghost btn--sm" type="button" data-cookie-choice="necessary">Только необходимые</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="copy-toast glass" role="status" aria-live="polite" data-copy-toast></div>
+  </body>
+</html>
