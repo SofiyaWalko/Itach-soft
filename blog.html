@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Блог — Итач-софт</title>
+    <meta name="description" content="Новости и статьи Итач-софт: Битрикс24, IP-телефония на Asterisk, разработка сайтов и веб-сервисов." />
+    <script>document.documentElement.classList.add("js");</script>
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="assets/img/logos/logo.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+    <script src="assets/js/hero-gl.js" defer></script>
+    <script src="assets/js/lead-wave.js" defer></script>
+    <script src="assets/js/cursor-halo.js" defer></script>
+    <script src="assets/js/calculator.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/blog.js" defer></script>
+  </head>
+
+  <body>
+    <div class="cursor-halo" aria-hidden="true" data-cursor-halo></div>
+
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <linearGradient id="gradient-contour" gradientUnits="userSpaceOnUse" x1="3" y1="3" x2="21" y2="21">
+        <stop offset="0" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <linearGradient id="gradient-number" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0.5" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <rect x="6.5" y="2" width="11" height="20" rx="3" />
+        <path d="M10.5 18.5h3" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <path
+          d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1.1 4.3 2.8 5.7L4.7 21l4.5-2.2c.9.2 1.8.3 2.8.3 5.1 0 9-3.6 9-8.1S17.1 3 12 3z"
+        />
+      </symbol>
+      <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+        <path d="M7 17 17 7" />
+        <path d="M8 7h9v9" />
+      </symbol>
+      <symbol id="icon-expand" viewBox="0 0 24 24">
+        <path d="M4 10V4h6" />
+        <path d="M20 14v6h-6" />
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path d="M4 6h16" />
+        <path d="M4 12h16" />
+        <path d="M4 18h16" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </symbol>
+      <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+        <path d="m6 9 6 6 6-6" />
+      </symbol>
+    </svg>
+
+    <header class="site-header" data-header>
+      <div class="container">
+        <div class="site-header__bar glass">
+          <a class="site-header__logo" href="index.html" aria-label="Итач-софт, на главную">
+            <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+          </a>
+
+          <nav class="site-header__nav" id="site-nav" aria-label="Основное меню">
+            <ul class="nav__list">
+              <li><a class="nav__link" href="index.html#services"><span class="nav__text">Услуги</span></a></li>
+              <li><a class="nav__link" href="portfolio.html"><span class="nav__text">Портфолио</span></a></li>
+              <li><a class="nav__link" href="index.html#about"><span class="nav__text">Компания</span></a></li>
+              <li><a class="nav__link" href="blog.html"><span class="nav__text">Блог</span></a></li>
+              <li><a class="nav__link" href="index.html#contacts"><span class="nav__text">Контакты</span></a></li>
+            </ul>
+            <a class="nav__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="nav__phone" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+          </nav>
+
+          <div class="site-header__actions">
+            <a class="site-header__contact site-header__email" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+            <a class="site-header__contact site-header__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="btn btn--primary btn--sm site-header__cta" href="#lead">
+              Заказать проект
+            </a>
+            <button
+              class="site-header__burger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-nav"
+              aria-label="Меню"
+              data-menu-toggle
+            >
+              <svg class="icon icon--open" aria-hidden="true"><use href="#icon-menu" /></svg>
+              <svg class="icon icon--close" aria-hidden="true"><use href="#icon-close" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="blog" aria-labelledby="blog-title">
+        <div class="container">
+          <h1 class="section-title" data-reveal id="blog-title">
+            Что нового <span class="section-title__muted">в Итач-софт</span>
+          </h1>
+          <p class="blog__lead" data-reveal>Рассказываем о новых проектах, достижениях команды, технологиях и решениях, которые помогают бизнесу развиваться</p>
+
+          <ul class="page-stats" data-reveal-stagger>
+            <li class="page-stat glow-card" style="--i: 0">
+              <span class="page-stat__value">97</span>
+              <p class="page-stat__text">публикаций в блоге</p>
+            </li>
+            <li class="page-stat glow-card" style="--i: 1">
+              <span class="page-stat__value">100+</span>
+              <p class="page-stat__text">реализованных проектов</p>
+            </li>
+            <li class="page-stat glow-card" style="--i: 2">
+              <span class="page-stat__value">с 2013</span>
+              <p class="page-stat__text">года на IT-рынке</p>
+            </li>
+            <li class="page-stat glow-card" style="--i: 3">
+              <span class="page-stat__value">50+</span>
+              <p class="page-stat__text">сертифицированных специалистов</p>
+            </li>
+          </ul>
+
+          <article class="featured" data-reveal>
+            <div class="featured__media">
+              <img src="assets/img/blog/award-conference.jpg" srcset="assets/img/blog/award-conference-768.jpg 768w, assets/img/blog/award-conference.jpg 1536w" sizes="(min-width: 900px) 55vw, 100vw" width="1536" height="1024" alt="Выступление на конференции перед полным залом" fetchpriority="high" loading="lazy" />
+            </div>
+            <div class="featured__body glow-card">
+              <span class="news-card__top">
+                <span class="news-card__tag">Награда</span>
+                <time class="news-card__date" datetime="2025-05-14">14.05.2025</time>
+              </span>
+              <h2 class="featured__title">
+                <a class="featured__link" href="https://itach-soft.ru/news/itach-soft-pobeditel-v-nominatsii-integrator-crm-sistem-po-itogam-premii-narodnyy-vybor-2025/" data-detail-open="news-award">Итач-софт — победитель в номинации «Интегратор CRM-систем» по итогам Премии «Народный выбор 2025»</a>
+              </h2>
+              <p class="featured__text">«Народный выбор» ежегодно отмечает ведущих игроков рынка IT и смежных отраслей, чьи решения и услуги получили признание клиентов и экспертов. В этом году компания Итач-софт отмечена за успешные проекты по внедрению и настройке CRM-систем.</p>
+              <a class="card-arrow" href="https://itach-soft.ru/news/itach-soft-pobeditel-v-nominatsii-integrator-crm-sistem-po-itogam-premii-narodnyy-vybor-2025/" data-detail-open="news-award" aria-label="Читать новость"><svg class="icon" aria-hidden="true"><use href="#icon-expand" /></svg></a>
+            </div>
+          </article>
+
+          <form class="blog__filters" aria-label="Фильтры блога" data-blog-filters>
+            <div class="blog__tags" role="group" aria-label="Теги публикаций">
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="tag" value="" checked /><span class="calc-option__text">Все</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="tag" value="award" /><span class="calc-option__text">Награды</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="tag" value="rating" /><span class="calc-option__text">Рейтинг</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="tag" value="sale" /><span class="calc-option__text">Акции</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="tag" value="company" /><span class="calc-option__text">Компания</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="tag" value="useful" /><span class="calc-option__text">Полезные материалы</span></label>
+            </div>
+            <div class="blog__sort" data-blog-sort>
+              <span class="blog__sort-label" id="blog-sort-label">Дата</span>
+              <div class="blog__sort-field">
+                <button class="btn btn--ghost blog__sort-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="blog-sort-label" data-blog-sort-button>
+                  <span data-blog-sort-value>Сначала новые</span>
+                  <svg class="icon blog__sort-chevron" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                </button>
+                <ul class="blog__sort-menu" role="listbox" aria-labelledby="blog-sort-label" hidden data-blog-sort-menu>
+                  <li class="blog__sort-option" role="option" aria-selected="true" tabindex="-1" data-value="desc">Сначала новые</li>
+                  <li class="blog__sort-option" role="option" aria-selected="false" tabindex="-1" data-value="asc">Сначала старые</li>
+                </ul>
+              </div>
+            </div>
+          </form>
+          <p class="visually-hidden" role="status" data-blog-count></p>
+
+          <ul class="blog__grid" data-blog-grid>
+            <li class="news-card glow-card" data-blog-card data-tags="useful" data-date="2025-10-29">
+              <a class="news-card__link" href="https://itach-soft.ru/news/chto-takoe-asterisk-i-pochemu-eto-luchshaya-osnova-dlya-korporativnoy-voip-telefonii/" data-detail-open="news-asterisk">
+                <span class="news-card__top">
+                  <span class="news-card__tag">IP-телефония</span>
+                  <time class="news-card__date" datetime="2025-10-29">29.10.2025</time>
+                </span>
+                <h3 class="news-card__title">Что такое Asterisk и почему это лучшая основа для корпоративной VoIP-телефонии?</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-blog-card data-tags="company" data-date="2025-10-15">
+              <a class="news-card__link" href="https://itach.by/news/itach-soft-prinyal-uchastie-v-biznes-zavtrake-bitriks-enterprayz/" data-detail-open="news-biznes-zavtrak">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Компания</span>
+                  <time class="news-card__date" datetime="2025-10-15">15.10.2025</time>
+                </span>
+                <h3 class="news-card__title">Итач-Софт на бизнес-завтраке «Битрикс. Энтерпрайз»</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-blog-card data-tags="award" data-date="2025-05-14">
+              <a class="news-card__link" href="https://itach-soft.ru/news/itach-soft-pobeditel-v-nominatsii-integrator-crm-sistem-po-itogam-premii-narodnyy-vybor-2025/" data-detail-open="news-award">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Награда</span>
+                  <time class="news-card__date" datetime="2025-05-14">14.05.2025</time>
+                </span>
+                <h3 class="news-card__title">Итач-софт — победитель в номинации «Интегратор CRM-систем» по итогам Премии «Народный выбор 2025»</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-reveal data-blog-card data-tags="rating" data-date="2025-04-22">
+              <a class="news-card__link" href="https://itach-soft.ru/news/itach-soft-voshla-v-top-5-studiy-v-reytinge-bayneta-2025/" data-detail-open="news-rating">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Рейтинг</span>
+                  <time class="news-card__date" datetime="2025-04-22">22.04.2025</time>
+                </span>
+                <h3 class="news-card__title">Итач-софт вошла в ТОП-5 студий в рейтинге Байнета 2025</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-reveal data-blog-card data-tags="useful" data-date="2024-09-15">
+              <a class="news-card__link" href="https://itach-soft.ru/news/vsye-pro-avtomatizatsiyu-biznes-protsessov-s-pomoshchyu-bitriks24/" data-detail-open="news-bitrix24">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Битрикс24</span>
+                  <time class="news-card__date" datetime="2024-09-15">15.09.2024</time>
+                </span>
+                <h3 class="news-card__title">Всё про автоматизацию бизнес-процессов с помощью Битрикс24</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-reveal data-blog-card data-tags="company" data-date="2024-08-09">
+              <a class="news-card__link" href="https://itach.by/news/itach-soft-prinyala-uchastie-v-seminare-ot-bitriksa-zhaloba-kak-podarok-2-0/" data-detail-open="news-seminar">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Компания</span>
+                  <time class="news-card__date" datetime="2024-08-09">09.08.2024</time>
+                </span>
+                <h3 class="news-card__title">Итач-софт на семинаре «Жалоба как подарок 2.0»</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-reveal data-blog-card data-tags="sale" data-date="2024-08-01">
+              <a class="news-card__link" href="https://itach.by/news/letnie-skidki-na-bitriks24-i-1s-bitriks-ot-bitriks24-i-kompanii-itach-soft/" data-detail-open="news-sale">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Акция</span>
+                  <time class="news-card__date" datetime="2024-08-01">01.08.2024</time>
+                </span>
+                <h3 class="news-card__title">Летние скидки на Битрикс24 и 1С-Битрикс</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-reveal data-blog-card data-tags="useful" data-date="2024-07-30">
+              <a class="news-card__link" href="https://itach.by/news/tekhnicheskaya-podderzhka-saytov-polnoe-rukovodstvo-i-luchshie-praktiki/" data-detail-open="news-support">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Техподдержка</span>
+                  <time class="news-card__date" datetime="2024-07-30">30.07.2024</time>
+                </span>
+                <h3 class="news-card__title">Техническая поддержка сайтов: полное руководство</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-reveal data-blog-card data-tags="company" data-date="2024-06-07">
+              <a class="news-card__link" href="https://itach.by/news/prezentatsiya-o-kompanii-itach-soft-uznayte-bolshe-o-nashikh-dostizheniyakh-i-uslugakh/" data-detail-open="news-presentation">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Компания</span>
+                  <time class="news-card__date" datetime="2024-06-07">07.06.2024</time>
+                </span>
+                <h3 class="news-card__title">Презентация о компании Итач-Софт: достижения и услуги</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-reveal data-blog-card data-tags="company" data-date="2024-06-03">
+              <a class="news-card__link" href="https://itach.by/news/podpishites-na-sotsialnye-seti-itach-soft-i-budte-v-kurse-vsekh-novostey/" data-detail-open="news-social">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Компания</span>
+                  <time class="news-card__date" datetime="2024-06-03">03.06.2024</time>
+                </span>
+                <h3 class="news-card__title">Подпишитесь на социальные сети Итач-Софт</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-reveal data-blog-card data-placeholder data-tags="useful" data-date="2024-05-15">
+              <a class="news-card__link" href="https://itach-soft.ru/news/chto-takoe-asterisk-i-pochemu-eto-luchshaya-osnova-dlya-korporativnoy-voip-telefonii/" data-detail-open="news-asterisk">
+                <span class="news-card__top">
+                  <span class="news-card__tag">IP-телефония</span>
+                  <time class="news-card__date" datetime="2024-05-15">15.05.2024</time>
+                </span>
+                <h3 class="news-card__title">Что такое Asterisk и почему это лучшая основа для корпоративной VoIP-телефонии?</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+            <li class="news-card glow-card" data-reveal data-blog-card data-placeholder data-tags="useful" data-date="2024-04-10">
+              <a class="news-card__link" href="https://itach-soft.ru/news/vsye-pro-avtomatizatsiyu-biznes-protsessov-s-pomoshchyu-bitriks24/" data-detail-open="news-bitrix24">
+                <span class="news-card__top">
+                  <span class="news-card__tag">Битрикс24</span>
+                  <time class="news-card__date" datetime="2024-04-10">10.04.2024</time>
+                </span>
+                <h3 class="news-card__title">Всё про автоматизацию бизнес-процессов с помощью Битрикс24</h3>
+                <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-expand" /></svg></span>
+              </a>
+            </li>
+          </ul>
+          <p class="blog__empty" hidden data-blog-empty>По этому тегу публикаций пока нет.</p>
+        </div>
+      </section>
+
+      <section class="lead" id="lead" aria-labelledby="lead-title">
+        <div class="container">
+          <div class="lead__panel" data-reveal>
+            <canvas class="lead__wave" aria-hidden="true" data-lead-wave></canvas>
+            <div class="lead__intro">
+              <h2 class="section-title lead__title" id="lead-title">
+                Расскажите, что хотите <span class="section-title__muted">улучшить в бизнесе</span>
+              </h2>
+              <p class="lead__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+            </div>
+            <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-name">Имя</label>
+                  <input class="lead-form__control" id="lead-name" name="name" type="text" autocomplete="name" required aria-describedby="lead-name-error" data-error="Укажите, как к вам обращаться" />
+                  <p class="lead-form__error" id="lead-name-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-company">Компания</label>
+                  <input class="lead-form__control" id="lead-company" name="company" type="text" autocomplete="organization" required aria-describedby="lead-company-error" data-error="Укажите название компании" />
+                  <p class="lead-form__error" id="lead-company-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-phone">Телефон</label>
+                  <input class="lead-form__control" id="lead-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="lead-phone-error" data-error="Укажите телефон для связи" />
+                  <p class="lead-form__error" id="lead-phone-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-email">E-mail</label>
+                  <input class="lead-form__control" id="lead-email" name="email" type="email" autocomplete="email" required aria-describedby="lead-email-error" data-error="Укажите корректный e-mail" />
+                  <p class="lead-form__error" id="lead-email-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="lead-task">Ваша задача</label>
+                <textarea class="lead-form__control lead-form__control--area" id="lead-task" name="task" rows="4" required aria-describedby="lead-task-error" data-error="Коротко опишите задачу"></textarea>
+                <p class="lead-form__error" id="lead-task-error"></p>
+              </div>
+              <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+              <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+              <p class="lead-form__status" role="status" data-lead-status></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__inner">
+          <div class="site-footer__top" data-reveal>
+            <a class="site-footer__logo" href="index.html" aria-label="Итач-софт, на главную">
+              <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+            </a>
+            <ul class="site-footer__socials" aria-label="Мы в соцсетях">
+              <li><a class="site-footer__social site-footer__social--telegram" href="https://t.me/Itachsoft_bot" target="_blank" rel="noopener" aria-label="Telegram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--youtube" href="https://www.youtube.com/@_ItachSoft_" target="_blank" rel="noopener" aria-label="YouTube"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--instagram" href="https://www.instagram.com/itach_soft/" target="_blank" rel="noopener" aria-label="Instagram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--tiktok" href="https://www.tiktok.com/@itach_soft_team" target="_blank" rel="noopener" aria-label="TikTok"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--linkedin" href="https://www.linkedin.com/company/80693063/" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--facebook" href="https://www.facebook.com/itachbelarus" target="_blank" rel="noopener" aria-label="Facebook"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+          <nav class="site-footer__columns" aria-label="Разделы сайта" data-reveal-stagger>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/bitriks24/">Битрикс24</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/vnedrenie-i-nastroyka-bitriks24/">Внедрение и настройка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/dorabotka-bitriks24/">Доработка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/integratsiya-bitriks24/">Интеграция Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/avtomatizatsiya-biznes-protsessov-v-bitriks24/">Автоматизация Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/ip-telefoniya-dlya-bitriks24/">IP-телефония для Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Тех. поддержка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/obuchenie-bitriks24/">Обучение Битрикс24</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/sayty/">Сайты</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/korporativnye-sayty/">Корпоративные сайты</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/internet-magaziny/">Интернет-магазины</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/sayty-vizitki/">Сайты-визитки</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/sayty-gosudarstvennykh-organizatsiy/">Сайты госорганизаций</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/lending/">Лендинг</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/razrabotka-sayta-na-gotovykh-shablonakh/">Разработка сайта на готовых шаблонах</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/tekhnicheskaya-podderzhka-saytov/">Техническая поддержка сайтов</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/">IP-АТС на базе Asterisk</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/vnedrenie-ip-atc-na-baze-asterisk/">Внедрение IP-АТС на базе Asterisk</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/nastroyka-voip-asterisk/">Настройка VoIP Asterisk</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/obespechenie-bezopasnosti-voip-ats/">Безопасность VoIP-АТС</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Поддержка VoIP-станций</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/">Веб-сервисы</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/razrabotka-veb-servisov-s-nulya/">Разработка веб-сервисов с нуля</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/integratsiya-slozhnykh-sistem/">Интеграция сложных систем</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Техническая поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/tekhnicheskaya-podderzhka/">Техническая поддержка</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/tekhnicheskaya-podderzhka-saytov/">Поддержка сайтов</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Обслуживание Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Поддержка VoIP-станций</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title">Компания</h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="portfolio.html">Портфолио</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/garantii/">Гарантия</a></li>
+                <li><a class="site-footer__link" href="index.html#reviews">Отзывы</a></li>
+                <li><a class="site-footer__link" href="blog.html">Новости</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/faq/">Вопросы и ответы</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/contacts/">Контакты</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="site-footer__offices" data-reveal-stagger>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в Беларуси</h3>
+              <p class="site-footer__address">220083, Республика Беларусь, г. Минск, пр-т Дзержинского, 104-141, оф. 1201Б</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach.by">info@itach.by</a>
+              <a class="site-footer__link" href="tel:+375173884530">+375 17 388-45-30</a>
+            </address>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в России</h3>
+              <p class="site-footer__address">214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach-soft.ru">info@itach-soft.ru</a>
+              <a class="site-footer__link" href="tel:+74812280296">+7 (481) 228-02-96</a>
+            </address>
+          </div>
+          <div class="site-footer__bottom" data-reveal>
+            <p class="site-footer__legal">
+              ООО «Итач-софт». Юридический адрес: Республика Беларусь, г. Минск, 220141, пр. Независимости, д. 172, пом. 22.
+              УНП 192324962, регистрационный номер в Торговом реестре 466118 от 20.11.2019.
+              Техподдержка 24/7: <a class="site-footer__link" href="mailto:helpdesk@itach.by">helpdesk@itach.by</a>
+            </p>
+            <div class="site-footer__copy">
+              <p>© 2026 ООО «Итач-софт» — разработка программного обеспечения</p>
+              <a class="site-footer__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Политика конфиденциальности</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <section class="cookie" aria-labelledby="cookie-title" data-cookie hidden>
+      <img class="cookie__image" src="assets/img/kuki.webp" width="640" height="640" alt="" />
+      <div class="cookie__body">
+        <h2 class="cookie__title" id="cookie-title">Мы используем cookie</h2>
+        <p class="cookie__text">
+          Они помогают сайту работать стабильнее, а нам — понимать, что вам полезно.
+          <a class="cookie__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Подробнее</a>
+        </p>
+        <div class="cookie__actions">
+          <button class="btn btn--primary btn--sm" type="button" data-cookie-choice="all">Принять все</button>
+          <button class="btn btn--ghost btn--sm" type="button" data-cookie-choice="necessary">Только необходимые</button>
+        </div>
+      </div>
+    </section>
+
+    <dialog class="modal" id="lead-modal" aria-labelledby="lead-modal-title" data-lead-modal>
+      <div class="modal__panel">
+        <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close>
+          <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+        </button>
+        <h2 class="modal__title" id="lead-modal-title">
+          Расскажите, что хотите <span class="section-title__muted">улучшить в бизнесе</span>
+        </h2>
+        <p class="modal__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+        <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-name">Имя</label>
+                        <input class="lead-form__control" id="modal-name" autofocus name="name" type="text" autocomplete="name" required aria-describedby="modal-name-error" data-error="Укажите, как к вам обращаться" />
+                        <p class="lead-form__error" id="modal-name-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-company">Компания</label>
+                        <input class="lead-form__control" id="modal-company" name="company" type="text" autocomplete="organization" required aria-describedby="modal-company-error" data-error="Укажите название компании" />
+                        <p class="lead-form__error" id="modal-company-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-phone">Телефон</label>
+                        <input class="lead-form__control" id="modal-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="modal-phone-error" data-error="Укажите телефон для связи" />
+                        <p class="lead-form__error" id="modal-phone-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-email">E-mail</label>
+                        <input class="lead-form__control" id="modal-email" name="email" type="email" autocomplete="email" required aria-describedby="modal-email-error" data-error="Укажите корректный e-mail" />
+                        <p class="lead-form__error" id="modal-email-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="modal-task">Ваша задача</label>
+                      <textarea class="lead-form__control lead-form__control--area" id="modal-task" name="task" rows="3" required aria-describedby="modal-task-error" data-error="Коротко опишите задачу"></textarea>
+                      <p class="lead-form__error" id="modal-task-error"></p>
+                    </div>
+                    <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+                    <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+                    <p class="lead-form__status" role="status" data-lead-status></p>
+                  </form>
+      </div>
+    </dialog>
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <dialog class="detail" id="detail-modal" aria-labelledby="detail-title" data-detail-modal>
+      <div class="detail__panel" tabindex="-1" data-detail-panel>
+        <div class="detail__handle" aria-hidden="true" data-detail-handle><span></span></div>
+        <button class="detail__close" type="button" aria-label="Закрыть" data-detail-close>
+          <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+        </button>
+        <div class="detail__content" data-detail-content></div>
+      </div>
+    </dialog>
+
+    <template id="detail-news-asterisk">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 29 октября 2025</p>
+        <h2 class="detail__title" id="detail-title">Что такое Asterisk и почему это лучшая основа для корпоративной VoIP-телефонии?</h2>
+        
+        <p class="detail__lead">Что такое Asterisk и почему это лучшая платформа для корпоративной VoIP-телефонии? Узнайте о преимуществах, гибкости, интеграции с Битрикс24 и экономии.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button></div>
+</header>
+      
+      
+      
+      <div class="detail__article"><div class="detail__prose"><p>В современном бизнесе эффективная коммуникация — это не просто удобство, а жизненная необходимость. Клиенты ожидают быстрой реакции, а сотрудники должны иметь возможность беспрепятственно общаться друг с другом, где бы они ни находились. Именно здесь на сцену выходит <strong>IP-телефония</strong>, а в ее сердце — мощная и гибкая платформа Asterisk. Но что это такое и почему ведущие компании выбирают именно ее для организации своей связи?</p><p>Давайте разберемся, что скрывается за этим названием, какие преимущества оно дает бизнесу и как помогает выстроить современную, масштабируемую и экономически выгодную корпоративную телефонную сеть.</p><h2>Что такое Asterisk: Больше, чем просто АТС</h2><p>Asterisk — это не готовая «коробочная» АТС, а программное обеспечение с открытым исходным кодом (open-source), которое превращает обычный компьютер или сервер в мощнейший коммуникационный узел. По сути, это фреймворк, или конструктор, из которого можно собрать телефонную станцию любой сложности, идеально подогнанную под нужды конкретной компании. Разработанный компанией Digium (сейчас часть Sangoma), Asterisk стал мировым стандартом в области <strong>VoIP-телефонии</strong>.</p><p>Представьте, что вы можете построить систему связи, которая умеет всё, что вам нужно: от простых звонков внутри офиса до сложных сценариев с голосовыми меню, видеоконференциями и интеграцией с CRM-системами. Именно такую свободу и предоставляет Asterisk.</p><h3>Как работает Asterisk? Ключевые принципы</h3><p>Сердце системы — это сервер, на котором установлен Asterisk. К этому серверу по компьютерной сети (локальной или через интернет) подключаются различные устройства и сервисы:</p><ul><li><strong>SIP-телефоны:</strong> Специальные IP-аппараты, которые выглядят как обычные офисные телефоны, но работают через интернет.</li><li><strong>Софтфоны:</strong> Программы для компьютеров и смартфонов, позволяющие звонить и принимать вызовы прямо с вашего устройства.</li><li><strong>VoIP-шлюзы:</strong> Устройства для подключения традиционных аналоговых телефонных линий или аппаратов к IP-сети.</li><li><strong>SIP-транки:</strong> Цифровые каналы от провайдеров <strong>СИП-телефонии</strong>, через которые осуществляются звонки на городские и мобильные номера по всему миру.</li></ul><p>Asterisk управляет всеми этими компонентами, маршрутизируя звонки согласно заданным правилам (диалплану). Он преобразует голос в цифровые пакеты данных и передает их по сети, обеспечивая связь между абонентами. Благодаря своей программной природе, он легко адаптируется к любым задачам.</p><h2>Почему Asterisk — лучший выбор для корпоративной IP-телефонии?</h2><p>Многие компании, от малого бизнеса до крупных корпораций, выбирают Asterisk. И на это есть веские причины. Давайте рассмотрим ключевые преимущества этой платформы.</p><h3>1. Неограниченная гибкость и масштабируемость</h3><p>С Asterisk вы не ограничены функционалом, заложенным производителем. Нужна сложная система голосового приветствия (IVR) с разветвленным меню? Пожалуйста. Хотите настроить автоматический обзвон клиентов? Легко. Требуется запись всех разговоров с возможностью поиска по дате или номеру сотрудника? Не проблема.</p><p>Масштабируемость — еще один козырь. Ваша компания растет? Просто добавьте новых пользователей, подключите новый офис или филиал. Производительность системы ограничена только мощностью сервера, на котором она работает. Вы можете начать с небольшого решения на 10 сотрудников и постепенно вырасти до системы, обслуживающей тысячи абонентов по всему миру, не меняя при этом базовую технологию.</p><h3>2. Экономическая эффективность</h3><p>Поскольку Asterisk — это бесплатное программное обеспечение, вы не платите за лицензии на каждого пользователя или за каждую новую функцию, как в случае с проприетарными (коммерческими) АТС. Основные затраты приходятся на:</p><ul><li><strong>Серверное оборудование:</strong> Его стоимость зависит от предполагаемой нагрузки.</li><li><strong>Настройку и внедрение:</strong> Качественная <a href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/vnedrenie-ip-atc-na-baze-asterisk/" target="_blank" rel="noopener">настройка VoIP Asterisk</a> требует опыта и знаний, поэтому лучше доверить ее профессионалам.</li><li><strong>Оборудование для сотрудников:</strong> IP-телефоны или гарнитуры.</li></ul><p>В долгосрочной перспективе владение системой на базе Asterisk обходится значительно дешевле. Вы платите за услуги связи провайдерам по выгодным тарифам <strong>IP-телефонии</strong> и не зависите от ценовой политики одного производителя оборудования.</p><h3>3. Богатый функционал «из коробки»</h3><p>Даже базовая установка Asterisk предлагает функционал, который у коммерческих АТС доступен как дорогая опция:</p><ul><li><strong>Голосовое меню (IVR):</strong> «Здравствуйте, вы позвонили в компанию X. Для соединения с отделом продаж, нажмите 1...»</li><li><strong>Очереди вызовов:</strong> Распределение входящих звонков между операторами колл-центра, с музыкой или информацией во время ожидания.</li><li><strong>Запись разговоров:</strong> Незаменимый инструмент для контроля качества и решения спорных ситуаций.</li><li><strong>Голосовая почта:</strong> С возможностью отправки сообщений на e-mail.</li><li><strong>Конференц-связь:</strong> Создание виртуальных «комнат» для общения нескольких сотрудников одновременно.</li><li><strong>Детальная статистика звонков (CDR):</strong> Полная информация о том, кто, когда, куда и как долго звонил.</li><li><strong>Видеозвонки:</strong> Asterisk поддерживает передачу не только голоса, но и видео.</li></ul><h3>4. Интеграция с бизнес-системами: Пример с Битрикс24</h3><p>Одно из главных преимуществ Asterisk — его способность «дружить» с другими программами. Наиболее востребованной сегодня является интеграция телефонии с CRM-системами, и в первую очередь — с Битрикс24.</p><p>Интеграция <strong>Битрикс24 и IP-телефонии</strong> на базе Asterisk выводит работу с клиентами на новый уровень:</p><ul><li><strong>Звонок в один клик:</strong> Менеджер может позвонить клиенту прямо из его карточки в CRM, не набирая номер вручную.</li><li><strong>Всплывающая карточка клиента:</strong> При входящем звонке на экране компьютера сразу появляется вся информация о звонящем, история общения и сделок.</li><li><strong>Автоматическое создание лидов:</strong> Если звонит новый клиент, система сама создает новую карточку лида, не давая потерять ни одного обращения.</li><li><strong>Умная маршрутизация:</strong> Звонок от закрепленного клиента можно автоматически направить на его персонального менеджера.</li><li><strong>Полная история коммуникаций:</strong> Все звонки, включая записи разговоров, прикрепляются к карточке клиента. Это позволяет руководителю легко оценить работу отдела продаж и помогает менеджерам быстро вникнуть в историю общения.</li></ul><p>Такая связка превращает обычную <strong>телефонию</strong> в мощный инструмент продаж и клиентского сервиса. Если вы ищете надежное решение <strong>IP телефонии для Битрикс</strong>, Asterisk — это идеальный выбор.</p><h2>Важные аспекты внедрения Asterisk</h2><p>Несмотря на все плюсы, внедрение Asterisk — это нетривиальная задача, требующая профессионального подхода. Важно учесть несколько ключевых моментов.</p><h3>Настройка и поддержка</h3><p>Гикость Asterisk — это и его сложность. Неправильная конфигурация может привести к сбоям в работе, плохому качеству связи или, что еще хуже, к уязвимостям в безопасности. Поэтому первоначальную настройку, отладку и последующую техническую поддержку лучше доверить опытным инженерам, которые специализируются на <strong>VoIP-телефонии</strong>.</p><p>Профессиональная <a href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/" target="_blank" rel="noopener">техническая поддержка VoIP-телефонных станций</a> гарантирует, что ваша система связи будет работать стабильно, а любые возникающие вопросы будут решаться оперативно.</p><h3>Безопасность VoIP-АТС</h3><p>IP-АТС, подключенная к интернету, может стать мишенью для злоумышленников. Их цель — получить несанкционированный доступ к вашей системе для совершения дорогостоящих международных звонков за ваш счет (фрод). Ущерб от таких атак может исчисляться сотнями тысяч рублей.</p><p>Обеспечение безопасности VoIP-АТС на базе Asterisk — это комплексная задача, включающая:</p><ul><li>Настройку файрвола (межсетевого экрана).</li><li>Использование сложных и уникальных паролей для SIP-аккаунтов.</li><li>Ограничение доступа к системе по IP-адресам.</li><li>Регулярный мониторинг активности и анализ логов.</li><li>Своевременное обновление программного обеспечения.</li></ul><p>Не пренебрегайте этим аспектом. Экономия на безопасности сегодня может обернуться огромными убытками завтра.</p><h2>Заключение: Asterisk — это инвестиция в будущее вашего бизнеса</h2><p>Итак, Asterisk — это не просто программа для звонков. Это мощная, гибкая и экономически выгодная платформа, которая позволяет создать коммуникационную систему, полностью отвечающую потребностям вашего бизнеса. Она дает свободу от ограничений коммерческих продуктов, позволяет интегрировать телефонию с ключевыми бизнес-процессами и масштабироваться вместе с ростом вашей компании.</p><p>Правильно внедренная и настроенная <strong>СИП-телефония</strong> на базе Asterisk становится надежным фундаментом для общения с клиентами и внутри команды. Она помогает повысить продажи за счет интеграции с CRM, улучшить качество обслуживания благодаря записи и анализу разговоров, а также оптимизировать расходы на связь. Это разумная инвестиция, которая окупается многократно, делая ваш бизнес более современным, эффективным и конкурентоспособным.</p></div></div>
+    </template>
+
+    <template id="detail-news-award">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 14 мая 2025</p>
+        <h2 class="detail__title" id="detail-title">Итач-софт - победитель в номинации “Интегратор CRM-систем” по итогам Премии “Народный выбор 2025”</h2>
+        
+        <p class="detail__lead">Компания &quot;Итач-софт&quot; получила наивысшую оценку от профессионального сообщества и клиентов</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button></div>
+</header>
+      <figure class="detail__hero detail__hero--fit"><img src="assets/img/detail/news-award-00.webp" width="1400" height="990" alt="" /></figure>
+      
+      
+      <div class="detail__article"><div class="detail__prose"><h2>Итач-софт - победитель в номинации «Интегратор CRM-систем» по итогам премии «Народный выбор 2025».</h2> Премия «Народный выбор» ежегодно отмечает ведущих игроков рынка IT и смежных отраслей, чьи решения и услуги получили признание со стороны клиентов и экспертов. В этом году компания Итач-софт была отмечена за высокий уровень профессионализма, успешные проекты по внедрению и настройке CRM-систем, а также за комплексный подход к автоматизации бизнес-процессов клиентов. «Эта награда — результат труда всей нашей команды, её стремления к инновациям и постоянного стремления к высоким стандартам качества. Мы благодарим клиентов за доверие и экспертов за признание наших компетенций», — отметил директор компании. Победа в номинации «Интегратор CRM-систем» подчеркивает ведущую роль &quot;Итач-софт&quot; на рынке автоматизации бизнеса и CRM-интеграций. Компания продолжает активно развивать свои решения, внедряя передовые технологии и помогая бизнесу достигать новых высот. Благодарим вас, дорогие клиенты, за признание и награду!</div></div>
+    </template>
+
+    <template id="detail-news-rating">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 22 апреля 2025</p>
+        <h2 class="detail__title" id="detail-title">Итач-софт вошла в ТОП-5 студий в рейтинге Байнета 2025</h2>
+        
+        <p class="detail__lead">Итач-софт, IT-компания полного цикла по автоматизации бизнеса, с гордостью объявляет о своем достижении: мы заняли 5 место в рейтинге Байнета 2025.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button></div>
+</header>
+      <figure class="detail__hero detail__hero--fit"><img src="assets/img/detail/news-rating-00.webp" width="905" height="1280" alt="" /></figure>
+      
+      
+      <div class="detail__article"><div class="detail__prose"><h2>Итач-софт в топ-5 лидеров рынка веб-разработки</h2><p>Наша компания была признана одной из лучших веб-студий Беларуси по результатам рейтинга, проведенного Байнетом. Это достижение подтверждает нашу приверженность качественному обслуживанию клиентов и инновационным решениям в области автоматизации бизнеса.</p><p><a href="https://ratingbynet.by/itach-soft/" target="_blank" rel="noopener">Рейтинг Байнета 2025</a> оценивал веб-студии по следующим критериям:</p><ul><li>Качество предоставляемых услуг</li><li>Уровень клиентского сервиса</li><li>Инновационные решения</li><li>Опыт и репутация на рынке</li></ul><p>Итач-софт была высоко оценена по всем этим критериям, что подтверждает нашу позицию как одного из лидеров в отрасли.</p><p>Мы благодарим всех наших клиентов и партнеров за доверие и поддержку. Это достижение является результатом нашей неустанных усилий и стремления к совершенству. Мы продолжим работать над улучшением наших услуг и внедрением новых технологий, чтобы оправдывать ожидания наших клиентов.</p></div></div>
+    </template>
+
+    <template id="detail-news-bitrix24">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 15 сентября 2024</p>
+        <h2 class="detail__title" id="detail-title">Всё про автоматизацию бизнес-процессов с помощью Битрикс24</h2>
+        
+        <p class="detail__lead">Автоматизация бизнес-процессов становится все более важной для современных компаний, стремящихся повысить свою эффективность и конкурентоспособность. В этой статье мы рассмотрим, как автоматизация бизнес-процессов с помощью Битрикс24 помогает экономить время и деньги, а также улучшает общий рабочий процесс компании.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button></div>
+</header>
+      
+      
+      
+      <div class="detail__article"><div class="detail__prose"><h2>Что такое автоматизация бизнес-процессов?</h2><p>Автоматизация бизнес-процессов (БП) – это использование технологий и программного обеспечения для выполнения рутинных задач и процессов с минимальным участием человека. Цель автоматизации – сократить время выполнения задач, уменьшить количество ошибок и повысить общую производительность компании.</p><p><a href="https://itach-soft.ru/services/bitriks24/avtomatizatsiya-biznes-protsessov-v-bitriks24/" target="_blank" rel="noopener">Автоматизация бизнес-процессов с помощью Битрикс24</a> позволяет значительно сократить время на выполнение рутинных задач, уменьшить количество ошибок и повысить общую производительность компании. Реализуя автоматизацию, вы не только экономите время и деньги, но и улучшаете качество обслуживания клиентов и эффективность работы вашей команды.</p><h2>Почему автоматизация важна для бизнеса?</h2><p>Современные компании сталкиваются с множеством вызовов: растущая конкуренция, необходимость быстрого реагирования на изменения рынка и увеличивающиеся ожидания клиентов. В таких условиях оптимизация внутренних процессов становится критически важной. Автоматизация бизнес-процессов позволяет компаниям:</p><ul><li>Увеличить скорость выполнения задач: Автоматизация рутинных операций позволяет сократить время на их выполнение, что ускоряет общий рабочий процесс.</li><li>Снизить издержки: Уменьшение затрат на выполнение ручных операций и снижение количества ошибок приводит к экономии средств.</li><li>Повысить точность и качество: Автоматизированные процессы исключают человеческий фактор, что позволяет минимизировать ошибки и повысить качество выполнения задач.</li><li>Улучшить удовлетворенность клиентов: Быстрая и точная обработка заказов, заявок и запросов способствует повышению уровня удовлетворенности клиентов.</li></ul><h2>Почему Битрикс24?</h2><p>Битрикс24 – это мощная платформа для управления бизнесом, которая включает в себя инструменты для CRM, управления задачами, коммуникаций и, конечно же, автоматизации бизнес-процессов. Преимущества использования Битрикс24 включают:</p><ul><li>Интеграция всех инструментов в одной системе: Битрикс24 объединяет CRM, задачи, проекты, чат, почту и другие инструменты в одной платформе, что упрощает управление бизнесом.</li><li>Удобный интерфейс и легкость в использовании: Пользовательский интерфейс Битрикс24 интуитивно понятен и не требует специальных навыков для работы.</li><li>Гибкость и масштабируемость системы: Битрикс24 подходит для компаний любого размера и легко масштабируется по мере роста бизнеса.</li><li>Широкий выбор готовых решений для автоматизации: В Битрикс24 доступны готовые сценарии автоматизации, которые можно легко адаптировать под нужды компании.</li></ul><p>Благодаря этим преимуществам, Битрикс24 является идеальным инструментом для автоматизации бизнес-процессов в современных компаниях.</p><h2>Как автоматизация бизнес-процессов с помощью Битрикс24 экономит время и деньги?</h2><p>Снижение трудозатрат. Автоматизация позволяет сотрудникам тратить меньше времени на рутинные задачи, такие как ввод данных, обработка заявок и отправка уведомлений. Это позволяет сосредоточиться на более важных и стратегических задачах.</p><p>Уменьшение ошибок. Человеческий фактор часто является причиной ошибок, которые могут привести к дополнительным затратам и потерям времени. Автоматизация позволяет уменьшить количество ошибок и повысить качество выполняемых задач.</p><p>Повышение производительности. Автоматизация ускоряет выполнение задач, что в свою очередь повышает общую производительность компании. Это позволяет быстрее реагировать на запросы клиентов и изменяющиеся условия рынка.</p><h3>Технические возможности Битрикс24 для автоматизации</h3><p>Роботы и триггеры. В Битрикс24 существуют роботы и триггеры, которые позволяют автоматизировать множество задач. Например, можно настроить автоматическую отправку письма клиенту после выполнения определенного действия или напоминание сотруднику о необходимости выполнения задачи.</p><p>Бизнес-процессы. Битрикс24 позволяет создавать сложные бизнес-процессы с помощью встроенного конструктора. Это позволяет автоматизировать последовательность действий и настроить их выполнение в зависимости от различных условий.</p><p>Интеграция с другими системами. Битрикс24 поддерживает интеграцию с множеством внешних систем и сервисов, что позволяет расширить возможности автоматизации. Например, можно настроить синхронизацию данных с 1С, интеграцию с мессенджерами (WhatsApp, Telegram), социальными сетями, почтой, IP-телефонией и использовать внешние API для обмена информацией с другими приложениями.</p><h3>Примеры автоматизации бизнес-процессов в Битрикс24</h3><p>Автоматизация обработки заявок. С помощью Битрикс24 можно настроить автоматическое распределение заявок между сотрудниками, отправку уведомлений клиентам о статусе их заявки и создание задач для выполнения необходимых действий.</p><p>Управление проектами. Автоматизация процессов управления проектами позволяет сократить время на планирование и контроль задач, а также обеспечить своевременное выполнение всех этапов проекта. Автоматизация маркетинга. С помощью инструментов Битрикс24 можно настроить автоматическую отправку рекламных рассылок, сегментацию базы клиентов и анализ эффективности маркетинговых кампаний.</p><h3>Реальные примеры успешной автоматизации</h3><p>Пример 1: Интернет-магазин использовал Битрикс24 для автоматизации обработки заказов. В результате время обработки одного заказа сократилось с 15 до 5 минут, что позволило увеличить количество обработанных заказов в день и повысить удовлетворенность клиентов.</p><p>Пример 2: Консалтинговая компания использовала Битрикс24 для автоматизации процесса управления проектами. Это позволило сократить время на планирование проектов и улучшить контроль за выполнением задач, что привело к повышению эффективности работы команды и улучшению качества предоставляемых услуг.</p><p>Пример 3: Интеграция с внешними сервисами. Производственная компания внедрила Битрикс24 для интеграции с 1С, мессенджерами и IP-телефонией. Это позволило автоматизировать процесс обмена данными между отделами, ускорить обработку заказов и улучшить коммуникацию как внутри компании, так и с клиентами.</p><h3>Автоматизация бизнес-процессов с помощью CRM системы Битиркс24</h3><p>Компания Итач-софт является официальным партнёром Битрикс24 в Беларуси и занимается комплексными работами по настройке, внедрению и доработке системы. Мы предлагаем возможность внедрения CRM-системы Битрикс24 в срок не более 7 дней с чётко определёнными этапами и графиком выполнения задач. Мы предоставляем годовую гарантию на разработку, персонального менеджера и техподдержку 24/7. Свяжитесь с нами сегодня и начните путь к более эффективному и успешному бизнесу!</p></div></div>
+    </template>
+
+    <template id="detail-news-sale">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 1 августа 2024</p>
+        <h2 class="detail__title" id="detail-title">Летние скидки на Битрикс24 и 1С-Битрикс</h2>
+        <p class="detail__lead">С радостью сообщаем о начале грандиозной летней акции на решения Битрикс24 и 1С-Битрикс: Управление сайтом. С 1 по 30 августа 2024 года у вас есть уникальная возможность приобрести эти продукты по сниженным ценам и обеспечить своему бизнесу мощные инструменты для автоматизации и управления.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button></div>
+      </header>
+      <div class="detail__article"><div class="detail__prose">
+        <p>Уважаемые клиенты и партнёры! Не упустите шанс улучшить свои бизнес-процессы с помощью передовых решений от Битрикс24 и 1С-Битрикс. Оставьте заявку на покупку и получите всю необходимую поддержку от компании Итач-софт — официального партнёра Битрикс24 в Беларуси.</p>
+        <h2>Скидки на Битрикс24 до 35%</h2>
+        <p>Начните бизнес-сезон с полным набором инструментов для работы. Все клиенты, покупающие облачные тарифы Битрикс24 или подписку на Битрикс24 Маркет Плюс впервые, а также текущие клиенты, повышающие тариф до Профессионального или Энтерпрайза, могут воспользоваться следующими скидками:</p>
+        <ul>
+          <li>Скидка 35% на облачную версию Битрикс24;</li>
+          <li>Скидка 35% на подписку Битрикс24 Маркет Плюс;</li>
+          <li>Скидка 15% на коробочную версию Битрикс24.</li>
+        </ul>
+        <h2>Скидки на 1С-Битрикс: Управление сайтом до 20%</h2>
+        <p>Приобретите лицензии «1С-Битрикс: Управление сайтом» по сниженной цене и превратите свой сайт в мощный инструмент для бизнеса. Скидки распространяются на следующие варианты:</p>
+        <ul>
+          <li>Скидка 20% на лицензии;</li>
+          <li>Скидка 15% на переход на лицензию «Интернет-магазин + CRM».</li>
+        </ul>
+        <h2>Условия акции</h2>
+        <ul>
+          <li><strong>Сроки проведения:</strong> с 1 по 30 августа 2024 года. Оплата должна поступить не позднее 30 августа 2024 г.</li>
+          <li><strong>Территория действия:</strong> Республика Беларусь.</li>
+          <li><strong>Совместимость скидок:</strong> акционные скидки не суммируются с другими скидками.</li>
+        </ul>
+        <h2>Золотой партнёр Битрикс24 в Беларуси</h2>
+        <p>Компания Итач-софт — ваш надежный партнер в сфере информационных технологий и официальный представитель Битрикс24 в Беларуси. Мы предоставляем комплексные решения для вашего бизнеса, от быстрого и эффективного внедрения CRM-систем Битрикс24 до круглосуточной технической поддержки, гарантируя высокое качество и надежность наших услуг.</p>
+        <ul>
+          <li><strong>Быстрое внедрение:</strong> внедрим CRM-систему Битрикс24 в срок не более 7 дней, с четко определенными этапами и графиком выполнения задач.</li>
+          <li><strong>Персональный менеджер:</strong> для каждого клиента мы предоставляем персонального менеджера для оперативного решения всех вопросов.</li>
+          <li><strong>Годовая гарантия:</strong> на все разработанные продукты.</li>
+          <li><strong>Техническая поддержка 24/7:</strong> решаем 90% запросов в течение первых 4 часов.</li>
+        </ul>
+        <p>В дополнение к летней акции компания Итач-софт рада предложить еще одно специальное предложение. При покупке годовой лицензии Битрикс24 новыми клиентами или при повышении тарифа для уже существующих клиентов мы предоставляем скидку 10% на все работы, связанные с системами Битрикс24 и 1С-Битрикс. Просто назовите промокод «Август» при покупке или продлении тарифов нашим менеджерам до 31.08.2024, и вы получите эту выгоду.</p>
+      </div></div>
+    </template>
+
+    <template id="detail-news-presentation">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 7 июня 2024</p>
+        <h2 class="detail__title" id="detail-title">Презентация о компании Итач-Софт: узнайте больше о наших достижениях и услугах</h2>
+        <p class="detail__lead">Скачайте нашу презентацию и познакомьтесь с Итач-Софт.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button><a class="btn btn--outline detail__site" href="https://itach.by/upload/%D0%9F%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F%C2%AB%D0%98%D1%82%D0%B0%D1%87_%D1%81%D0%BE%D1%84%D1%82%C2%BB.pdf" target="_blank" rel="noopener noreferrer"><span>Скачать презентацию</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <div class="detail__article"><div class="detail__prose">
+        <p>Компания Итач-Софт — это ваш надежный партнер в мире информационных технологий. Мы специализируемся на разработке программного обеспечения, создании сайтов и автоматизации бизнес-процессов с помощью модулей Битрикс24. С 2013 года мы успешно реализовали более 100 проектов, став золотым партнером Битрикс24 и войдя в ТОП-5 партнеров этой системы в Беларуси. Наша команда из более чем 50 сертифицированных специалистов с совокупным опытом работы более 1 млн часов готова предложить вам высокопрофессиональные услуги.</p>
+        <h2>Наша история и успехи</h2>
+        <p>Группа компаний Итач-Софт была основана в 2013 году, и с тех пор мы накопили более 10 лет опыта в сфере IT. Мы предлагаем интеграцию CRM-системы Битрикс24, разработку веб-сервисов и создание сайтов. Наша команда гарантирует внедрение CRM-системы Битрикс24 в срок не более 7 дней, с четким графиком выполнения задач и персональным менеджером. Мы обеспечиваем техническую поддержку 24/7 и решаем 90% запросов в течение первых 4 часов.</p>
+        <h2>Чем занимается компания Итач-Софт?</h2>
+        <p>Мы занимаемся разработкой веб-сервисов и программного обеспечения с нуля под ключ. В наш перечень услуг входят:</p>
+        <ul>
+          <li>Разработка веб-сервисов и ПО с нуля;</li>
+          <li>Создание мобильных приложений;</li>
+          <li>Интеграция и настройка Битрикс24;</li>
+          <li>Доработка и техподдержка Битрикс24;</li>
+          <li>Создание корпоративных сайтов;</li>
+          <li>Разработка сайтов-визиток и Landing page;</li>
+          <li>Создание интернет-магазинов;</li>
+          <li>Настройка VOIP Asterisk и IP-телефонии;</li>
+          <li>IT-услуги для бизнеса и аутстаффинг IT-специалистов;</li>
+          <li>Тестирование программного обеспечения.</li>
+        </ul>
+        <p>Мы работаем с клиентами разных масштабов и из различных отраслей, обеспечивая высокое качество на всех этапах сотрудничества.</p>
+        <h2>Технологическая команда Итач-Софт</h2>
+        <p>Наши специалисты постоянно совершенствуют свои навыки, следя за новейшими тенденциями в технологиях. Благодаря индивидуальному подходу к каждому проекту, 70% наших новых клиентов приходят по рекомендации. Сотрудничая с нами, вы получите не только качественный продукт, но и надежного партнера для долгосрочного развития вашего бизнеса.</p>
+        <h2>Узнайте больше прямо сейчас</h2>
+        <p>Чтобы подробнее ознакомиться с нашей компанией и узнать, как мы можем помочь вашему бизнесу расти и развиваться, <a href="https://itach.by/news/prezentatsiya-o-kompanii-itach-soft-uznayte-bolshe-o-nashikh-dostizheniyakh-i-uslugakh/" target="_blank" rel="noopener noreferrer">скачайте презентацию</a>. В ней вы найдете детальную информацию о наших услугах, реализованных проектах и подходах к работе.</p>
+        <p>Обращайтесь в Итач-Софт, и мы поможем воплотить ваши идеи в реальность!</p>
+      </div></div>
+    </template>
+
+
+<template id="detail-news-biznes-zavtrak">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 15 октября 2025</p>
+        <h2 class="detail__title" id="detail-title">Итач-Софт приняла участие в бизнес-завтраке «Битрикс. Энтерпрайз»</h2>
+        <p class="detail__lead">8 октября 2025 года компания Итач-Софт приняла участие в бизнес-завтраке «Битрикс. Энтерпрайз». Мероприятие собрало ключевых игроков рынка, IT-специалистов, руководителей и представителей крупных компаний, заинтересованных в масштабных решениях для автоматизации бизнес-процессов.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button></div>
+      </header>
+      <div class="detail__article"><div class="detail__prose">
+        <p>Бизнес-завтрак прошёл в формате открытого диалога, где участники смогли не только узнать о последних инновациях в экосистеме Bitrix24, но и получить практические рекомендации от экспертов и реальных пользователей.</p>
+        <h2>Программа мероприятия</h2>
+        <h3>Битрикс24 на полную мощность: открываем все преимущества</h3>
+        <p>Директор по работе с ключевыми клиентами «Битрикс24» представил стратегию дальнейшего развития платформы. Он акцентировал внимание на новых функциях, которые позволяют бизнесу работать на полную мощность, и рассказал о том, как Bitrix24 помогает компаниям адаптироваться к быстро меняющимся рыночным условиям.</p>
+        <p>В рамках выступления были отмечены тенденции в области искусственного интеллекта, подчёркнутые в Stanford HAI AI Index Report 2025. По данным отчета, корпоративное применение ИИ выросло до 78%, а инвестиции в генеративный ИИ в 2024 году составили $33,9 млрд. По данным исследований, 70% компаний в Беларуси уже используют цифровые технологии для автоматизации бизнеса.</p>
+        <h3>Безопасность — новое конкурентное преимущество</h3>
+        <p>Бизнес-партнёр по информационной безопасности «Битрикс24» акцентировал внимание на том, как вопросы кибербезопасности становятся важнейшим фактором при выборе CRM-системы. Он подробно описал, как Bitrix24 обеспечивает защиту данных, соответствует требованиям регуляторов и помогает компаниям выйти на новый уровень доверия со стороны клиентов и партнёров.</p>
+        <h3>Как мы перестали «тушить пожары» и начали управлять бизнесом</h3>
+        <p>Менеджер проектов компании «Моторы и Трансмиссия» поделилась личным опытом внедрения Bitrix24. Её доклад стал живым примером того, как автоматизация помогает не только сократить операционные издержки, но и перейти от реактивного управления к стратегическому планированию.</p>
+        <h3>Управление дилерской сетью: эффективность через автоматизацию процессов в CRM</h3>
+        <p>Заместитель директора по маркетингу «Алютех Инк» рассказал о том, как компания автоматизировала управление дилерской сетью с помощью Bitrix24. Его доклад показал, как CRM помогает не только улучшить коммуникацию с партнёрами, но и повысить прозрачность, контроль и эффективность всей дистрибьюторской системы.</p>
+        <p>Компания Итач-Софт активно участвовала в мероприятии, обмениваясь опытом с коллегами, изучая новые возможности платформы и укрепляя связи в экосистеме Bitrix24. Мероприятие подтвердило, что автоматизация и цифровизация — это не просто тренды, а необходимость для современного бизнеса.</p>
+      </div></div>
+    </template>
+
+
+<template id="detail-news-seminar">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 9 августа 2024</p>
+        <h2 class="detail__title" id="detail-title">Итач-софт приняла участие в семинаре от Битрикса «Жалоба как подарок 2.0»</h2>
+        <p class="detail__lead">В конце июля компания Итач-софт стала участником второго семинара цикла «Жалоба как подарок», организованного Битриксом. Мероприятие состоялось 26 июля и собрало представителей различных сфер бизнеса для обмена опытом и лучшими практиками по работе с потребностями клиентов.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button></div>
+      </header>
+      <div class="detail__article"><div class="detail__prose">
+        <h2>Ключевые темы тренинга</h2>
+        <ul>
+          <li><strong>Триггеры и барьеры в принятии решений:</strong> изучены основные препятствия, с которыми сталкиваются клиенты при принятии решений о покупке.</li>
+          <li><strong>Создание портретов лиц, принимающих решения:</strong> участники семинара совместно составили профили «персон», с которыми важно выстраивать правильное общение.</li>
+          <li><strong>Групповая работа:</strong> проведены практические сессии, направленные на разработку эффективных стратегий взаимодействия с клиентами.</li>
+        </ul>
+        <p>Команда Итач-софт благодарит организаторов семинара за приглашение и возможность погрузиться в столь важную тему. Данная встреча позволила нам углубить понимание потребностей клиентов, что существенно повысит уровень наших услуг и укрепит доверие в отношениях с партнёрами.</p>
+      </div></div>
+    </template>
+
+
+<template id="detail-news-support">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 30 июля 2024</p>
+        <h2 class="detail__title" id="detail-title">Техническая поддержка сайтов: полное руководство и лучшие практики</h2>
+        <p class="detail__lead">Правильная техническая поддержка сайтов не только обеспечивает их бесперебойную работу, но и гарантирует безопасность и актуальность информации.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button></div>
+      </header>
+      <div class="detail__article"><div class="detail__prose">
+        <p>В условиях стремительного развития интернет-технологий поддержание сайта в рабочем состоянии — залог успешного присутствия в сети. В этой статье разберём, что включает в себя техническая поддержка сайтов, её преимущества и как компания Итач-софт может стать вашим надежным партнером в администрировании веб-ресурсов.</p>
+        <h2>Что такое техническая поддержка сайта?</h2>
+        <p>Техническая поддержка сайта — это комплекс мероприятий, направленных на обеспечение стабильности, безопасности и актуальности вашего веб-ресурса. Это включает мониторинг работоспособности, исправление ошибок, обновление программного обеспечения, резервное копирование данных и множество других задач. Основная цель — предотвращение сбоев и минимизация простоев.</p>
+        <h2>Основные услуги технической поддержки</h2>
+        <ul>
+          <li><strong>Мониторинг и диагностика:</strong> постоянный контроль за работой сайта для оперативного выявления и устранения проблем.</li>
+          <li><strong>Обновление программного обеспечения:</strong> регулярное обновление CMS, плагинов и других компонентов.</li>
+          <li><strong>Исправление ошибок:</strong> быстрое решение технических проблем, багов и ошибок.</li>
+          <li><strong>Резервное копирование данных:</strong> создание и безопасное хранение резервных копий.</li>
+          <li><strong>Оптимизация производительности:</strong> улучшение скорости загрузки страниц.</li>
+          <li><strong>Обеспечение безопасности:</strong> защита от взломов, вирусов и других угроз.</li>
+        </ul>
+        <h2>Преимущества технической поддержки</h2>
+        <ul>
+          <li><strong>Бесперебойная работа:</strong> постоянная доступность сайта для пользователей.</li>
+          <li><strong>Повышение безопасности:</strong> регулярное обновление и мониторинг защищают сайт от угроз и атак.</li>
+          <li><strong>Экономия времени и ресурсов:</strong> ваш персонал занимается основной деятельностью, а не техническими вопросами.</li>
+          <li><strong>Улучшение пользовательского опыта:</strong> оптимизация производительности и быстрое исправление ошибок.</li>
+          <li><strong>Актуальность контента:</strong> сайт остаётся современным и конкурентоспособным.</li>
+        </ul>
+        <h2>Популярные ошибки и их решения</h2>
+        <ul>
+          <li><strong>Неправильная настройка резервного копирования.</strong> Решение — автоматическое резервное копирование с хранением копий на удалённом сервере или в облаке.</li>
+          <li><strong>Игнорирование обновлений.</strong> Регулярные обновления помогают предотвратить уязвимости и ошибки.</li>
+          <li><strong>Отсутствие мониторинга производительности.</strong> Регулярный анализ помогает выявить и устранить узкие места.</li>
+          <li><strong>Недостаточные меры безопасности.</strong> Рекомендуется внедрять SSL, настраивать брандмауэры и антивирусное ПО.</li>
+          <li><strong>Неправильное управление пользователями.</strong> Эффективное управление правами доступа и регулярная проверка учётных записей.</li>
+        </ul>
+        <p>Компания Итач-софт предлагает широкий спектр услуг по технической поддержке и администрированию сайтов: мониторинг, обновление, исправление ошибок, резервное копирование и оптимизацию производительности.</p>
+      </div></div>
+    </template>
+
+
+<template id="detail-news-social">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Новость · 3 июня 2024</p>
+        <h2 class="detail__title" id="detail-title">Подпишитесь на социальные сети Итач-Софт и будьте в курсе всех новостей</h2>
+        <p class="detail__lead">В современном мире цифровых технологий быть в курсе всех событий важно как никогда.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button></div>
+      </header>
+      <div class="detail__article"><div class="detail__prose">
+        <p>Компания Итач-Софт активно развивает свои социальные сети, чтобы вы всегда могли получать актуальную информацию о наших новейших разработках, мероприятиях, акциях и многом другом. Присоединяйтесь к нам на различных платформах и будьте первыми, кто узнает о нововведениях и успехах компании.</p>
+        <h2>Ещё больше интересного контента для вас</h2>
+        <ul>
+          <li>Анонсы новых продуктов и услуг;</li>
+          <li>Обзоры и технические статьи;</li>
+          <li>Видеоуроки и вебинары;</li>
+          <li>Истории успеха наших клиентов;</li>
+          <li>Советы и рекомендации от экспертов;</li>
+          <li>Закулисные моменты из жизни компании и нашей команды.</li>
+        </ul>
+        <p>Подпишитесь на наши страницы в социальных сетях и следите за всеми обновлениями: Telegram, YouTube, Instagram, TikTok, LinkedIn и Facebook.</p>
+        <p>Мы рады каждому новому подписчику и всегда открыты для общения.</p>
+      </div></div>
+    </template>
+  </body>
+</html>

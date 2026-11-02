@@ -1303,8 +1303,9 @@
   text-wrap: balance;
 }
 
-/* Стрелка внизу справа; relative (не static), чтобы градиентный слой ::before заливал только её */
-.news .card-arrow {
+/* Стрелка внизу справа; relative (не static), чтобы градиентный слой ::before заливал только её.
+   Правило общее для карточек новостей: на главной они в ленте, в блоге — сеткой */
+.news-card .card-arrow {
   position: relative;
   inset: auto;
   flex: none;
@@ -3293,6 +3294,13 @@ html:has(.detail[open]) {
     .glow-card::before {
       animation: glow-orbit 9s linear infinite !important;
     }
+
+    /* Отзыв — широкая карточка с крупным периметром: на той же скорости дуга успевает
+       пробежать мимо глаз, поэтому идёт медленнее (и на главной, и в окне кейса) */
+    .review-card::before,
+    .featured__body::before {
+      animation-duration: 20s !important;
+    }
   }
 
   /* Пробег контура при появлении карточек нужен только мыши */
@@ -3488,4 +3496,398 @@ html:has(.detail[open]) {
 /* Панель неактивной группы фильтров скрыта, рамки fieldset нет */
 .portfolio-filter[hidden] {
   display: none;
+}
+
+/* ---------- Страница «Блог» ---------- */
+.blog {
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-8)) var(--space-12);
+}
+
+/* Карточки новостей те же, что на главной; здесь они стоят сеткой, а не лентой */
+.blog__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blog__grid .news-card {
+  inline-size: auto;
+}
+
+/* В сетке карточки ниже, чем в ленте на главной: заголовок часто в две строки */
+.blog__grid .news-card__link {
+  min-block-size: 15rem;
+}
+
+@media (min-width: 700px) {
+  .blog__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .blog__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Страница «Блог»: подзаголовок, цифры, главная новость, фильтры ---------- */
+.blog__lead {
+  max-inline-size: 46rem;
+  margin: var(--space-3) auto 0;
+  color: var(--color-text-2);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Цифры — те же карточки, что «Какие задачи решаем» на главной, но число с градиентом */
+.page-stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-stat {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-block-size: 9rem;
+  padding: var(--space-3);
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+.page-stat__value {
+  /* Ширина по тексту, иначе градиент растягивается на всю карточку и буквы берут только его начало */
+  inline-size: fit-content;
+  font-family: var(--font-display);
+  /* Размер и начертание как у цифр в «Какие задачи решаем» на главной */
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-drop-orange);
+}
+
+.page-stat__text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  max-inline-size: 18ch;
+}
+
+@media (min-width: 700px) {
+  .page-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .page-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Главная новость: изображение и карточка с информацией — два отдельных блока по половине */
+.featured {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+}
+
+.featured__media {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.featured__media img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.featured__body {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  /* Снизу место под квадратную кнопку, чтобы текст не заходил под неё */
+  padding: var(--space-4) var(--space-3) calc(var(--space-3) + 3rem + var(--space-2));
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+/* Уголки той же толщины, что у карточек новостей */
+.featured .card-arrow .icon {
+  stroke-width: 2.5;
+}
+
+/* Кнопка — тот же квадрат с уголками, что у карточек новостей, только в правом нижнем углу */
+.featured__body .card-arrow {
+  inset-block-start: auto;
+  inset-block-end: var(--space-3);
+  inset-inline-end: var(--space-3);
+}
+
+@media (hover: hover) {
+  .featured:hover .card-arrow::before {
+    opacity: 1;
+  }
+
+  /* Как у карточек новостей: уголки расходятся, а не сдвигаются */
+  .featured:hover .card-arrow .icon {
+    transform: scale(1.12);
+  }
+}
+
+/* Текст сдвигается вправо так же, как рубрика и заголовок у карточек новостей */
+@media (prefers-reduced-motion: no-preference) {
+  .featured .news-card__tag,
+  .featured__title,
+  .featured__text {
+    transition: transform 400ms var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    .featured:hover .news-card__tag,
+    .featured:hover .featured__title,
+    .featured:hover .featured__text {
+      transform: translateX(0.75rem);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) {
+    .featured:hover .card-arrow::before {
+      animation: gradient-flow 3s linear infinite;
+    }
+  }
+}
+
+.featured__title {
+  margin: 0;
+  font-size: clamp(1.375rem, 1rem + 1.2vw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.featured__link {
+  color: inherit;
+}
+
+.featured__text {
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 900px) {
+  /* Ровно по половине ширины, с учётом промежутка между блоками */
+  .featured {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .featured__media img {
+    block-size: 100%;
+    aspect-ratio: auto;
+  }
+
+  .featured__body {
+    padding: var(--space-5) var(--space-4);
+  }
+}
+
+/* Фильтры: теги пилюлями и сортировка */
+/* Теги и сортировка в одну строку: теги при нехватке места прокручиваются, сортировка не уезжает */
+.blog__filters {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+}
+
+.blog__tags {
+  display: flex;
+  flex-wrap: nowrap;
+  min-inline-size: 0;
+  gap: 0.5rem;
+  padding-block: 0.25rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.blog__tags::-webkit-scrollbar {
+  display: none;
+}
+
+/* Иначе пилюли сжимаются вместе с контейнером вместо прокрутки */
+.blog__tags .calc-option {
+  flex: none;
+  white-space: nowrap;
+}
+
+.blog__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: none;
+  margin-inline-start: auto;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-2);
+}
+
+.blog__sort-field {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Кнопка сортировки — стеклянная кнопка из первого экрана: при наведении светлеет,
+   приподнимается и отбрасывает тень сильнее; скругление меньше пилюли */
+.blog__sort-button {
+  min-block-size: 2.75rem;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.blog__sort-chevron {
+  position: absolute;
+  inset-inline-end: 0.875rem;
+  inset-block-start: 50%;
+  inline-size: 1rem;
+  block-size: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.blog__sort-button[aria-expanded="true"] .blog__sort-chevron {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Выпадающий список */
+.blog__sort-menu {
+  position: absolute;
+  inset-block-start: calc(100% + 0.375rem);
+  inset-inline-end: 0;
+  z-index: 5;
+  min-inline-size: 100%;
+  margin: 0;
+  padding: 0.375rem;
+  border: 1px solid var(--color-line);
+  border-radius: 0.875rem;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-glass-lg);
+  list-style: none;
+}
+
+.blog__sort-option {
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.75rem;
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+}
+
+.blog__sort-option:hover:not([aria-selected="true"]),
+.blog__sort-option:focus-visible:not([aria-selected="true"]) {
+  background: var(--color-bg-alt);
+}
+
+/* Выбранная сортировка выделяется градиентным текстом, как цифры и акцентные надписи на сайте */
+.blog__sort-option[aria-selected="true"] {
+  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-drop-orange);
+}
+
+.blog__empty {
+  margin: var(--space-6) 0 0;
+  color: var(--color-text-2);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* На телефоне цифры — лента, как блок задач на главной: одна карточка и край следующей */
+@media (max-width: 639px) {
+  .page-stats {
+    display: flex;
+    gap: 0.75rem;
+    inline-size: calc(100% + 2 * var(--gutter));
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 0.25rem var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .page-stats::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-stat {
+    flex: none;
+    inline-size: calc(100% - var(--gutter) - 2.5rem);
+    min-block-size: 8rem;
+  }
+}
+
+@media (max-width: 639px) {
+  /* Теги уходят в горизонтальную ленту, сортировка встаёт под ней */
+  .blog__filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+    margin-block-start: var(--space-4);
+  }
+
+  .blog__tags {
+    /* Ширина задана явно: иначе колонка фильтров растягивается по ширине ленты и страница уезжает вбок */
+    inline-size: calc(100% + 2 * var(--gutter));
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 0.25rem var(--gutter);
+  }
+
+  .blog__sort {
+    align-self: flex-start;
+    margin-inline-start: 0;
+  }
 }

@@ -536,8 +536,8 @@ function initDetail(modal) {
     });
   });
 
-  // Карточка кейса открывается кликом по любому месту, а не только по заголовку
-  document.querySelectorAll(".case-card").forEach((card) => {
+  // Карточка кейса и главная новость в блоге открываются кликом по любому месту, а не только по заголовку
+  document.querySelectorAll(".case-card, .featured").forEach((card) => {
     card.addEventListener("click", (event) => {
       if (event.target.closest("a")) return;
       card.querySelector("[data-detail-open]").click();
