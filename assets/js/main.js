@@ -66,6 +66,7 @@ function initGlowCards() {
 // Стопка карточек услуг: чем больше карточек легло сверху, тем сильнее нижняя уменьшается и темнеет
 function initServiceStack() {
   const stack = document.querySelector("[data-service-stack]");
+  if (!stack) return;
   const cards = [...stack.querySelectorAll(".service-card")];
   let frame = 0;
   let stackWidth = 0;
@@ -149,6 +150,7 @@ function initServiceTabs(list) {
 // «Как мы работаем»: линия рисуется по мере прокрутки, шаги оживают, когда линия до них дошла
 function initProcess() {
   const list = document.querySelector("[data-process-steps]");
+  if (!list) return;
   const steps = [...list.querySelectorAll(".process-step")];
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const FOCUS_LINE = 0.6;
@@ -294,6 +296,7 @@ function initGlowFocus() {
 function initSites() {
   const viewport = document.querySelector("[data-sites]");
   const track = document.querySelector("[data-sites-track]");
+  if (!viewport) return;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const loopWidth = () => track.firstElementChild.offsetWidth;
 

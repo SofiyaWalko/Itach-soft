@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Портфолио — Итач-софт</title>
+    <meta name="description" content="Кейсы и сайты, которые разработал Итач-софт: Битрикс24, IP-телефония на Asterisk, веб-сервисы и сайты." />
+    <script>document.documentElement.classList.add("js");</script>
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="assets/img/logos/logo.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+    <script src="assets/js/hero-gl.js" defer></script>
+    <script src="assets/js/lead-wave.js" defer></script>
+    <script src="assets/js/cursor-halo.js" defer></script>
+    <script src="assets/js/calculator.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/portfolio.js" defer></script>
+  </head>
+
+  <body>
+    <div class="cursor-halo" aria-hidden="true" data-cursor-halo></div>
+
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <linearGradient id="gradient-contour" gradientUnits="userSpaceOnUse" x1="3" y1="3" x2="21" y2="21">
+        <stop offset="0" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <linearGradient id="gradient-number" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0.5" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <rect x="6.5" y="2" width="11" height="20" rx="3" />
+        <path d="M10.5 18.5h3" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <path
+          d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1.1 4.3 2.8 5.7L4.7 21l4.5-2.2c.9.2 1.8.3 2.8.3 5.1 0 9-3.6 9-8.1S17.1 3 12 3z"
+        />
+      </symbol>
+      <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+        <path d="M7 17 17 7" />
+        <path d="M8 7h9v9" />
+      </symbol>
+      <symbol id="icon-expand" viewBox="0 0 24 24">
+        <path d="M4 10V4h6" />
+        <path d="M20 14v6h-6" />
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path d="M4 6h16" />
+        <path d="M4 12h16" />
+        <path d="M4 18h16" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </symbol>
+    </svg>
+
+    <header class="site-header" data-header>
+      <div class="container">
+        <div class="site-header__bar glass">
+          <a class="site-header__logo" href="./" aria-label="Итач-софт, на главную">
+            <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+          </a>
+
+          <nav class="site-header__nav" id="site-nav" aria-label="Основное меню">
+            <ul class="nav__list">
+              <li><a class="nav__link" href="index.html#services"><span class="nav__text">Услуги</span></a></li>
+              <li><a class="nav__link" href="portfolio.html"><span class="nav__text">Портфолио</span></a></li>
+              <li><a class="nav__link" href="index.html#about"><span class="nav__text">Компания</span></a></li>
+              <li><a class="nav__link" href="index.html#news"><span class="nav__text">Блог</span></a></li>
+              <li><a class="nav__link" href="index.html#contacts"><span class="nav__text">Контакты</span></a></li>
+            </ul>
+            <a class="nav__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="nav__phone" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+          </nav>
+
+          <div class="site-header__actions">
+            <a class="site-header__contact site-header__email" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+            <a class="site-header__contact site-header__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="btn btn--primary btn--sm site-header__cta" href="#lead">
+              Заказать проект
+            </a>
+            <button
+              class="site-header__burger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-nav"
+              aria-label="Меню"
+              data-menu-toggle
+            >
+              <svg class="icon icon--open" aria-hidden="true"><use href="#icon-menu" /></svg>
+              <svg class="icon icon--close" aria-hidden="true"><use href="#icon-close" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="portfolio" aria-labelledby="portfolio-title" data-portfolio>
+        <div class="container">
+          <h1 class="section-title" data-reveal id="portfolio-title">
+            Наше <span class="section-title__muted">портфолио</span>
+          </h1>
+
+          <form class="portfolio__filters" aria-label="Фильтры портфолио" data-portfolio-filters data-reveal>
+            <div class="portfolio__tabs" role="tablist" aria-label="Вид фильтра">
+              <button class="portfolio-tab" type="button" role="tab" id="portfolio-tab-category" aria-controls="portfolio-panel-category" aria-selected="true" data-portfolio-tab="category">Категории</button>
+              <button class="portfolio-tab" type="button" role="tab" id="portfolio-tab-industry" aria-controls="portfolio-panel-industry" aria-selected="false" data-portfolio-tab="industry">Отрасли</button>
+            </div>
+            <fieldset class="portfolio-filter" role="tabpanel" id="portfolio-panel-category" aria-labelledby="portfolio-tab-category" data-portfolio-group="category">
+              <legend class="portfolio-filter__legend visually-hidden">Категории</legend>
+              <div class="portfolio-filter__options">
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="category" value="" checked /><span class="calc-option__text">Все</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="category" value="sites" /><span class="calc-option__text">Создание сайтов</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="category" value="bitrix24" /><span class="calc-option__text">Битрикс24</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="category" value="web-services" /><span class="calc-option__text">Разработка веб-сервисов</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="category" value="asterisk" /><span class="calc-option__text">IP-АТС на базе Asterisk</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="category" value="ai" /><span class="calc-option__text">ИИ-решения</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="portfolio-filter" role="tabpanel" id="portfolio-panel-industry" aria-labelledby="portfolio-tab-industry" data-portfolio-group="industry" hidden>
+              <legend class="portfolio-filter__legend visually-hidden">Отрасли</legend>
+              <div class="portfolio-filter__options">
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="" checked /><span class="calc-option__text">Все</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="finance" /><span class="calc-option__text">Банковско-финансовая</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="ecommerce" /><span class="calc-option__text">E-commerce</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="logistics" /><span class="calc-option__text">Логистическая</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="education" /><span class="calc-option__text">Образование</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="manufacturing" /><span class="calc-option__text">Производство</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="telecom" /><span class="calc-option__text">Связь</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="tourism" /><span class="calc-option__text">Туризм</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="realty" /><span class="calc-option__text">Недвижимость</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="azs" /><span class="calc-option__text">АЗС</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="medicine" /><span class="calc-option__text">Медицина</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="industry" value="insurance" /><span class="calc-option__text">Страхование</span></label>
+              </div>
+            </fieldset>
+            <p class="visually-hidden" role="status" data-portfolio-count></p>
+          </form>
+
+          <ul class="portfolio__grid" data-portfolio-grid>
+            <li class="case-card glow-card" data-portfolio-card data-categories="bitrix24 asterisk" data-industries="finance">
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/vnedrenie-kontakt-tsentra-na-baze-ip-asterisk/" data-detail-open="case-erip">ЕРИП <span class="section-title__muted">контакт-центр на базе Asterisk и Битрикс24</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/cases/erip.jpg" width="1440" height="960" alt="Контакт-центр ЕРИП" loading="lazy" />
+            </li>
+            <li class="case-card glow-card" data-portfolio-card data-categories="bitrix24 asterisk" data-industries="finance">
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/kompleksnaya-avtomatizatsiya-b2b-napravleniya-v-paritetbanke/" data-detail-open="case-paritetbank">Паритетбанк <span class="section-title__muted">автоматизация B2B-направления</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/cases/paritetbank.jpg" width="1440" height="960" alt="Автоматизация B2B-направления в Паритетбанке" loading="lazy" />
+            </li>
+            <li class="case-card glow-card" data-portfolio-card data-categories="bitrix24" data-industries="medicine" data-reveal>
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/dorabotki-bitriks24-dlya-laboratorii-helix/" data-detail-open="case-helix">Helix <span class="section-title__muted">доработка Битрикс24 для лаборатории</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/cases/helix.jpg" width="1440" height="940" alt="Доработка Битрикс24 для лаборатории Helix" loading="lazy" />
+            </li>
+            <li class="case-card glow-card" data-portfolio-card data-categories="bitrix24" data-industries="insurance" data-reveal>
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/kompleksnaya-dorabotka-bitriks24-dlya-strakhovoy-kompanii/" data-detail-open="case-imkliva">Imkliva Insurance <span class="section-title__muted">обработка обращений в Битрикс24</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/cases/imkliva.jpg" width="1440" height="940" alt="Система обработки обращений Imkliva Insurance" loading="lazy" />
+            </li>
+            <li class="case-card glow-card" data-portfolio-card data-categories="web-services" data-industries="azs" data-reveal>
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/telegram-mini-app-dlya-azs-a-100/" data-detail-open="case-a100">А-100 <span class="section-title__muted">Telegram и PWA-приложение для клиентов АЗС</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot case-card__shot--bare" src="assets/img/cases/a-100.png" width="1440" height="960" alt="Telegram и PWA-приложение для клиентов АЗС А-100" loading="lazy" />
+            </li>
+            <li class="case-card glow-card" data-portfolio-card data-categories="sites" data-industries="ecommerce" data-reveal>
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-sayta-rozy-bel/" data-detail-open="site-rozy">Розы.Бел <span class="section-title__muted">интернет-магазин по доставке цветов</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/sites/rozy-bel.jpg" width="1440" height="940" alt="Сайт Розы.Бел" loading="lazy" />
+            </li>
+            <li class="case-card glow-card" data-portfolio-card data-categories="sites" data-industries="ecommerce" data-reveal>
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-internet-magazina-mebeli/" data-detail-open="site-divan">Divan Boss <span class="section-title__muted">интернет-магазин мебели</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/sites/divanboss.jpg" width="1440" height="940" alt="Сайт Divan Boss" loading="lazy" />
+            </li>
+            <li class="case-card glow-card" data-portfolio-card data-categories="sites" data-industries="education" data-reveal>
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-korporativnogo-sayta-dlya-belorusskogo-gosudarstvennogo-meditsinskogo-universiteta/" data-detail-open="site-bgmu">БГМУ <span class="section-title__muted">корпоративный сайт университета</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/sites/bsmu.jpg" width="1440" height="940" alt="Сайт БГМУ" loading="lazy" />
+            </li>
+            <li class="case-card glow-card" data-portfolio-card data-categories="sites" data-industries="logistics" data-reveal>
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-lichnogo-kabineta-sayta-avtolayt-ekspress/" data-detail-open="site-autolight">Автолайт Экспресс <span class="section-title__muted">личный кабинет пользователей</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/sites/autolight.jpg" width="1440" height="940" alt="Сайт Автолайт Экспресс" loading="lazy" />
+            </li>
+            <li class="case-card glow-card" data-portfolio-card data-categories="sites" data-industries="logistics" data-reveal>
+              <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-sayta-autogroup-by/" data-detail-open="site-autogroup">Автогрупп <span class="section-title__muted">корпоративный сайт для доставки автомобилей из Америки</span></a></h3>
+              <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+              <img class="case-card__shot" src="assets/img/sites/autogroup.jpg" width="1440" height="940" alt="Сайт Автогрупп" loading="lazy" />
+            </li>
+          </ul>
+          <p class="portfolio__empty" hidden data-portfolio-empty>По этому фильтру пока нет кейсов. Выберите другую категорию или отрасль.</p>
+        </div>
+      </section>
+
+      <section class="lead" id="lead" aria-labelledby="lead-title">
+        <div class="container">
+          <div class="lead__panel" data-reveal>
+            <canvas class="lead__wave" aria-hidden="true" data-lead-wave></canvas>
+            <div class="lead__intro">
+              <h2 class="section-title lead__title" id="lead-title">
+                Расскажите, что хотите <span class="section-title__muted">улучшить в бизнесе</span>
+              </h2>
+              <p class="lead__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+            </div>
+            <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-name">Имя</label>
+                  <input class="lead-form__control" id="lead-name" name="name" type="text" autocomplete="name" required aria-describedby="lead-name-error" data-error="Укажите, как к вам обращаться" />
+                  <p class="lead-form__error" id="lead-name-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-company">Компания</label>
+                  <input class="lead-form__control" id="lead-company" name="company" type="text" autocomplete="organization" required aria-describedby="lead-company-error" data-error="Укажите название компании" />
+                  <p class="lead-form__error" id="lead-company-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-phone">Телефон</label>
+                  <input class="lead-form__control" id="lead-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="lead-phone-error" data-error="Укажите телефон для связи" />
+                  <p class="lead-form__error" id="lead-phone-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-email">E-mail</label>
+                  <input class="lead-form__control" id="lead-email" name="email" type="email" autocomplete="email" required aria-describedby="lead-email-error" data-error="Укажите корректный e-mail" />
+                  <p class="lead-form__error" id="lead-email-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="lead-task">Ваша задача</label>
+                <textarea class="lead-form__control lead-form__control--area" id="lead-task" name="task" rows="4" required aria-describedby="lead-task-error" data-error="Коротко опишите задачу"></textarea>
+                <p class="lead-form__error" id="lead-task-error"></p>
+              </div>
+              <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+              <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+              <p class="lead-form__status" role="status" data-lead-status></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__inner">
+          <div class="site-footer__top" data-reveal>
+            <a class="site-footer__logo" href="./" aria-label="Итач-софт, на главную">
+              <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+            </a>
+            <ul class="site-footer__socials" aria-label="Мы в соцсетях">
+              <li><a class="site-footer__social site-footer__social--telegram" href="https://t.me/Itachsoft_bot" target="_blank" rel="noopener" aria-label="Telegram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--youtube" href="https://www.youtube.com/@_ItachSoft_" target="_blank" rel="noopener" aria-label="YouTube"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--instagram" href="https://www.instagram.com/itach_soft/" target="_blank" rel="noopener" aria-label="Instagram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--tiktok" href="https://www.tiktok.com/@itach_soft_team" target="_blank" rel="noopener" aria-label="TikTok"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--linkedin" href="https://www.linkedin.com/company/80693063/" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--facebook" href="https://www.facebook.com/itachbelarus" target="_blank" rel="noopener" aria-label="Facebook"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+          <nav class="site-footer__columns" aria-label="Разделы сайта" data-reveal-stagger>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/bitriks24/">Битрикс24</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/vnedrenie-i-nastroyka-bitriks24/">Внедрение и настройка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/dorabotka-bitriks24/">Доработка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/integratsiya-bitriks24/">Интеграция Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/avtomatizatsiya-biznes-protsessov-v-bitriks24/">Автоматизация Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/ip-telefoniya-dlya-bitriks24/">IP-телефония для Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Тех. поддержка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/obuchenie-bitriks24/">Обучение Битрикс24</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/sayty/">Сайты</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/korporativnye-sayty/">Корпоративные сайты</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/internet-magaziny/">Интернет-магазины</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/sayty-vizitki/">Сайты-визитки</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/sayty-gosudarstvennykh-organizatsiy/">Сайты госорганизаций</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/lending/">Лендинг</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/razrabotka-sayta-na-gotovykh-shablonakh/">Разработка сайта на готовых шаблонах</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/tekhnicheskaya-podderzhka-saytov/">Техническая поддержка сайтов</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/">IP-АТС на базе Asterisk</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/vnedrenie-ip-atc-na-baze-asterisk/">Внедрение IP-АТС на базе Asterisk</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/nastroyka-voip-asterisk/">Настройка VoIP Asterisk</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/obespechenie-bezopasnosti-voip-ats/">Безопасность VoIP-АТС</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Поддержка VoIP-станций</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/">Веб-сервисы</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/razrabotka-veb-servisov-s-nulya/">Разработка веб-сервисов с нуля</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/integratsiya-slozhnykh-sistem/">Интеграция сложных систем</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Техническая поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="https://itach-soft.ru/services/tekhnicheskaya-podderzhka/">Техническая поддержка</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/sayty/tekhnicheskaya-podderzhka-saytov/">Поддержка сайтов</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Обслуживание Битрикс24</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Поддержка VoIP-станций</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title">Компания</h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="portfolio.html">Портфолио</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/garantii/">Гарантия</a></li>
+                <li><a class="site-footer__link" href="index.html#reviews">Отзывы</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/news/">Новости</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/faq/">Вопросы и ответы</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/contacts/">Контакты</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="site-footer__offices" data-reveal-stagger>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в Беларуси</h3>
+              <p class="site-footer__address">220083, Республика Беларусь, г. Минск, пр-т Дзержинского, 104-141, оф. 1201Б</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach.by">info@itach.by</a>
+              <a class="site-footer__link" href="tel:+375173884530">+375 17 388-45-30</a>
+            </address>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в России</h3>
+              <p class="site-footer__address">214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach-soft.ru">info@itach-soft.ru</a>
+              <a class="site-footer__link" href="tel:+74812280296">+7 (481) 228-02-96</a>
+            </address>
+          </div>
+          <div class="site-footer__bottom" data-reveal>
+            <p class="site-footer__legal">
+              ООО «Итач-софт». Юридический адрес: Республика Беларусь, г. Минск, 220141, пр. Независимости, д. 172, пом. 22.
+              УНП 192324962, регистрационный номер в Торговом реестре 466118 от 20.11.2019.
+              Техподдержка 24/7: <a class="site-footer__link" href="mailto:helpdesk@itach.by">helpdesk@itach.by</a>
+            </p>
+            <div class="site-footer__copy">
+              <p>© 2026 ООО «Итач-софт» — разработка программного обеспечения</p>
+              <a class="site-footer__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Политика конфиденциальности</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <section class="cookie" aria-labelledby="cookie-title" data-cookie hidden>
+      <img class="cookie__image" src="assets/img/kuki.webp" width="640" height="640" alt="" />
+      <div class="cookie__body">
+        <h2 class="cookie__title" id="cookie-title">Мы используем cookie</h2>
+        <p class="cookie__text">
+          Они помогают сайту работать стабильнее, а нам — понимать, что вам полезно.
+          <a class="cookie__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Подробнее</a>
+        </p>
+        <div class="cookie__actions">
+          <button class="btn btn--primary btn--sm" type="button" data-cookie-choice="all">Принять все</button>
+          <button class="btn btn--ghost btn--sm" type="button" data-cookie-choice="necessary">Только необходимые</button>
+        </div>
+      </div>
+    </section>
+
+    <dialog class="modal" id="lead-modal" aria-labelledby="lead-modal-title" data-lead-modal>
+      <div class="modal__panel">
+        <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close>
+          <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+        </button>
+        <h2 class="modal__title" id="lead-modal-title">
+          Расскажите, что хотите <span class="section-title__muted">улучшить в бизнесе</span>
+        </h2>
+        <p class="modal__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+        <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-name">Имя</label>
+                        <input class="lead-form__control" id="modal-name" autofocus name="name" type="text" autocomplete="name" required aria-describedby="modal-name-error" data-error="Укажите, как к вам обращаться" />
+                        <p class="lead-form__error" id="modal-name-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-company">Компания</label>
+                        <input class="lead-form__control" id="modal-company" name="company" type="text" autocomplete="organization" required aria-describedby="modal-company-error" data-error="Укажите название компании" />
+                        <p class="lead-form__error" id="modal-company-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-phone">Телефон</label>
+                        <input class="lead-form__control" id="modal-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="modal-phone-error" data-error="Укажите телефон для связи" />
+                        <p class="lead-form__error" id="modal-phone-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-email">E-mail</label>
+                        <input class="lead-form__control" id="modal-email" name="email" type="email" autocomplete="email" required aria-describedby="modal-email-error" data-error="Укажите корректный e-mail" />
+                        <p class="lead-form__error" id="modal-email-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="modal-task">Ваша задача</label>
+                      <textarea class="lead-form__control lead-form__control--area" id="modal-task" name="task" rows="3" required aria-describedby="modal-task-error" data-error="Коротко опишите задачу"></textarea>
+                      <p class="lead-form__error" id="modal-task-error"></p>
+                    </div>
+                    <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+                    <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+                    <p class="lead-form__status" role="status" data-lead-status></p>
+                  </form>
+      </div>
+    </dialog>
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <dialog class="detail" id="detail-modal" aria-labelledby="detail-title" data-detail-modal>
+      <div class="detail__panel" tabindex="-1" data-detail-panel>
+        <div class="detail__handle" aria-hidden="true" data-detail-handle><span></span></div>
+        <button class="detail__close" type="button" aria-label="Закрыть" data-detail-close>
+          <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+        </button>
+        <div class="detail__content" data-detail-content></div>
+      </div>
+    </dialog>
+    <template id="detail-case-erip">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · ЕРИП</p>
+        <h2 class="detail__title" id="detail-title">Внедрение контакт-центра на базе IP-Asterisk</h2>
+        
+        <p class="detail__lead">Услугами платежной системой в ЕРИП пользуются миллионы физических и сотни тысячи юридических лиц. По всем вопросам клиенты обращаются в Контакт-центр компании за помощью. Чтобы упростить работу с запросами клиентов, фиксировать все обращения и снизить нагрузку на специалистов службы поддержки, руководство компании решило преобразовать работу Контакт-центра с помощью Битрикс24.</p>
+        <button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-erip-tile-0.webp" width="1600" height="901" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>Проведение бизнес-анализа</li><li>Написание технического задания</li><li>Развертывание серверной архитектуры под Битрикс24</li><li>Настройка Битрикс24</li><li>Интеграция с системой бронирования</li><li>Внедрение IP-телефонии</li><li>Обучение сотрудников</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">4</p><p class="detail-tile__label">месяца — длительность проекта</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">4</p><p class="detail-tile__label">специалиста в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 бизнес-аналитик</li><li>1 специалист по настройке Битрикс24</li><li>1 backend-разработчик</li></ul></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">40%</p><p class="detail-tile__label">рост регистрации и обработки обращений по e-mail</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">165</p><p class="detail-tile__label">нормо-часов в месяц высвободилось у специалистов при работе с e-mail</p></div></div>
+      <div class="detail__article"><h3 class="detail__h">Процесс работы</h3>
+<p>Интерфейс модуля распределения и обработки обращений. Для сокращения времени на адаптацию сотрудников, модуль разработали максимально похожим на тот, который специалисты использовали ранее, с привычными для них кнопками и названиями полей.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-00.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>Внедрение IP-телефонии и контроль нагрузки на сотрудников. С помощью интеграции с телефонной станцией все звонки фиксируются в Битрикс24. Прослушать звонок можно легко из карточки клиента. С входящим оператору Контакт-центра “поднимается” карточка звонка. Если информация об этом клиенте уже есть в системе, она отображается на экране. Также из карточки можно получить данные о предыдущих обращениях. А значит специалист понимает, с кем он общается, какие вопросы клиент задавал ранее, и может легко сформировать отчет по всем звонкам.</p>
+<p>Для сопровождаемых Контакт-центром систем выделили отдельные номера телефона и адреса электронной почты.</p>
+<p>На этапе прослушивания приветствия у клиента есть возможность выбрать проект, по которому ему необходима консультация.</p>
+<p>Так, при звонке в Контакт-центр ЕРИП, клиент может выбрать необходимую цифру исходя из тематики обращения:</p>
+<ol><li>консультирование, оплата, подключение к платежной системе в ЕРИП;</li><li>МСИ (межбанковская система идентификации).</li></ol>
+<p>На основании выбора клиента он направляется на соответствующую очередь – группу специалистов Контакт-центра, которые могут ему помочь).</p>
+<p>Оператору Контакт-центра “поднимается” вся история взаимодействия с клиентом и карточка регистрации обращения по тому проекту, который выбрал клиент.</p>
+<p>В режиме реального времени менеджеры и специалисты могут видеть:</p>
+<p>Интеграция с е-mail. Канал “электронная почта” представляет собой три почтовых ящика со своей логикой обработки сообщений в каждом. Система отображает на какие ящики сколько писем поступило и какое количество ожидают ответа.</p>
+<figure class="detail__figure detail__figure--portrait"><img src="assets/img/detail/case-erip-01.webp" width="337" height="762" alt="" loading="lazy" /></figure>
+<p>При ответе на обращение исходное письмо заявителя всегда перед глазами. Есть возможность использовать шаблоны писем и отправлять письмо на согласование менеджеру Контакт-центра. Менеджер может согласовать письмо и оно автоматически отправится клиенту либо отправить на доработку. Отправленное письмо сохраняется в CRM (Лид, Контакт, Компания).</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-02.webp" width="1600" height="900" alt="" loading="lazy" /></figure>
+<p>Для E-mail рассылки в модуле предусмотрена сегментация клиентской базы на основе дерева услуг платежной системы в ЕРИП.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-03.webp" width="1600" height="900" alt="" loading="lazy" /></figure>
+<p>Подключение соцсетей. Чтобы специалисты Контакт-центра не тратили время на отслеживание сообщений клиентов в соцсетях, все обращения из ВКонтакте, Facebook интегрированы в модуль и попадают в CRM во вкладку “Чаты”. При ответе специалист Контакт-центра может использовать шаблоны ответов, которые расположены рядом с диалоговым окном.</p>
+<p>Также есть возможность настроить рабочее время и систему автоматических уведомлений. Например, если клиент обращается в компанию в нерабочее время, то он получает автоматический ответ системы: «Вас приветствует Контакт-центр ЕРИП! К сожалению, в данный момент мы не можем вас проконсультировать».</p>
+<p>Обработка обращения. Каждой заявке, вне зависимости от канала, можно присвоить категорию и подкатегорию, посмотреть историю взаимодействия с клиентом, ответить на сообщение, делегировать другому специалисту Контакт-центра или сформировать задачу на вторую линию поддержки на основании запроса клиента.</p>
+<p>Все обращения сохраняются в CRM (Лид, Контакт, Компания).</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-04.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>В модуле предусмотрена настройка параметров:</p>
+<ul><li>Канал связи</li><li>Нагрузка на каждый канал и операторов</li><li>Очередь операторов</li><li>Отображение списка обращений</li></ul>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-05.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>Есть возможность указывать лимиты распределения одновременных обращений на оператора и на канал коммуникации в целом.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-06.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>В модуле можно распределять специалистов по каналам коммуникации. Менеджер может изменять настройки и параметры очередей Контакт-центра, видеть статусы всех сотрудников и управлять ими во время работы.</p>
+<p>Управлять своим рабочим временем может и специалист Контакт-центра. Разработана гибкая система статусов рабочего времени. В зависимости от установки статуса меняется маршрутизация входящих обращений клиента: доступен, перерыв, консультация, обработка e-mail/чатов.</p>
+<p>Бывают производственные ситуации, когда оператору Контакт-центра нужно решить сложный вопрос клиента, провести консультацию с менеджером Контакт-центра. Установка статуса “Консультация” выступает в качестве индикатора запроса консультации менеджера и прекращает распределение звонков, чатов и e-mail на специалиста.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-07.webp" width="1600" height="874" alt="" loading="lazy" /></figure>
+<p>В интерфейсе модуля можно сохранять индивидуальные настройки: списки полей, расположение колонок и сортировки.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-08.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>База контрагентов. В Беларуси более 22 тыс. компаний, которые оказывают различные услуги и подключены к ЕРИП. В модуль обращений встроено Дерево услуг – справочник всех компаний, чьи услуги доступны для оплаты в ЕРИП. При регистрации обращения клиента специалист Контакт-центра указывает не только тематику запроса, но и услугу конкретной компании по которой возник вопрос.</p>
+<p>Для этого у специалиста Контакт-центра в форме регистрации обращений должны быть самые актуальные данные по всем поставщикам услуг и их услугам. Данные в CRM обновляются ежедневно.</p>
+<p>Обучение. Особенность погружения в новый софт – непрекращающийся поток обращений от клиентов, на которые нужно отвечать. Часть сотрудников “держала оборону” и принимала заявки, другие находились на обучении, потом происходила замена. Это позволило плавно переключить всех специалистов на работу в новой системе. Основной упор был сделан на обучение менеджеров Контакт-центра, чтобы при необходимости они могли обучить своих сотрудников.</p><h3 class="detail__h">Результаты</h3>
+<ol><li>Расширился список каналов коммуникации с клиентами.</li><li>Все каналы объединяет одна точка входа.</li><li>Сотрудники всех подразделений компании видят единый профиль клиента.</li><li>Полная информация о категориях вопросов, которые задают клиенты, собирается в одном месте.</li><li>Процесс обработки, согласования и отправки электронных писем проходит быстро и бесшовно.</li><li>Построена двухуровневая система поддержки клиентов, где в качестве первой линии поддержки выступает Контакт-центр, второй – структурные подразделения компании.</li></ol>
+<h4 class="detail__subh">В итоге</h4>
+<ul><li>Уменьшилась рутинная работа – отпала необходимость вручную сводить и формировать статистику и отчеты. Всё происходит автоматически. Как следствие, снизились ошибки, вызванные “человеческим фактором”.</li><li>Увеличилась прозрачность – руководители ЕРИП видят по каким источникам, тематикам, услугам и компаниям приходят обращения от клиентов.</li><li>Повысилась эффективность сотрудников – регистрация и обработка обращений по e-mail выросла на 40%, у специалистов высвободилось 165 нормо-часов в месяц. Обработка запросов по другим каналам увеличилась на 20%, у сотрудников высвободилось 85 нормо-часов в месяц.</li></ul>
+<h3 class="detail__h">О заказчике</h3>
+<p>Небанковская кредитно-финансовая организация ”Единое расчетное и информационное пространство“ – ЕРИП – это три важнейших направления:</p>
+<p>Платежная система в ЕРИП – система, которая позволяет совершать оплаты за товары, услуги и платежи в бюджет. В платежной системе в ЕРИП платежи доступны как физическим, так и юридическим лицам. Совершить оплату можно с использованием наличных денежных средств, электронных денег, банковских пластиковых и виртуальных карт. В системе зарегистрировано более 22 тыс. производителей, доступны к оплате более 80 тыс. услуг.</p>
+<p>Межбанковская система идентификации (МСИ) – это система, используемая для удаленной идентификации клиентов без их личного присутствия и предоставления им услуг с помощью цифровых каналов обслуживания.</p>
+<p>АИС «Расчет-ЖКУ» – это биллинговая система, которая обеспечивает функциональные возможности по учету, расчету и начислению платы за жилищно-коммунальные услуги, распределению и перечислению платы соответствующим поставщикам услуг.</p></div>
+    </template>
+
+    <template id="detail-case-paritetbank">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · Паритетбанк</p>
+        <h2 class="detail__title" id="detail-title">Комплексная автоматизация b2b-направления</h2>
+        
+        <p class="detail__lead">Проект был направлен на создание единой, интеллектуальной цифровой экосистемы для управления B2B-взаимодействием в банке — от первого звонка клиента до закрытия сделки и обслуживания после продажи. Мы объединили телефонию, CRM, логистику обращений и внешние системы в один бесшовный поток, где каждый контакт, звонок, обращение и сделка становятся частью целостного клиентского пути.</p>
+        <button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-paritetbank-tile-0.webp" width="1280" height="720" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>аудит и разработку технического задания</li><li>установку IP-АТС Asterisk и настройку маршрутизации</li><li>установку Битрикс24 Энтерпрайз для Postgre на серверах Заказчика</li><li>штатную настройку Битрикс24</li><li>установку и настройку модуля IP-телефонии Asterisk Call Center Stats</li><li>интеграцию IP-АТС на базе Asterisk c Битрикс24</li><li>внедрение модуля обращений Битрикс24</li><li>уникальную разработку Модуля обращений и карточки звонка</li><li>тестирование</li><li>обучение сотрудников Заказчика</li><li>разработку пользовательской документации</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">7</p><p class="detail-tile__label">месяцев — длительность проекта</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">12</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>3 бизнес-аналитика</li><li>1 Teamlead</li><li>1 frontend-разработчик</li><li>2 backend-разработчика</li><li>2 DevOps-инженера</li><li>1 интегратор Битрикс24</li><li>1 тестировщик</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Детализация выполненных работ по проекту</h3>
+<h4 class="detail__subh">Телефония</h4>
+<ul><li>Установлена IP-АТС Asterisk на серверах заказчика.</li><li>Настроена логика входящей и исходящий маршрутизации для отделов.</li><li>Реализованы процедуры постановки внутреннего номера на паузу с указанием причины на аппарате CISCO.</li><li>Реализовано хранение и вывод информации по операторам о нахождении в паузе в разрезе различных причин.</li><li>Обеспечена возможность оператору поставить звонок на удержание.</li><li>Установлен модуль «Asterisk Сall Сenter Stats» для сбора статистики.</li><li>Отлажен вывода аналитической информации по параметрам: среднее время разговора и средняя скорость ответа.</li><li>Настроена интеграция входящих и исходящих звонков с IP-АТС Asterisk в Битрикс24 для отделов.</li><li>Реализован контроль поступления данных в Битрикс24 с информацией по входящим/исходящим звонкам и пропущенным вызовам.</li><li>Реализована функция Click to Call из сущностей CRM Битрикс24, что позволило звонить клиенту напрямую из CRM.</li></ul>
+<h4 class="detail__subh">Работы по Битрикс24</h4>
+<ul><li>Разработано общее архитектурное решение всей логики работы b2b-направления в рамках Битрикс24.</li><li>Установлена Коробочная версия Битрикс24 Энтерпрайз на сервер заказчика в защищенном контуре на базе MySQL.</li><li>Выполнено переконфигурирование базы данных c MySQL на PostgreSQL.</li></ul>
+<h4 class="detail__subh">Общие настройки портала</h4>
+<ul><li>Настроены поля и вкладки карточки Контакта.</li><li>Настроен поиск и фильтрация Контактов компании.</li><li>Реализована история изменений всех полей Контакта.</li><li>В карточке клиента в Битрикс24 настроена возможность увидеть все данные по клиенту из стороннего ПО без сохранения этих данных в CRM. Данное требование обусловлено законодательством о персональных данных: в CRM заказчика персональные данные не хранятся, но при этом у Оператора есть возможность увидеть следующие данные: согласие клиента на обработку персональных данных, персональные данные клиента, адресные данные клиента, данные о работе, данные из системы дистанционного банковского обслуживания, все банковские продукты клиента с возможность поиска, фильтрации и сортировку по различным данным, выписку по текущим продуктам клиента, все лимиты клиента.</li></ul>
+<h4 class="detail__subh">Разработка модуля по работе с обращениями клиентов</h4>
+<ul><li>Разработан модуль обращений на базе Смарт-процессов и настроена привязка входящих звонков к данному модулю.</li><li>При входящем звонке настроена возможность поиска по существующим контактам компании как в самом Битрикс24, так и поиска в стороннем ПО. Поиск можно производить по номеру телефона, личному номеру, серии и номеру паспорта, номеру банковской карты.</li><li>При входящем звонке реализована привязка звонка к Контакту либо Обращению.</li><li>В модуле обращений реализована возможность поиска и фильтрации по источникам, ответственным, категориям обращений.</li><li>Реализовано автоматическое создание обращения по следующим источникам: телефон, е-mail, чат, обратный звонок с ivr.</li><li>Настроена возможность постановки задачи в смежные отделы банка из Обращения.</li><li>Реализована возможность отправки электронного письма клиенту из Обращения с возможностью выбрать шаблон письма, а также возможность отправить информацию Клиенту посредством Viber или СМС прямо из Обращения.</li></ul>
+<h4 class="detail__subh">Оптимизация работы операторов</h4>
+<ul><li>Внедрен функционал по автоматическому поднятию трубки у Оператора Контакт-центра. Оператор не тратит время на ручное действие — звонок начинается мгновенно.</li><li>Оператор Контакт-центра может вручную выбрать нужный статус: доступен, обработка чатов/E-mail, постобработка, обед, перерыв.</li><li>При входящем звонке настроена автоматическую смена статуса с «Доступен» на «Недоступен» для Операторов Контакт-центра.</li><li>Оператор Контакт-центра может задавать тематику обращения: Курсы валют, Сопровождение. кредитов, Сопровождение карт, Технические. неполадки, Справочная информация, Мошенники, Международные переводы. Также оператор имеет возможность присвоить статус для обращений: Новое, В работе, Решено, Запрос в SERVICE DESK, Перезвонить, Не дозвонились, Неверный номер, Уже проконсультирован.</li><li>Операторам предоставлена возможность заполнять дополнительные поля: дата повторной связи, важные комментарии, файлы, видеть историю обращений и сделок клиента в реальном времени (с фильтрацией и сортировкой), получать уведомление о дне рождения клиента, видеть пометки важных комментариев прямо во время звонка. Оператор не «угадывает» — он знает всё о клиенте до первого слова. Это повышает доверие, снижает количество повторных звонков и улучшает NPS.</li><li>Чтобы минимизировать количество «потерянных» обращений и обеспечить равномерную загрузку операторов была разработана единая панель со всеми неразобранными обращениями из всех каналов (звонок, email, чат), реализована возможность вручную взять обращение в работу, настроены автоматические уведомления о новых и изменённых обращениях. В результате - никаких «забытых» запросов. Каждое обращение попадает в обработку — без пропусков и дублирования.</li><li>Для того, чтобы устранить возможную дублирование обращений, сократить время на уточнение данных прямо во время звонка Оператор может провести идентификацию клиента по SMS либо другим данным, а также привязать звонок к действующему прошлому обращению, либо создать новое обращение.</li><li>Настроен процесс фиксации нарушения срока обработки Обращений с уведомлением ответственным лицам. Сроки больше не «забываются» — система напоминает, контролирует и фиксирует нарушения.</li></ul>
+<h4 class="detail__subh">Обеспечение контроля</h4>
+<ul><li>Чтобы обеспечить прозрачное и гибкое управление распределением нагрузки между операторами руководитель контакт-центра теперь может назначать каждому оператору конкретные линии связи обеспечивая баланс нагрузки, специализацию и минимизацию переключений.</li><li>В целях контроля реального времени работы операторов в системе отображается: время обработки каждого обращения (независимо от канала — связи), длительность пребывания оператора в каждом статусе (доступен, обед, постобработка, перерыв и т.д.). Руководитель видит, где теряется время — и принимает обоснованные решения по оптимизации графиков и процессов.</li><li>Для упрощения визуального мониторинга статусов команды руководитель может настраивать индивидуальные цвета для каждого статуса оператора — создавая интуитивную, цветовую панель управления.</li></ul>
+<h4 class="detail__subh">Ведение сделок</h4>
+<ul><li>Создан механизм автоматического создания сделки из электронного письма.</li><li>На портале Битрикс24 произведена настройка стадийности воронки Сделок и настроены обязательные поля в карточке Сделки.</li><li>Реализованы Автоматизации и Бизнес-процессы, например «Напоминание о повторной связи», «Запрос в СД», бизнес-процесс «Смена ответственного на стадии Направлен в отделение» и другие.</li><li>Реализован модуль массовой загрузки Сделок, с проверкой согласий клиента и выбором канала коммуникаций с ним.</li></ul>
+<h4 class="detail__subh">Интеграции</h4>
+<ul><li>Выполнена интеграция с платформой для управления согласием на обработку персональных данных «SC-CMP».</li><li>Для обеспечения взаимосвязи расчетной системы банка и увеличения эффективности приема платежей настроена синхронизация с автоматизированной системой «КОМПЛАТ».</li><li>Настроена интеграция с ПО «WebRetail», в котором хранятся данные по клиенту и подключенным банковским продуктам.</li><li>Настроено подключение с ПО «Smsline» для возможности отправки смс-сообщений клиентам прямо из CRM Битрикс24.</li></ul><h3 class="detail__h">Результаты</h3>
+<ul><li>Благодаря комплексу работ реализован централизованный, безопасный и интеллектуальный клиентский центр, объединивший телефонию, CRM и внешние системы в единую экосистему, где каждый звонок, обращение и сделка становятся частью целостного клиентского пути.</li><li>На базе коробочной версии Битрикс24 Энтерпрайз в защищённом контуре с переходом на PostgreSQL создана CRM-платформа, соответствующая законодательству: персональные данные клиента не хранятся в CRM, но доступны в реальном времени из сторонних систем (СДБО, WebRetail, SC-CMP), что дало операторам полный контекст без рисков нарушения законодательства.</li><li>Автоматическое создание обращений из всех каналов, привязка звонков к клиентам через поиск по телефону, паспорту и карте, возможность идентификации по SMS и мгновенная привязка к истории сделок — всё это устраняет дублирование, сокращает время обработки и повышает NPS.</li><li>Внедрённые бизнес-процессы, автоматические уведомления о сроках, цветовая визуализация статусов и гибкое распределение линий позволили руководителю контакт-центра управлять командой на основе данных, а не догадок. Массовая загрузка сделок, автоматическое создание из писем, интеграция с КОМПЛАТ и Smsline обеспечили бесшовную связь между продажами, обслуживанием и платежами.</li><li>В результате —снижение времени обработки обращений, полное соответствие регуляторным требованиям и значительное повышение удовлетворённости клиентов и эффективности команды.</li></ul></div>
+    </template>
+
+    <template id="detail-case-helix">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · Helix</p>
+        <h2 class="detail__title" id="detail-title">Доработки Битрикс24 для лаборатории Helix</h2>
+        <p class="detail__subtitle">Как оптимизировать отдел по работе с обращениями и претензиями клиентов с помощью Битрикс24</p>
+        <p class="detail__lead">ООО «Международная лаборатория Хеликс» - одна из лидирующих сетей диагностических лабораторий в СНГ, услуги которой пользуются высоким спросом у потребителей. В целях эффективного ведения клиентской базы, компанией было принято решение о внедрении CRM «Битрикс24». По итогам первичного внедрения клиент получил функционал с множественными ошибками, причины которых нам предстояло выявить и устранить.</p>
+        <button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-helix-tile-0.webp" width="1280" height="720" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Аудит настроек портала Битрикс24</li><li>Технический аудит Битрикс24</li><li>Доработку Битрикс24</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">3</p><p class="detail-tile__label">месяца — длительность проекта</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">4</p><p class="detail-tile__label">специалиста в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 бизнес-аналитик</li><li>1 backend-разработчик</li><li>1 системный инженер</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Выполненные задачи</h3>
+<h4 class="detail__subh">Аудит</h4>
+<ul><li>Проведен аудит текущих настроек корпоративного портала Битрикс24 бизнес-аналитиком</li><li>Выполнен технический аудит корпоративного портала Битрикс24 системным администратором</li></ul>
+<h4 class="detail__subh">Исправление ошибок</h4>
+<ul><li>Решены проблемы с задержками в автоматическом создании Лидов из входящих писем</li><li>Исправлена некорректная фильтрация писем и их привязка к Лидам</li><li>Решена проблема с обработкой писем из папки «Черновики», предотвращая создание Лидов</li><li>Исправлено отображение индикатора добавления писем в CRM для упрощения доступа к связанным сущностям</li><li>Решена проблема с автоматическим назначением ответственного в зависимости от типа обращения и получателя письма</li><li>Произведено исправление ошибок прав доступа к файловой системе сайта</li></ul>
+<h4 class="detail__subh">Доработки портала</h4>
+<ul><li>Выполнены рекомендации по безопасности</li><li>Созданы новые поля для учета даты и времени взаимодействий с клиентами</li><li>Доработан процесс автоматического создания Лидов с настройкой передачи информации о почтовом ящике</li><li>Изменен механизм передачи данных из системы «Профконтакт», включая создание нового поля для пунктов обслуживания</li><li>Осуществлен перенос базы Лидов из одной стадии в другую с конвертацией в Контакт</li><li>Добавлены новые поля и источники обращения для улучшения учета взаимодействий</li><li>Добавлены исключения в обработку почты для определенных адресов, чтобы предотвратить создание Лидов</li><li>Обновлены сертификата безопасности для обеспечения защиты данных</li></ul><h3 class="detail__h">Результаты</h3>
+<ul><li>Обнаружены и устранены технические проблемы, влияющие на стабильность работы портала</li><li>Проведена оптимизация серверной инфраструктуры для улучшения производительности и уменьшения времени отклика</li><li>Добавлены новые поля для отслеживания времени и даты контактов с клиентами, что позволяет лучше анализировать взаимодействие и планировать дальнейшие шаги</li><li>Автоматизирован процесс создания Лидов на основе поступающей корреспонденции, что сократило время на ручное внесение данных</li></ul>
+<h3 class="detail__h">Заключение</h3>
+<p>Эти изменения значительно улучшили работу корпоративного портала Битрикс24, повысили его производительность, безопасность и удобство использования.</p></div>
+    </template>
+
+    <template id="detail-case-imkliva">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · Imkliva Insurance</p>
+        <h2 class="detail__title" id="detail-title">Настройка системы обработки входящих обращений для страховой компании</h2>
+        <p class="detail__subtitle">Как оптимизировать клиентский сервис и сократить издержки компании</p>
+        <p class="detail__lead">Имклива Иншуранс – страховая компания с большим количество клиентов как в b2c, так и в b2b сегментах. Внушительная клиентская база требует максимальной степени автоматизации процессов, связанных с обработкой поступающих запросов. Необходимость совершенствования качества клиентского сервиса, а также риск увеличения нагрузку на сотрудников и ограничения возможности масштабирования бизнеса стали факторами, из-за которых клиент решил внедрить и настроить CRM-систему в Битрикс24, чтобы создать централизованную систему управления коммуникациями и автоматизировать ключевые бизнес-процессы.</p>
+        <button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-imkliva-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Разработку технического задания</li><li>Настройку Битрикс24</li><li>Дополнительное программирование функционала ЦРМ</li><li>Тестирование</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">12</p><p class="detail-tile__label">месяцев — длительность проекта</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">7</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>2 бизнес-аналитика</li><li>1 интегратор</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>1 тестировщик</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Выполненные задачи</h3>
+<h4 class="detail__subh">Организация системы обращений в Битрикс24</h4>
+<p>Была выполнена адаптация и настройка модуля «Система обращений» для Битрикс24, включающая создание единой точки входа для коммуникаций с клиентами, такие как: телефонные звонки, электронная почта, Viber, онлайн-чат на сайте.</p>
+<h4 class="detail__subh">Реализована система поддержки клиентов</h4>
+<p>Настроена организация взаимодействия одноуровневой системы поддержки клиента: Сектор дистанционного обслуживания клиентов, Управление Урегулирования Убытков, Отдел урегулирования убытков по имущественным видам страхования.</p>
+<h4 class="detail__subh">Интеграция IP-АТС c ЦРМ Битрикс24</h4>
+<ul><li>Передача информации о входящем звонке из IP-АТС в Битрикс24.</li><li>Передача информации об исходящем звонке из IP-АТС в Битрикс24.</li><li>Передача записи разговора звонка из IP-АТС в Битрикс24.</li><li>Возможность совершения исходящего звонка напрямую из сущности Битрикс24.</li><li>Разработка кастомных отчётов по телефонии.</li></ul>
+<h4 class="detail__subh">Настройка автоматизации работы компании</h4>
+<p>Полностью автоматизированы различные элементы и сущности в ЦРМ: Контакты, Компании, Лиды, Сделки – в части входящих запросов и обзвона, Смарт-процессы – в части Договоров и Выплат.</p>
+<h4 class="detail__subh">Синхронизация данных</h4>
+<p>Настроена синхронизация данных о контактах, договорах и страховых делах из ПО «Certus» Заказчика в Битрикс24.</p>
+<h4 class="detail__subh">Аналитика</h4>
+<p>Настроены аналитические отчеты по Сделкам, настроена сквозная аналитика, разработаны кастомные отчеты по работе Операторов, графикам и взносам оплат.</p><h3 class="detail__h">Результаты</h3>
+<ul><li>Создана единая точка входа для всех каналов коммуникации: телефон, email, Viber, онлайн-чат</li><li>Обеспечена единая система поддержки для всех направлений работы с клиентами</li><li>Уменьшено количество ручных операций и ошибок</li><li>Повышена скорость обработки заявок и уровень контроля над бизнес-процессами</li><li>Улучшено качество клиентского сервиса</li><li>Внедрена система прозрачной аналитики</li></ul></div>
+    </template>
+
+    <template id="detail-case-a100">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · А-100</p>
+        <h2 class="detail__title" id="detail-title">Разработка telegram и PWA приложения для клиентов сети АЗС А-100</h2>
+        
+        <p class="detail__lead">Заказчик обратился к нам по причине ограниченной гибкости и сложности в развитии текущего мобильного приложения «Дзякуй А-100». Это ограничивало возможности для быстрого внедрения обновлений, улучшения пользовательского опыта и адаптации под меняющиеся потребности аудитории. Для решения этих задач была выбрана разработка нового приложения в формате Telegram Mini App и PWA — технологий, позволяющих обеспечить высокую доступность, масштабируемость и гибкость. Такой подход направлен на устранение текущих ограничений, повышение автономии в управлении продуктом и улучшение цифрового пути клиента.</p>
+        <button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-a100-tile-0.webp" width="1252" height="718" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>сбор требований</li><li>подготовку технического задания</li><li>разработку дизайна</li><li>верстку</li><li>программирование</li><li>тестирование</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">6</p><p class="detail-tile__label">месяцев на запуск MVP-версии</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">6</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>2 UX/UI-дизайнера</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>1 тестировщик</li></ul></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">3</p><p class="detail-tile__label">выпуска: проект реализовывался поэтапно</p></div></div>
+      <div class="detail__article"><h3 class="detail__h">Особенности реализации проекта</h3>
+<p>Проект реализовывался поэтапно, с разбивкой на выпуски. Каждый выпуск включал следующие стадии: сбор требований, подготовка технического задания, разработка дизайна, вёрстка, программирование и тестирование.</p>
+<h4 class="detail__subh">Выпуск 1</h4>
+<p>В рамках первого выпуска были реализованы основные пользовательские сценарии приложения, включая следующие:</p>
+<ul><li>регистрация и авторизация пользователей в Telegram Mini App;</li><li>работа с картой лояльности (виртуальная/реальная);</li><li>оформление заказов и взаимодействие с бонусной системой;</li><li>разработка интерфейсов и страниц приложения;</li><li>проведено тестирование и оптимизация работы сервиса.</li></ul>
+<h4 class="detail__subh">Выпуск 2</h4>
+<ul><li>применение скидок, включая списание баллов;</li><li>просмотр промокодов (ограничение: только для авторизованных пользователей);</li><li>выбор карты лояльности (реализовано);</li><li>просмотр истории покупок и аналитики (в разработке);</li><li>раздел «Вопрос-ответ»: просмотр FAQ реализован, функционал чата перенесён на последующие выпуски.</li></ul>
+<h4 class="detail__subh">Выпуск 3</h4>
+<ul><li>Выбор мойки;</li><li>Выбор программы мойки;</li><li>Оплата услуги мойки, в том числе с помощью АppleРay / Samsung pay;</li><li>Оформление подписки на кофе;</li><li>Просмотр меню кафе;</li><li>Аналитика в административной панели;</li><li>Выбор и применение сертификатов;</li><li>Правки по электронному чеку с возможностью скачивания чека;</li><li>Передача TG_ID вместе с номером телефона в программу лояльности.</li></ul>
+<h4 class="detail__subh">Интеграции и архитектурные особенности</h4>
+<ul><li>Система лояльности «PsolixDiscounts» — управление картами лояльности, бонусными баллами, промокодами;</li><li>Программный модуль «SmartPayServer» — передача и обработка информации для включения ТРК и онлайн-оплаты топлива;</li><li>Система автоматизации АЗС (Berlio) — управление основными процессами обслуживания клиентов на АЗС;</li><li>Приложение поддерживает работу с картами-брелоками, виртуальными картами, а также с новыми TG-картами (TGVR).</li><li>Продолжается активная работа по расширению функционала приложения в рамках следующих выпусков.</li></ul>
+<h4 class="detail__subh">Приложение предназначено для клиентов сети АЗС А-100 и позволяет</h4>
+<ul><li>сделать онлайн-заказа топлива, еды и товаров;</li><li>оформить предзаказ без участия персонала АЗС;</li><li>участвовать в программе лояльности «Дзякуй» (начисление и списание бонусных баллов);</li><li>получать персональные предложения и акции.</li></ul>
+<h4 class="detail__subh">Для бизнеса приложение решает ряд задач</h4>
+<ul><li>увеличивает проходимость АЗС за счёт снижения нагрузки на операторов;</li><li>расширяет базу лояльных клиентов через удобный ввод в программу лояльности;</li><li>увеличивает продажи за счёт онлайн-допродаж и персонализированных предложений;</li><li>снижает зависимость продаж от персонала АЗС.</li></ul><h3 class="detail__h">Результаты</h3><p>Была разработана и внедрена новая цифровая платформа для взаимодействия с клиентами — Telegram Mini App и PWA, обеспечивающие высокую гибкость, масштабируемость и быструю адаптацию под потребности аудитории. Новое решение позволило устранить ограничения предыдущего приложения, повысить автономию в управлении продуктом и улучшить цифровой опыт пользователя.</p></div>
+    </template>
+
+    <template id="detail-site-rozy">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · Розы.Бел</p>
+        <h2 class="detail__title" id="detail-title">Разработка интернет-магазина по доставке цветов</h2>
+        
+        <p class="detail__lead">Компания Итач-софт успешно разработала интернет-магазин для компании, специализирующейся на доставке цветов. Проект был выполнен на платформе Opencart с уникальным дизайном и интеграцией с различными системами для улучшения удобства работы и автоматизации бизнес-процессов.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.розы.бел" target="_blank" rel="noopener noreferrer"><span>Открыть сайт розы.бел</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-rozy-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Дизайн</li><li>Верстка</li><li>Программирование</li><li>Наполнение сайта</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 UX/UI дизайнер</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>1 контент-специалист</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Задача нашей команды включала в себя редизайн и разработку полностью нового интернет-магазина сайта для сети цветочных магазинов в Минске</p><h3 class="detail__h">Результаты</h3>
+<h4 class="detail__subh">Удобство для пользователей</h4>
+<p>Покупатели получили современный и удобный интернет-магазин с возможностью оплаты удобным способом и оперативной доставкой.</p>
+<h4 class="detail__subh">Автоматизация бизнес-процессов</h4>
+<p>Интеграция с CRM Битрикс24 позволила автоматизировать работу с заказами и клиентами, что значительно сократило время обработки и повысило точность данных.</p>
+<h4 class="detail__subh">Рост продаж</h4>
+<p>Благодаря улучшенной функциональности и удобству использования, увеличилось количество онлайн-заказов, что привело к росту выручки.</p>
+<h4 class="detail__subh">Повышение лояльности клиентов</h4>
+<p>Новый дизайн и удобство навигации положительно сказались на пользовательском опыте, что привлекло новых клиентов и повысило лояльность существующих.</p>
+<p>Проект по разработке интернет-магазина для сети цветочных магазинов в Минске на базе CMS OpenCart с уникальным дизайном и интеграцией с CRM Битрикс24 был успешно реализован. Он обеспечил удобство для покупателей и автоматизацию бизнес-процессов для компании, что привело к улучшению показателей продаж и общей эффективности бизнеса.</p></div>
+    </template>
+
+    <template id="detail-site-divan">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · Divan Boss</p>
+        <h2 class="detail__title" id="detail-title">Разработка интернет-магазина мебели</h2>
+        
+        <p class="detail__lead">DivanBoss — крупный интернет-магазин мебели, для которого была выполнена разработка современного e-commerce-решения с уникальным дизайном, широким набором интеграций и удобным пользовательским сценарием оформления заказа. Проект был реализован на CMS Битрикс, что позволило обеспечить гибкость в доработках, стабильную работу интернет-магазина, удобное администрирование контента и возможность дальнейшего масштабирования проекта под задачи бизнеса.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://divanboss.ru" target="_blank" rel="noopener noreferrer"><span>Открыть сайт divanboss.ru</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-divan-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>Аналитику и подготовку технического задания</li><li>Разработку уникального дизайна</li><li>Адаптивную верстку интерфейсов</li><li>Программирование сайта на CMS Bitrix</li><li>Интеграцию внешних сервисов</li><li>Тестирование и запуск</li><li>Обучение сотрудников</li></ul></div>
+      
+      <div class="detail__article"><h3 class="detail__h">Детализация выполненных работ по проекту</h3>
+<h4 class="detail__subh">Проектирование и аналитика</h4>
+<ul><li>сбор и анализ требований со стороны бизнеса;</li><li>подготовка технического задания;</li><li>описание пользовательских сценариев;</li><li>проработка структуры каталога и логики оформления заказа;</li><li>постановка задач для дизайнеров и разработчиков.</li></ul>
+<h4 class="detail__subh">Дизайн и интерфейсы</h4>
+<ul><li>разработка уникального дизайна сайта;</li><li>проектирование визуальной концепции интернет-магазина;</li><li>отрисовка ключевых страниц и пользовательских сценариев;</li><li>адаптация дизайна под desktop и mobile-устройства.</li></ul>
+<h4 class="detail__subh">Верстка и frontend-разработка</h4>
+<ul><li>адаптивная верстка страниц сайта;</li><li>реализация пользовательских интерфейсов;</li><li>подготовка интерактивных элементов каталога, карточек товара, корзины и оформления заказа;</li><li>оптимизация пользовательского опыта на разных типах устройств.</li></ul>
+<h4 class="detail__subh">Backend-разработка на CMS Битрикс</h4>
+<ul><li>разработка интернет-магазина на CMS Битрикс;</li><li>настройка структуры сайта;</li><li>реализация логики каталога и карточек товаров;</li><li>настройка корзины и оформления заказа;</li><li>внедрение административного функционала;</li><li>выполнение кастомных доработок под бизнес-процессы клиента.</li></ul>
+<h4 class="detail__subh">Интеграция с 1С</h4>
+<ul><li>интеграция интернет-магазина с 1С;</li><li>настройка обмена заказами;</li><li>настройка обмена ценами;</li><li>обеспечение актуальности данных между сайтом и учетной системой.</li></ul>
+<h4 class="detail__subh">Подключение платежных систем</h4>
+<ul><li>реализация оплаты банковскими картами;</li><li>подключение Яндекс Сплит;</li><li>интеграция систем рассрочки;</li><li>настройка сценариев онлайн-оплаты в процессе оформления заказа.</li></ul>
+<h4 class="detail__subh">Интеграции с маркетинговыми платформами</h4>
+<ul><li>интеграция с Mindbox;</li><li>интеграция с AdvCake;</li><li>подготовка сайта к использованию маркетинговых и performance-инструментов.</li></ul>
+<h4 class="detail__subh">Дополнительные сервисы и пользовательские улучшения</h4>
+<ul><li>автоматическое определение города по IP;</li><li>интеграция с DaData;</li><li>улучшение сценариев заполнения данных пользователями;</li><li>персонализация пользовательского опыта в зависимости от региона.</li></ul>
+<h4 class="detail__subh">Запуск проекта</h4>
+<ul><li>проведение комплексного тестирования;</li><li>исправление замечаний по итогам проверки;</li><li>подготовка проекта к запуску;</li><li>обучение сотрудников заказчика.</li></ul><h3 class="detail__h">Результаты</h3>
+<p>Проект divanboss.ru стал полноценным инструментом онлайн-продаж, который помогает компании эффективно работать с ассортиментом, автоматизировать бизнес-процессы, подключать маркетинговые механики и повышать удобство для конечного покупателя.</p>
+<h3 class="detail__h">Решение позволяет</h3>
+<ul><li>представлять широкий ассортимент товаров в структурированном каталоге;</li><li>демонстрировать товары в удобных карточках;</li><li>оформлять заказы онлайн;</li><li>принимать оплату разными способами;</li><li>использовать рассрочку и сплит-оплату;</li><li>автоматически адаптировать пользовательский опыт под регион клиента;</li><li>передавать заказы и данные по ценам в учетные системы;</li><li>подключать маркетинговые инструменты для роста продаж и возврата клиентов.</li></ul></div>
+    </template>
+
+    <template id="detail-site-bgmu">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · БГМУ</p>
+        <h2 class="detail__title" id="detail-title">Разработка корпоративного сайта БГМУ</h2>
+        
+        <p class="detail__lead">Команда разработчиков Итач-софт с гордостью представляет результаты совместной работы с Белорусским государственным медицинским университетом. Наш опыт и профессионализм позволили создать веб-пространство, соответствующее самым высоким стандартам качества и современным требованиям.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.bsmu.by" target="_blank" rel="noopener noreferrer"><span>Открыть сайт bsmu.by</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-bgmu-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Дизайн</li><li>Верстка</li><li>Программирование</li><li>Наполнение сайта</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">7</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 UX/UI дизайнер</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>3 контент-специалиста</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Задача нашей команды включала в себя редизайн и разработку полностью нового корпоративного сайта для Белорусского Государственного Медицинского Университета.</p><h3 class="detail__h">Выполненные задачи</h3>
+<h4 class="detail__subh">Анализ и планирование</h4>
+<ul><li>Проведен детальный анализ старого сайта БГМУ для выявления его слабых мест и потребностей целевой аудитории.</li><li>На основе анализа сформулированы ключевые задачи и требования для нового сайта.</li></ul>
+<h4 class="detail__subh">Разработка нового уникального дизайна</h4>
+<ul><li>Создан современный и привлекательный дизайн, отражающий корпоративный стиль и ценности БГМУ.</li><li>Разработано более 50 макетов страниц, включая главную страницу, страницы факультетов, новостные разделы, страницы с информацией для абитуриентов и студентов и другие.</li><li>Дизайн адаптирован под различные устройства для обеспечения удобства пользователей на всех платформах (адаптивный дизайн).</li></ul>
+<h4 class="detail__subh">Разработка версии для слабовидящих</h4>
+<ul><li>Создана специальная версия сайта для слабовидящих, включающая возможность изменения размера шрифта, контраста и других параметров для улучшения доступности контента.</li></ul>
+<h4 class="detail__subh">Разработка многоязычной версии сайта</h4>
+<ul><li>Разработаны и внедрены три языковые версии сайта: русская, белорусская и английская.</li><li>Обеспечен легкий переключатель между языковыми версиями для удобства пользователей.</li></ul>
+<h4 class="detail__subh">Перенос контента со старого сайта</h4>
+<ul><li>Перенесен весь контент со старого сайта, включающий более 5000 страниц.</li><li>Контент был структурирован и оптимизирован для нового дизайна и функционала сайта.</li><li>Обеспечено сохранение всех ссылок и правильная индексация контента в поисковых системах.</li></ul>
+<h4 class="detail__subh">Разработка на CMS Битрикс</h4>
+<ul><li>Сайт разработан на платформе CMS Битрикс, обеспечивающей высокую производительность, безопасность и удобство управления контентом.</li><li>Внедрены необходимые модули и компоненты для реализации всех функций сайта.</li></ul>
+<h4 class="detail__subh">Тестирование и запуск</h4>
+<ul><li>Проведено комплексное тестирование всех функций сайта на различных устройствах и браузерах.</li><li>Исправлены выявленные ошибки и оптимизированы процессы.</li><li>Запуск сайта в рабочий режим и мониторинг его работы в первые недели.</li></ul>
+<h4 class="detail__subh">Обучение и поддержка</h4>
+<ul><li>Обучение персонала университета работе с новой CMS и управлению контентом.</li><li>Обеспечение технической поддержки на этапе внедрения и последующей эксплуатации.</li><li>Написание документации по тому, как пользоваться административной панелью сайта.</li></ul>
+<h3 class="detail__h">Результат</h3>
+<h4 class="detail__subh">Современный и удобный сайт</h4>
+<p>Новый дизайн и структура сайта улучшили восприятие и удобство использования для всех категорий пользователей.</p>
+<h4 class="detail__subh">Доступность</h4>
+<p>Версия для слабовидящих обеспечила доступность информации для людей с ограниченными возможностями.</p>
+<h4 class="detail__subh">Многоязычность</h4>
+<p>Три языковые версии сайта сделали информацию доступной для более широкой аудитории, включая иностранных студентов и партнеров.</p>
+<h4 class="detail__subh">Эффективное управление контентом</h4>
+<p>Использование CMS Битрикс упростило управление сайтом и обновление контента, что позволило оперативно реагировать на изменения и добавлять актуальную информацию.</p>
+<h4 class="detail__subh">Сохранение и оптимизация контента</h4>
+<p>Успешный перенос и оптимизация более 5000 страниц контента сохранили ценную информацию и улучшили её доступность для пользователей.</p><h3 class="detail__h">Заключение</h3>
+<p>Проект по разработке корпоративного сайта Белорусского государственного медицинского университета был успешно реализован. В результате университет получил современный, функциональный и удобный сайт, который удовлетворяет потребности различных категорий пользователей, обеспечивает высокую доступность информации и простоту управления контентом.</p></div>
+    </template>
+
+    <template id="detail-site-autolight">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · Автолайт Экспресс</p>
+        <h2 class="detail__title" id="detail-title">Разработка личного кабинета пользователей</h2>
+        
+        <p class="detail__lead">Компания Итач-софт успешно разработала личные кабинеты для юридических и физических лиц на сайте autolight.by. Основные задачи проекта включали создание уникального дизайна, использование современных технологий Битрикс и Vue.js, а также интеграцию с 1С.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.autolight.by" target="_blank" rel="noopener noreferrer"><span>Открыть сайт autolight.by</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-autolight-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Верстка</li><li>Программирование</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">3</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li></ul></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">месяцев работы над проектом</p></div></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Цель проекта: разработка удобного и интуитивно понятного личного кабинета для физических и юридических лиц, который позволит пользователям быстро и легко оформлять заказы, а также отслеживать всю необходимую информацию по заказам.</p><h3 class="detail__h">Выполненные работы</h3>
+<h4 class="detail__subh">Уникальный дизайн</h4>
+<ul><li>Разработан эксклюзивный дизайн, обеспечивающий удобство и привлекательность для пользователей.</li><li>Дизайн адаптирован для корректного отображения и удобного использования на всех устройствах, включая компьютеры, планшеты и смартфоны.</li></ul>
+<h4 class="detail__subh">Технологии</h4>
+<ul><li>Использованы передовые технологии Битрикс и Vue.js для создания быстрого и функционального интерфейса.</li><li>Внедрение системы управления контентом (CMS), позволяющей администраторам легко обновлять информацию и управлять материалами.</li></ul>
+<h4 class="detail__subh">Интеграция с 1С</h4>
+<ul><li>Проведена полная интеграция с системой 1С для синхронизации данных.</li><li>Режим реального времени: Обмен данными с 1С происходит в режиме реального времени.</li><li>Двусторонний обмен: Обеспечен двусторонний обмен данными для актуализации информации и улучшения взаимодействия.</li></ul>
+<h4 class="detail__subh">Регистрация и авторизация</h4>
+<ul><li>Реализована регистрация пользователей с помощью СМС-сервиса для обеспечения безопасности и удобства.</li></ul>
+<h4 class="detail__subh">Личный кабинет и обработка заказов</h4>
+<ul><li>Сложная логика обработки заказов: В зависимости от типа доставки, габаритов, города отправления и доставки пользователям предоставляются различные варианты доставки с разной стоимостью.</li><li>Выбор времени доставки: Пользователи могут выбрать удобное время доставки.</li><li>Отслеживание заказа: В личном кабинете пользователи могут видеть статус своего заказа в режиме реального времени и отслеживать посылку по трек-номеру.</li></ul>
+<h4 class="detail__subh">Нагрузочное тестирование</h4>
+<ul><li>Проведено нагрузочное тестирование для обеспечения стабильности и производительности сайта при высоких нагрузках.</li><li>Сайт успешно обрабатывает тысячи заказов ежедневно, обеспечивая надежную работу даже при пиковых нагрузках.</li></ul>
+<h3 class="detail__h">Результат</h3>
+<h4 class="detail__subh">Повышение удобства</h4>
+<p>Личные кабинеты обеспечили удобный доступ к персонализированной информации и услугам для юридических и физических лиц.</p>
+<h4 class="detail__subh">Улучшение функциональности</h4>
+<p>Современные технологии позволили создать быстрый и отзывчивый интерфейс, улучшив пользовательский опыт.</p>
+<h4 class="detail__subh">Эффективность управления</h4>
+<p>Интеграция с 1С повысила точность данных и упростила процессы управления.</p>
+<h4 class="detail__subh">Надежность и стабильность</h4>
+<p>Нагрузочное тестирование подтвердило способность сайта обрабатывать большой объем заказов, обеспечивая стабильную работу.</p>
+<h4 class="detail__subh">Оптимизация доставки</h4>
+<p>Сложная логика обработки заказов и возможность выбора времени доставки улучшили удобство и точность доставки для пользователей.</p>
+<p>Мы гордимся нашим вкладом в развитие сайта autolight.by и уверены, что созданные личные кабинеты значительно улучшат взаимодействие пользователей с платформой.</p></div>
+    </template>
+
+    <template id="detail-site-autogroup">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · Автогрупп</p>
+        <h2 class="detail__title" id="detail-title">Разработка корпоративного сайта для компании по доставке автомобилей из Америки</h2>
+        
+        <p class="detail__lead">Компания Итач-софт успешно разработала корпоративный сайт для компании, специализирующейся на доставке автомобилей из Америки. Проект был выполнен на платформе 1С-Битрикс с уникальным дизайном и внедрением множества полезных функций.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.autogroup.by" target="_blank" rel="noopener noreferrer"><span>Открыть сайт autogroup.by</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-autogroup-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Дизайн</li><li>Верстка</li><li>Программирование</li><li>Наполнение сайта</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 UX/UI дизайнер</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>1 контент-специалист</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Создание современного, функционального и удобного корпоративного сайта, который бы обеспечивал пользователям возможность отслеживания автомобилей, оплаты услуг и удобного взаимодействия с компанией.</p><h3 class="detail__h">Выполненные задачи</h3>
+<h4 class="detail__subh">Уникальный дизайн</h4>
+<p>Разработан эксклюзивный дизайн сайта, который подчеркивает профессионализм и надежность компании. Дизайн адаптирован для удобного использования на всех устройствах, включая компьютеры, планшеты и смартфоны.</p>
+<h4 class="detail__subh">Функционал отслеживания авто по VIN-номеру</h4>
+<p>Внедрен функционал, позволяющий клиентам отслеживать статус доставки автомобилей по VIN-номеру. Это обеспечивает прозрачность процесса и позволяет клиентам всегда быть в курсе текущего состояния своего заказа.</p>
+<h4 class="detail__subh">Система оплаты за услуги</h4>
+<p>Разработана и интегрирована система онлайн-оплаты, позволяющая клиентам удобно и безопасно оплачивать услуги компании. Поддерживаются различные способы оплаты, обеспечивающие максимальный комфорт для пользователей.</p>
+<h4 class="detail__subh">Интеграция с amoCRM</h4>
+<p>Произведена интеграция сайта с amoCRM, что позволяет автоматически передавать данные о клиентах и заказах в CRM-систему. Это улучшает управление клиентскими данными и повышает эффективность работы менеджеров.</p>
+<h4 class="detail__subh">Интеграция с Roistat</h4>
+<p>Сайт был интегрирован с аналитической системой Roistat, что позволяет отслеживать эффективность маркетинговых кампаний и оптимизировать рекламные бюджеты. Внедрение Roistat обеспечивает точную аналитику и контроль над маркетинговыми показателями.</p>
+<h3 class="detail__h">Результат</h3>
+<h4 class="detail__subh">Повышение удобства для клиентов</h4>
+<p>Новый сайт с функционалом отслеживания автомобилей и системой онлайн-оплаты значительно упростил взаимодействие клиентов с компанией.</p>
+<h4 class="detail__subh">Улучшение управления</h4>
+<p>Интеграция с amoCRM и Roistat обеспечила лучшее управление клиентскими данными и маркетинговыми кампаниями, что способствовало повышению эффективности работы компании.</p>
+<h4 class="detail__subh">Привлечение новых клиентов</h4>
+<p>Уникальный дизайн и удобный интерфейс сайта привлекли больше новых клиентов, увеличив общий объем заказов.</p>
+<p>Мы гордимся нашим вкладом в развитие компании по доставке автомобилей из Америки и уверены, что созданный сайт будет способствовать её дальнейшему росту и успеху.</p><h3 class="detail__h">Отзыв клиента</h3><article class="review-card detail-review glow-card"><div class="detail-review__side"><div class="review-card__top"><img class="review-card__logo" src="assets/img/reviews/autogroup.svg" width="250" height="63" alt="Автогруп" loading="lazy" /><span class="review-card__quote" aria-hidden="true">“</span></div><footer class="review-card__author"><span class="review-card__name">Болдюсов Дмитрий Григорьевич</span><span class="review-card__job">Руководитель</span></footer></div><blockquote class="review-card__text"><p>Настоящим письмом выражаем свою искреннюю благодарность компании «Итач-софт» за отличную работу, которую проделала Ваша компания по созданию и запуску нашего сайта, а также по разработке собственной специализированной CRM-системы.</p><p>В работе с Вами мы увидели профессионализм, знание технологий, системный подход, соблюдение сроков, способность увидеть и понять наши потребности, и предложить лучшее решение.</p><p>Надеемся на дальнейшее плодотворное сотрудничество с Вами!</p></blockquote></article></div>
+    </template>
+
+  </body>
+</html>

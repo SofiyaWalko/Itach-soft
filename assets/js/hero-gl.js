@@ -167,6 +167,7 @@ function compileShader(gl, type, source) {
 }
 
 function initHeroGl(canvas) {
+  if (!canvas) return;
   const gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: true, antialias: false });
   if (!gl) return;
 
