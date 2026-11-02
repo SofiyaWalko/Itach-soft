@@ -3879,6 +3879,11 @@ html:has(.detail[open]) {
     margin-block-start: var(--space-4);
   }
 
+  /* Отступ от фильтров до сетки такой же, как от главной новости до фильтров */
+  .blog__grid {
+    margin-block-start: var(--space-4);
+  }
+
   .blog__tags {
     /* Ширина задана явно: иначе колонка фильтров растягивается по ширине ленты и страница уезжает вбок */
     inline-size: calc(100% + 2 * var(--gutter));
