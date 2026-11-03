@@ -80,21 +80,57 @@
           </a>
 
           <nav class="site-header__nav" id="site-nav" aria-label="Основное меню">
+            <div class="nav__scroll">
             <ul class="nav__list">
-              <li><a class="nav__link" href="index.html#services"><span class="nav__text">Услуги</span></a></li>
+              <li class="nav__item nav__item--services">
+                <a class="nav__link nav__link--services nav__link--desktop" href="#services" aria-haspopup="true" aria-expanded="false" data-services-menu-trigger><span class="nav__text">Услуги</span></a>
+                <button class="nav__link nav__link--services nav__link--accordion" type="button" aria-expanded="false" aria-controls="services-submenu" data-services-submenu-toggle>
+                  <span class="nav__text">Услуги</span>
+                  <svg class="icon nav__chevron" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                </button>
+                <ul class="nav__submenu" id="services-submenu" data-services-submenu hidden>
+                  <li>
+                    <a class="nav__submenu-link" href="#services"><span>Все услуги</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="#services"><span>Сайты</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="#services"><span>Битрикс24</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="#services"><span>IP-АТС на базе Asterisk</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="#services"><span>Разработка веб-сервисов</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="#services"><span>Техническая поддержка</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="#services"><span>Аутстаффинг и IT-услуги</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="#services"><span>AI-разработка</span></a>
+                  </li>
+                </ul>
+              </li>
               <li><a class="nav__link" href="portfolio.html"><span class="nav__text">Портфолио</span></a></li>
               <li><a class="nav__link" href="index.html#about"><span class="nav__text">Компания</span></a></li>
               <li><a class="nav__link" href="blog.html"><span class="nav__text">Блог</span></a></li>
               <li><a class="nav__link" href="contacts.html"><span class="nav__text">Контакты</span></a></li>
             </ul>
-            <a class="nav__phone" href="tel:+74812280296">
-              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
-              +7 (481) 228-02-96
-            </a>
-            <a class="nav__phone" href="mailto:info@itach-soft.ru">
-              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
-              info@itach-soft.ru
-            </a>
+            </div>
+            <div class="nav__contacts">
+              <a class="nav__phone" href="tel:+74812280296">
+                <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+                +7 (481) 228-02-96
+              </a>
+              <a class="nav__phone" href="mailto:info@itach-soft.ru">
+                <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+                info@itach-soft.ru
+              </a>
+            </div>
           </nav>
 
           <div class="site-header__actions">
@@ -121,6 +157,120 @@
               <svg class="icon icon--close" aria-hidden="true"><use href="#icon-close" /></svg>
             </button>
           </div>
+        </div>
+        <div class="mega-menu__wrap"><div class="mega-menu" role="navigation" aria-label="Все услуги" data-services-menu hidden>
+          <div class="mega-menu__inner">
+            <div class="mega-menu__columns">
+              <ul class="mega-menu__categories" data-mega-categories>
+                <li>
+                  <a class="mega-menu__category" href="index.html#services" data-mega-category="sites">
+                    <span class="mega-menu__category-title">Сайты</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="index.html#services" data-mega-category="bitrix24">
+                    <span class="mega-menu__category-title">Битрикс24</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="index.html#services" data-mega-category="asterisk">
+                    <span class="mega-menu__category-title">IP-АТС на базе Asterisk</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="index.html#services" data-mega-category="web-services">
+                    <span class="mega-menu__category-title">Разработка веб-сервисов</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="index.html#services" data-mega-category="support">
+                    <span class="mega-menu__category-title">Техническая поддержка</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="index.html#services" data-mega-category="outstaff">
+                    <span class="mega-menu__category-title">Аутстаффинг и IT-услуги</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="index.html#services" data-mega-category="ai">
+                    <span class="mega-menu__category-title">AI-разработка</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+              </ul>
+
+              <div class="mega-menu__content">
+                <ul class="mega-menu__list" data-mega-items="sites">
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/korporativnye-sayty/">Корпоративные сайты</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/internet-magaziny/">Интернет-магазины</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/sayty-vizitki/">Сайты-визитки</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/razrabotka-sayta-na-gotovykh-shablonakh/">Разработка сайта на готовых шаблонах</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/landing/">Лендинги</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/sayty-gosudarstvennykh-organizatsiy/">Сайты государственных организаций</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/sayty-na-bitriks/">Сайты на Битрикс</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/tekhpodderzhka-sayta/">Техническая поддержка сайтов</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/dorabotka-sayta/">Доработка сайтов</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/razrabotka-veb-portalov/">Разработка веб-порталов</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/kompleksny-audit-sayta/">Комплексный аудит сайта</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/razrabotka-veb-dizayna-sayta/">Разработка веб-дизайна сайта</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/razrabotka-lichnogo-kabineta/">Разработка личного кабинета</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/razrabotka-prilozheniy-na-react-js/">Разработка приложений на React JS</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/integratsiya-1s-s-saytom/">Интеграция 1С с сайтом</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="bitrix24" hidden>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/bitriks24/vnedrenie-i-nastroyka-bitriks24/">Внедрение и настройка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/bitriks24/dorabotka-bitriks24/">Доработка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/bitriks24/integratsiya-bitriks24/">Интеграция Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/bitriks24/avtomatizatsiya-biznes-protsessov-v-bitriks24/">Автоматизация бизнес-процессов в Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/bitriks24/ip-telefoniya-dlya-bitriks24/">IP-телефония для Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Техническая поддержка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/bitriks24/obuchenie-bitriks24/">Обучение Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/bitriks24/perenos-bitriks24-iz-oblaka-v-korobku/">Перенос Битрикс24 из облака в коробку</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="asterisk" hidden>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/vnedrenie-ip-atc-na-baze-asterisk/">Внедрение IP-АТС на базе Asterisk</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/nastroyka-voip-asterisk/">Настройка VoIP Asterisk</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/obespechenie-bezopasnosti-voip-ats/">Обеспечение безопасности VoIP-АТС</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Техническая поддержка VoIP-телефонных станций</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="web-services" hidden>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/razrabotka-veb-servisov/razrabotka-veb-servisov-s-nulya/">Разработка веб-сервисов с нуля</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/razrabotka-veb-servisov/integratsiya-slozhnykh-sistem/">Интеграция сложных систем</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Техническая поддержка ПО</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="support" hidden>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/sayty/tekhpodderzhka-sayta/">Техническая поддержка сайтов</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/bitriks24/tekhpodderzhka-bitriks24/">Техническая поддержка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/">Техническая поддержка VoIP-телефонных станций</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/razrabotka-veb-servisov/tekhnicheskaya-podderzhka-po/">Техническая поддержка ПО</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="outstaff" hidden>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-autstaffing/">IT-аутстаффинг</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/predostavlenie-it-spetsialistov/">Предоставление IT-специалистов под задачи бизнеса</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-konsultatsii/">IT-консультации</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="ai" hidden>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/ai-razrabotka/">AI-разработка</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <aside class="mega-menu__aside">
+              <div class="mega-menu__promo glow-card">
+                <h3 class="mega-menu__promo-title">Узнайте стоимость разработки</h3>
+                <p class="mega-menu__promo-text">Ответьте на несколько вопросов и получите предварительную оценку проекта.</p>
+                <a class="mega-menu__promo-link" href="index.html#calculator">Рассчитать стоимость</a>
+              </div>
+            </aside>
+          </div>
+        </div>
         </div>
       </div>
     </header>
@@ -317,6 +467,41 @@
             </li>
           </ul>
           <p class="blog__empty" hidden data-blog-empty>По этому тегу публикаций пока нет.</p>
+        </div>
+      </section>
+
+      <section class="clients" aria-label="Нам доверяют" data-reveal>
+        <div class="clients__track">
+          <ul class="clients__list">
+              <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="ЕРИП" /></li>
+              <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="Autolight Express" /></li>
+              <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="Zepter Bank" /></li>
+              <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="Гиппо" /></li>
+              <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="World Class" /></li>
+              <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="Helix" /></li>
+              <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="Санта" /></li>
+              <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="Xiaomi" /></li>
+              <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="БГМУ" /></li>
+              <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="Розы.Бел" /></li>
+              <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="Imkliva Insurance" /></li>
+              <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="БНБ-Банк" /></li>
+              <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="А-100" /></li>
+          </ul>
+          <ul class="clients__list" aria-hidden="true">
+              <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="" /></li>
+              <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="" /></li>
+              <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="" /></li>
+              <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="" /></li>
+          </ul>
         </div>
       </section>
 
@@ -788,7 +973,7 @@
         <p class="detail__eyebrow">Новость · 7 июня 2024</p>
         <h2 class="detail__title" id="detail-title">Презентация о компании Итач-Софт: узнайте больше о наших достижениях и услугах</h2>
         <p class="detail__lead">Скачайте нашу презентацию и познакомьтесь с Итач-Софт.</p>
-        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button><a class="btn btn--outline detail__site" href="https://itach.by/upload/%D0%9F%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F%C2%AB%D0%98%D1%82%D0%B0%D1%87_%D1%81%D0%BE%D1%84%D1%82%C2%BB.pdf" target="_blank" rel="noopener noreferrer"><span>Скачать презентацию</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить проект</button><a class="btn btn--outline detail__site" href="https://itach.by/upload/%D0%9F%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F%C2%AB%D0%98%D1%82%D0%B0%D1%87_%D1%81%D0%BE%D1%84%D1%82%C2%BB.pdf" target="_blank" rel="noopener noreferrer"><span>Скачать презентацию</span><svg class="icon nav__submenu-chevron" aria-hidden="true"><use href="#icon-chevron-down" /></svg></a></div>
       </header>
       <div class="detail__article"><div class="detail__prose">
         <p>Компания Итач-Софт — это ваш надежный партнер в мире информационных технологий. Мы специализируемся на разработке программного обеспечения, создании сайтов и автоматизации бизнес-процессов с помощью модулей Битрикс24. С 2013 года мы успешно реализовали более 100 проектов, став золотым партнером Битрикс24 и войдя в ТОП-5 партнеров этой системы в Беларуси. Наша команда из более чем 50 сертифицированных специалистов с совокупным опытом работы более 1 млн часов готова предложить вам высокопрофессиональные услуги.</p>

@@ -247,8 +247,16 @@
    одновременно с появлением: задачи и новости, тот же темп, что у rise */
 @media (prefers-reduced-motion: no-preference) {
   .task-list.is-revealed > .task-card::before,
-  .news__list.is-revealed > .news-card::before {
+  .news__list.is-revealed > .news-card::before,
+  .page-stats.is-revealed > .page-stat::before {
     animation: border-sweep 700ms linear calc(min(var(--i, 0), 6) * 90ms);
+  }
+
+  /* Цифры в шапках страниц — низкие карточки: пятно 147px обволакивает почти весь периметр,
+   поэтому на время пробега уменьшаем его, как у высоких карточек задач на главной.
+   Без fill-mode радиус возвращается к 147px сразу после пробега, наведение не меняется */
+  .page-stats.is-revealed > .page-stat::before {
+    animation-name: border-sweep-sm;
   }
 
   @keyframes border-sweep {
@@ -264,6 +272,25 @@
 
     100% {
       --mx: 125%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes border-sweep-sm {
+    0% {
+      --mx: -25%;
+      --glow-radius: 96px;
+      opacity: 0;
+    }
+
+    15%,
+    85% {
+      opacity: 1;
+    }
+
+    100% {
+      --mx: 125%;
+      --glow-radius: 96px;
       opacity: 0;
     }
   }

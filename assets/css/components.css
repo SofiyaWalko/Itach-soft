@@ -213,6 +213,14 @@
   initial-value: 50%;
 }
 
+/* Радиус пятна контура регистрируем, чтобы можно было менять его в keyframes
+   (например, уменьшать пятно на время пробега при появлении низких карточек) */
+@property --glow-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 147px;
+}
+
 .glow-card {
   --mx: 50%;
   --my: 50%;
@@ -265,6 +273,7 @@
 
 .site-header__bar {
   position: relative;
+  z-index: 60;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -368,51 +377,171 @@
   display: none;
 }
 
-/* Меню: на мобильных выпадающая панель, на десктопе в строке */
-.site-header__nav {
-  position: absolute;
-  inset-block-start: calc(100% + 0.5rem);
-  inset-inline: 0;
-  display: grid;
-  gap: var(--space-2);
-  padding: var(--space-3);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-glass-lg);
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(-0.5rem);
-  transition:
-    opacity var(--duration-base) var(--ease-out),
-    transform var(--duration-base) var(--ease-out),
-    visibility 0s linear var(--duration-base);
-}
-
-.site-header.is-menu-open .site-header__nav {
-  visibility: visible;
-  opacity: 1;
-  transform: none;
-  transition-delay: 0s;
-}
-
-.nav__list {
-  display: grid;
-}
-
-/* Выпадающее меню (телефон и планшет, до 1024px): у первой ссылки свой отступ сверху 0.875rem, поэтому у панели сверху он меньше, и до текста сверху и снизу выходит поровну */
+/* Меню: на мобильных — отдельный полноэкранный слой поверх страницы.
+   Все значения, переопределяемые на десктопе, задаём только внутри max-width-запроса:
+   иначе при загрузке до применения desktop-стилей меню перекрывает экран */
 @media (max-width: 1023px) {
   .site-header__nav {
-    padding-block-start: calc(var(--space-3) - 0.875rem);
+    position: fixed;
+    inset-block-start: 0;
+    inset-block-end: 0;
+    inset-inline-start: calc(50% - 50vw);
+    inset-inline-start: calc(50% - 50dvw);
+    inline-size: 100vw;
+    inline-size: 100dvw;
+    block-size: 100vh;
+    block-size: 100dvb;
+    z-index: 45;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--header-top) + var(--header-height) + var(--space-2)) calc(var(--gutter) + 0.5rem) var(--space-3);
+    background: var(--color-bg);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-0.75rem);
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out),
+      visibility 0s linear var(--duration-base);
+  }
+
+  .site-header.is-menu-open .site-header__nav {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  /* Прокручиваемая часть меню: пункты и подменю */
+  .nav__scroll {
+    flex: 1;
+    min-block-size: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+  }
+
+  .nav__scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav__list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    justify-items: stretch;
+  }
+
+  .nav__list > li {
+    min-inline-size: 0;
+  }
+
+  /* Подменю раскрывается строго под пунктом, а не рядом */
+  .nav__item--services {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nav__item--services > .nav__link {
+    grid-row: 1;
+  }
+
+  .nav__item--services > .nav__submenu {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  /* Контакты прибиты к низу экрана */
+  .nav__contacts {
+    display: grid;
+    gap: 0.5rem;
+    padding-block-start: var(--space-3);
+    border-block-start: 1px solid var(--color-line);
+  }
+
+  .nav__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: 0.875rem 0.25rem;
+    border-block-end: 1px solid var(--color-line);
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .nav__link--desktop {
+    display: none;
+  }
+
+  /* Первый пункт — без линии сверху, последний — без линии снизу */
+  .nav__list > li:first-child > .nav__link {
+    border-block-start: 0;
+  }
+
+  .nav__list > li:last-child > .nav__link {
+    border-block-end: 0;
+  }
+
+  /* Линия под «Услугами» есть всегда: и в свёрнутом, и в раскрытом виде */
+  .nav__list > li:first-child > .nav__link {
+    border-block-end: 1px solid var(--color-line);
   }
 }
 
-.nav__link {
-  display: block;
-  padding-block: 0.875rem;
-  border-block-end: 1px solid var(--color-line);
-  font-size: 1.125rem;
-  font-weight: 700;
+/* Прокручиваемая часть меню: пункты и подменю */
+@media (max-width: 1023px) {
+  .nav__scroll {
+    flex: 1;
+    min-block-size: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+  }
+
+  .nav__scroll::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Контакты прибиты к низу экрана */
+@media (max-width: 1023px) {
+  .nav__contacts {
+    display: grid;
+    gap: 0.5rem;
+    padding-block-start: var(--space-3);
+    border-block-start: 1px solid var(--color-line);
+  }
+
+  .nav__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: 0.875rem 0.25rem;
+    border-block-end: 1px solid var(--color-line);
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .nav__link--desktop {
+    display: none;
+  }
+
+  /* Первый пункт — без линии сверху, последний — без линии снизу */
+  .nav__list > li:first-child > .nav__link {
+    border-block-start: 0;
+  }
+
+  .nav__list > li:last-child > .nav__link {
+    border-block-end: 0;
+  }
+
+  /* Линия под «Услугами» есть всегда: и в свёрнутом, и в раскрытом виде */
+  .nav__list > li:first-child > .nav__link {
+    border-block-end: 1px solid var(--color-line);
+  }
 }
 
 /* Сдвигается только текст внутри ссылки: сама ссылка (область наведения) и подчёркивание стоят на месте */
@@ -434,6 +563,60 @@
       transform: translateX(0.25rem);
     }
 }
+}
+
+/* Аккордеон «Услуги» в бургер-меню */
+button.nav__link {
+  inline-size: 100%;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.nav__chevron {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  color: var(--color-text-2);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.nav__link--services[aria-expanded="true"] .nav__chevron {
+  transform: rotate(180deg);
+}
+
+.nav__submenu {
+  display: block;
+  inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav__submenu[hidden] {
+  display: none;
+}
+
+.nav__submenu-link {
+  display: block;
+  inline-size: 100%;
+  margin-inline-start: 1rem;
+  padding: 0.625rem 0.25rem;
+  color: var(--color-text-2);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .nav__submenu-link:hover {
+    color: var(--color-text);
+  }
+}
+
+.nav__submenu-link:focus-visible {
+  border-radius: var(--radius-sm);
 }
 
 .nav__phone {
@@ -460,8 +643,71 @@
     block-size: 2.75rem;
   }
 
-  .site-header__burger,
+  .site-header__burger {
+    display: none;
+  }
+
   .nav__phone {
+    display: none;
+  }
+
+  /* Десктоп: ссылку-триггер мега-меню показываем, аккордеон из бургер-меню скрываем */
+  .nav__link--desktop {
+    display: block;
+  }
+
+  .nav__link--accordion {
+    display: none;
+  }
+
+  .nav__submenu {
+    display: none !important;
+  }
+
+  /* Десктоп: меню возвращается в строку */
+  .site-header__nav {
+    position: static;
+    inset: auto;
+    z-index: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+    block-size: auto;
+    padding: 0;
+    background: none;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .nav__scroll {
+    flex: none;
+    overflow: visible;
+  }
+
+  .nav__contacts {
+    display: none;
+  }
+
+  .nav__list {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .nav__link {
+    display: block;
+    padding-block: 0.5rem;
+    background: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .nav__link--desktop {
+    display: block;
+  }
+
+  .nav__link--accordion {
     display: none;
   }
 
@@ -576,7 +822,8 @@
   position: fixed;
   inset-block-end: var(--space-3);
   inset-inline-start: var(--gutter);
-  z-index: 60;
+  /* Ниже полноэкранного меню: баннер не должен перекрывать контакты в меню */
+  z-index: 40;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 0.5rem var(--space-3);
@@ -693,5 +940,290 @@
 @media (prefers-reduced-motion: reduce) {
   .cookie {
     transition: none;
+  }
+}
+
+/* ---------- Мега-меню услуг ---------- */
+/* Выпадает под шапкой при наведении на «Услуги»: категории — слева, услуги — справа, баннер — третьей колонкой */
+.mega-menu {
+  position: absolute;
+  inset-block-start: calc(100% + 0.5rem);
+  inset-inline: 0;
+  z-index: 60;
+}
+
+.mega-menu[hidden] {
+  display: none;
+}
+
+.mega-menu__inner {
+  inline-size: calc(100% - 2 * (var(--gutter) + 0.375rem));
+  margin-inline: calc(var(--gutter) + 0.375rem);
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr) 18rem;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-glass-lg);
+}
+
+.mega-menu__categories {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mega-menu__category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-weight: 600;
+  line-height: 1.3;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-radius var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.mega-menu__category .icon {
+  inline-size: 1rem;
+  block-size: 1rem;
+  color: var(--color-text-2);
+  transform: rotate(-90deg);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .mega-menu__category:hover {
+    background: var(--color-bg-alt);
+    border-radius: 0.75rem;
+    color: var(--color-text);
+  }
+
+  .mega-menu__category:hover .icon {
+    color: var(--color-text);
+  }
+}
+
+.mega-menu__category.is-active {
+  background: var(--color-bg-alt);
+}
+
+.mega-menu__category.is-active .icon {
+  transform: rotate(-90deg) translateX(0.125rem);
+  color: var(--color-text);
+}
+
+.mega-menu__content {
+  min-inline-size: 0;
+}
+
+/* Услуги заполняют первый столбец сверху вниз; что не помещается, переносится во второй.
+   Число строк считает скрипт (--mega-rows) от самого длинного списка, поэтому столбцов всегда максимум два */
+.mega-menu__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(var(--mega-rows, 8), auto);
+  grid-auto-flow: column;
+  column-gap: var(--space-3);
+  row-gap: 0.25rem;
+  align-content: start;
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+}
+
+.mega-menu__list[hidden] {
+  display: none;
+}
+
+.mega-menu__item {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.35;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+/* Как ссылки в футере: без подложки, ссылка темнеет и слегка сдвигается вправо */
+@media (hover: hover) {
+  .mega-menu__item:hover {
+    color: var(--color-text);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mega-menu__item {
+    transition:
+      color var(--duration-fast) var(--ease-out),
+      transform 400ms var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    .mega-menu__item:hover {
+      transform: translateX(0.5rem);
+    }
+  }
+}
+
+/* Раскладка панели: категории и услуги — две колонки, баннер — третьей */
+.mega-menu__inner {
+  grid-template-areas: "columns columns promo";
+}
+
+.mega-menu__columns {
+  grid-area: columns;
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: var(--space-4);
+  min-inline-size: 0;
+}
+
+.mega-menu__aside {
+  grid-area: promo;
+}
+
+/* Баннер на всю высоту меню */
+.mega-menu__aside {
+  display: grid;
+}
+
+.mega-menu__promo {
+  display: grid;
+  align-content: start;
+  gap: 0.625rem;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface) url("../img/BGBanner.png") center / cover no-repeat;
+}
+
+.mega-menu__promo-label {
+  inline-size: fit-content;
+  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-drop-orange);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.mega-menu__promo-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.mega-menu__promo-text {
+  color: var(--color-text-2);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+/* Белая стеклянная кнопка поверх фоновой картинки */
+.mega-menu__promo-link {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  margin-block-start: 0.25rem;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-pill);
+  background: var(--color-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  box-shadow: var(--shadow-glass);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .mega-menu__promo-link:hover {
+    transform: translateY(-0.125rem);
+  }
+}
+
+/* На сенсорных и мобильных устройствах мега-меню скрыто: там остаётся бургер-меню */
+@media (hover: none), (max-width: 1023px) {
+  .mega-menu {
+    display: none !important;
+  }
+}
+
+/* Мега-меню — фиксированное, как сам хедер; координаты повторяют геометрию .container,
+   поэтому панель совпадает с баром шапки по ширине и краям на любом скролле.
+   Проценты считаются от вьюпорта: wrap вынесен из-под бара, чей backdrop-filter
+   стал бы для fixed-меню содержащим блоком */
+@media (hover: hover) and (min-width: 1024px) {
+  .mega-menu {
+    position: fixed;
+    inset-block-start: calc(var(--header-top) + var(--header-height) + 0.25rem);
+    inset-inline-start: max(var(--gutter), calc((100% - var(--container-max)) / 2));
+    inline-size: min(calc(100% - 2 * var(--gutter)), var(--container-max));
+  }
+}
+
+/* Обертка остаётся в потоке контейнера шапки; само меню фиксированное, как хедер */
+.mega-menu__wrap {
+  position: static;
+}
+
+/* Узкие экраны (1024–~1100): 18rem баннеру не хватает места, убираем его */
+@media (hover: hover) and (min-width: 1024px) and (max-width: 1139px) {
+  .mega-menu__inner {
+    grid-template-columns: 15rem minmax(0, 1fr);
+  }
+
+  .mega-menu__aside {
+    display: none;
+  }
+}
+
+.mega-menu__wrap .mega-menu__inner {
+  inline-size: 100%;
+  margin-inline: 0;
+}
+
+/* Пока открыто полноэкранное меню, страница под ним не скроллится */
+@media (max-width: 1023px) {
+  body.menu-locked {
+    overflow: hidden;
+  }
+}
+
+/* Меню внутри стеклянной панели: backdrop-filter делает панель containing block для fixed-потомков,
+   поэтому при открытом меню размытие снимаем — слой меню растягивается на весь экран от края до края,
+   а логотип и крестик остаются поверх него */
+@media (max-width: 1023px) {
+  .site-header.is-menu-open .site-header__bar {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-glass-lg);
+  }
+
+  .site-header.is-menu-open .site-header__logo,
+  .site-header.is-menu-open .site-header__actions {
+    position: relative;
+    z-index: 50;
   }
 }

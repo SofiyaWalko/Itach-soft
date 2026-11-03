@@ -17,6 +17,8 @@ function updateHeaderState() {
 
 function setMenuOpen(isOpen) {
   header.classList.toggle("is-menu-open", isOpen);
+  // Полноэкранное меню: прокрутка страницы за ним блокируется
+  document.body.classList.toggle("menu-locked", isOpen);
   menuToggle.setAttribute("aria-expanded", String(isOpen));
   menuToggle.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
 }
@@ -28,6 +30,20 @@ function initHeader() {
   menuToggle.addEventListener("click", () => {
     setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
   });
+
+  const servicesToggle = header.querySelector("[data-services-submenu-toggle]");
+  const servicesSubmenu = header.querySelector("[data-services-submenu]");
+  if (servicesToggle && servicesSubmenu) {
+    servicesToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const open = servicesToggle.getAttribute("aria-expanded") !== "true";
+      servicesToggle.setAttribute("aria-expanded", String(open));
+      servicesSubmenu.hidden = !open;
+    });
+
+    // Клик по категории закрывает всё меню, как остальные пункты
+    servicesSubmenu.addEventListener("click", () => setMenuOpen(false));
+  }
 
   header.addEventListener("click", (event) => {
     if (event.target.closest(".nav__link, .nav__phone")) setMenuOpen(false);
@@ -668,7 +684,189 @@ function initCookieBanner(banner) {
   });
 }
 
+// Мега-меню услуг: открывается по наведению на «Услуги», правая колонка с услугами следует за категорией.
+// На сенсорных устройствах не показывается (меню-шторка остаётся основным способом навигации)
+function initServicesMegaMenu() {
+  const header = document.querySelector("[data-header]");
+  const menu = document.querySelector("[data-services-menu]");
+  const trigger = document.querySelector("[data-services-menu-trigger]");
+  const categories = menu?.querySelectorAll("[data-mega-category]") ?? [];
+  const lists = menu?.querySelectorAll("[data-mega-items]") ?? [];
+  if (!menu || !trigger || !categories.length) return;
+
+  const touch = window.matchMedia("(hover: none)").matches;
+  if (touch) return;
+
+  let openTimer;
+  let closeTimer;
+
+  const activate = (key) => {
+    categories.forEach((category) => {
+      category.classList.toggle("is-active", category.dataset.megaCategory === key);
+    });
+    lists.forEach((list) => {
+      list.hidden = list.dataset.megaItems !== key;
+    });
+  };
+
+  const openMenu = () => {
+    clearTimeout(closeTimer);
+    clearTimeout(openTimer);
+    openTimer = setTimeout(() => {
+      menu.hidden = false;
+      trigger.setAttribute("aria-expanded", "true");
+    }, 60);
+  };
+
+  const closeMenu = () => {
+    clearTimeout(openTimer);
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => {
+      menu.hidden = true;
+      trigger.setAttribute("aria-expanded", "false");
+    }, 160);
+  };
+
+  header.addEventListener("mouseenter", (event) => {
+    if (event.target.closest(".nav__link--services")) openMenu();
+  }, true);
+
+  menu.addEventListener("mouseenter", openMenu);
+  menu.addEventListener("mouseleave", closeMenu);
+
+  menu.addEventListener("focusin", () => {
+    clearTimeout(closeTimer);
+    menu.hidden = false;
+    trigger.setAttribute("aria-expanded", "true");
+  });
+
+  menu.addEventListener("focusout", (event) => {
+    if (menu.contains(event.relatedTarget)) return;
+    closeMenu();
+  });
+
+  // Услуги укладываются максимум в два столбца: заполняется первый сверху вниз,
+  // переполнение уходит во второй. Строк — половина от самого длинного списка.
+  const sizeToLargest = () => {
+    const maxCount = Math.max(...[...lists].map((list) => list.children.length));
+    menu.style.setProperty("--mega-rows", String(Math.ceil(maxCount / 2)));
+  };
+
+  sizeToLargest();
+
+  categories.forEach((category) => {
+    category.addEventListener("mouseenter", () => activate(category.dataset.megaCategory));
+    category.addEventListener("focus", () => activate(category.dataset.megaCategory));
+  });
+
+  trigger.addEventListener("click", (event) => {
+    // На узких экранах с мышью ссылка ведёт себя как на мобильном: пусть переходит по якорю,
+    // услуги там раскрывает стрелка-аккордеон
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+    event.preventDefault();
+    if (menu.hidden) {
+      menu.hidden = false;
+      trigger.setAttribute("aria-expanded", "true");
+    } else {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !menu.hidden) {
+      closeMenu();
+      trigger.focus();
+    }
+  });
+
+  activate(categories[0].dataset.megaCategory);
+}
+
+// Услуги в мобильном меню: аккордеон «направления → услуги» собирается из данных мега-меню,
+// чтобы список услуг правился в одном месте
+function initMobileServicesNav() {
+  const menu = document.querySelector("[data-services-menu]");
+  const container = document.querySelector("[data-nav-services]");
+  const toggle = document.querySelector("[data-nav-services-toggle]");
+  if (!menu || !container || !toggle) return;
+
+  const setExpanded = (button, expanded) => button.setAttribute("aria-expanded", String(expanded));
+
+  const build = () => {
+    const list = document.createElement("ul");
+    list.className = "nav-sub";
+
+    menu.querySelectorAll("[data-mega-category]").forEach((category) => {
+      const key = category.dataset.megaCategory;
+      const title = category.querySelector(".mega-menu__category-title").textContent;
+      const sourceList = menu.querySelector(`[data-mega-items="${key}"]`);
+
+      const item = document.createElement("li");
+      item.className = "nav-sub__item";
+
+      const row = document.createElement("div");
+      row.className = "nav-sub__row";
+
+      const link = document.createElement("a");
+      link.className = "nav-sub__link";
+      link.href = category.getAttribute("href");
+      link.textContent = title;
+
+      const subToggle = document.createElement("button");
+      subToggle.type = "button";
+      subToggle.className = "nav-sub__toggle";
+      subToggle.setAttribute("aria-expanded", "false");
+      subToggle.setAttribute("aria-label", `Показать услуги: ${title}`);
+      subToggle.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>';
+
+      const panel = document.createElement("div");
+      panel.className = "nav-sub__panel";
+      panel.hidden = true;
+
+      const services = document.createElement("ul");
+      services.className = "nav-sub__services";
+      sourceList.querySelectorAll("a").forEach((source) => {
+        const serviceItem = document.createElement("li");
+        const service = source.cloneNode(true);
+        service.className = "nav-sub__service";
+        serviceItem.appendChild(service);
+        services.appendChild(serviceItem);
+      });
+      panel.appendChild(services);
+
+      // Открыто только одно направление за раз
+      subToggle.addEventListener("click", () => {
+        const willOpen = panel.hidden;
+        list.querySelectorAll(".nav-sub__panel").forEach((other) => {
+          other.hidden = true;
+        });
+        list.querySelectorAll(".nav-sub__toggle").forEach((other) => {
+          setExpanded(other, false);
+        });
+        panel.hidden = !willOpen;
+        setExpanded(subToggle, willOpen);
+      });
+
+      row.append(link, subToggle);
+      item.append(row, panel);
+      list.appendChild(item);
+    });
+
+    container.appendChild(list);
+  };
+
+  build();
+
+  toggle.addEventListener("click", () => {
+    const willOpen = container.hidden;
+    container.hidden = !willOpen;
+    setExpanded(toggle, willOpen);
+  });
+}
+
 initHeader();
+initServicesMegaMenu();
+initMobileServicesNav();
 initScrollReveal();
 initGlowCards();
 initGlowFocus();
