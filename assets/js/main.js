@@ -519,6 +519,68 @@ function initLeadModal(modal) {
   modal.addEventListener("click", (event) => {
     if (event.target === modal) modal.close();
   });
+
+  // Телефон: попап — шторка снизу, её можно смахнуть вниз, потянув за верхнюю часть
+  const panel = modal.querySelector(".modal__panel");
+  const SWIPE_CLOSE_DISTANCE = 120;
+  const SWIPE_ANIMATION_MS = 200;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let swipeStartY = 0;
+  let swipeDistance = 0;
+  let isSwiping = false;
+
+  const resetSwipe = () => {
+    panel.style.transition = "";
+    panel.style.transform = "";
+  };
+
+  modal.addEventListener(
+    "touchstart",
+    (event) => {
+      isSwiping = panel.scrollTop <= 0 && event.touches[0].clientY < panel.getBoundingClientRect().top + 72;
+      swipeStartY = event.touches[0].clientY;
+      swipeDistance = 0;
+      panel.style.transition = "none";
+    },
+    { passive: true },
+  );
+
+  modal.addEventListener(
+    "touchmove",
+    (event) => {
+      if (!isSwiping) return;
+      swipeDistance = event.touches[0].clientY - swipeStartY;
+      if (swipeDistance <= 0) {
+        // Палец идёт вверх — обычная прокрутка содержимого
+        isSwiping = false;
+        resetSwipe();
+        return;
+      }
+      event.preventDefault();
+      panel.style.transform = `translateY(${swipeDistance}px)`;
+    },
+    { passive: false },
+  );
+
+  modal.addEventListener("touchend", () => {
+    if (!isSwiping) return;
+    isSwiping = false;
+    panel.style.transition = reducedMotion ? "none" : `transform ${SWIPE_ANIMATION_MS}ms var(--ease-out)`;
+    if (swipeDistance > SWIPE_CLOSE_DISTANCE) {
+      panel.style.transform = "translateY(100vh)";
+      setTimeout(() => {
+        modal.close();
+        resetSwipe();
+      }, reducedMotion ? 0 : SWIPE_ANIMATION_MS);
+    } else {
+      resetSwipe();
+    }
+  });
+
+  modal.addEventListener("close", () => {
+    if (modal.open) return;
+    resetSwipe();
+  });
 }
 
 // Детальное окно кейса или новости: содержимое лежит в <template id="detail-…"> и копируется в диалог при открытии.

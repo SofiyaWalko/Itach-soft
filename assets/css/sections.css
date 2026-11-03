@@ -3346,7 +3346,7 @@ html:has(.detail[open]) {
 
 /* ---------- Страница «Портфолио» ---------- */
 .portfolio {
-  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-8)) var(--space-12);
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) var(--space-12);
 }
 
 .portfolio__filters {
@@ -3530,7 +3530,7 @@ html:has(.detail[open]) {
 
 /* ---------- Страница «Блог» ---------- */
 .blog {
-  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-8)) var(--space-12);
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) var(--space-12);
 }
 
 /* Карточки новостей те же, что на главной; здесь они стоят сеткой, а не лентой */
@@ -3929,7 +3929,7 @@ html:has(.detail[open]) {
 
 /* ---------- Страница «Контакты» ---------- */
 .contacts {
-  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-8)) 0;
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) 0;
 }
 
 .contacts__lead {
@@ -4539,4 +4539,87 @@ body:not(.home) .clients {
 /* На главной за лентой сразу идёт блок услуг со своим отступом — нижний у ленты не нужен */
 body.home .clients {
   padding-block-end: 0;
+}
+
+/* ---------- Хлебные крошки на внутренних страницах ---------- */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block-end: var(--space-3);
+  /* Начало крошек — по левому краю логотипа: лого внутри панели шапки сдвинуто
+     относительно края контейнера на её паддинг (~0.875rem) */
+  margin-inline-start: 0.875rem;
+  padding-inline: 0;
+  inline-size: fit-content;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.breadcrumbs__link {
+  color: var(--color-text-2);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .breadcrumbs__link:hover {
+    color: var(--color-text);
+  }
+}
+
+.breadcrumbs__sep {
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  color: var(--color-text-2);
+  transform: rotate(-90deg);
+}
+
+.breadcrumbs__current {
+  color: var(--color-text);
+}
+
+/* ---------- Телефон: формы-заявки открываются не модалкой, а шторкой снизу ---------- */
+@media (max-width: 639px) {
+  .modal {
+    inline-size: 100%;
+    max-block-size: 92dvh;
+    margin-block: auto 0;
+    margin-inline: 0;
+    overflow: hidden;
+  }
+
+  .modal__panel {
+    max-block-size: 92dvh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding-block-start: var(--space-4);
+  }
+
+  /* Серая полоска-ручка, как у детальных окон на телефоне */
+  .modal__panel::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 0.5rem;
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    inline-size: 2.5rem;
+    block-size: 0.25rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-line-strong);
+    pointer-events: none;
+  }
+
+  /* Открытие — шторка выезжает снизу */
+  @media (prefers-reduced-motion: no-preference) {
+    .modal[open] {
+      animation: sheet-in 300ms var(--ease-out);
+    }
+
+    @keyframes sheet-in {
+      from {
+        transform: translateY(12%);
+        opacity: 0.6;
+      }
+    }
+  }
 }
