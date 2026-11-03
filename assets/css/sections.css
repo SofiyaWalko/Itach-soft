@@ -145,8 +145,11 @@
 }
 
 /* ---------- Лента клиентов: на всю ширину экрана ---------- */
+/* Отступы сверху и снизу как между секциями на всём сайте (space-12, на телефоне — меньше);
+   внутренние блоки страниц добавляют свой нижний отступ, поэтому снизу лента его компенсирует */
 .clients {
   overflow: hidden;
+  /* Отступы как между обычными секциями: сверху и снизу space-6 */
   padding-block: var(--space-6);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -4524,4 +4527,16 @@ html:has(.detail[open]) {
   .contacts-map__frame::before {
     content: none;
   }
+}
+
+/* На внутренних страницах лента идёт сразу после секции с space-12 снизу:
+   верхний отступ ленты не нужен, нижний остаётся space-6.
+   Главная помечена классом home на <body> */
+body:not(.home) .clients {
+  padding-block-start: 0;
+}
+
+/* На главной за лентой сразу идёт блок услуг со своим отступом — нижний у ленты не нужен */
+body.home .clients {
+  padding-block-end: 0;
 }
