@@ -538,16 +538,29 @@
   margin-block-end: calc((var(--count) - 1 - var(--i)) * var(--stack-peek));
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
   /* Высоту всех карточек выравнивает скрипт по самой высокой */
   min-block-size: var(--card-height, 0);
-  padding: var(--space-3);
+  padding: 0;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
   background: var(--color-bg);
   transform: scale(calc(1 - var(--depth) * 0.035));
   transform-origin: top center;
   will-change: transform;
+}
+
+/* Вся карточка — ссылка на страницу направления: кликается и стрелка, и любая часть карточки */
+.service-card__link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  border-radius: inherit;
+}
+
+.service-card__link:focus-visible {
+  border-radius: inherit;
 }
 
 /* Затемнение карточки, которую накрывают сверху */
@@ -4100,7 +4113,13 @@ html:has(.detail[open]) {
 
 /* Реквизиты: две равные колонки по смыслу, без пустых мест справа */
 .contacts-requisites {
-  padding-block: var(--space-6) 0;
+  padding-block: var(--space-6) var(--space-12);
+}
+
+/* Лента клиентов идёт после секции с её нижним отступом — без собственного верхнего,
+   как на остальных внутренних страницах */
+.contacts-requisites + .clients {
+  padding-block-start: 0;
 }
 
 .contacts-requisites__panel {
@@ -4168,9 +4187,10 @@ html:has(.detail[open]) {
   overflow-wrap: anywhere;
 }
 
-/* Форма — внизу страницы, после контактов и реквизитов */
+/* Форма — внизу страницы, после контактов и реквизитов.
+   Верхний отступ даёт лента клиентов, как на остальных страницах */
 .contacts-form-section {
-  padding-block: var(--space-6) var(--space-12);
+  padding-block: 0 var(--space-12);
 }
 
 .contacts__form-title {
@@ -4708,4 +4728,10 @@ body.home .clients {
 .services-page + .clients,
 .clients:has(+ .lead) {
   padding-block-start: 0;
+}
+
+/* ---------- Страницы направлений услуг ---------- */
+/* Заголовок с воздухом до ленты клиентов; сама лента перед формой идёт без верхнего отступа */
+.service-page {
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) var(--space-6);
 }
