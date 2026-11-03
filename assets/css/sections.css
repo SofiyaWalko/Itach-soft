@@ -570,6 +570,20 @@
   text-wrap: balance;
 }
 
+/* Название и описание направления держим вместе: описание читается как подзаголовок карточки */
+.service-card__head {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.service-card__desc {
+  max-inline-size: 62ch;
+  color: var(--color-text-2);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
 /* Круглая стрелка в правом верхнем углу: подсказывает, что карточка ведёт в раздел */
 .card-arrow {
   position: absolute;
@@ -1633,13 +1647,17 @@
 /* Сдвиг заголовка при наведении на кликабельную карточку: кейсы и направления, как в FAQ и новостях */
 @media (prefers-reduced-motion: no-preference) {
   .case-card__title,
-  .service-card__title {
+  .service-card__title,
+  .service-card__desc,
+  .service-card__tags {
     transition: transform 400ms var(--ease-out);
   }
 
   @media (hover: hover) {
   .case-card:hover .case-card__title,
-  .service-card:hover .service-card__title {
+  .service-card:hover .service-card__title,
+  .service-card:hover .service-card__desc,
+  .service-card:hover .service-card__tags {
       transform: translateX(0.75rem);
     }
 }
@@ -3055,7 +3073,9 @@ html:has(.detail[open]) {
     transform: none;
   }
 
-  .js .service-card:not(.is-active) {
+  /* Прячем невыбранные карточки только там, где скрипт собрал табы (главная).
+     На странице «Услуги» карточки всегда видны */
+  .js [data-service-stack] .service-card:not(.is-active) {
     display: none;
   }
 
@@ -3325,10 +3345,11 @@ html:has(.detail[open]) {
       animation: glow-orbit 9s linear infinite !important;
     }
 
-    /* Отзыв — широкая карточка с крупным периметром: на той же скорости дуга успевает
-       пробежать мимо глаз, поэтому идёт медленнее (и на главной, и в окне кейса) */
+    /* Отзыв и карточки услуг — крупные карточки с длинным периметром: на общей скорости
+       дуга успевает пробежать мимо глаз, поэтому идёт медленнее */
     .review-card::before,
-    .featured__body::before {
+    .featured__body::before,
+    .services-page .service-card::before {
       animation-duration: 20s !important;
     }
   }
@@ -4529,14 +4550,8 @@ html:has(.detail[open]) {
   }
 }
 
-/* На внутренних страницах лента идёт сразу после секции с space-12 снизу:
-   верхний отступ ленты не нужен, нижний остаётся space-6.
-   Главная помечена классом home на <body> */
-body:not(.home) .clients {
-  padding-block-start: 0;
-}
-
-/* На главной за лентой сразу идёт блок услуг со своим отступом — нижний у ленты не нужен */
+/* На главной за лентой сразу идёт блок услуг со своим отступом — нижний у ленты не нужен.
+   На остальных страницах лента сохраняет базовые отступы space-6 сверху и снизу */
 body.home .clients {
   padding-block-end: 0;
 }
@@ -4622,4 +4637,75 @@ body.home .clients {
       }
     }
   }
+}
+
+/* ---------- Страница «Услуги» ---------- */
+.services-page {
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) 0;
+}
+
+.services-page .section-title {
+  margin-block-start: var(--space-2);
+}
+
+/* Карточки здесь не стопка: обычная сетка, прилипания и уменьшения нет */
+.services-page .service-stack {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+  padding: 0;
+}
+
+.services-page .service-stack::after {
+  content: none;
+}
+
+.services-page .service-card {
+  position: relative;
+  inset-block-start: auto;
+  margin-block-end: 0;
+  min-block-size: 0;
+  transform: none;
+}
+
+/* Первые две карточки появляются сразу при открытии страницы, поочерёдно.
+   Остальные подключаются к общей системе появления при прокрутке (data-reveal) */
+@media (prefers-reduced-motion: no-preference) {
+  .services-page .service-card:nth-child(1) {
+    animation: rise 700ms var(--ease-out) 80ms both;
+  }
+
+  .services-page .service-card:nth-child(2) {
+    animation: rise 700ms var(--ease-out) 170ms both;
+  }
+
+  /* --i у карточек занят индексом стопки и давал растущую задержку появления.
+     Здесь карточка должна проявляться сразу, как только дошла до экрана */
+  .services-page .service-card[data-reveal].is-revealed {
+    animation-delay: 0s;
+  }
+}
+
+/* На устройствах с наведением вместо бегущего контура — лёгкая градиентная заливка карточки.
+   На сенсорных экранах остаётся общий механизм .glow-card: дуга бежит по периметру
+   карточки, которая сейчас перед глазами (класс is-glow ставит initGlowFocus) */
+@media (hover: hover) {
+  .service-card::before {
+    inset: 0;
+    padding: 0;
+    background: var(--gradient-flow);
+    background-size: 200% 100%;
+    -webkit-mask: none;
+    mask: none;
+  }
+
+  .service-card:hover::before {
+    opacity: 0.09;
+  }
+}
+
+/* Лента и форма — с отступами как на внутренних страницах */
+.services-page + .clients,
+.clients:has(+ .lead) {
+  padding-block-start: 0;
 }

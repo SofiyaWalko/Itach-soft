@@ -271,7 +271,11 @@ function initGlowFocus() {
       if (visibleWidth <= 0 || visibleHeight <= 0) return;
       // В стопке услуг карточка, которую уже накрыла следующая, не считается
       if (Number.parseFloat(card.style.getPropertyValue("--depth")) > 0.5) return;
-      if ((visibleWidth * visibleHeight) / (rect.width * rect.height) < MIN_VISIBLE_SHARE) return;
+      // Карточка выше экрана (например, направления услуг на телефоне) не может быть видна
+      // на 60% целиком — для таких достаточно, чтобы она занимала бо́льшую часть экрана
+      const visibleShare = (visibleWidth * visibleHeight) / (rect.width * rect.height);
+      const coversScreen = rect.height > viewportHeight && visibleHeight / viewportHeight >= MIN_VISIBLE_SHARE;
+      if (visibleShare < MIN_VISIBLE_SHARE && !coversScreen) return;
       const distance = Math.hypot(rect.left + rect.width / 2 - viewportWidth / 2, rect.top + rect.height / 2 - viewportHeight / 2);
       candidates.set(card, distance);
       const current = best.get(card.parentElement);
@@ -791,6 +795,9 @@ function initServicesMegaMenu() {
 
   header.addEventListener("mouseenter", (event) => {
     if (event.target.closest(".nav__link--services")) openMenu();
+    // Ушли с «Услуг» на другой пункт шапки, не заходя в само мега-меню — закрываем.
+    // Задержка closeMenu даёт время перевести курсор из пункта вниз, в панель меню
+    else if (!event.target.closest("[data-services-menu]")) closeMenu();
   }, true);
 
   menu.addEventListener("mouseenter", openMenu);
@@ -821,18 +828,7 @@ function initServicesMegaMenu() {
     category.addEventListener("focus", () => activate(category.dataset.megaCategory));
   });
 
-  trigger.addEventListener("click", (event) => {
-    // На узких экранах с мышью ссылка ведёт себя как на мобильном: пусть переходит по якорю,
-    // услуги там раскрывает стрелка-аккордеон
-    if (!window.matchMedia("(min-width: 1024px)").matches) return;
-    event.preventDefault();
-    if (menu.hidden) {
-      menu.hidden = false;
-      trigger.setAttribute("aria-expanded", "true");
-    } else {
-      closeMenu();
-    }
-  });
+  // Мега-меню открывается по наведению; клик по «Услуги» — обычный переход на страницу услуг
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !menu.hidden) {
