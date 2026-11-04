@@ -145,14 +145,21 @@
 }
 
 /* ---------- Лента клиентов: на всю ширину экрана ---------- */
-/* Отступы сверху и снизу как между секциями на всём сайте (space-12, на телефоне — меньше);
-   внутренние блоки страниц добавляют свой нижний отступ, поэтому снизу лента его компенсирует */
+/* Воздух вокруг ленты — по 96px сверху и снизу, задан margin'ами: соседние
+   вертикальные отступы схлопываются (берётся максимум), а не суммируются,
+   поэтому отступы появившихся рядом блоков не раздувают воздух вокруг ленты.
+   Нижние отступы секций перед лентой обнулены, верхние — у секций после неё */
 .clients {
   overflow: hidden;
-  /* Отступы как между обычными секциями: сверху и снизу space-6 */
-  padding-block: var(--space-6);
+  margin-block: var(--space-12);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* На главной сверху оставляем прежний отступ: лента примыкает к hero,
+   и его нижний отступ уже даёт воздух над лентой */
+.hero + .clients {
+  margin-block-start: var(--space-6);
 }
 
 .clients__track {
@@ -216,8 +223,9 @@
 }
 
 /* ---------- Какие задачи решаем ---------- */
+/* Сверху без отступа: перед секцией лента клиентов, её нижние 96px дают воздух */
 .tasks {
-  padding-block: var(--space-12);
+  padding-block: 0 var(--space-12);
 }
 
 .section-action {
@@ -1592,7 +1600,7 @@
 }
 
 .lead-form__consent {
-  margin: 0.5rem 0 0.75rem;
+  margin: 0.5rem 0 0;
   color: var(--color-text-2);
   font-size: 0.8125rem;
   line-height: 1.4;
@@ -2071,7 +2079,7 @@ html:has(dialog[open]) {
 }
 
 .modal .lead-form__consent {
-  margin-block: 0.25rem 0.5rem;
+  margin-block: 0.5rem 0;
 }
 
 /* На невысоких экранах пояснение под заголовком убираем, чтобы форма поместилась без прокрутки */
@@ -2730,12 +2738,13 @@ html:has(.detail[open]) {
   line-height: 1.35;
 }
 
-/* Пометка у вопросов с множественным выбором */
+/* Пометка у вопросов с множественным выбором — в той же строке, что и вопрос:
+   так хинт не занимает отдельную строку и шаг 3 остаётся без прокрутки */
 .calc__hint {
-  display: block;
-  margin-block-start: 0.125rem;
+  display: inline;
+  margin-inline-start: 0.5rem;
   color: var(--color-text-2);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
 }
 
@@ -2864,7 +2873,14 @@ html:has(.detail[open]) {
 .calc__form-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--space-2);
+}
+
+/* Согласие на обработку данных — к правой стороне, под кнопкой «Отправить» */
+.calc__contact .lead-form__consent {
+  text-align: end;
 }
 
 .calc__nav {
@@ -3380,7 +3396,8 @@ html:has(.detail[open]) {
 
 /* ---------- Страница «Портфолио» ---------- */
 .portfolio {
-  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) var(--space-12);
+  /* Снизу без отступа: дальше лента клиентов, её верхние 96px дают воздух */
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) 0;
 }
 
 .portfolio__filters {
@@ -3564,7 +3581,8 @@ html:has(.detail[open]) {
 
 /* ---------- Страница «Блог» ---------- */
 .blog {
-  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) var(--space-12);
+  /* Снизу без отступа: дальше лента клиентов, её верхние 96px дают воздух */
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) 0;
 }
 
 /* Карточки новостей те же, что на главной; здесь они стоят сеткой, а не лентой */
@@ -4112,14 +4130,9 @@ html:has(.detail[open]) {
 }
 
 /* Реквизиты: две равные колонки по смыслу, без пустых мест справа */
+/* Снизу без отступа: дальше лента клиентов, её верхние 96px дают воздух */
 .contacts-requisites {
-  padding-block: var(--space-6) var(--space-12);
-}
-
-/* Лента клиентов идёт после секции с её нижним отступом — без собственного верхнего,
-   как на остальных внутренних страницах */
-.contacts-requisites + .clients {
-  padding-block-start: 0;
+  padding-block: var(--space-6) 0;
 }
 
 .contacts-requisites__panel {
@@ -4570,12 +4583,6 @@ html:has(.detail[open]) {
   }
 }
 
-/* На главной за лентой сразу идёт блок услуг со своим отступом — нижний у ленты не нужен.
-   На остальных страницах лента сохраняет базовые отступы space-6 сверху и снизу */
-body.home .clients {
-  padding-block-end: 0;
-}
-
 /* ---------- Хлебные крошки на внутренних страницах ---------- */
 .breadcrumbs {
   display: flex;
@@ -4659,6 +4666,100 @@ body.home .clients {
   }
 }
 
+/* ---------- Калькулятор в попапе ----------
+   Панель шире формы-заявки: внутри шаги конструктора с вариантами ответов.
+   На телефоне попап становится шторкой общими правилами .modal выше */
+.calc-modal {
+  inline-size: min(100% - 2rem, 54rem);
+}
+
+/* Иерархия внутри конструктора: заголовок окна крупнее, заголовки шагов мельче */
+.calc-modal .modal__title {
+  font-size: clamp(1.5rem, 1.15rem + 1.3vw, 2.5rem);
+}
+
+.calc-modal .calc__title-step {
+  font-size: 1.125rem;
+}
+
+/* Рамку, фон и высоту панели даёт сам попап — двойной контур и пустота не нужны */
+.calc-modal .calc__panel {
+  min-block-size: 0;
+  margin-block-start: var(--space-2);
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+/* На невысоком десктопном окне шаги 3–4 не должны прокручиваться: уплотняем
+   отступы и пилюли шагов. Мобильная шторка остаётся как есть */
+@media (min-width: 640px) and (max-height: 760px) {
+  .calc-modal .modal__panel {
+    padding: var(--space-3) var(--space-3) var(--space-2);
+  }
+
+  .calc-modal .modal__title {
+    font-size: 1.375rem;
+  }
+
+  .calc-modal .calc__counter {
+    margin-block-end: var(--space-1);
+  }
+
+  .calc-modal .calc__tracker {
+    margin-block-end: var(--space-2);
+  }
+
+  .calc-modal .calc__title-step {
+    margin-block-end: var(--space-2);
+  }
+
+  .calc-modal .calc__group {
+    margin-block-end: var(--space-3);
+  }
+
+  .calc-modal .calc__question {
+    margin-block-end: var(--space-1);
+  }
+
+  .calc-modal .calc__options {
+    gap: 0.375rem;
+  }
+
+  .calc-modal .calc-option {
+    min-block-size: 2.5rem;
+    padding-block: 0.375rem;
+  }
+
+  .calc-modal .calc__options--large .calc-option {
+    min-block-size: 2.75rem;
+  }
+
+  /* Пояснение перед формой не влезает в невысокое окно — подписи полей и так понятны */
+  .calc-modal .calc__contact .calc__text {
+    display: none;
+  }
+
+  .calc-modal .lead-form__control--area {
+    min-block-size: 3.25rem;
+  }
+}
+
+/* Совсем невысокие окна: ещё один шаг уплотнения */
+@media (min-width: 640px) and (max-height: 640px) {
+  .calc-modal .modal__panel {
+    padding: var(--space-2);
+  }
+
+  .calc-modal .modal__title {
+    font-size: 1.25rem;
+  }
+
+  .calc-modal .calc__group {
+    margin-block-end: var(--space-2);
+  }
+}
+
 /* ---------- Страница «Услуги» ---------- */
 .services-page {
   padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) 0;
@@ -4724,14 +4825,536 @@ body.home .clients {
   }
 }
 
-/* Лента и форма — с отступами как на внутренних страницах */
-.services-page + .clients,
-.clients:has(+ .lead) {
-  padding-block-start: 0;
+/* Секция направлений — последняя в контейнере страницы услуг перед лентой:
+   групповой нижний отступ не нужен, воздух над лентой даёт её собственный отступ */
+.services-page .container > .services:last-child {
+  padding-block-end: 0;
+}
+
+.services-page .service-stack {
+  margin-block-end: 0;
+}
+
+/* Лид под заголовком: короткий ответ на вопрос «что здесь и что делать» */
+.services-page__lead {
+  max-inline-size: 46rem;
+  margin: var(--space-3) auto 0;
+  color: var(--color-text-2);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+/* Факт (цена, гарантия, статус) внутри заголовка: сдвиг при наведении наследуется
+   от .service-card__title, отличается цвет и размер (половина кегля заголовка).
+   Решетка — декоративная */
+.service-card__fact {
+  color: var(--color-text-2);
+  font-size: 0.6em;
+}
+
+.service-card__fact::before {
+  content: "#";
 }
 
 /* ---------- Страницы направлений услуг ---------- */
 /* Заголовок с воздухом до ленты клиентов; сама лента перед формой идёт без верхнего отступа */
 .service-page {
-  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) var(--space-6);
+  /* Снизу без отступа: дальше лента клиентов, её верхние 96px дают воздух.
+     Заголовок с воздухом до ленты держит сама лента */
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) 0;
+}
+
+/* ---------- Страница услуги «Сайты» ---------- */
+/* Фон как на всём сайте — без градиентов и скруглений; контент слева, метафора справа */
+.service-hero {
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) var(--space-12);
+}
+
+@media (max-width: 767px) {
+  .service-hero {
+    padding-block-end: var(--space-6);
+  }
+}
+
+/* Текст слева, изображение-метафора справа */
+.service-hero__middle {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+  gap: var(--space-5);
+  margin-block-start: var(--space-5);
+}
+
+@media (max-width: 767px) {
+  .service-hero__middle {
+    grid-template-columns: 1fr;
+    margin-block-start: var(--space-4);
+  }
+
+  .service-hero__figure {
+    max-inline-size: 22rem;
+    margin-inline: auto;
+  }
+}
+
+.service-hero__intro {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+}
+
+.service-hero__figure {
+  margin: 0;
+}
+
+.service-hero__figure img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+/* До трёх колонок на десктопе. Раньше 1024px крупные значения («от 90 000 ₽» при 3.5rem)
+   и непереносимые подписи («месяцев гарантия на работы») не влезают в карточку —
+   стекаем в одну колонку раньше общего breakpoint'а */
+@media (max-width: 1023px) {
+  .service-hero .page-stats {
+    grid-template-columns: 1fr;
+    margin-block-start: var(--space-6);
+  }
+}
+
+.service-hero__content {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+}
+
+/* Заголовок — общий .section-title, но по левому краю: классический внутренний hero */
+.service-hero .section-title {
+  text-align: start;
+}
+
+.service-hero__lead {
+  max-inline-size: 38rem;
+  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--color-text-2);
+  text-wrap: pretty;
+}
+
+.service-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-start: var(--space-1);
+}
+
+/* Три метрики под контентом — те же карточки, что блок цифр на «Портфолио» */
+.service-hero .page-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-block-start: var(--space-12);
+}
+
+/* В карточке три элемента (значение, подпись, примечание) — без space-between из двухэлементной */
+.service-hero .page-stat {
+  justify-content: start;
+  gap: var(--space-2);
+  min-block-size: 0;
+}
+
+.service-hero .page-stat__note {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--color-text-2);
+}
+
+/* Подписи с единицей («недель запуск на шаблоне») держим в одну строку:
+   общий max-inline-size: 18ch для них слишком узкий */
+.service-hero .page-stat__text {
+  max-inline-size: none;
+  white-space: nowrap;
+}
+
+/* Лента логотипов перед FAQ: предыдущая секция (отзывы) уже даёт 96px снизу,
+   верхний margin ленты обнуляем, чтобы воздух сверху и снизу был одинаковым */
+.service-sections .clients {
+  margin-block-start: 0;
+}
+
+/* ---------- Стоимость: строка карточек с прилипшим горизонтальным скроллом ----------
+   Секция растянута скриптом на высоту экрана плюс дистанцию прокручивания; пока она
+   в зоне видимости, вертикальный скролл сдвигает строку по горизонтали. Без скрипта
+   и при prefers-reduced-motion — обычная горизонтальная прокрутка (formats--native) */
+.service-sections .team,
+.service-sections .tech,
+.service-sections .related {
+  padding-block: 0 var(--space-12);
+}
+
+/* 96px от блока кейсов; у самого пина отступ сверху маленький,
+   чтобы в залипшем состоянии заголовок сидел сразу под шапкой */
+.service-sections .formats {
+  margin-block-start: var(--space-12);
+}
+
+/* От блока кейсов до заголовка «Стоимость» — ровно 96px на десктопе:
+   нижний отступ кейсов убран, сверху у пина — отступ под шапку (24 + 72) */
+.service-sections .cases {
+  padding-block-end: 0;
+}
+
+.formats__pin {
+  /* Залипает ниже липкой шапки с дополнительным воздухом, а не под ней */
+  position: sticky;
+  inset-block-start: calc(var(--header-top) + var(--header-height) + var(--space-3));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-5);
+  overflow: clip;
+  padding-block: var(--space-4) var(--space-12);
+}
+
+.formats__note {
+  max-inline-size: 46rem;
+  margin: var(--space-3) auto 0;
+  color: var(--color-text-2);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+/* Строка карточек сразу под заголовком, без выравнивания по центру остатка экрана */
+.formats__scroller {
+  overflow: visible;
+}
+
+/* Единоразмерные карточки одной строкой; скрипт двигает её transform-ом.
+   Начало строки — на линии контейнера, как карточки отзывов */
+.format-grid {
+  --edge: max(var(--gutter), calc((100% - var(--container-max)) / 2));
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-3);
+  inline-size: max-content;
+  min-inline-size: 100%;
+  margin: 0;
+  padding-inline: var(--edge);
+  list-style: none;
+  will-change: transform;
+}
+
+.format-card {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  inline-size: clamp(20rem, 22rem + 3vw, 27rem);
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+/* Заголовок карточки — градиентом бренда, как акцентные надписи на сайте */
+.format-card__title {
+  inline-size: fit-content;
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-drop-orange);
+}
+
+.format-card__desc {
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.format-card__prices {
+  display: grid;
+  gap: var(--space-1);
+  margin-block-start: auto;
+  padding: 0;
+  list-style: none;
+}
+
+.format-card__price {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.format-card__price-label {
+  color: var(--color-text-2);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.format-card__price-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* Фолбэк: обычная горизонтальная прокрутка строки */
+.formats--native .formats__pin {
+  position: static;
+  min-block-size: 0;
+}
+
+.formats--native .formats__scroller {
+  overflow-x: auto;
+  padding-block-end: var(--space-2);
+}
+
+.formats--native .format-grid {
+  transform: none;
+}
+
+/* ---------- Команда проекта: компактная строка ролей ---------- */
+.team__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: var(--space-2);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.team-role {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-md);
+  background: var(--color-glass);
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: var(--blur-glass);
+}
+
+.team-role__name {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.team-role__duty {
+  color: var(--color-text-2);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.team__note {
+  margin: var(--space-4) 0 0;
+  color: var(--color-text-2);
+  font-size: 1rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+/* ---------- Технологии: монохромная строка ---------- */
+.tech__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech__item {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2.75rem;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+  transition:
+    color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .tech__item:hover {
+    color: var(--color-text);
+    border-color: var(--color-line-strong);
+  }
+}
+
+/* ---------- Перелинковка: подуслуги направления ---------- */
+.related__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  max-inline-size: 62rem;
+  margin: var(--space-6) auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related__link {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2.75rem;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  transition:
+    color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .related__link:hover {
+    color: var(--color-accent-strong);
+    border-color: var(--color-accent);
+  }
+}
+
+/* ---------- Липкая мобильная CTA «Рассчитать стоимость» ---------- */
+.lead-cta {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 60;
+  display: none;
+  padding: var(--space-2) var(--gutter) calc(var(--space-2) + env(safe-area-inset-bottom));
+  background: var(--color-glass);
+  border-block-start: 1px solid var(--color-glass-stroke);
+  box-shadow: 0 -8px 32px rgb(20 21 26 / 0.1);
+  backdrop-filter: var(--blur-glass);
+  transform: translateY(110%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.lead-cta.is-visible {
+  transform: translateY(0);
+}
+
+.lead-cta__button {
+  inline-size: 100%;
+}
+
+@media (max-width: 767px) {
+  .lead-cta {
+    display: block;
+  }
+
+  /* Компенсация плашки, чтобы не перекрывать последние строки футера */
+  .site-footer {
+    padding-block-end: var(--space-8);
+  }
+}
+
+
+/* ---------- Сайт под любую задачу: карточки форматов ---------- */
+.service-sections .solutions {
+  margin-block-start: var(--space-12);
+  padding-block-end: var(--space-12);
+}
+
+.solutions__grid {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.solution-card {
+  position: relative;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .solution-card {
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    .solution-card:hover {
+      transform: scale(1.012);
+    }
+  }
+}
+
+.solution-card__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-block-size: 11.5rem;
+  padding: var(--space-4);
+  /* Место под квадратную стрелку в углу */
+  padding-inline-end: calc(var(--space-4) + 3rem + var(--space-2));
+  border-radius: inherit;
+}
+
+.solution-card__title {
+  inline-size: fit-content;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-drop-orange);
+}
+
+.solution-card__desc {
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.solution-card .card-arrow .icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
+.solution-card__link:focus-visible .card-arrow {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (min-width: 700px) {
+  .solutions__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .solutions__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

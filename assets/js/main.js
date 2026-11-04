@@ -525,7 +525,15 @@ function initLeadModal(modal) {
   });
 
   // Телефон: попап — шторка снизу, её можно смахнуть вниз, потянув за верхнюю часть
-  const panel = modal.querySelector(".modal__panel");
+  initSwipeToClose(modal, modal.querySelector(".modal__panel"));
+
+  modal.addEventListener("close", () => {
+    if (modal.open) return;
+  });
+}
+
+// Шторку на телефоне можно закрыть, потянув вниз за верхнюю часть панели
+function initSwipeToClose(modal, panel) {
   const SWIPE_CLOSE_DISTANCE = 120;
   const SWIPE_ANIMATION_MS = 200;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -581,10 +589,87 @@ function initLeadModal(modal) {
     }
   });
 
+  // Событие приходит с задержкой: если за это время открыли другое окно, панель не трогаем
   modal.addEventListener("close", () => {
     if (modal.open) return;
     resetSwipe();
   });
+}
+
+// Попап с калькулятором (разметку добавляет calculator.js): открывается кнопками
+// «Рассчитать стоимость» — в мега-меню и где ещё встретится — на той же странице
+function initCalcModal() {
+  const modal = document.querySelector("[data-calc-modal]");
+  if (!modal) return;
+  const root = modal.querySelector("[data-calc]");
+
+  modal.querySelector("[data-calc-modal-close]").addEventListener("click", () => modal.close());
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) modal.close();
+  });
+  initSwipeToClose(modal, modal.querySelector(".modal__panel"));
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest('a[href="#calculator"], a[href$="index.html#calculator"], [data-calc-open]');
+    if (!trigger || modal.contains(trigger)) return;
+    event.preventDefault();
+    root.resetCalculator?.();
+    modal.showModal();
+    // Открытое мобильное меню не должно остаться поверх попапа
+    const menuToggle = document.querySelector("[data-menu-toggle]");
+    if (menuToggle?.getAttribute("aria-expanded") === "true") menuToggle.click();
+  });
+}
+
+// Блок «Стоимость»: секция растянута на экран плюс дистанцию прокручивания и прилипает
+// (sticky). Пока она на экране, вертикальный скролл сдвигает строку карточек по
+// горизонтали — дальше страница не прокрутится, пока строка не проедет целиком.
+// При prefers-reduced-motion — обычная горизонтальная прокрутка без прилипания
+function initFormatsScroll() {
+  const section = document.querySelector("[data-formats]");
+  if (!section) return;
+  const pin = section.querySelector(".formats__pin");
+  const track = section.querySelector("[data-format-track]");
+  if (!pin || !track) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const setNative = () => {
+    section.classList.add("formats--native");
+    section.style.blockSize = "";
+    track.style.transform = "";
+  };
+
+  if (reduced.matches) {
+    setNative();
+    return;
+  }
+
+  const overflow = () => Math.max(0, track.scrollWidth - document.documentElement.clientWidth);
+
+  // Горизонтальный прогресс считается по «липкому» диапазону: пока пин прилиплен
+  // (sectionH − pinH пикселей скролла), строка проезжает целиком
+  const update = () => {
+    const stickyRange = section.offsetHeight - pin.offsetHeight;
+    if (stickyRange <= 0) return;
+    const progress = Math.min(1, Math.max(0, -section.getBoundingClientRect().top / stickyRange));
+    track.style.transform = `translate3d(${-progress * overflow()}px, 0, 0)`;
+  };
+
+  // Секция = высота пина + дистанция прокручивания: пустого хвоста под пином
+  // не остаётся, поэтому до следующего блока ровно padding пина (96px)
+  const layout = () => {
+    const distance = Math.max(overflow() * 1.2, window.innerHeight * 0.5);
+    section.style.blockSize = `${pin.offsetHeight + distance}px`;
+    update();
+  };
+
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", layout);
+  reduced.addEventListener?.("change", (event) => {
+    if (event.matches) setNative();
+    else layout();
+  });
+  layout();
 }
 
 // Детальное окно кейса или новости: содержимое лежит в <template id="detail-…"> и копируется в диалог при открытии.
@@ -922,6 +1007,32 @@ function initMobileServicesNav() {
   });
 }
 
+// Липкая мобильная CTA «Рассчитать стоимость»: появляется после прокрутки hero,
+// прячется, когда форма заявки на экране, чтобы не перекрывать её
+function initLeadCta() {
+  const cta = document.querySelector("[data-lead-cta]");
+  if (!cta) return;
+  const lead = document.querySelector(cta.dataset.leadCtaTarget || "#lead");
+  let leadVisible = false;
+
+  const update = () => {
+    cta.classList.toggle("is-visible", window.scrollY > 480 && !leadVisible);
+  };
+
+  if (lead) {
+    new IntersectionObserver(
+      ([entry]) => {
+        leadVisible = entry.isIntersecting;
+        update();
+      },
+      { rootMargin: "0px 0px -25% 0px" }
+    ).observe(lead);
+  }
+
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+}
+
 initHeader();
 initServicesMegaMenu();
 initMobileServicesNav();
@@ -933,12 +1044,19 @@ initServiceStack();
 document.querySelectorAll("[data-drag-scroll]").forEach(initDragScroll);
 initServiceTabs(document.querySelector("[data-service-stack]"));
 initProcess();
-initCursorHalo(document.querySelector("[data-cursor-halo]"));
-initHeroGl(document.querySelector("[data-hero-gl]"));
+// Четыре инициализации живут в подключаемых на отдельных страницах скриптах
+// (cursor-halo.js, hero-gl.js, lead-wave.js, calculator.js) — не всякая страница
+// их подключает, поэтому вызов через window с опциональной цепочкой: иначе
+// ReferenceError рвал всю оставшуюся инициализацию страницы
+window.initCursorHalo?.(document.querySelector("[data-cursor-halo]"));
+window.initHeroGl?.(document.querySelector("[data-hero-gl]"));
 initFaq(document.querySelector("[data-faq]"));
 document.querySelectorAll("[data-lead-form]").forEach(initLeadForm);
 initLeadModal(document.querySelector("[data-lead-modal]"));
-initLeadWave(document.querySelector("[data-lead-wave]"));
-initCalculator(document.querySelector("[data-calc]"));
+window.initLeadWave?.(document.querySelector("[data-lead-wave]"));
+document.querySelectorAll("[data-calc]").forEach((el) => window.initCalculator?.(el));
+initCalcModal();
+initFormatsScroll();
 initDetail(document.querySelector("[data-detail-modal]"));
 initCookieBanner(document.querySelector("[data-cookie]"));
+initLeadCta();

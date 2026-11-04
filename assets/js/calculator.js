@@ -318,6 +318,95 @@ function initCalculator(root) {
   next.addEventListener("click", () => go(state.step + 1));
 
   render();
+
+  // Попап открывается каждый раз с чистого первого шага
+  root.resetCalculator = () => {
+    state.service = null;
+    state.need = null;
+    state.answers = {};
+    root.querySelector("form")?.reset();
+    go(0, { moveFocus: false });
+  };
 }
 
 window.initCalculator = initCalculator;
+
+// Попап с калькулятором: собирается здесь и добавляется на каждую страницу,
+// чтобы кнопка «Рассчитать стоимость» в мега-меню открывала его на месте,
+// а не вела на главную. Инициализация шагов — общим initCalculator в main.js.
+// ID полей с префиксом calc-pop: на главной рядом живёт встроенный калькулятор с calc-*.
+const CALC_POPUP_HTML = `
+<dialog class="modal calc-modal" data-calc-modal aria-labelledby="calc-modal-title">
+  <div class="modal__panel">
+    <button class="modal__close" type="button" aria-label="Закрыть" data-calc-modal-close>
+      <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+    </button>
+    <h2 class="modal__title" id="calc-modal-title">Рассчитайте стоимость <span class="section-title__muted">за 2 минуты</span></h2>
+    <div class="calc__panel" data-calc>
+      <p class="calc__counter" data-calc-counter>Шаг 1 из 4</p>
+      <ol class="calc__tracker" data-calc-tracker>
+        <li><span class="visually-hidden">1. Услуга</span></li>
+        <li><span class="visually-hidden">2. Задача</span></li>
+        <li><span class="visually-hidden">3. Подробности</span></li>
+        <li><span class="visually-hidden">4. Контакты</span></li>
+      </ol>
+      <div class="calc__stage" tabindex="-1" data-calc-stage>
+        <h3 class="calc__title-step" data-calc-title>Выберите услугу</h3>
+        <div data-calc-body></div>
+        <div class="calc__contact" data-calc-contact hidden>
+          <h3 class="calc__title-step">Почти готово!</h3>
+          <p class="calc__text">Теперь у нас есть верхнеуровневые требования к вашему проекту. Заполните контактные данные ниже, и наши менеджеры оперативно свяжутся, чтобы сориентировать вас по стоимости и срокам реализации проекта.</p>
+          <form class="lead-form calc__form" method="post" novalidate data-lead-form data-endpoint="">
+            <input type="hidden" name="brief" data-calc-brief />
+            <div class="lead-form__row">
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="calc-pop-name">Имя</label>
+                <input class="lead-form__control" id="calc-pop-name" name="name" type="text" autocomplete="name" required aria-describedby="calc-pop-name-error" data-error="Укажите, как к вам обращаться" />
+                <p class="lead-form__error" id="calc-pop-name-error"></p>
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="calc-pop-company">Название компании</label>
+                <input class="lead-form__control" id="calc-pop-company" name="company" type="text" autocomplete="organization" required aria-describedby="calc-pop-company-error" data-error="Укажите название компании" />
+                <p class="lead-form__error" id="calc-pop-company-error"></p>
+              </div>
+            </div>
+            <div class="lead-form__row">
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="calc-pop-phone">Телефон</label>
+                <input class="lead-form__control" id="calc-pop-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="calc-pop-phone-error" data-error="Укажите телефон для связи" />
+                <p class="lead-form__error" id="calc-pop-phone-error"></p>
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="calc-pop-email">E-mail</label>
+                <input class="lead-form__control" id="calc-pop-email" name="email" type="email" autocomplete="email" required aria-describedby="calc-pop-email-error" data-error="Укажите корректный e-mail" />
+                <p class="lead-form__error" id="calc-pop-email-error"></p>
+              </div>
+            </div>
+            <div class="lead-form__field">
+              <label class="lead-form__label" for="calc-pop-message">Сообщение</label>
+              <textarea class="lead-form__control lead-form__control--area" id="calc-pop-message" name="message" rows="3" placeholder="Детали проекта, сроки, технологии и другая важная информация" aria-describedby="calc-pop-message-error"></textarea>
+              <p class="lead-form__error" id="calc-pop-message-error"></p>
+            </div>
+            <div class="calc__form-actions">
+              <button class="btn btn--ghost" type="button" data-calc-back-contact>Назад</button>
+              <button class="btn btn--primary lead-form__submit" type="submit">Отправить</button>
+            </div>
+            <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+            <p class="lead-form__status" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </div>
+      <div class="calc__nav">
+        <button class="btn btn--ghost btn--sm" type="button" data-calc-back hidden>Назад</button>
+        <button class="btn btn--primary btn--sm" type="button" data-calc-next disabled>Далее</button>
+      </div>
+    </div>
+  </div>
+</dialog>`;
+
+function buildCalcPopup() {
+  if (document.querySelector("[data-calc-modal]")) return;
+  document.body.insertAdjacentHTML("beforeend", CALC_POPUP_HTML);
+}
+
+buildCalcPopup();
