@@ -636,7 +636,8 @@
 
 @media (hover: hover) {
   .card-arrow:hover::before,
-  .service-card:hover .card-arrow::before {
+  .service-card:hover .card-arrow::before,
+  .solution-card:hover .card-arrow::before {
     opacity: 1;
   }
 }
@@ -644,7 +645,8 @@
 @media (prefers-reduced-motion: no-preference) {
   @media (hover: hover) {
   .card-arrow:hover::before,
-  .service-card:hover .card-arrow::before {
+  .service-card:hover .card-arrow::before,
+  .solution-card:hover .card-arrow::before {
       animation: gradient-flow 3s linear infinite;
     }
 }
@@ -659,7 +661,8 @@
 /* Наведение на карточку услуги оживляет стрелку так же, как наведение на неё саму */
 @media (hover: hover) {
   .card-arrow:hover .icon,
-  .service-card:hover .card-arrow .icon {
+  .service-card:hover .card-arrow .icon,
+  .solution-card:hover .card-arrow .icon {
     transform: translate(2px, -2px);
   }
 }
@@ -1461,10 +1464,10 @@
 }
 
 .lead__text {
-  max-inline-size: 28rem;
+  max-inline-size: 30rem;
   margin: var(--space-3) 0 0;
   color: var(--color-text-2);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.5;
 }
 
@@ -4960,13 +4963,13 @@ html:has(.detail[open]) {
 /* В карточке три элемента (значение, подпись, примечание) — без space-between из двухэлементной */
 .service-hero .page-stat {
   justify-content: start;
-  gap: var(--space-2);
+  gap: 0.5rem;
   min-block-size: 0;
 }
 
 .service-hero .page-stat__note {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 1.0625rem;
   line-height: 1.4;
   color: var(--color-text-2);
 }
@@ -4975,6 +4978,7 @@ html:has(.detail[open]) {
    общий max-inline-size: 18ch для них слишком узкий */
 .service-hero .page-stat__text {
   max-inline-size: none;
+  font-size: 1.0625rem;
   white-space: nowrap;
 }
 
@@ -5007,7 +5011,8 @@ html:has(.detail[open]) {
 }
 
 .formats__pin {
-  /* Залипает ниже липкой шапки с дополнительным воздухом, а не под ней */
+  /* Залипает ниже липкой шапки; высота по контенту: до блока — 96px (margin секции),
+     после — 96px нижнего паддинга */
   position: sticky;
   inset-block-start: calc(var(--header-top) + var(--header-height) + var(--space-3));
   display: flex;
@@ -5015,7 +5020,7 @@ html:has(.detail[open]) {
   justify-content: flex-start;
   gap: var(--space-5);
   overflow: clip;
-  padding-block: var(--space-4) var(--space-12);
+  padding-block: 0 var(--space-12);
 }
 
 .formats__note {
@@ -5052,7 +5057,8 @@ html:has(.detail[open]) {
   display: flex;
   flex-direction: column;
   flex: none;
-  inline-size: clamp(20rem, 22rem + 3vw, 27rem);
+  /* Ширина рассчитана так, чтобы подпись цены в 15px всегда вставала в строку */
+  inline-size: clamp(22rem, 25rem + 3vw, 31rem);
   gap: var(--space-2);
   padding: var(--space-4);
   border: 1px solid var(--color-line);
@@ -5060,50 +5066,61 @@ html:has(.detail[open]) {
   background: var(--color-bg);
 }
 
-/* Заголовок карточки — градиентом бренда, как акцентные надписи на сайте */
 .format-card__title {
-  inline-size: fit-content;
-  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 85%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: var(--color-drop-orange);
+  color: var(--color-text);
 }
 
 .format-card__desc {
   margin: 0;
   color: var(--color-text-2);
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   line-height: 1.5;
   text-wrap: pretty;
 }
 
 .format-card__prices {
   display: grid;
-  gap: var(--space-1);
+  gap: var(--space-2);
   margin-block-start: auto;
   padding: 0;
   list-style: none;
 }
 
+/* Строка цены — светлая капсула: подпись слева, цена — градиентная капсула справа */
 .format-card__price {
-  display: grid;
-  gap: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  min-block-size: 3rem;
+  padding-inline-start: var(--space-2);
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-alt);
 }
 
+/* Подпись цены — по размеру как описание карточки */
 .format-card__price-label {
-  color: var(--color-text-2);
-  font-size: 0.875rem;
-  line-height: 1.4;
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 .format-card__price-value {
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 0.75rem;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 100%);
+  color: var(--color-surface);
   font-family: var(--font-display);
-  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -5128,11 +5145,23 @@ html:has(.detail[open]) {
 /* ---------- Команда проекта: компактная строка ролей ---------- */
 .team__row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
-  gap: var(--space-2);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
   margin: var(--space-6) 0 0;
   padding: 0;
   list-style: none;
+}
+
+@media (min-width: 640px) {
+  .team__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .team__row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .team-role {
@@ -5143,61 +5172,324 @@ html:has(.detail[open]) {
   border: 1px solid var(--color-glass-stroke);
   border-radius: var(--radius-md);
   background: var(--color-glass);
-  box-shadow: var(--shadow-glass);
   backdrop-filter: var(--blur-glass);
 }
 
+/* Иллюстрация роли слева от текста: силуэт-подложка, приглушённый прозрачностью */
+/* Иллюстрация роли — над названием; высота одинаковая у всех, ширина
+   следует пропорциям (горизонтальные картинки шире), поэтому названия
+   в ряду стоят на одной линии */
+.team-role__image {
+  display: block;
+  block-size: clamp(4.5rem, 4rem + 1.5vw, 6rem);
+  inline-size: auto;
+  max-inline-size: 100%;
+  object-fit: contain;
+  object-position: left bottom;
+  margin-block-end: var(--space-1);
+  opacity: 0.3;
+}
+
+/* Название роли — градиентная плашка с белым текстом */
 .team-role__name {
-  font-size: 1rem;
+  justify-self: start;
+  padding: 0.25rem 0.875rem;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 100%);
+  color: var(--color-surface);
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.3;
 }
 
 .team-role__duty {
   color: var(--color-text-2);
-  font-size: 0.875rem;
+  font-size: 1.0625rem;
   line-height: 1.45;
 }
 
-.team__note {
-  margin: var(--space-4) 0 0;
-  color: var(--color-text-2);
-  font-size: 1rem;
-  line-height: 1.55;
-  text-align: center;
+/* ---------- Технологии: монохромная строка ---------- */
+/* ---------- Технологии ---------- */
+/* Заголовок по центру, под ним — широкий веер логотипов */
+.tech__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-6);
 }
 
-/* ---------- Технологии: монохромная строка ---------- */
-.tech__row {
+/* Заголовок держим в две строки, как в остальных секциях страницы */
+.tech__inner > .section-title {
+  max-inline-size: 42rem;
+}
+
+/* Папка: задняя створка с язычком справа, передний карман — с язычком слева.
+   Форму и раскладку веера считает скрипт по фактическим размерам — так
+   скругления не деформируются, а иконки всегда влезают по ширине */
+.tech-folder {
+  --tech-tile: 4rem;
+  --tech-spread: 2.5rem;
+  --tech-arc: 1.8px;
+  --tech-tilt: 2.4deg;
+  position: relative;
+  inline-size: 100%;
+  max-inline-size: 44rem;
+  block-size: 25rem;
+  color: var(--color-text);
+  isolation: isolate;
+  opacity: 0;
+  transform: translateY(2rem) scale(0.94);
+  transition:
+    opacity 0.6s ease,
+    transform 0.9s var(--ease-out);
+}
+
+.tech-folder.is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+.tech-folder__glow {
+  position: absolute;
+  inset: var(--space-4) 8% auto;
+  block-size: 12.5rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgb(255 122 31 / 0.16),
+    rgb(255 122 168 / 0.08) 55%,
+    transparent
+  );
+  filter: blur(18px);
+  z-index: -1;
+}
+
+.tech-folder__back {
+  position: absolute;
+  inset: 0.875rem 0 0;
+  /* Фирменный градиент: оранжевый держится дольше, розовый — только на дальнем краю */
+  background: linear-gradient(
+    135deg,
+    var(--color-drop-orange) 0%,
+    var(--color-drop-orange) 78%,
+    var(--color-drop-pink) 100%
+  );
+}
+
+.tech-folder__outline {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.tech-folder__outline path {
+  fill: none;
+  stroke-width: 2;
+}
+
+.tech-folder__icons {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+/* Иконки лежат веером: --k задаёт позицию в ряду, --k2 — высоту дуги */
+.tech-folder__icon {
+  position: absolute;
+  inset-block-start: 5rem;
+  inset-inline-start: 50%;
+  inline-size: var(--tech-tile);
+  block-size: var(--tech-tile);
+  margin-inline-start: calc(var(--tech-tile) / -2);
+  z-index: calc(10 - var(--d));
+  opacity: 0;
+  transform: translate3d(0, 5rem, 0);
+  transition:
+    transform 0.9s var(--ease-out),
+    opacity 0.5s ease;
+  transition-delay: calc(0.35s + var(--i) * 0.06s);
+}
+
+.tech-folder.is-shown .tech-folder__icon {
+  opacity: 1;
+  transform: translate3d(
+    calc(var(--k) * var(--tech-spread)),
+    calc(var(--k2) * var(--tech-arc)),
+    0
+  ) rotate(calc(var(--k) * var(--tech-tilt)));
+  transition-delay: calc(var(--i) * 0.05s);
+}
+
+.tech-folder__tile {
+  position: relative;
+  display: grid;
+  place-items: center;
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / 0.94);
+  box-shadow:
+    0 0.75rem 1.75rem rgb(20 21 26 / 0.14),
+    0 0 0 1px rgb(20 21 26 / 0.07);
+  pointer-events: auto;
+  transition:
+    transform 0.45s var(--ease-out),
+    filter 0.3s ease;
+}
+
+/* Логотипы на сайте-источнике уже монохромные — держим их приглушёнными,
+   пока не заменят на цветные */
+.tech-folder__logo {
+  inline-size: 64%;
+  block-size: 50%;
+  object-fit: contain;
+  opacity: 0.65;
+}
+
+.tech-folder__label {
+  position: absolute;
+  inset-block-end: calc(100% + 0.5rem);
+  inset-inline-start: 50%;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.86);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--color-text);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-50%) translateY(0.375rem);
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s var(--ease-out);
+  pointer-events: none;
+}
+
+.tech-folder__front-wrap {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 13.125rem;
+  z-index: 100;
+}
+
+.tech-folder__front {
+  position: absolute;
+  inset: 0;
+  padding: 2.125rem 1.125rem 1rem;
+  /* Тот же градиент, но под белой стеклянной плёнкой — карман светлее задней створки */
+  background:
+    linear-gradient(160deg, rgb(255 255 255 / 0.74), rgb(255 255 255 / 0.52) 60%),
+    linear-gradient(
+      135deg,
+      var(--color-drop-orange) 0%,
+      var(--color-drop-orange) 78%,
+      var(--color-drop-pink) 100%
+    );
+}
+
+.tech-folder__caption {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.tech-folder__tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-2);
-  margin: var(--space-6) 0 0;
+  gap: 0.375rem;
+  margin: var(--space-2) 0 0;
   padding: 0;
   list-style: none;
 }
 
-.tech__item {
-  display: inline-flex;
-  align-items: center;
-  min-block-size: 2.75rem;
-  padding: var(--space-1) var(--space-3);
-  border: 1px solid var(--color-line);
+.tech-folder__tag {
+  padding: 0.1875rem 0.75rem;
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
+  /* Градиентный контур: белая заливка в padding-box, градиент виден только в рамке */
+  background:
+    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+    linear-gradient(120deg, var(--color-drop-orange), var(--color-drop-pink)) border-box;
   color: var(--color-text-2);
-  font-size: 0.9375rem;
-  font-weight: 700;
-  line-height: 1.3;
-  transition:
-    color var(--duration-base) var(--ease-out),
-    border-color var(--duration-base) var(--ease-out);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
+/* Наведение раскрывает веер шире, иконка под курсором приподнимается */
 @media (hover: hover) {
-  .tech__item:hover {
-    color: var(--color-text);
-    border-color: var(--color-line-strong);
+  .tech-folder:hover .tech-folder__icon {
+    transform: translate3d(
+      calc(var(--k) * var(--tech-spread) * 1.12),
+      calc(var(--k2) * var(--tech-arc)),
+      0
+    ) rotate(calc(var(--k) * var(--tech-tilt)));
+    transition-delay: 0s;
+  }
+
+  .tech-folder__icon:hover {
+    z-index: 50;
+  }
+
+  .tech-folder__icon:hover .tech-folder__tile {
+    transform: translateY(-0.75rem) scale(1.08);
+  }
+
+  .tech-folder__icon:hover .tech-folder__label {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-folder,
+  .tech-folder__icon,
+  .tech-folder__tile {
+    transition: none;
+  }
+
+  .tech-folder {
+    opacity: 1;
+    transform: none;
+  }
+
+  .tech-folder__icon,
+  .tech-folder.is-shown .tech-folder__icon {
+    opacity: 1;
+    transform: translate3d(
+      calc(var(--k) * var(--tech-spread)),
+      calc(var(--k2) * var(--tech-arc)),
+      0
+    ) rotate(calc(var(--k) * var(--tech-tilt)));
+  }
+}
+
+@media (max-width: 599px) {
+  .tech-folder {
+    --tech-tile: 3.5rem;
+  }
+
+  .tech-folder__icon {
+    inset-block-start: 2.5rem;
+  }
+
+  .tech-folder__front-wrap {
+    block-size: 15.5rem;
+  }
+
+  .tech-folder__front {
+    padding-block-start: 1.875rem;
   }
 }
 
@@ -5273,8 +5565,8 @@ html:has(.detail[open]) {
 
 
 /* ---------- Сайт под любую задачу: карточки форматов ---------- */
+/* Расстояние до блока стоимости уже даёт нижний паддинг пина (96px) */
 .service-sections .solutions {
-  margin-block-start: var(--space-12);
   padding-block-end: var(--space-12);
 }
 
@@ -5288,28 +5580,32 @@ html:has(.detail[open]) {
 
 .solution-card {
   position: relative;
+  display: flex;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
   background: var(--color-bg);
 }
 
+/* Сдвиг текста при наведении — как у карточек кейсов и направлений */
 @media (prefers-reduced-motion: no-preference) {
-  .solution-card {
-    transition: transform var(--duration-base) var(--ease-out);
+  .solution-card__title,
+  .solution-card__desc {
+    transition: transform 400ms var(--ease-out);
   }
 
   @media (hover: hover) {
-    .solution-card:hover {
-      transform: scale(1.012);
+    .solution-card:hover .solution-card__title,
+    .solution-card:hover .solution-card__desc {
+      transform: translateX(0.75rem);
     }
   }
 }
 
 .solution-card__link {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: var(--space-2);
-  min-block-size: 11.5rem;
   padding: var(--space-4);
   /* Место под квадратную стрелку в углу */
   padding-inline-end: calc(var(--space-4) + 3rem + var(--space-2));
@@ -5317,22 +5613,17 @@ html:has(.detail[open]) {
 }
 
 .solution-card__title {
-  inline-size: fit-content;
-  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 85%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: var(--color-drop-orange);
+  color: var(--color-text);
 }
 
 .solution-card__desc {
   margin: 0;
   color: var(--color-text-2);
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   line-height: 1.5;
   text-wrap: pretty;
 }
@@ -5353,8 +5644,46 @@ html:has(.detail[open]) {
   }
 }
 
-@media (min-width: 1024px) {
-  .solutions__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+/* Ховер карточки направления: только лёгкая градиентная заливка, без контура */
+@media (hover: hover) {
+  .solution-card:hover {
+    background: linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--color-drop-orange) 8%, var(--color-bg)) 0%,
+      color-mix(in srgb, var(--color-drop-pink) 10%, var(--color-bg)) 100%
+    );
   }
 }
+
+/* Карточки решений появляются по строке мягким проявлением, без сдвига-«выезда» */
+@media (prefers-reduced-motion: no-preference) {
+  .js .solution-card:not(.is-revealed) {
+    opacity: 0;
+  }
+
+  .js [data-reveal].solution-card.is-revealed {
+    animation: solution-fade 500ms var(--ease-out) both;
+  }
+
+  @keyframes solution-fade {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* Подзаголовок блока команды */
+.team__lead {
+  max-inline-size: 46rem;
+  margin: var(--space-3) auto 0;
+  color: var(--color-text-2);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: pretty;
+}
+

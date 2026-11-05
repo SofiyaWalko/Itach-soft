@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/components.css" />
     <link rel="stylesheet" href="assets/css/sections.css" />
+    <script src="assets/js/calculator.js" defer></script>
     <script src="assets/js/lead-wave.js" defer></script>
     <script src="assets/js/cursor-halo.js" defer></script>
     <script src="assets/js/main.js" defer></script>
@@ -329,7 +330,8 @@
               <div class="mega-menu__promo glow-card">
                 <h3 class="mega-menu__promo-title">Узнайте стоимость разработки</h3>
                 <p class="mega-menu__promo-text">Опишите задачу — рассчитаем предварительную оценку проекта.</p>
-                <a class="mega-menu__promo-link" href="#lead">Рассчитать стоимость</a>
+                <a class="btn btn--primary btn--sm mega-menu__promo-link" href="#lead">Рассчитать стоимость</a>
+                <img class="mega-menu__promo-image" src="assets/img/mega-menu-banner.webp" alt="" width="800" height="522" decoding="async">
               </div>
             </aside>
           </div>
@@ -361,7 +363,7 @@
                   Проектируем, разрабатываем и поддерживаем сайты, которые решают задачи бизнеса: от лендинга до интернет-магазина и портала. Собственная команда, фиксированная смета и сроки в договоре.
                 </p>
                 <div class="service-hero__actions" data-reveal>
-                  <a class="btn btn--primary" href="#lead">Рассчитать стоимость</a>
+                  <a class="btn btn--primary" href="#calculator">Рассчитать стоимость</a>
                   <a class="btn btn--ghost" href="#cases">Смотреть кейсы</a>
                 </div>
               </div>
@@ -385,17 +387,17 @@
             <li class="page-stat glow-card" style="--i: 0">
               <span class="page-stat__value">от 90 000 ₽</span>
               <p class="page-stat__text">стоимость проекта</p>
-              <p class="page-stat__note">Точную смету фиксируем в договоре</p>
+              <p class="page-stat__note">точную смету фиксируем в договоре</p>
             </li>
             <li class="page-stat glow-card" style="--i: 1">
               <span class="page-stat__value">от 2</span>
               <p class="page-stat__text">недель запуск на шаблоне</p>
-              <p class="page-stat__note">Индивидуальная разработка — от 2 месяцев</p>
+              <p class="page-stat__note">индивидуальная разработка — от 2 месяцев</p>
             </li>
             <li class="page-stat glow-card" style="--i: 2">
               <span class="page-stat__value">до 24</span>
               <p class="page-stat__text">месяцев гарантия на работы</p>
-              <p class="page-stat__note">И поддержка 24/7 после запуска</p>
+              <p class="page-stat__note">и поддержка 24/7 после запуска</p>
             </li>
           </ul>
         </div>
@@ -532,83 +534,83 @@
         </section>
 
         <!-- Сайт под любую задачу -->
-        <section class="solutions" aria-labelledby="solutions-title">
+        <section class="solutions" id="solutions" aria-labelledby="solutions-title">
           <div class="container">
-            <h2 class="section-title" data-reveal id="solutions-title">
+            <h2 class="section-title" id="solutions-title">
               Сайт <span class="section-title__muted">под любую задачу бизнеса</span>
             </h2>
-            <ul class="solutions__grid" data-reveal-stagger>
-              <li class="solution-card glow-card" style="--i: 0">
+            <ul class="solutions__grid">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/korporativnye-sayty/" target="_blank" rel="noopener" aria-label="Корпоративные сайты — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Корпоративные сайты</h3>
                   <p class="solution-card__desc">Имиджевый ресурс компании: услуги, новости, разделы для клиентов и партнёров.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 1">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/internet-magaziny/" target="_blank" rel="noopener" aria-label="Интернет-магазины — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Интернет-магазины</h3>
                   <p class="solution-card__desc">Полноценные онлайн-продажи: каталог, корзина, оплата и обмен данными с учётными системами.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 2">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/sayty-vizitki/" target="_blank" rel="noopener" aria-label="Сайты-визитки — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Сайты-визитки</h3>
                   <p class="solution-card__desc">Компактное представительство бизнеса в интернете: услуги, преимущества и контакты.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 3">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/sayty-gosudarstvennykh-organizatsiy/" target="_blank" rel="noopener" aria-label="Сайты государственных организаций — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Сайты государственных организаций</h3>
                   <p class="solution-card__desc">Официальные порталы с разделами и документами, доступная версия для слабовидящих.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 4">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/landing/" target="_blank" rel="noopener" aria-label="Лендинги — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Лендинги</h3>
                   <p class="solution-card__desc">Продающие одностраничные сайты под конкретный продукт или рекламную кампанию.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 5">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/razrabotka-sayta-na-gotovykh-shablonakh/" target="_blank" rel="noopener" aria-label="Сайты на готовых шаблонах — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Сайты на готовых шаблонах</h3>
                   <p class="solution-card__desc">Быстрый запуск на проверенном шаблоне с фирменным оформлением и настройкой под бренд.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 6">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/razrabotka-veb-portalov/" target="_blank" rel="noopener" aria-label="Веб-порталы — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Веб-порталы</h3>
                   <p class="solution-card__desc">Масштабные платформы с личными кабинетами, сложной бизнес-логикой и интеграциями.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 7">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/dorabotka-sayta/" target="_blank" rel="noopener" aria-label="Доработка сайтов — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Доработка сайтов</h3>
                   <p class="solution-card__desc">Развитие действующего сайта: новый функционал, интеграции, рост скорости и конверсии.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 8">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/tekhpodderzhka-sayta/" target="_blank" rel="noopener" aria-label="Техническая поддержка сайтов — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Техническая поддержка сайтов</h3>
                   <p class="solution-card__desc">Обновления, мониторинг работоспособности и оперативное решение проблем.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 9">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/kompleksny-audit-sayta/" target="_blank" rel="noopener" aria-label="Комплексный аудит сайта — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Комплексный аудит сайта</h3>
                   <p class="solution-card__desc">Анализ ошибок, скорости и юзабилити с планом доработок для роста эффективности.</p>
                 </a>
               </li>
-              <li class="solution-card glow-card" style="--i: 10">
+              <li class="solution-card" data-reveal>
                 <a class="solution-card__link" href="https://itach-soft.ru/services/sayty/razrabotka-veb-dizayna-sayta/" target="_blank" rel="noopener" aria-label="Разработка веб-дизайна — подробнее">
                   <span class="card-arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
                   <h3 class="solution-card__title">Разработка веб-дизайна</h3>
@@ -694,50 +696,173 @@
             <h2 class="section-title" data-reveal id="team-title">
               Кто будет <span class="section-title__muted">работать над сайтом</span>
             </h2>
+            <p class="team__lead" data-reveal>
+              Команда формируется индивидуально под каждый проект — состав и роли зависят от задач и сложности сайта
+            </p>
             <ul class="team__row" data-reveal-stagger>
-              <li class="team-role">
-                <span class="team-role__name">Менеджер проекта</span>
-                <span class="team-role__duty">Ведёт сроки, бюджет и коммуникацию</span>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-project-manager.webp" width="522" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Проектный менеджер</span>
+                <span class="team-role__duty">Координирует работу команды, контролирует сроки, коммуникацию и выполнение задач по проекту.</span>
               </li>
-              <li class="team-role">
-                <span class="team-role__name">UX/UI-дизайнер</span>
-                <span class="team-role__duty">Проектирует структуру и интерфейсы</span>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-business-analyst.webp" width="564" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Бизнес-аналитик</span>
+                <span class="team-role__duty">Изучает задачи бизнеса, собирает требования и помогает определить структуру, функции и приоритеты проекта.</span>
               </li>
-              <li class="team-role">
-                <span class="team-role__name">Frontend-разработчик</span>
-                <span class="team-role__duty">Верстает и оживляет интерфейс</span>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-ux-ui-designer.webp" width="530" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">UX/UI дизайнер</span>
+                <span class="team-role__duty">Проектирует пользовательские сценарии, прототипы и визуальную концепцию сайта, чтобы он был удобным и понятным.</span>
               </li>
-              <li class="team-role">
-                <span class="team-role__name">Backend-разработчик</span>
-                <span class="team-role__duty">Серверная логика и интеграции</span>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-frontend.webp" width="600" height="401" alt="" loading="lazy" />
+                <span class="team-role__name">Фронтенд-разработчик</span>
+                <span class="team-role__duty">Реализует интерфейсы, адаптивность и интерактивные элементы, обеспечивая корректную работу сайта на всех устройствах.</span>
               </li>
-              <li class="team-role">
-                <span class="team-role__name">Контент-специалист</span>
-                <span class="team-role__duty">Наполняет сайт текстами и изображениями</span>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-backend.webp" width="600" height="393" alt="" loading="lazy" />
+                <span class="team-role__name">Бэкенд-разработчик</span>
+                <span class="team-role__duty">Отвечает за серверную логику, интеграции, базы данных и стабильную работу функционала сайта.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-qa.webp" width="575" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">QA-инженер (тестировщик)</span>
+                <span class="team-role__duty">Проверяет функциональность, находит ошибки и контролирует качество проекта перед запуском.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-copywriter.webp" width="578" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Контент-менеджер / копирайтер</span>
+                <span class="team-role__duty">Готовит и структурирует тексты, помогает раскрыть преимущества компании и сделать страницы понятными для клиентов.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-devops.webp" width="538" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">DevOps-инженер</span>
+                <span class="team-role__duty">Настраивает окружение, мониторинг, резервное копирование и обеспечивает надёжную работу проекта.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-account-manager.webp" width="594" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Аккаунт-менеджер</span>
+                <span class="team-role__duty">Сопровождает клиента после запуска, помогает с новыми задачами, приоритетами и дальнейшим развитием сайта.</span>
               </li>
             </ul>
-            <p class="team__note" data-reveal>Состав команды подбирается под задачу — от 3 до 7 специалистов.</p>
           </div>
         </section>
 
-        <!-- 6. Технологии -->
-        <section class="tech" aria-labelledby="tech-title">
-          <div class="container">
+        <!-- 6. Технологии: блок временно скрыт, разметка и стили остаются -->
+        <section class="tech" aria-labelledby="tech-title" hidden>
+          <div class="container tech__inner">
             <h2 class="section-title" data-reveal id="tech-title">
-              Технологии
+              Выбираем лучшие <span class="section-title__muted">технологии для проекта</span>
             </h2>
-            <ul class="tech__row" data-reveal-stagger>
-              <li class="tech__item">1С-Битрикс</li>
-              <li class="tech__item">OpenCart</li>
-              <li class="tech__item">React</li>
-              <li class="tech__item">Vue.js</li>
-              <li class="tech__item">PHP</li>
-              <li class="tech__item">JavaScript</li>
-              <li class="tech__item">MySQL</li>
-              <li class="tech__item">1С</li>
-              <li class="tech__item">HTML5 / CSS3</li>
-              <li class="tech__item">REST API</li>
-            </ul>
+
+            <div class="tech-folder" data-tech-folder>
+              <div class="tech-folder__glow" aria-hidden="true"></div>
+
+              <div class="tech-folder__back" data-tech-folder-back>
+                <svg class="tech-folder__outline" aria-hidden="true">
+                  <path data-tech-folder-path stroke="rgb(20 21 26 / 0.09)"></path>
+                </svg>
+              </div>
+
+              <ul class="tech-folder__icons" aria-hidden="true">
+                <li class="tech-folder__icon" style="--k: -5; --k2: 25; --d: 5; --i: 0">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/bitrix24.svg" alt="" width="283" height="66" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">Битрикс24</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: -4; --k2: 16; --d: 4; --i: 1">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/1c-bitrix.svg" alt="" width="164" height="172" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">1С-Битрикс</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: -3; --k2: 9; --d: 3; --i: 2">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/laravel.svg" alt="" width="191" height="182" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">Laravel</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: -2; --k2: 4; --d: 2; --i: 3">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/php.svg" alt="" width="249" height="159" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">PHP</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: -1; --k2: 1; --d: 1; --i: 4">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/mysql.svg" alt="" width="204" height="142" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">MySQL</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: 0; --k2: 0; --d: 0; --i: 5">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/html5.svg" alt="" width="208" height="212" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">HTML5</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: 1; --k2: 1; --d: 1; --i: 6">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/javascript.svg" alt="" width="208" height="208" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">JavaScript</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: 2; --k2: 4; --d: 2; --i: 7">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/vue.svg" alt="" width="208" height="182" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">Vue.js</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: 3; --k2: 9; --d: 3; --i: 8">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/react.svg" alt="" width="208" height="196" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">React</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: 4; --k2: 16; --d: 4; --i: 9">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/figma.svg" alt="" width="161" height="229" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">Figma</span>
+                </li>
+                <li class="tech-folder__icon" style="--k: 5; --k2: 25; --d: 5; --i: 10">
+                  <span class="tech-folder__tile">
+                    <img class="tech-folder__logo" src="assets/img/tech/git.svg" alt="" width="237" height="216" loading="lazy">
+                  </span>
+                  <span class="tech-folder__label">Git</span>
+                </li>
+              </ul>
+
+              <div class="tech-folder__front-wrap">
+                <div class="tech-folder__front" data-tech-folder-front>
+                  <svg class="tech-folder__outline" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="tech-folder-edge" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="rgb(255 255 255 / 1)"></stop>
+                        <stop offset="0.35" stop-color="rgb(20 21 26 / 0.07)"></stop>
+                        <stop offset="1" stop-color="rgb(20 21 26 / 0.04)"></stop>
+                      </linearGradient>
+                    </defs>
+                    <path data-tech-folder-path stroke="url(#tech-folder-edge)"></path>
+                  </svg>
+                  <p class="tech-folder__caption">Технологии</p>
+                  <ul class="tech-folder__tags">
+                    <li class="tech-folder__tag">Битрикс24</li>
+                    <li class="tech-folder__tag">1С-Битрикс</li>
+                    <li class="tech-folder__tag">Laravel</li>
+                    <li class="tech-folder__tag">PHP</li>
+                    <li class="tech-folder__tag">MySQL</li>
+                    <li class="tech-folder__tag">HTML5</li>
+                    <li class="tech-folder__tag">JavaScript</li>
+                    <li class="tech-folder__tag">Vue.js</li>
+                    <li class="tech-folder__tag">React</li>
+                    <li class="tech-folder__tag">Figma</li>
+                    <li class="tech-folder__tag">Git</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1200,85 +1325,170 @@
       <header class="detail__head">
         <p class="detail__eyebrow">Сайт · Divan Boss</p>
         <h2 class="detail__title" id="detail-title">Разработка интернет-магазина мебели</h2>
-
+        
         <p class="detail__lead">DivanBoss — крупный интернет-магазин мебели, для которого была выполнена разработка современного e-commerce-решения с уникальным дизайном, широким набором интеграций и удобным пользовательским сценарием оформления заказа. Проект был реализован на CMS Битрикс, что позволило обеспечить гибкость в доработках, стабильную работу интернет-магазина, удобное администрирование контента и возможность дальнейшего масштабирования проекта под задачи бизнеса.</p>
         <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://divanboss.ru" target="_blank" rel="noopener noreferrer"><span>Открыть сайт divanboss.ru</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
       </header>
-      <figure class="detail__hero"><img src="assets/img/detail/site-divan-tile-0.webp" width="1440" height="940" alt="" loading="lazy" /></figure>
+      <figure class="detail__hero"><img src="assets/img/detail/site-divan-tile-0.webp" width="1440" height="940" alt="" /></figure>
       <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>Аналитику и подготовку технического задания</li><li>Разработку уникального дизайна</li><li>Адаптивную верстку интерфейсов</li><li>Программирование сайта на CMS Bitrix</li><li>Интеграцию внешних сервисов</li><li>Тестирование и запуск</li><li>Обучение сотрудников</li></ul></div>
-
-      <div class="detail__article"><h3 class="detail__h">Интеграции</h3>
-<ul><li>обмен заказами и ценами с 1С;</li><li>оплата картами, Яндекс Сплит и рассрочка;</li><li>Mindbox и AdvCake для маркетинга;</li><li>автоопределение города по IP и подсказки DaData.</li></ul>
-<h3 class="detail__h">Результат</h3>
-<p>Проект divanboss.ru стал полноценным инструментом онлайн-продаж: каталог и карточки товаров, заказ и оплата онлайн, передача данных в учётную систему и маркетинговые инструменты для роста продаж.</p></div>
+      
+      <div class="detail__article"><h3 class="detail__h">Детализация выполненных работ по проекту</h3>
+<h4 class="detail__subh">Проектирование и аналитика</h4>
+<ul><li>сбор и анализ требований со стороны бизнеса;</li><li>подготовка технического задания;</li><li>описание пользовательских сценариев;</li><li>проработка структуры каталога и логики оформления заказа;</li><li>постановка задач для дизайнеров и разработчиков.</li></ul>
+<h4 class="detail__subh">Дизайн и интерфейсы</h4>
+<ul><li>разработка уникального дизайна сайта;</li><li>проектирование визуальной концепции интернет-магазина;</li><li>отрисовка ключевых страниц и пользовательских сценариев;</li><li>адаптация дизайна под desktop и mobile-устройства.</li></ul>
+<h4 class="detail__subh">Верстка и frontend-разработка</h4>
+<ul><li>адаптивная верстка страниц сайта;</li><li>реализация пользовательских интерфейсов;</li><li>подготовка интерактивных элементов каталога, карточек товара, корзины и оформления заказа;</li><li>оптимизация пользовательского опыта на разных типах устройств.</li></ul>
+<h4 class="detail__subh">Backend-разработка на CMS Битрикс</h4>
+<ul><li>разработка интернет-магазина на CMS Битрикс;</li><li>настройка структуры сайта;</li><li>реализация логики каталога и карточек товаров;</li><li>настройка корзины и оформления заказа;</li><li>внедрение административного функционала;</li><li>выполнение кастомных доработок под бизнес-процессы клиента.</li></ul>
+<h4 class="detail__subh">Интеграция с 1С</h4>
+<ul><li>интеграция интернет-магазина с 1С;</li><li>настройка обмена заказами;</li><li>настройка обмена ценами;</li><li>обеспечение актуальности данных между сайтом и учетной системой.</li></ul>
+<h4 class="detail__subh">Подключение платежных систем</h4>
+<ul><li>реализация оплаты банковскими картами;</li><li>подключение Яндекс Сплит;</li><li>интеграция систем рассрочки;</li><li>настройка сценариев онлайн-оплаты в процессе оформления заказа.</li></ul>
+<h4 class="detail__subh">Интеграции с маркетинговыми платформами</h4>
+<ul><li>интеграция с Mindbox;</li><li>интеграция с AdvCake;</li><li>подготовка сайта к использованию маркетинговых и performance-инструментов.</li></ul>
+<h4 class="detail__subh">Дополнительные сервисы и пользовательские улучшения</h4>
+<ul><li>автоматическое определение города по IP;</li><li>интеграция с DaData;</li><li>улучшение сценариев заполнения данных пользователями;</li><li>персонализация пользовательского опыта в зависимости от региона.</li></ul>
+<h4 class="detail__subh">Запуск проекта</h4>
+<ul><li>проведение комплексного тестирования;</li><li>исправление замечаний по итогам проверки;</li><li>подготовка проекта к запуску;</li><li>обучение сотрудников заказчика.</li></ul><h3 class="detail__h">Результаты</h3>
+<p>Проект divanboss.ru стал полноценным инструментом онлайн-продаж, который помогает компании эффективно работать с ассортиментом, автоматизировать бизнес-процессы, подключать маркетинговые механики и повышать удобство для конечного покупателя.</p>
+<h3 class="detail__h">Решение позволяет</h3>
+<ul><li>представлять широкий ассортимент товаров в структурированном каталоге;</li><li>демонстрировать товары в удобных карточках;</li><li>оформлять заказы онлайн;</li><li>принимать оплату разными способами;</li><li>использовать рассрочку и сплит-оплату;</li><li>автоматически адаптировать пользовательский опыт под регион клиента;</li><li>передавать заказы и данные по ценам в учетные системы;</li><li>подключать маркетинговые инструменты для роста продаж и возврата клиентов.</li></ul></div>
     </template>
 
     <template id="detail-site-bgmu">
       <header class="detail__head">
         <p class="detail__eyebrow">Сайт · БГМУ</p>
         <h2 class="detail__title" id="detail-title">Разработка корпоративного сайта БГМУ</h2>
-
+        
         <p class="detail__lead">Команда разработчиков Итач-софт с гордостью представляет результаты совместной работы с Белорусским государственным медицинским университетом. Наш опыт и профессионализм позволили создать веб-пространство, соответствующее самым высоким стандартам качества и современным требованиям.</p>
         <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.bsmu.by" target="_blank" rel="noopener noreferrer"><span>Открыть сайт bsmu.by</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
       </header>
-      <figure class="detail__hero"><img src="assets/img/detail/site-bgmu-tile-0.webp" width="1440" height="940" alt="" loading="lazy" /></figure>
+      <figure class="detail__hero"><img src="assets/img/detail/site-bgmu-tile-0.webp" width="1440" height="940" alt="" /></figure>
       <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Дизайн</li><li>Верстка</li><li>Программирование</li><li>Наполнение сайта</li></ul></div>
       <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">7</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 UX/UI дизайнер</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>3 контент-специалиста</li></ul></div></div>
-      <div class="detail__article"><h3 class="detail__h">Выполненные задачи</h3>
-<ul><li>разработано более 50 макетов страниц, дизайн адаптирован под все устройства;</li><li>создана версия для слабовидящих;</li><li>внедрены три языковые версии: русская, белорусская и английская;</li><li>перенесён весь контент старого сайта — более 5000 страниц — со сохранением ссылок и поисковой индексации;</li><li>сайт разработан на CMS Битрикс, проведено тестирование и обучение персонала.</li></ul>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Задача нашей команды включала в себя редизайн и разработку полностью нового корпоративного сайта для Белорусского Государственного Медицинского Университета.</p><h3 class="detail__h">Выполненные задачи</h3>
+<h4 class="detail__subh">Анализ и планирование</h4>
+<ul><li>Проведен детальный анализ старого сайта БГМУ для выявления его слабых мест и потребностей целевой аудитории.</li><li>На основе анализа сформулированы ключевые задачи и требования для нового сайта.</li></ul>
+<h4 class="detail__subh">Разработка нового уникального дизайна</h4>
+<ul><li>Создан современный и привлекательный дизайн, отражающий корпоративный стиль и ценности БГМУ.</li><li>Разработано более 50 макетов страниц, включая главную страницу, страницы факультетов, новостные разделы, страницы с информацией для абитуриентов и студентов и другие.</li><li>Дизайн адаптирован под различные устройства для обеспечения удобства пользователей на всех платформах (адаптивный дизайн).</li></ul>
+<h4 class="detail__subh">Разработка версии для слабовидящих</h4>
+<ul><li>Создана специальная версия сайта для слабовидящих, включающая возможность изменения размера шрифта, контраста и других параметров для улучшения доступности контента.</li></ul>
+<h4 class="detail__subh">Разработка многоязычной версии сайта</h4>
+<ul><li>Разработаны и внедрены три языковые версии сайта: русская, белорусская и английская.</li><li>Обеспечен легкий переключатель между языковыми версиями для удобства пользователей.</li></ul>
+<h4 class="detail__subh">Перенос контента со старого сайта</h4>
+<ul><li>Перенесен весь контент со старого сайта, включающий более 5000 страниц.</li><li>Контент был структурирован и оптимизирован для нового дизайна и функционала сайта.</li><li>Обеспечено сохранение всех ссылок и правильная индексация контента в поисковых системах.</li></ul>
+<h4 class="detail__subh">Разработка на CMS Битрикс</h4>
+<ul><li>Сайт разработан на платформе CMS Битрикс, обеспечивающей высокую производительность, безопасность и удобство управления контентом.</li><li>Внедрены необходимые модули и компоненты для реализации всех функций сайта.</li></ul>
+<h4 class="detail__subh">Тестирование и запуск</h4>
+<ul><li>Проведено комплексное тестирование всех функций сайта на различных устройствах и браузерах.</li><li>Исправлены выявленные ошибки и оптимизированы процессы.</li><li>Запуск сайта в рабочий режим и мониторинг его работы в первые недели.</li></ul>
+<h4 class="detail__subh">Обучение и поддержка</h4>
+<ul><li>Обучение персонала университета работе с новой CMS и управлению контентом.</li><li>Обеспечение технической поддержки на этапе внедрения и последующей эксплуатации.</li><li>Написание документации по тому, как пользоваться административной панелью сайта.</li></ul>
 <h3 class="detail__h">Результат</h3>
-<p>Университет получил современный и удобный сайт: информация доступна на трёх языках и для людей с ограниченными возможностями, а управление контентом упростилось благодаря CMS Битрикс.</p></div>
+<h4 class="detail__subh">Современный и удобный сайт</h4>
+<p>Новый дизайн и структура сайта улучшили восприятие и удобство использования для всех категорий пользователей.</p>
+<h4 class="detail__subh">Доступность</h4>
+<p>Версия для слабовидящих обеспечила доступность информации для людей с ограниченными возможностями.</p>
+<h4 class="detail__subh">Многоязычность</h4>
+<p>Три языковые версии сайта сделали информацию доступной для более широкой аудитории, включая иностранных студентов и партнеров.</p>
+<h4 class="detail__subh">Эффективное управление контентом</h4>
+<p>Использование CMS Битрикс упростило управление сайтом и обновление контента, что позволило оперативно реагировать на изменения и добавлять актуальную информацию.</p>
+<h4 class="detail__subh">Сохранение и оптимизация контента</h4>
+<p>Успешный перенос и оптимизация более 5000 страниц контента сохранили ценную информацию и улучшили её доступность для пользователей.</p><h3 class="detail__h">Заключение</h3>
+<p>Проект по разработке корпоративного сайта Белорусского государственного медицинского университета был успешно реализован. В результате университет получил современный, функциональный и удобный сайт, который удовлетворяет потребности различных категорий пользователей, обеспечивает высокую доступность информации и простоту управления контентом.</p></div>
     </template>
 
     <template id="detail-site-autolight">
       <header class="detail__head">
         <p class="detail__eyebrow">Сайт · Автолайт Экспресс</p>
         <h2 class="detail__title" id="detail-title">Разработка личного кабинета пользователей</h2>
-
+        
         <p class="detail__lead">Компания Итач-софт успешно разработала личные кабинеты для юридических и физических лиц на сайте autolight.by. Основные задачи проекта включали создание уникального дизайна, использование современных технологий Битрикс и Vue.js, а также интеграцию с 1С.</p>
         <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.autolight.by" target="_blank" rel="noopener noreferrer"><span>Открыть сайт autolight.by</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
       </header>
-      <figure class="detail__hero"><img src="assets/img/detail/site-autolight-tile-0.webp" width="1440" height="940" alt="" loading="lazy" /></figure>
+      <figure class="detail__hero"><img src="assets/img/detail/site-autolight-tile-0.webp" width="1440" height="940" alt="" /></figure>
       <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Верстка</li><li>Программирование</li></ul></div>
-      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">3</p><p class="detail-tile__label">специалиста в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li></ul></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">месяцев работы над проектом</p></div></div>
-      <div class="detail__article"><h3 class="detail__h">Выполненные работы</h3>
-<ul><li>уникальный адаптивный дизайн личных кабинетов для физических и юридических лиц;</li><li>технологии Битрикс и Vue.js, регистрация пользователей через СМС;</li><li>двусторонний обмен данными с 1С в режиме реального времени;</li><li>сложная логика доставки: выбор времени, расчёт стоимости по параметрам заказа, отслеживание по трек-номеру;</li><li>нагрузочное тестирование.</li></ul>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">3</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li></ul></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">месяцев работы над проектом</p></div></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Цель проекта: разработка удобного и интуитивно понятного личного кабинета для физических и юридических лиц, который позволит пользователям быстро и легко оформлять заказы, а также отслеживать всю необходимую информацию по заказам.</p><h3 class="detail__h">Выполненные работы</h3>
+<h4 class="detail__subh">Уникальный дизайн</h4>
+<ul><li>Разработан эксклюзивный дизайн, обеспечивающий удобство и привлекательность для пользователей.</li><li>Дизайн адаптирован для корректного отображения и удобного использования на всех устройствах, включая компьютеры, планшеты и смартфоны.</li></ul>
+<h4 class="detail__subh">Технологии</h4>
+<ul><li>Использованы передовые технологии Битрикс и Vue.js для создания быстрого и функционального интерфейса.</li><li>Внедрение системы управления контентом (CMS), позволяющей администраторам легко обновлять информацию и управлять материалами.</li></ul>
+<h4 class="detail__subh">Интеграция с 1С</h4>
+<ul><li>Проведена полная интеграция с системой 1С для синхронизации данных.</li><li>Режим реального времени: Обмен данными с 1С происходит в режиме реального времени.</li><li>Двусторонний обмен: Обеспечен двусторонний обмен данными для актуализации информации и улучшения взаимодействия.</li></ul>
+<h4 class="detail__subh">Регистрация и авторизация</h4>
+<ul><li>Реализована регистрация пользователей с помощью СМС-сервиса для обеспечения безопасности и удобства.</li></ul>
+<h4 class="detail__subh">Личный кабинет и обработка заказов</h4>
+<ul><li>Сложная логика обработки заказов: В зависимости от типа доставки, габаритов, города отправления и доставки пользователям предоставляются различные варианты доставки с разной стоимостью.</li><li>Выбор времени доставки: Пользователи могут выбрать удобное время доставки.</li><li>Отслеживание заказа: В личном кабинете пользователи могут видеть статус своего заказа в режиме реального времени и отслеживать посылку по трек-номеру.</li></ul>
+<h4 class="detail__subh">Нагрузочное тестирование</h4>
+<ul><li>Проведено нагрузочное тестирование для обеспечения стабильности и производительности сайта при высоких нагрузках.</li><li>Сайт успешно обрабатывает тысячи заказов ежедневно, обеспечивая надежную работу даже при пиковых нагрузках.</li></ul>
 <h3 class="detail__h">Результат</h3>
-<p>Сайт успешно обрабатывает тысячи заказов ежедневно, обеспечивая стабильную работу даже при пиковых нагрузках. Интеграция с 1С повысила точность данных, а личный кабинет — удобство клиентов.</p></div>
+<h4 class="detail__subh">Повышение удобства</h4>
+<p>Личные кабинеты обеспечили удобный доступ к персонализированной информации и услугам для юридических и физических лиц.</p>
+<h4 class="detail__subh">Улучшение функциональности</h4>
+<p>Современные технологии позволили создать быстрый и отзывчивый интерфейс, улучшив пользовательский опыт.</p>
+<h4 class="detail__subh">Эффективность управления</h4>
+<p>Интеграция с 1С повысила точность данных и упростила процессы управления.</p>
+<h4 class="detail__subh">Надежность и стабильность</h4>
+<p>Нагрузочное тестирование подтвердило способность сайта обрабатывать большой объем заказов, обеспечивая стабильную работу.</p>
+<h4 class="detail__subh">Оптимизация доставки</h4>
+<p>Сложная логика обработки заказов и возможность выбора времени доставки улучшили удобство и точность доставки для пользователей.</p>
+<p>Мы гордимся нашим вкладом в развитие сайта autolight.by и уверены, что созданные личные кабинеты значительно улучшат взаимодействие пользователей с платформой.</p></div>
     </template>
 
     <template id="detail-site-rozy">
       <header class="detail__head">
         <p class="detail__eyebrow">Сайт · Розы.Бел</p>
         <h2 class="detail__title" id="detail-title">Разработка интернет-магазина по доставке цветов</h2>
-
-        <p class="detail__lead">Интернет-магазин для сети цветочных магазинов в Минске: платформа OpenCart, уникальный дизайн и интеграция с CRM Битрикс24 для автоматизации работы с заказами.</p>
+        
+        <p class="detail__lead">Компания Итач-софт успешно разработала интернет-магазин для компании, специализирующейся на доставке цветов. Проект был выполнен на платформе Opencart с уникальным дизайном и интеграцией с различными системами для улучшения удобства работы и автоматизации бизнес-процессов.</p>
         <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.розы.бел" target="_blank" rel="noopener noreferrer"><span>Открыть сайт розы.бел</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
       </header>
-      <figure class="detail__hero"><img src="assets/img/detail/site-rozy-tile-0.webp" width="1440" height="940" alt="" loading="lazy" /></figure>
+      <figure class="detail__hero"><img src="assets/img/detail/site-rozy-tile-0.webp" width="1440" height="940" alt="" /></figure>
       <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Дизайн</li><li>Верстка</li><li>Программирование</li><li>Наполнение сайта</li></ul></div>
       <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 UX/UI дизайнер</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>1 контент-специалист</li></ul></div></div>
-      <div class="detail__article"><h3 class="detail__h">Выполненные работы</h3>
-<ul><li>редизайн и разработка нового интернет-магазина на OpenCart;</li><li>интеграция с CRM Битрикс24: автоматизация работы с заказами и клиентами;</li><li>подключение удобных способов оплаты и оперативной доставки;</li><li>наполнение сайта товарами и контентом.</li></ul>
-<h3 class="detail__h">Результат</h3>
-<p>Покупатели получили современный и удобный интернет-магазин, а компания — автоматизацию заказов: сократилось время обработки, выросло число онлайн-заказов и лояльность клиентов.</p></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Задача нашей команды включала в себя редизайн и разработку полностью нового интернет-магазина сайта для сети цветочных магазинов в Минске</p><h3 class="detail__h">Результаты</h3>
+<h4 class="detail__subh">Удобство для пользователей</h4>
+<p>Покупатели получили современный и удобный интернет-магазин с возможностью оплаты удобным способом и оперативной доставкой.</p>
+<h4 class="detail__subh">Автоматизация бизнес-процессов</h4>
+<p>Интеграция с CRM Битрикс24 позволила автоматизировать работу с заказами и клиентами, что значительно сократило время обработки и повысило точность данных.</p>
+<h4 class="detail__subh">Рост продаж</h4>
+<p>Благодаря улучшенной функциональности и удобству использования, увеличилось количество онлайн-заказов, что привело к росту выручки.</p>
+<h4 class="detail__subh">Повышение лояльности клиентов</h4>
+<p>Новый дизайн и удобство навигации положительно сказались на пользовательском опыте, что привлекло новых клиентов и повысило лояльность существующих.</p>
+<p>Проект по разработке интернет-магазина для сети цветочных магазинов в Минске на базе CMS OpenCart с уникальным дизайном и интеграцией с CRM Битрикс24 был успешно реализован. Он обеспечил удобство для покупателей и автоматизацию бизнес-процессов для компании, что привело к улучшению показателей продаж и общей эффективности бизнеса.</p></div>
     </template>
 
     <template id="detail-site-autogroup">
       <header class="detail__head">
         <p class="detail__eyebrow">Сайт · Автогрупп</p>
-        <h2 class="detail__title" id="detail-title">Корпоративный сайт для компании по доставке автомобилей из Америки</h2>
-
-        <p class="detail__lead">Корпоративный сайт на 1С-Битрикс с уникальным дизайном: клиенты отслеживают доставку авто по VIN-номеру и оплачивают услуги онлайн, а заявки автоматически попадают в amoCRM.</p>
+        <h2 class="detail__title" id="detail-title">Разработка корпоративного сайта для компании по доставке автомобилей из Америки</h2>
+        
+        <p class="detail__lead">Компания Итач-софт успешно разработала корпоративный сайт для компании, специализирующейся на доставке автомобилей из Америки. Проект был выполнен на платформе 1С-Битрикс с уникальным дизайном и внедрением множества полезных функций.</p>
         <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.autogroup.by" target="_blank" rel="noopener noreferrer"><span>Открыть сайт autogroup.by</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
       </header>
-      <figure class="detail__hero"><img src="assets/img/detail/site-autogroup-tile-0.webp" width="1440" height="940" alt="" loading="lazy" /></figure>
+      <figure class="detail__hero"><img src="assets/img/detail/site-autogroup-tile-0.webp" width="1440" height="940" alt="" /></figure>
       <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Дизайн</li><li>Верстка</li><li>Программирование</li><li>Наполнение сайта</li></ul></div>
       <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 UX/UI дизайнер</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>1 контент-специалист</li></ul></div></div>
-      <div class="detail__article"><h3 class="detail__h">Выполненные работы</h3>
-<ul><li>уникальный адаптивный дизайн;</li><li>отслеживание статуса доставки автомобиля по VIN-номеру;</li><li>система онлайн-оплаты услуг;</li><li>интеграция с amoCRM и аналитикой Roistat.</li></ul>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Создание современного, функционального и удобного корпоративного сайта, который бы обеспечивал пользователям возможность отслеживания автомобилей, оплаты услуг и удобного взаимодействия с компанией.</p><h3 class="detail__h">Выполненные задачи</h3>
+<h4 class="detail__subh">Уникальный дизайн</h4>
+<p>Разработан эксклюзивный дизайн сайта, который подчеркивает профессионализм и надежность компании. Дизайн адаптирован для удобного использования на всех устройствах, включая компьютеры, планшеты и смартфоны.</p>
+<h4 class="detail__subh">Функционал отслеживания авто по VIN-номеру</h4>
+<p>Внедрен функционал, позволяющий клиентам отслеживать статус доставки автомобилей по VIN-номеру. Это обеспечивает прозрачность процесса и позволяет клиентам всегда быть в курсе текущего состояния своего заказа.</p>
+<h4 class="detail__subh">Система оплаты за услуги</h4>
+<p>Разработана и интегрирована система онлайн-оплаты, позволяющая клиентам удобно и безопасно оплачивать услуги компании. Поддерживаются различные способы оплаты, обеспечивающие максимальный комфорт для пользователей.</p>
+<h4 class="detail__subh">Интеграция с amoCRM</h4>
+<p>Произведена интеграция сайта с amoCRM, что позволяет автоматически передавать данные о клиентах и заказах в CRM-систему. Это улучшает управление клиентскими данными и повышает эффективность работы менеджеров.</p>
+<h4 class="detail__subh">Интеграция с Roistat</h4>
+<p>Сайт был интегрирован с аналитической системой Roistat, что позволяет отслеживать эффективность маркетинговых кампаний и оптимизировать рекламные бюджеты. Внедрение Roistat обеспечивает точную аналитику и контроль над маркетинговыми показателями.</p>
 <h3 class="detail__h">Результат</h3>
-<p>Новый сайт упростил взаимодействие клиентов с компанией: прозрачное отслеживание, онлайн-оплата и автоматическая передача заявок в CRM увеличили поток заказов.</p></div>
+<h4 class="detail__subh">Повышение удобства для клиентов</h4>
+<p>Новый сайт с функционалом отслеживания автомобилей и системой онлайн-оплаты значительно упростил взаимодействие клиентов с компанией.</p>
+<h4 class="detail__subh">Улучшение управления</h4>
+<p>Интеграция с amoCRM и Roistat обеспечила лучшее управление клиентскими данными и маркетинговыми кампаниями, что способствовало повышению эффективности работы компании.</p>
+<h4 class="detail__subh">Привлечение новых клиентов</h4>
+<p>Уникальный дизайн и удобный интерфейс сайта привлекли больше новых клиентов, увеличив общий объем заказов.</p>
+<p>Мы гордимся нашим вкладом в развитие компании по доставке автомобилей из Америки и уверены, что созданный сайт будет способствовать её дальнейшему росту и успеху.</p><h3 class="detail__h">Отзыв клиента</h3><article class="review-card detail-review glow-card"><div class="detail-review__side"><div class="review-card__top"><img class="review-card__logo" src="assets/img/reviews/autogroup.svg" width="250" height="63" alt="Автогруп" loading="lazy" /><span class="review-card__quote" aria-hidden="true">“</span></div><footer class="review-card__author"><span class="review-card__name">Болдюсов Дмитрий Григорьевич</span><span class="review-card__job">Руководитель</span></footer></div><blockquote class="review-card__text"><p>Настоящим письмом выражаем свою искреннюю благодарность компании «Итач-софт» за отличную работу, которую проделала Ваша компания по созданию и запуску нашего сайта, а также по разработке собственной специализированной CRM-системы.</p><p>В работе с Вами мы увидели профессионализм, знание технологий, системный подход, соблюдение сроков, способность увидеть и понять наши потребности, и предложить лучшее решение.</p><p>Надеемся на дальнейшее плодотворное сотрудничество с Вами!</p></blockquote></article></div>
     </template>
 
   </body>

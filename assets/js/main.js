@@ -1033,6 +1033,66 @@ function initLeadCta() {
   update();
 }
 
+// Папка с технологиями: контур створок — это путь по фактическим размерам карточки,
+// поэтому язычки и скругления не деформируются; здесь же веер иконок раскладывается
+// по доступной ширине и папка появляется при прокрутке
+function initTechFolder() {
+  const folders = document.querySelectorAll("[data-tech-folder]");
+  if (!folders.length) return;
+
+  const folderPath = (w, h, tabSide) => {
+    const r = 24;
+    const d = 24;
+    const tw = Math.round(w * (tabSide === "left" ? 0.42 : 0.4));
+    const s = 46;
+    if (tabSide === "left") {
+      return `M0 ${r}A${r} ${r} 0 0 1 ${r} 0L${tw} 0C${tw + s * 0.55} 0 ${tw + s * 0.45} ${d} ${tw + s} ${d}L${w - r} ${d}A${r} ${r} 0 0 1 ${w} ${d + r}L${w} ${h - r}A${r} ${r} 0 0 1 ${w - r} ${h}L${r} ${h}A${r} ${r} 0 0 1 0 ${h - r}Z`;
+    }
+    const x = w - tw;
+    return `M0 ${d + r}A${r} ${r} 0 0 1 ${r} ${d}L${x - s} ${d}C${x - s * 0.45} ${d} ${x - s * 0.55} 0 ${x} 0L${w - r} 0A${r} ${r} 0 0 1 ${w} ${r}L${w} ${h - r}A${r} ${r} 0 0 1 ${w - r} ${h}L${r} ${h}A${r} ${r} 0 0 1 0 ${h - r}Z`;
+  };
+
+  folders.forEach((folder) => {
+    const front = folder.querySelector("[data-tech-folder-front]");
+    const back = folder.querySelector("[data-tech-folder-back]");
+    const icons = folder.querySelectorAll(".tech-folder__icon");
+    if (!front || !back) return;
+
+    const layout = () => {
+      const w = folder.clientWidth;
+      const tile = w < 380 ? 40 : w < 460 ? 52 : w < 620 ? 64 : 72;
+      const spread = Math.min(
+        64,
+        Math.max(20, (w - tile - 36) / Math.max(icons.length - 1, 1))
+      );
+      folder.style.setProperty("--tech-tile", `${tile}px`);
+      folder.style.setProperty("--tech-spread", `${spread.toFixed(1)}px`);
+
+      [
+        [front, "left"],
+        [back, "right"],
+      ].forEach(([el, side]) => {
+        const d = folderPath(el.clientWidth, el.clientHeight, side);
+        el.style.clipPath = `path('${d}')`;
+        el.querySelector("[data-tech-folder-path]")?.setAttribute("d", d);
+      });
+    };
+
+    layout();
+    new ResizeObserver(layout).observe(folder);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        folder.classList.add("is-shown");
+        observer.disconnect();
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(folder);
+  });
+}
+
 initHeader();
 initServicesMegaMenu();
 initMobileServicesNav();
@@ -1060,3 +1120,4 @@ initFormatsScroll();
 initDetail(document.querySelector("[data-detail-modal]"));
 initCookieBanner(document.querySelector("[data-cookie]"));
 initLeadCta();
+initTechFolder();
