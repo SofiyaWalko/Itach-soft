@@ -643,8 +643,7 @@
 
 @media (hover: hover) {
   .card-arrow:hover::before,
-  .service-card:hover .card-arrow::before,
-  .solution-card:hover .card-arrow::before {
+  .service-card:hover .card-arrow::before {
     opacity: 1;
   }
 }
@@ -652,8 +651,7 @@
 @media (prefers-reduced-motion: no-preference) {
   @media (hover: hover) {
   .card-arrow:hover::before,
-  .service-card:hover .card-arrow::before,
-  .solution-card:hover .card-arrow::before {
+  .service-card:hover .card-arrow::before {
       animation: gradient-flow 3s linear infinite;
     }
 }
@@ -668,8 +666,7 @@
 /* Наведение на карточку услуги оживляет стрелку так же, как наведение на неё саму */
 @media (hover: hover) {
   .card-arrow:hover .icon,
-  .service-card:hover .card-arrow .icon,
-  .solution-card:hover .card-arrow .icon {
+  .service-card:hover .card-arrow .icon {
     transform: translate(2px, -2px);
   }
 }
@@ -3365,7 +3362,8 @@ html:has(.detail[open]) {
   }
 }
 
-@media (hover: none) {
+/* Тач-экраны и мобильная ширина окна: бегущий контур у карточки перед пользователем */
+@media (hover: none), (max-width: 639px) {
   .glow-card::before {
     background: conic-gradient(
       from var(--glow-angle),
@@ -5003,16 +5001,26 @@ html:has(.detail[open]) {
   white-space: nowrap;
 }
 
+/* Телефон: одинаковая ширина у всех карточек, значение чуть меньше —
+   так градиентная строка влезает целиком, а карточки не разъезжаются по ширине */
+@media (max-width: 639px) {
+  .service-hero .page-stat {
+    inline-size: calc(100% - 2rem);
+  }
+
+  .service-hero .page-stat__value {
+    font-size: clamp(2.125rem, 11.5vw, 3rem);
+    white-space: nowrap;
+  }
+}
+
 /* Лента логотипов сразу под hero «Сайты»: нижний padding hero уже даёт 96px
    воздуха, поэтому верхний margin ленты обнуляем — сверху и снизу одинаково */
 .service-hero + .clients {
   margin-block-start: 0;
 }
 
-/* ---------- Стоимость: строка карточек с прилипшим горизонтальным скроллом ----------
-   Секция растянута скриптом на высоту экрана плюс дистанцию прокручивания; пока она
-   в зоне видимости, вертикальный скролл сдвигает строку по горизонтали. Без скрипта
-   и при prefers-reduced-motion — обычная горизонтальная прокрутка (formats--native) */
+/* ---------- Форматы и стоимость разработки ---------- */
 .service-sections .team,
 .service-sections .tech,
 /* «Другие направления» стоит вне .service-sections (после закрывающего div) —
@@ -5021,31 +5029,14 @@ html:has(.detail[open]) {
   padding-block: 0 var(--space-12);
 }
 
-/* Блок стоимости идёт после «Сайта под любую задачу»: 96px сверху даёт
-   нижний паддинг предыдущей секции, поэтому margin секции обнулён.
-   У самого пина отступ сверху маленький, чтобы в залипшем состоянии
-   заголовок сидел сразу под шапкой */
+/* 96px от кейсов: их нижний отступ обнулён, воздух даёт margin секции */
 .service-sections .formats {
-  margin-block-start: 0;
+  margin-block-start: var(--space-12);
+  padding-block-end: var(--space-12);
 }
 
-/* От блока кейсов до «Сайта под любую задачу» — 96px: нижний отступ кейсов
-   убран, воздух даёт верхний margin следующей секции */
 .service-sections .cases {
   padding-block-end: 0;
-}
-
-.formats__pin {
-  /* Залипает ниже липкой шапки; высота по контенту: до блока — 96px нижнего
-     паддинга предыдущей секции, после — 96px нижнего паддинга пина */
-  position: sticky;
-  inset-block-start: calc(var(--header-top) + var(--header-height) + var(--space-3));
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: var(--space-5);
-  overflow: clip;
-  padding-block: 0 var(--space-12);
 }
 
 .formats__note {
@@ -5058,37 +5049,57 @@ html:has(.detail[open]) {
   text-wrap: pretty;
 }
 
-/* Строка карточек сразу под заголовком, без выравнивания по центру остатка экрана */
-.formats__scroller {
-  overflow: visible;
-}
-
-/* Единоразмерные карточки одной строкой; скрипт двигает её transform-ом.
-   Начало строки — на линии контейнера, как карточки отзывов */
+/* Карточки по две в строке; на телефоне — в одну */
 .format-grid {
-  --edge: max(var(--gutter), calc((100% - var(--container-max)) / 2));
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
   gap: var(--space-3);
-  inline-size: max-content;
-  min-inline-size: 100%;
-  margin: 0;
-  padding-inline: var(--edge);
+  margin: var(--space-6) 0 0;
+  padding: 0;
   list-style: none;
-  will-change: transform;
 }
 
 .format-card {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  flex: none;
-  /* Ширина рассчитана так, чтобы подпись цены в 15px всегда вставала в строку */
-  inline-size: clamp(22rem, 25rem + 3vw, 31rem);
-  gap: var(--space-2);
-  padding: var(--space-4);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
   background: var(--color-bg);
+}
+
+/* Карточка целиком — ссылка: большая зона клика, стрелка в углу декоративная */
+.format-card__link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: inherit;
+}
+
+/* Место под стрелку резервируем только у текста: контейнер цен
+   тянется на всю ширину карточки */
+.format-card__title,
+.format-card__desc {
+  padding-inline-end: calc(1.5rem + var(--space-2));
+}
+
+/* Сдвиг содержимого вправо при наведении — как у карточек кейсов и направлений */
+@media (prefers-reduced-motion: no-preference) {
+  .format-card__title,
+  .format-card__desc,
+  .format-card__prices {
+    transition: transform 400ms var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    .format-card:hover .format-card__title,
+    .format-card:hover .format-card__desc,
+    .format-card:hover .format-card__prices {
+      transform: translateX(0.75rem);
+    }
+  }
 }
 
 .format-card__title {
@@ -5152,19 +5163,49 @@ html:has(.detail[open]) {
   white-space: nowrap;
 }
 
-/* Фолбэк: обычная горизонтальная прокрутка строки */
-.formats--native .formats__pin {
-  position: static;
-  min-block-size: 0;
+/* Стрелка в углу — простая серая, двигается вместе с содержимым при наведении */
+.format-card__arrow {
+  position: absolute;
+  inset-block-start: var(--space-4);
+  inset-inline-end: var(--space-4);
+  color: var(--color-text-2);
 }
 
-.formats--native .formats__scroller {
-  overflow-x: auto;
-  padding-block-end: var(--space-2);
+.format-card__arrow .icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
 }
 
-.formats--native .format-grid {
-  transform: none;
+@media (prefers-reduced-motion: no-preference) {
+  .format-card__arrow {
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  /* Стрелка сдвигается по своему направлению — вверх-вправо */
+  @media (hover: hover) {
+    .format-card:hover .format-card__arrow {
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+/* При наведении стрелка закрашивается фирменным градиентом */
+@media (hover: hover) {
+  .format-card:hover .format-card__arrow .icon {
+    stroke: url(#gradient-contour);
+  }
+}
+
+/* Карточки с одной строкой цены: цена прижата к описанию, а не к низу карточки */
+.format-card__link:has(.format-card__price:only-child) .format-card__prices {
+  margin-block-start: 0;
+}
+
+/* Телефон: карточки друг под другом */
+@media (max-width: 639px) {
+  .format-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* ---------- Команда проекта: компактная строка ролей ---------- */
@@ -5186,6 +5227,43 @@ html:has(.detail[open]) {
 @media (min-width: 1024px) {
   .team__row {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Телефон: горизонтальная лента с заглядывающей следующей карточкой —
+   по краю видно, что её можно листать вбок. Зазор и ширина — как у остальных
+   лент сайта (.tasks/.cases/.reviews): --slide-gap, --slide-width */
+@media (max-width: 639px) {
+  .team__row {
+    /* Тот же зазор, что у лент задач, кейсов и отзывов */
+    --slide-gap: 0.75rem;
+    display: flex;
+    gap: var(--slide-gap);
+    inline-size: calc(100% + 2 * var(--gutter));
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 0.25rem var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    /* Snap должен учитывать боковой отступ, иначе первая карточка прилипает к краю экрана */
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .team__row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .team-role {
+    flex: none;
+    inline-size: min(82%, 20rem);
+    scroll-snap-align: start;
+  }
+
+  /* Название специализации — того же размера, что описание.
+     Селектор с родителем: базовое правило .team-role__name объявлено ниже по файлу */
+  .team__row .team-role__name {
+    font-size: 1.0625rem;
   }
 }
 
@@ -5461,6 +5539,31 @@ html:has(.detail[open]) {
   text-align: center;
 }
 
+/* Телефон: на экране один сертификат, листание свайпом (жест обрабатывает скрипт);
+   индикаторы уменьшены, чтобы все 14 встали в одну строку */
+@media (max-width: 639px) {
+  .awards-stage {
+    touch-action: pan-y;
+  }
+
+  .awards-stage .is-left,
+  .awards-stage .is-right {
+    display: none;
+  }
+
+  .awards-show.is-center {
+    inline-size: 100%;
+  }
+
+  .awards-dots {
+    gap: 0.25rem;
+  }
+
+  .awards-dots button {
+    inline-size: 1rem;
+  }
+}
+
 /* Плашки компетенций: на десктопе одна строка по ширине контейнера,
    на узких экранах переносятся в 4 и 2 колонки */
 .awards-badges {
@@ -5569,154 +5672,12 @@ html:has(.detail[open]) {
   }
 }
 
-/* ---------- Липкая мобильная CTA «Рассчитать стоимость» ---------- */
-.lead-cta {
-  position: fixed;
-  inset-inline: 0;
-  inset-block-end: 0;
-  z-index: 60;
-  display: none;
-  padding: var(--space-2) var(--gutter) calc(var(--space-2) + env(safe-area-inset-bottom));
-  background: var(--color-glass);
-  border-block-start: 1px solid var(--color-glass-stroke);
-  box-shadow: 0 -8px 32px rgb(20 21 26 / 0.1);
-  backdrop-filter: var(--blur-glass);
-  transform: translateY(110%);
-  transition: transform var(--duration-base) var(--ease-out);
-}
-
-.lead-cta.is-visible {
-  transform: translateY(0);
-}
-
-.lead-cta__button {
-  inline-size: 100%;
-}
-
 @media (max-width: 767px) {
-  .lead-cta {
-    display: block;
-  }
-
-  /* Компенсация плашки, чтобы не перекрывать последние строки футера */
   .site-footer {
     padding-block-end: var(--space-8);
   }
 }
 
-
-/* ---------- Сайт под любую задачу: карточки форматов ---------- */
-/* 96px от кейсов сверху; снизу — 96px нижнего паддинга до блока стоимости */
-.service-sections .solutions {
-  margin-block-start: var(--space-12);
-  padding-block-end: var(--space-12);
-}
-
-.solutions__grid {
-  display: grid;
-  gap: var(--space-3);
-  margin: var(--space-6) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.solution-card {
-  position: relative;
-  display: flex;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
-  background: var(--color-bg);
-}
-
-/* Сдвиг текста при наведении — как у карточек кейсов и направлений */
-@media (prefers-reduced-motion: no-preference) {
-  .solution-card__title,
-  .solution-card__desc {
-    transition: transform 400ms var(--ease-out);
-  }
-
-  @media (hover: hover) {
-    .solution-card:hover .solution-card__title,
-    .solution-card:hover .solution-card__desc {
-      transform: translateX(0.75rem);
-    }
-  }
-}
-
-.solution-card__link {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-4);
-  /* Место под квадратную стрелку в углу */
-  padding-inline-end: calc(var(--space-4) + 3rem + var(--space-2));
-  border-radius: inherit;
-}
-
-.solution-card__title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-}
-
-.solution-card__desc {
-  margin: 0;
-  color: var(--color-text-2);
-  font-size: 1.0625rem;
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-
-.solution-card .card-arrow .icon {
-  inline-size: 1.5rem;
-  block-size: 1.5rem;
-}
-
-.solution-card__link:focus-visible .card-arrow {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-@media (min-width: 700px) {
-  .solutions__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* Ховер карточки направления: только лёгкая градиентная заливка, без контура */
-@media (hover: hover) {
-  .solution-card:hover {
-    background: linear-gradient(
-      120deg,
-      color-mix(in srgb, var(--color-drop-orange) 8%, var(--color-bg)) 0%,
-      color-mix(in srgb, var(--color-drop-pink) 10%, var(--color-bg)) 100%
-    );
-  }
-}
-
-/* Карточки решений появляются по строке мягким проявлением, без сдвига-«выезда» */
-@media (prefers-reduced-motion: no-preference) {
-  .js .solution-card:not(.is-revealed) {
-    opacity: 0;
-  }
-
-  .js [data-reveal].solution-card.is-revealed {
-    animation: solution-fade 500ms var(--ease-out) both;
-  }
-
-  @keyframes solution-fade {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
-}
 
 /* Подзаголовок блока команды */
 .team__lead {

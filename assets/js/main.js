@@ -245,7 +245,10 @@ function initDragScroll(scroller) {
 // Сенсорные экраны: контур бежит по карточке, которая сейчас перед глазами. В каждом списке выбирается одна карточка:
 // видна не меньше чем на 60% и ближе всех к центру экрана. Остальные остаются с серым контуром
 function initGlowFocus() {
-  if (!window.matchMedia("(hover: none)").matches) return;
+  // Тач-экраны, а также мобильная ширина окна (превью без эмуляции тача)
+  const touch = window.matchMedia("(hover: none)").matches;
+  const narrow = window.matchMedia("(max-width: 639px)").matches;
+  if (!touch && !narrow) return;
 
   const MIN_VISIBLE_SHARE = 0.6;
   const SWITCH_MARGIN = 80;
@@ -622,56 +625,6 @@ function initCalcModal() {
   });
 }
 
-// Блок «Стоимость»: секция растянута на экран плюс дистанцию прокручивания и прилипает
-// (sticky). Пока она на экране, вертикальный скролл сдвигает строку карточек по
-// горизонтали — дальше страница не прокрутится, пока строка не проедет целиком.
-// При prefers-reduced-motion — обычная горизонтальная прокрутка без прилипания
-function initFormatsScroll() {
-  const section = document.querySelector("[data-formats]");
-  if (!section) return;
-  const pin = section.querySelector(".formats__pin");
-  const track = section.querySelector("[data-format-track]");
-  if (!pin || !track) return;
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-  const setNative = () => {
-    section.classList.add("formats--native");
-    section.style.blockSize = "";
-    track.style.transform = "";
-  };
-
-  if (reduced.matches) {
-    setNative();
-    return;
-  }
-
-  const overflow = () => Math.max(0, track.scrollWidth - document.documentElement.clientWidth);
-
-  // Горизонтальный прогресс считается по «липкому» диапазону: пока пин прилиплен
-  // (sectionH − pinH пикселей скролла), строка проезжает целиком
-  const update = () => {
-    const stickyRange = section.offsetHeight - pin.offsetHeight;
-    if (stickyRange <= 0) return;
-    const progress = Math.min(1, Math.max(0, -section.getBoundingClientRect().top / stickyRange));
-    track.style.transform = `translate3d(${-progress * overflow()}px, 0, 0)`;
-  };
-
-  // Секция = высота пина + дистанция прокручивания: пустого хвоста под пином
-  // не остаётся, поэтому до следующего блока ровно padding пина (96px)
-  const layout = () => {
-    const distance = Math.max(overflow() * 1.2, window.innerHeight * 0.5);
-    section.style.blockSize = `${pin.offsetHeight + distance}px`;
-    update();
-  };
-
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", layout);
-  reduced.addEventListener?.("change", (event) => {
-    if (event.matches) setNative();
-    else layout();
-  });
-  layout();
-}
 
 // Детальное окно кейса или новости: содержимое лежит в <template id="detail-…"> и копируется в диалог при открытии.
 // Адрес страницы получает якорь (#case-erip), поэтому на окно можно дать ссылку
@@ -1120,33 +1073,38 @@ function initAwards() {
     if (card.classList.contains("is-left")) rotate(-1);
     else if (card.classList.contains("is-right")) rotate(1);
   });
+
+  // На телефоне виден один сертификат: листаем свайпом, смена — тем же кроссфейдом, что по индикаторам
+  const narrow = window.matchMedia("(max-width: 639px)");
+  const SWIPE_THRESHOLD = 40;
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  stage.addEventListener(
+    "touchstart",
+    (event) => {
+      if (!narrow.matches) return;
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+    },
+    { passive: true },
+  );
+
+  stage.addEventListener(
+    "touchend",
+    (event) => {
+      if (!narrow.matches) return;
+      const dx = event.changedTouches[0].clientX - touchStartX;
+      const dy = event.changedTouches[0].clientY - touchStartY;
+      // Вертикальный жест — это прокрутка страницы, а не листание
+      if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return;
+      // Свайп влево — следующий, вправо — предыдущий
+      goTo((positions.center + (dx < 0 ? 1 : -1) + total) % total);
+    },
+    { passive: true },
+  );
+
   render();
-}
-
-// Липкая мобильная CTA «Рассчитать стоимость»: появляется после прокрутки hero,
-// прячется, когда форма заявки на экране, чтобы не перекрывать её
-function initLeadCta() {
-  const cta = document.querySelector("[data-lead-cta]");
-  if (!cta) return;
-  const lead = document.querySelector(cta.dataset.leadCtaTarget || "#lead");
-  let leadVisible = false;
-
-  const update = () => {
-    cta.classList.toggle("is-visible", window.scrollY > 480 && !leadVisible);
-  };
-
-  if (lead) {
-    new IntersectionObserver(
-      ([entry]) => {
-        leadVisible = entry.isIntersecting;
-        update();
-      },
-      { rootMargin: "0px 0px -25% 0px" }
-    ).observe(lead);
-  }
-
-  window.addEventListener("scroll", update, { passive: true });
-  update();
 }
 
 initHeader();
@@ -1172,8 +1130,6 @@ initLeadModal(document.querySelector("[data-lead-modal]"));
 window.initLeadWave?.(document.querySelector("[data-lead-wave]"));
 document.querySelectorAll("[data-calc]").forEach((el) => window.initCalculator?.(el));
 initCalcModal();
-initFormatsScroll();
 initDetail(document.querySelector("[data-detail-modal]"));
 initCookieBanner(document.querySelector("[data-cookie]"));
-initLeadCta();
 initAwards();
