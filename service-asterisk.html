@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>IP-АТС на базе Asterisk — Итач-софт</title>
-    <meta name="description" content="Внедрение и настройка IP-АТС на базе Asterisk, VoIP-телефония, безопасность и поддержка телефонных станций." />
+    <title>IP-АТС на базе Asterisk — внедрение и настройка от 45 000 ₽ | Итач-софт</title>
+    <meta name="description" content="Внедрение и настройка IP-АТС на базе Asterisk, VoIP-телефония, безопасность и поддержка телефонных станций. Надёжная связь без переплаты за оборудование." />
     <script>document.documentElement.classList.add("js");</script>
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="assets/img/logos/logo.svg" type="image/svg+xml" />
@@ -19,11 +19,104 @@
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/components.css" />
     <link rel="stylesheet" href="assets/css/sections.css" />
-    <script src="assets/js/hero-gl.js" defer></script>
+    <script src="assets/js/calculator.js" defer></script>
     <script src="assets/js/lead-wave.js" defer></script>
     <script src="assets/js/cursor-halo.js" defer></script>
-    <script src="assets/js/calculator.js" defer></script>
     <script src="assets/js/main.js" defer></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "IP-АТС на базе Asterisk под ключ",
+      "provider": {
+        "@type": "Organization",
+        "name": "Итач-софт",
+        "url": "https://itach-soft.ru"
+      },
+      "areaServed": [
+        "RU",
+        "BY"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Внедрение IP-АТС на базе Asterisk",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "RUB",
+            "minPrice": 90000
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Настройка VoIP Asterisk",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "RUB",
+            "minPrice": 45000
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Безопасность VoIP-АТС",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "RUB",
+            "minPrice": 45000
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Что такое IP-телефония?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Это технология передачи голоса через интернет-протокол. Звонки идут в цифровом виде по сети, что даёт гибкость, масштабируемость и более низкие затраты на связь по сравнению с аналоговыми системами."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как работает IP-АТС?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Система использует интернет-протокол для передачи голоса: IP-телефоны и сервер АТС преобразуют голос в цифровой формат и обратно. Так работают голосовая почта, автоответчики, конференц-связь и маршрутизация звонков."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Что такое IP-АТС Asterisk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Открытая программная платформа для построения телефонных систем по протоколу IP. Позволяет настроить маршрутизацию звонков, голосовую почту, конференц-связь и другие функции без привязки к конкретному оборудованию."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Для чего нужен голосовой шлюз?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Он связывает традиционные телефонные сети с IP-сетями: преобразует голосовые сигналы из аналогового формата в цифровой и обратно. Это позволяет интегрировать старые телефонные системы с современными технологиями."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чем виртуальная АТС отличается от IP-телефонии?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Виртуальная АТС — облачное решение с функциями телефонной станции без оборудования на месте. IP-телефония — более широкое понятие: технология передачи голоса по IP-сети. Часто они используются вместе."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body>
@@ -99,7 +192,7 @@
                     <a class="nav__submenu-link" href="services.html"><span>Все услуги</span></a>
                   </li>
                   <li>
-                    <a class="nav__submenu-link" href="service-sites.html"><span>Сайты</span></a>
+                    <a class="nav__submenu-link" href="service-sites.html" aria-current="page"><span>Сайты</span></a>
                   </li>
                   <li>
                     <a class="nav__submenu-link" href="service-bitrix24.html"><span>Битрикс24</span></a>
@@ -271,8 +364,8 @@
             <aside class="mega-menu__aside">
               <div class="mega-menu__promo glow-card">
                 <h3 class="mega-menu__promo-title">Узнайте стоимость разработки</h3>
-                <p class="mega-menu__promo-text">Ответьте на несколько вопросов и получите предварительную оценку проекта.</p>
-                <a class="btn btn--primary btn--sm mega-menu__promo-link" href="index.html#calculator">Рассчитать стоимость</a>
+                <p class="mega-menu__promo-text">Опишите задачу — рассчитаем предварительную оценку проекта.</p>
+                <a class="btn btn--primary btn--sm mega-menu__promo-link" href="#lead">Рассчитать стоимость</a>
                 <img class="mega-menu__promo-image" src="assets/img/mega-menu-banner.webp" alt="" width="800" height="522" decoding="async">
               </div>
             </aside>
@@ -283,7 +376,8 @@
     </header>
 
     <main id="main">
-      <section class="service-page" aria-labelledby="service-page-title">
+      <!-- 1. Hero -->
+      <section class="service-hero" aria-labelledby="service-hero-title">
         <div class="container">
           <nav class="breadcrumbs" aria-label="Хлебные крошки" data-reveal-stagger>
             <a class="breadcrumbs__link" href="index.html">Главная</a>
@@ -292,54 +386,585 @@
             <svg class="icon breadcrumbs__sep" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
             <span class="breadcrumbs__current" aria-current="page">IP-АТС на базе Asterisk</span>
           </nav>
-          <h1 class="section-title" data-reveal id="service-page-title">IP-АТС на базе Asterisk</h1>
+
+          <div class="service-hero__middle">
+            <div class="service-hero__intro">
+              <h1 class="section-title" id="service-hero-title" data-reveal>
+                IP-АТС на базе Asterisk <span class="section-title__muted">под ключ</span>
+              </h1>
+
+              <div class="service-hero__content">
+                <p class="service-hero__lead" data-reveal>
+                  Устанавливаем и настраиваем IP-АТС на базе Asterisk: маршрутизация звонков, интеграция с CRM, запись разговоров и безопасность. Надёжная связь без переплаты за оборудование.
+                </p>
+                <div class="service-hero__actions" data-reveal>
+                  <a class="btn btn--primary" href="#calculator" data-calc-scroll>Рассчитать стоимость</a>
+                  <a class="btn btn--ghost" href="#cases">Смотреть кейсы</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Метафора «под ключ»: ключ в последнем пазле. Декоративная — смысл уже в заголовке -->
+            <figure class="service-hero__figure" data-reveal>
+              <img
+                src="assets/img/sites-hero-key-puzzle.webp"
+                width="1434"
+                height="1097"
+                alt=""
+                aria-hidden="true"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </figure>
+          </div>
+
+                    <ul class="page-stats" data-reveal-stagger>
+            <li class="page-stat glow-card" style="--i: 0">
+              <span class="page-stat__value">от 45 000 ₽</span>
+              <p class="page-stat__text">настройка VoIP</p>
+              <p class="page-stat__note">точную смету фиксируем в договоре</p>
+            </li>
+            <li class="page-stat glow-card" style="--i: 1">
+              <span class="page-stat__value">от 2</span>
+              <p class="page-stat__text">недель запуск телефонии</p>
+              <p class="page-stat__note">с переносом номеров и сценариев</p>
+            </li>
+            <li class="page-stat glow-card" style="--i: 2">
+              <span class="page-stat__value">до 24</span>
+              <p class="page-stat__text">месяцев гарантия на работы</p>
+              <p class="page-stat__note">и поддержка 24/7 после запуска</p>
+            </li>
+          </ul>
         </div>
       </section>
 
+      <!-- Лента логотипов клиентов: сразу под hero и карточками с цифрами -->
       <section class="clients" aria-label="Нам доверяют" data-reveal>
         <div class="clients__track">
           <ul class="clients__list">
-              <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="ЕРИП" /></li>
-              <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="Autolight Express" /></li>
-              <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="Zepter Bank" /></li>
-              <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="Гиппо" /></li>
-              <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="World Class" /></li>
-              <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="Helix" /></li>
-              <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="Санта" /></li>
-              <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="Xiaomi" /></li>
-              <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="БГМУ" /></li>
-              <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="Розы.Бел" /></li>
-              <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="Imkliva Insurance" /></li>
-              <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="БНБ-Банк" /></li>
-              <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="А-100" /></li>
+            <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="ЕРИП" loading="lazy" /></li>
+            <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="Autolight Express" loading="lazy" /></li>
+            <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="Zepter Bank" loading="lazy" /></li>
+            <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="Гиппо" loading="lazy" /></li>
+            <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="World Class" loading="lazy" /></li>
+            <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="Helix" loading="lazy" /></li>
+            <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="Санта" loading="lazy" /></li>
+            <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="Xiaomi" loading="lazy" /></li>
+            <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="БГМУ" loading="lazy" /></li>
+            <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="Розы.Бел" loading="lazy" /></li>
+            <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="Imkliva Insurance" loading="lazy" /></li>
+            <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="БНБ-Банк" loading="lazy" /></li>
+            <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="А-100" loading="lazy" /></li>
           </ul>
           <ul class="clients__list" aria-hidden="true">
-              <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="" /></li>
-              <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="" /></li>
-              <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="" /></li>
-              <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="" /></li>
+            <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="" loading="lazy" /></li>
+            <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="" loading="lazy" /></li>
           </ul>
         </div>
       </section>
 
+      <div class="service-sections">
+        <!-- 2. Кейсы -->
+        <section class="cases" id="cases" aria-labelledby="cases-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="cases-title">
+              Кейсы <span class="section-title__muted">разработки</span>
+            </h2>
+            <div class="cases__scroller">
+            <ul class="case-grid" data-reveal-stagger>
+              <li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-internet-magazina-mebeli/" data-detail-open="site-divan">Divan Boss <span class="section-title__muted">интернет-магазин мебели</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/sites/divanboss.jpg" width="1440" height="940" alt="Интернет-магазин мебели Divan Boss" loading="lazy" />
+              </li>
+              <li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-korporativnogo-sayta-dlya-belorusskogo-gosudarstvennogo-meditsinskogo-universiteta/" data-detail-open="site-bgmu">БГМУ <span class="section-title__muted">корпоративный сайт университета</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/sites/bsmu.jpg" width="1440" height="940" alt="Корпоративный сайт БГМУ" loading="lazy" />
+              </li>
+              <li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-lichnogo-kabineta-sayta-avtolayt-ekspress/" data-detail-open="site-autolight">Автолайт Экспресс <span class="section-title__muted">личный кабинет с интеграцией 1С</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/sites/autolight.jpg" width="1440" height="940" alt="Личный кабинет Автолайт Экспресс" loading="lazy" />
+              </li>
+              <li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-sayta-rozy-bel/" data-detail-open="site-rozy">Розы.Бел <span class="section-title__muted">интернет-магазин доставки цветов</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/sites/rozy-bel.jpg" width="1440" height="940" alt="Интернет-магазин Розы.Бел" loading="lazy" />
+              </li>
+              <li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/razrabotka-sayta-autogroup-by/" data-detail-open="site-autogroup">Автогрупп <span class="section-title__muted">корпоративный сайт с онлайн-оплатой</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/sites/autogroup.jpg" width="1440" height="940" alt="Корпоративный сайт Автогрупп" loading="lazy" />
+              </li>
+            </ul>
+            </div>
+            <div class="section-action" data-reveal>
+              <a class="btn btn--outline" href="portfolio.html">Все кейсы</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Услуги и стоимость -->
+        <section class="formats" id="formats" aria-labelledby="formats-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="formats-title">
+              Услуги и <span class="section-title__muted">стоимость</span>
+            </h2>
+            <p class="formats__note" data-reveal>
+              Выберите услугу — покажем ориентировочные цены. Точную смету фиксируем в договоре.
+            </p>
+            <ul class="format-grid" data-reveal-stagger>
+              <li class="format-card glow-card">
+                <a class="format-card__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/vnedrenie-ip-atc-na-baze-asterisk/" target="_blank" rel="noopener" aria-label="Внедрение IP-АТС на базе Asterisk — подробнее">
+                  <h3 class="format-card__title">Внедрение IP-АТС на базе Asterisk</h3>
+                  <p class="format-card__desc">Настраиваем и интегрируем систему под ваши бизнес-процессы, обеспечивая надёжную и гибкую связь.</p>
+                  <ul class="format-card__prices">
+                    <li class="format-card__price">
+                      <span class="format-card__price-label">Стоимость</span>
+                      <span class="format-card__price-value">от 90 000 ₽</span>
+                    </li>
+                  </ul>
+                  <span class="format-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+                </a>
+              </li>
+              <li class="format-card glow-card">
+                <a class="format-card__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/nastroyka-voip-asterisk/" target="_blank" rel="noopener" aria-label="Настройка VoIP Asterisk — подробнее">
+                  <h3 class="format-card__title">Настройка VoIP Asterisk</h3>
+                  <p class="format-card__desc">Настраиваем все необходимые функции и интеграции, адаптируем систему под ваши задачи.</p>
+                  <ul class="format-card__prices">
+                    <li class="format-card__price">
+                      <span class="format-card__price-label">Стоимость</span>
+                      <span class="format-card__price-value">от 45 000 ₽</span>
+                    </li>
+                  </ul>
+                  <span class="format-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+                </a>
+              </li>
+              <li class="format-card glow-card">
+                <a class="format-card__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/obespechenie-bezopasnosti-voip-ats/" target="_blank" rel="noopener" aria-label="Обеспечение безопасности VoIP-АТС — подробнее">
+                  <h3 class="format-card__title">Обеспечение безопасности VoIP-АТС</h3>
+                  <p class="format-card__desc">Защищаем IP-телефонию и сети VoIP от внешних угроз и несанкционированного доступа.</p>
+                  <ul class="format-card__prices">
+                    <li class="format-card__price">
+                      <span class="format-card__price-label">Стоимость</span>
+                      <span class="format-card__price-value">от 45 000 ₽</span>
+                    </li>
+                  </ul>
+                  <span class="format-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+                </a>
+              </li>
+              <li class="format-card glow-card">
+                <a class="format-card__link" href="https://itach-soft.ru/services/ip-atc-na-baze-asterisk/tekhnicheskaya-podderzhka-voip-telefonnykh-stantsiy/" target="_blank" rel="noopener" aria-label="Техническая поддержка VoIP-станций — подробнее">
+                  <h3 class="format-card__title">Техническая поддержка VoIP-станций</h3>
+                  <p class="format-card__desc">Мониторинг, обновления и оперативное решение проблем вашей телефонии.</p>
+                  <ul class="format-card__prices">
+                    <li class="format-card__price">
+                      <span class="format-card__price-label">Тарифы</span>
+                      <span class="format-card__price-value">от 9 000 ₽/мес</span>
+                    </li>
+                  </ul>
+                  <span class="format-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Калькулятор стоимости -->
+        <section class="calc" id="calculator" aria-labelledby="calc-title">
+          <div class="container calc__layout" data-calc>
+            <div class="calc__intro" data-reveal>
+              <h2 class="section-title calc__title" id="calc-title">Рассчитайте стоимость работ <span class="section-title__muted">за 2 минуты</span></h2>
+            </div>
+            <div class="calc__panel glow-card" data-reveal>
+              <p class="calc__counter" data-calc-counter>Шаг 1 из 4</p>
+              <ol class="calc__tracker" data-calc-tracker>
+                <li><span class="visually-hidden">1. Услуга</span></li>
+                <li><span class="visually-hidden">2. Задача</span></li>
+                <li><span class="visually-hidden">3. Подробности</span></li>
+                <li><span class="visually-hidden">4. Контакты</span></li>
+              </ol>
+              <div class="calc__stage" tabindex="-1" data-calc-stage>
+                <h3 class="calc__title-step" data-calc-title>Выберите услугу</h3>
+                <div data-calc-body></div>
+                <div class="calc__contact" data-calc-contact hidden>
+                  <h3 class="calc__title-step">Почти готово!</h3>
+                  <p class="calc__text">Теперь у нас есть верхнеуровневые требования к вашему проекту. Заполните контактные данные ниже, и наши менеджеры оперативно свяжутся, чтобы сориентировать вас по стоимости и срокам реализации проекта.</p>
+                  <form class="lead-form calc__form" method="post" novalidate data-lead-form data-endpoint="">
+                    <input type="hidden" name="brief" data-calc-brief />
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="calc-name">Имя</label>
+                        <input class="lead-form__control" id="calc-name" name="name" type="text" autocomplete="name" required aria-describedby="calc-name-error" data-error="Укажите, как к вам обращаться" />
+                        <p class="lead-form__error" id="calc-name-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="calc-company">Название компании</label>
+                        <input class="lead-form__control" id="calc-company" name="company" type="text" autocomplete="organization" required aria-describedby="calc-company-error" data-error="Укажите название компании" />
+                        <p class="lead-form__error" id="calc-company-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="calc-phone">Телефон</label>
+                        <input class="lead-form__control" id="calc-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="calc-phone-error" data-error="Укажите телефон для связи" />
+                        <p class="lead-form__error" id="calc-phone-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="calc-email">E-mail</label>
+                        <input class="lead-form__control" id="calc-email" name="email" type="email" autocomplete="email" required aria-describedby="calc-email-error" data-error="Укажите корректный e-mail" />
+                        <p class="lead-form__error" id="calc-email-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="calc-message">Сообщение</label>
+                      <textarea class="lead-form__control lead-form__control--area" id="calc-message" name="message" rows="3" placeholder="Детали проекта, сроки, технологии и другая важная информация" aria-describedby="calc-message-error"></textarea>
+                      <p class="lead-form__error" id="calc-message-error"></p>
+                    </div>
+                    <div class="calc__form-actions">
+                      <button class="btn btn--ghost" type="button" data-calc-back-contact>Назад</button>
+                      <button class="btn btn--primary lead-form__submit" type="submit">Отправить</button>
+                    </div>
+                    <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+                    <p class="lead-form__status" role="status" data-lead-status></p>
+                  </form>
+                </div>
+              </div>
+              <div class="calc__nav">
+                <button class="btn btn--ghost btn--sm" type="button" data-calc-back hidden>Назад</button>
+                <button class="btn btn--primary btn--sm" type="button" data-calc-next disabled>Далее</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Процесс -->
+        <section class="process" id="process" aria-labelledby="process-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="process-title">
+              Как мы <span class="section-title__muted">работаем</span>
+            </h2>
+            <ol class="process-steps" data-process-steps>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">01</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Анализ и техническое задание</h3>
+                  <p class="process-step__text">Разбираем задачу, конкурентов и аудиторию, определяем структуру сайта. Фиксируем объём работ, смету и сроки в договоре.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Техническое задание, структура сайта и смета</p>
+                </div>
+              </li>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">02</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Прототип и дизайн</h3>
+                  <p class="process-step__text">Проектируем сценарии пользователей, рисуем макеты всех страниц и состояний — от desktop до мобильных. Согласовываем с вами каждый этап.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Макеты страниц и интерактивный прототип</p>
+                </div>
+              </li>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">03</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Вёрстка и разработка</h3>
+                  <p class="process-step__text">Верстаем адаптивные интерфейсы, программируем функционал и подключаем интеграции: CRM, 1С, оплата, доставка, аналитика.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Работающий сайт, связанный с вашими системами</p>
+                </div>
+              </li>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">04</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Тестирование и наполнение</h3>
+                  <p class="process-step__text">Проверяем сценарии на разных устройствах и браузерах, оптимизируем скорость, переносим контент и настраиваем SEO-параметры.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Проверенный сайт с готовым контентом</p>
+                </div>
+              </li>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">05</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Запуск и поддержка</h3>
+                  <p class="process-step__text">Запускаем сайт, обучаем сотрудников работе с административной панелью и остаёмся на связи: гарантия на работы до 24 месяцев.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Запущенный сайт, обученная команда и поддержка 24/7</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div class="container section-action" data-reveal>
+            <a class="btn btn--outline" href="#lead">Обсудить проект</a>
+          </div>
+        </section>
+
+        <!-- 5. Команда -->
+        <section class="team" aria-labelledby="team-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="team-title">
+              Кто будет <span class="section-title__muted">работать над проектом</span>
+            </h2>
+            <p class="team__lead" data-reveal>
+              Команда формируется индивидуально под каждый проект — состав и роли зависят от задач и сложности проекта
+            </p>
+            <ul class="team__row" data-reveal-stagger>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-project-manager.webp" width="522" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Проектный менеджер</span>
+                <span class="team-role__duty">Координирует работу команды, контролирует сроки, коммуникацию и выполнение задач по проекту.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-business-analyst.webp" width="564" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Бизнес-аналитик</span>
+                <span class="team-role__duty">Изучает задачи бизнеса, собирает требования и помогает определить структуру, функции и приоритеты проекта.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-ux-ui-designer.webp" width="530" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">UX/UI дизайнер</span>
+                <span class="team-role__duty">Проектирует пользовательские сценарии, прототипы и визуальную концепцию проекта, чтобы он был удобным и понятным.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-frontend.webp" width="600" height="401" alt="" loading="lazy" />
+                <span class="team-role__name">Фронтенд-разработчик</span>
+                <span class="team-role__duty">Реализует интерфейсы, адаптивность и интерактивные элементы, обеспечивая корректную работу проекта на всех устройствах.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-backend.webp" width="600" height="393" alt="" loading="lazy" />
+                <span class="team-role__name">Бэкенд-разработчик</span>
+                <span class="team-role__duty">Отвечает за серверную логику, интеграции, базы данных и стабильную работу функционала системы.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-qa.webp" width="575" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">QA-инженер (тестировщик)</span>
+                <span class="team-role__duty">Проверяет функциональность, находит ошибки и контролирует качество проекта перед запуском.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-copywriter.webp" width="578" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Контент-менеджер / копирайтер</span>
+                <span class="team-role__duty">Готовит и структурирует тексты, помогает раскрыть преимущества компании и сделать страницы понятными для клиентов.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-devops.webp" width="538" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">DevOps-инженер</span>
+                <span class="team-role__duty">Настраивает окружение, мониторинг, резервное копирование и обеспечивает надёжную работу проекта.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-account-manager.webp" width="594" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Аккаунт-менеджер</span>
+                <span class="team-role__duty">Сопровождает клиента после запуска, помогает с новыми задачами, приоритетами и дальнейшим развитием проекта.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 8. Наши достижения: сертификаты и награды -->
+        <section class="awards" aria-labelledby="awards-title" data-awards>
+          <div class="container awards__inner">
+            <h2 class="section-title" data-reveal id="awards-title">Наши <span class="section-title__muted">достижения</span></h2>
+            <p class="awards__lead" data-reveal>Официальные Платиновые партнёры Битрикс24 и Золотые партнёры 1С-Битрикс. Имеем сертификат Крупных корпоративных внедрений.</p>
+
+            <!-- Сцена: центральная карточка и две боковые под ней; клик по боковой крутит очередь по кругу -->
+            <div class="awards-stage" data-awards-stage data-reveal>
+              <button class="awards-show is-left" type="button" aria-label="Предыдущий сертификат">
+                <img src="" alt="" width="1200" height="848">
+              </button>
+              <div class="awards-show is-center">
+                <img src="" alt="" width="1200" height="848">
+              </div>
+              <button class="awards-show is-right" type="button" aria-label="Следующий сертификат">
+                <img src="" alt="" width="1200" height="848">
+              </button>
+            </div>
+            <div class="awards-dots" data-awards-dots role="group" aria-label="Сертификаты"></div>
+            <p class="awards-caption" data-awards-caption aria-live="polite"></p>
+
+            <!-- Плашки компетенций Битрикс24 и 1С-Битрикс — одной строкой по ширине контейнера -->
+            <ul class="awards-badges" data-reveal aria-label="Компетенции компании">
+              <li><img src="assets/img/awards/badges/b24_corp.svg" alt="Энтерпрайз" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_box.svg" alt="Коробочная версия" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_crm_4.svg" alt="CRM" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_automation.svg" alt="Автоматизация" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_1c.svg" alt="Интеграция с 1С" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_sys.svg" alt="Системное администрирование" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/bitrix-gos.svg" alt="Решения для госорганизаций" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/bitrix-komposit.svg" alt="Композитный сайт" width="350" height="100" loading="lazy" decoding="async"></li>
+            </ul>
+          </div>
+
+          <script type="application/json" data-awards-data>[{"src": "assets/img/awards/cert-01.webp", "alt": "Сертификат 1С-Битрикс: компания Итач-софт — платиновый партнёр Битрикс24", "caption": "Настоящим сертификатом 1С-Битрикс подтверждает, что компания Итач-софт является платиновым партнёром Битрикс24"}, {"src": "assets/img/awards/cert-02.webp", "alt": "Сертификат 1С-Битрикс: компании Итач-софт присвоена компетенция «Энтерпрайз»", "caption": "Настоящим сертификатом 1С-Битрикс подтверждает, что компании Итач-софт присвоена компетенция «Энтерпрайз»"}, {"src": "assets/img/awards/cert-04.webp", "alt": "Диплом рейтинга Рунета, категория CRM", "caption": "Настоящим дипломом Итач-софт демонстрирует место компании в рейтинге Рунета - категория CRM"}, {"src": "assets/img/awards/cert-05.webp", "alt": "Диплом рейтинга Рунета, категория 1С (Битрикс)", "caption": "Настоящим дипломом Итач-софт демонстрирует место компании в рейтинге Рунета - категория 1С (Битрикс)"}, {"src": "assets/img/awards/cert-06.webp", "alt": "Диплом рейтинга веб-студий Беларуси 2026", "caption": "Настоящим дипломом Итач-софт подтверждает свое место в рейтинге WEB-студий Беларуси"}, {"src": "assets/img/awards/cert-07.webp", "alt": "Диплом рейтинга ИИ-разработчиков Байнета 2026", "caption": "Настоящим дипломом Итач-софт подтверждает свое место в рейтинге Байнета"}, {"src": "assets/img/awards/cert-08.webp", "alt": "Диплом рейтинга веб-интеграторов Беларуси 2026", "caption": "Настоящим дипломом Итач-софт подтверждает свое место в рейтинге WEB-интеграторов Беларуси"}, {"src": "assets/img/awards/cert-09.webp", "alt": "Сертификат 1С-Битрикс: компетенция «Системное администрирование и эксплуатация»", "caption": "Настоящим сертификатом компания «1С-Битрикс» подтверждает, что компании Итач-софт присвоена компетенция «Системное администрирование и эксплуатация»"}, {"src": "assets/img/awards/cert-10.webp", "alt": "Сертификат 1С-Битрикс: компетенция «Интеграция с 1С»", "caption": "Настоящим сертификатом компания «1С-Битрикс» подтверждает, что компании Итач-софт присвоена компетенция «Интеграция с 1С»"}, {"src": "assets/img/awards/cert-11.webp", "alt": "Сертификат 1С-Битрикс: компетенция «Коробочная версия»", "caption": "Настоящим сертификатом компания «1С-Битрикс» подтверждает, что компании Итач-софт присвоена компетенция «Коробочная версия»"}, {"src": "assets/img/awards/cert-12.webp", "alt": "Сертификат 1С-Битрикс: компетенция «CRM»", "caption": "Настоящим сертификатом компания «1С-Битрикс» подтверждает, что компании Итач-софт присвоена компетенция «CRM»"}, {"src": "assets/img/awards/cert-13.webp", "alt": "Диплом рейтинга Байнет", "caption": "Настоящим дипломом Итач-софт демонстрирует место компании в рейтинге Байнет"}, {"src": "assets/img/awards/cert-14.webp", "alt": "Сертификат соответствия СТБ ISO 9001-2015", "caption": "Настоящий сертификат соответствия удостоверяет, что система менеджмента качества соответствует требованиям СТБ ISO 9001-2015"}, {"src": "assets/img/awards/cert-03.webp", "alt": "Диплом победителя Премии «Народный выбор»", "caption": "Настоящим дипломом Итач-софт подтверждает, что компания является победителем Премии «Народный выбор»"}]</script>
+        </section>
+
+        <!-- 9. Отзывы -->
+        <section class="reviews" id="reviews" aria-labelledby="reviews-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="reviews-title">
+              Отзывы <span class="section-title__muted">клиентов</span>
+            </h2>
+          </div>
+          <div class="reviews__scroller" data-drag-scroll tabindex="0" role="region" aria-label="Отзывы клиентов, прокручивается по горизонтали">
+            <ul class="reviews__list" data-reveal-stagger>
+              <li class="review-card glow-card">
+                <div class="review-card__top">
+                  <img class="review-card__logo" src="assets/img/reviews/sberlizing.svg" width="300" height="42" alt="Сберлизинг" loading="lazy" />
+                  <span class="review-card__quote" aria-hidden="true">“</span>
+                </div>
+                <blockquote class="review-card__text">
+                  <p>От лица компании ЗАО «СберЛизинг» выражаем искреннюю благодарность разработчикам компании ООО «Итач-софт» за их профессионализм и ответственность в создании нашего нового сайта, а также разработку калькулятора для расчета лизинговых платежей.</p>
+                  <p>Благодаря Вашей компании ЗАО «СберЛизинг» получили качественный и функциональный сайт, который, на наш взгляд, достойно представляет нашу компанию, а также удобный инструмент для расчетов и будущих возможных интеграций в иные программные комплексы компании.</p>
+                </blockquote>
+                <footer class="review-card__author">
+                  <span class="review-card__name">И.А. Костюченко</span>
+                  <span class="review-card__job">Заместитель генерального директора по финансам</span>
+                </footer>
+              </li>
+              <li class="review-card glow-card">
+                <div class="review-card__top">
+                  <img class="review-card__logo" src="assets/img/reviews/alkor.svg" width="250" height="60" alt="Алькор Бриллианты России" loading="lazy" />
+                  <span class="review-card__quote" aria-hidden="true">“</span>
+                </div>
+                <blockquote class="review-card__text">
+                  <p>От лица нашей компании хочу сделать отзыв о совместно работе с ООО «Итач-софт».</p>
+                  <p>Компания «Итач-софт» очень ответственно подходит к нашим проектам. Они сформировали команду с которой налажена очень быстрая обратная связь.</p>
+                  <p>Все процессы максимально понятны и прозрачны. Мы добавлены на рабочий портал компании, где можем коммуницировать по задачам. Решать что-то по ходу и сразу. Делать быстрые созвоны. Это позволяет избежать затягивания разработки и принятия неправильных, неэффективных решений.</p>
+                </blockquote>
+                <footer class="review-card__author">
+                  <span class="review-card__name">Алексей Батура</span>
+                  <span class="review-card__job">Менеджер IT проектов</span>
+                </footer>
+              </li>
+              <li class="review-card glow-card">
+                <div class="review-card__top">
+                  <img class="review-card__logo" src="assets/img/reviews/bnb-bank.svg" width="250" height="59" alt="БНБ Банк" loading="lazy" />
+                  <span class="review-card__quote" aria-hidden="true">“</span>
+                </div>
+                <blockquote class="review-card__text">
+                  <p>ОАО «БНБ-Банк» искренне благодарит компанию ООО «Итач-софт» за качественное и своевременное обслуживание сайта нашей организации.</p>
+                  <p>За время работы сотрудники компании ООО «Итач-софт» проявили себя как добросовестные, исполнительные и отзывчивые специалисты. Все возникающие вопросы решались ими профессионально и в срок.</p>
+                  <p>Особенно хочется отметить ответственное и внимательное отношение к требованиям и пожеланиям со стороны нашей компании.</p>
+                </blockquote>
+                <footer class="review-card__author">
+                  <span class="review-card__name">Денис Чекун</span>
+                  <span class="review-card__job">Руководитель отдела цифрового маркетинга</span>
+                </footer>
+              </li>
+              <li class="review-card glow-card">
+                <div class="review-card__top">
+                  <img class="review-card__logo" src="assets/img/reviews/autogroup.svg" width="250" height="63" alt="Автогруп" loading="lazy" />
+                  <span class="review-card__quote" aria-hidden="true">“</span>
+                </div>
+                <blockquote class="review-card__text">
+                  <p>Настоящим письмом выражаем свою искреннюю благодарность компании «Итач-софт» за отличную работу, которую проделала Ваша компания по созданию и запуску нашего сайта, а также по разработке собственной специализированной CRM-системы.</p>
+                  <p>В работе с Вами мы увидели профессионализм, знание технологий, системный подход, соблюдение сроков, способность увидеть и понять наши потребности, и предложить лучшее решение.</p>
+                  <p>Надеемся на дальнейшее плодотворное сотрудничество с Вами!</p>
+                </blockquote>
+                <footer class="review-card__author">
+                  <span class="review-card__name">Болдюсов Дмитрий Григорьевич</span>
+                  <span class="review-card__job">Руководитель</span>
+                </footer>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 10. FAQ -->
+        <section class="faq" id="faq" aria-labelledby="faq-title">
+          <div class="container faq__layout" data-faq>
+            <div class="faq__intro" data-reveal>
+              <h2 class="section-title faq__title" id="faq-title">Частые вопросы <span class="section-title__muted">об IP-АТС и телефонии</span></h2>
+              <a class="btn btn--outline" href="#lead">Задать свой вопрос</a>
+            </div>
+                        <ul class="faq__list" data-reveal-stagger>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+                    <span class="faq__text">Что такое IP-телефония?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+                  <div class="faq__answer-inner"><p>Это технология передачи голоса через интернет-протокол. Звонки идут в цифровом виде по сети, что даёт гибкость, масштабируемость и более низкие затраты на связь по сравнению с аналоговыми системами.</p></div>
+                </div>
+              </li>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+                    <span class="faq__text">Как работает IP-АТС?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+                  <div class="faq__answer-inner"><p>Система использует интернет-протокол для передачи голоса: IP-телефоны и сервер АТС преобразуют голос в цифровой формат и обратно. Так работают голосовая почта, автоответчики, конференц-связь и маршрутизация звонков.</p></div>
+                </div>
+              </li>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+                    <span class="faq__text">Что такое IP-АТС Asterisk?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+                  <div class="faq__answer-inner"><p>Открытая программная платформа для построения телефонных систем по протоколу IP. Позволяет настроить маршрутизацию звонков, голосовую почту, конференц-связь и другие функции без привязки к конкретному оборудованию.</p></div>
+                </div>
+              </li>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+                    <span class="faq__text">Для чего нужен голосовой шлюз?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+                  <div class="faq__answer-inner"><p>Он связывает традиционные телефонные сети с IP-сетями: преобразует голосовые сигналы из аналогового формата в цифровой и обратно. Это позволяет интегрировать старые телефонные системы с современными технологиями.</p></div>
+                </div>
+              </li>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+                    <span class="faq__text">Чем виртуальная АТС отличается от IP-телефонии?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a5" role="region" aria-labelledby="faq-q5">
+                  <div class="faq__answer-inner"><p>Виртуальная АТС — облачное решение с функциями телефонной станции без оборудования на месте. IP-телефония — более широкое понятие: технология передачи голоса по IP-сети. Часто они используются вместе.</p></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <!-- 10. Форма -->
       <section class="lead" id="lead" aria-labelledby="lead-title">
         <div class="container">
           <div class="lead__panel" data-reveal>
             <canvas class="lead__wave" aria-hidden="true" data-lead-wave></canvas>
             <div class="lead__intro">
               <h2 class="section-title lead__title" id="lead-title">
-                Расскажите, что хотите <span class="section-title__muted">улучшить в бизнесе</span>
+                Расскажите о вашем <span class="section-title__muted">проекте</span>
               </h2>
-              <p class="lead__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+              <p class="lead__text">Опишите задачу — в течение часа ответим, как её решить, и рассчитаем предварительную стоимость.</p>
             </div>
             <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
               <div class="lead-form__row">
@@ -371,11 +996,28 @@
                 <textarea class="lead-form__control lead-form__control--area" id="lead-task" name="task" rows="4" required aria-describedby="lead-task-error" data-error="Коротко опишите задачу"></textarea>
                 <p class="lead-form__error" id="lead-task-error"></p>
               </div>
-              <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+              <button class="btn btn--primary lead-form__submit" type="submit">Обсудить проект</button>
               <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
               <p class="lead-form__status" role="status" data-lead-status></p>
             </form>
           </div>
+        </div>
+      </section>
+
+      <!-- 11. Перелинковка: другие направления услуг -->
+      <section class="related" aria-labelledby="related-title">
+        <div class="container">
+          <h2 class="section-title" data-reveal id="related-title">
+            Другие <span class="section-title__muted">направления</span>
+          </h2>
+                    <ul class="related__list" data-reveal-stagger>
+            <li><a class="related__link" href="service-sites.html">Сайты</a></li>
+            <li><a class="related__link" href="service-bitrix24.html">Битрикс24</a></li>
+            <li><a class="related__link" href="service-web-services.html">Разработка веб-сервисов</a></li>
+            <li><a class="related__link" href="service-support.html">Техническая поддержка</a></li>
+            <li><a class="related__link" href="service-outstaff.html">Аутстаффинг и IT-услуги</a></li>
+            <li><a class="related__link" href="service-ai.html">AI-разработка</a></li>
+          </ul>
         </div>
       </section>
     </main>
@@ -510,8 +1152,10 @@
         <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close>
           <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
         </button>
-        <h2 class="modal__title" id="lead-modal-title">Остались <span class="section-title__muted">вопросы?</span></h2>
-        <p class="modal__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+        <h2 class="modal__title" id="lead-modal-title">
+          Расскажите о вашем <span class="section-title__muted">проекте</span>
+        </h2>
+        <p class="modal__text">Опишите задачу — в течение часа ответим, как её решить, и рассчитаем предварительную стоимость.</p>
         <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
                     <div class="lead-form__row">
                       <div class="lead-form__field">
@@ -542,26 +1186,12 @@
                       <textarea class="lead-form__control lead-form__control--area" id="modal-task" name="task" rows="3" required aria-describedby="modal-task-error" data-error="Коротко опишите задачу"></textarea>
                       <p class="lead-form__error" id="modal-task-error"></p>
                     </div>
-                    <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+                    <button class="btn btn--primary lead-form__submit" type="submit">Обсудить проект</button>
                     <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
                     <p class="lead-form__status" role="status" data-lead-status></p>
                   </form>
       </div>
     </dialog>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <dialog class="detail" id="detail-modal" aria-labelledby="detail-title" data-detail-modal>
       <div class="detail__panel" tabindex="-1" data-detail-panel>
@@ -572,6 +1202,177 @@
         <div class="detail__content" data-detail-content></div>
       </div>
     </dialog>
+
+    <!-- Содержимое детальных окон кейсов: тексты и ссылки взяты с itach-soft.ru -->
+    <template id="detail-site-divan">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · Divan Boss</p>
+        <h2 class="detail__title" id="detail-title">Разработка интернет-магазина мебели</h2>
+        
+        <p class="detail__lead">DivanBoss — крупный интернет-магазин мебели, для которого была выполнена разработка современного e-commerce-решения с уникальным дизайном, широким набором интеграций и удобным пользовательским сценарием оформления заказа. Проект был реализован на CMS Битрикс, что позволило обеспечить гибкость в доработках, стабильную работу интернет-магазина, удобное администрирование контента и возможность дальнейшего масштабирования проекта под задачи бизнеса.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://divanboss.ru" target="_blank" rel="noopener noreferrer"><span>Открыть сайт divanboss.ru</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-divan-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>Аналитику и подготовку технического задания</li><li>Разработку уникального дизайна</li><li>Адаптивную верстку интерфейсов</li><li>Программирование сайта на CMS Bitrix</li><li>Интеграцию внешних сервисов</li><li>Тестирование и запуск</li><li>Обучение сотрудников</li></ul></div>
+      
+      <div class="detail__article"><h3 class="detail__h">Детализация выполненных работ по проекту</h3>
+<h4 class="detail__subh">Проектирование и аналитика</h4>
+<ul><li>сбор и анализ требований со стороны бизнеса;</li><li>подготовка технического задания;</li><li>описание пользовательских сценариев;</li><li>проработка структуры каталога и логики оформления заказа;</li><li>постановка задач для дизайнеров и разработчиков.</li></ul>
+<h4 class="detail__subh">Дизайн и интерфейсы</h4>
+<ul><li>разработка уникального дизайна сайта;</li><li>проектирование визуальной концепции интернет-магазина;</li><li>отрисовка ключевых страниц и пользовательских сценариев;</li><li>адаптация дизайна под desktop и mobile-устройства.</li></ul>
+<h4 class="detail__subh">Верстка и frontend-разработка</h4>
+<ul><li>адаптивная верстка страниц сайта;</li><li>реализация пользовательских интерфейсов;</li><li>подготовка интерактивных элементов каталога, карточек товара, корзины и оформления заказа;</li><li>оптимизация пользовательского опыта на разных типах устройств.</li></ul>
+<h4 class="detail__subh">Backend-разработка на CMS Битрикс</h4>
+<ul><li>разработка интернет-магазина на CMS Битрикс;</li><li>настройка структуры сайта;</li><li>реализация логики каталога и карточек товаров;</li><li>настройка корзины и оформления заказа;</li><li>внедрение административного функционала;</li><li>выполнение кастомных доработок под бизнес-процессы клиента.</li></ul>
+<h4 class="detail__subh">Интеграция с 1С</h4>
+<ul><li>интеграция интернет-магазина с 1С;</li><li>настройка обмена заказами;</li><li>настройка обмена ценами;</li><li>обеспечение актуальности данных между сайтом и учетной системой.</li></ul>
+<h4 class="detail__subh">Подключение платежных систем</h4>
+<ul><li>реализация оплаты банковскими картами;</li><li>подключение Яндекс Сплит;</li><li>интеграция систем рассрочки;</li><li>настройка сценариев онлайн-оплаты в процессе оформления заказа.</li></ul>
+<h4 class="detail__subh">Интеграции с маркетинговыми платформами</h4>
+<ul><li>интеграция с Mindbox;</li><li>интеграция с AdvCake;</li><li>подготовка сайта к использованию маркетинговых и performance-инструментов.</li></ul>
+<h4 class="detail__subh">Дополнительные сервисы и пользовательские улучшения</h4>
+<ul><li>автоматическое определение города по IP;</li><li>интеграция с DaData;</li><li>улучшение сценариев заполнения данных пользователями;</li><li>персонализация пользовательского опыта в зависимости от региона.</li></ul>
+<h4 class="detail__subh">Запуск проекта</h4>
+<ul><li>проведение комплексного тестирования;</li><li>исправление замечаний по итогам проверки;</li><li>подготовка проекта к запуску;</li><li>обучение сотрудников заказчика.</li></ul><h3 class="detail__h">Результаты</h3>
+<p>Проект divanboss.ru стал полноценным инструментом онлайн-продаж, который помогает компании эффективно работать с ассортиментом, автоматизировать бизнес-процессы, подключать маркетинговые механики и повышать удобство для конечного покупателя.</p>
+<h3 class="detail__h">Решение позволяет</h3>
+<ul><li>представлять широкий ассортимент товаров в структурированном каталоге;</li><li>демонстрировать товары в удобных карточках;</li><li>оформлять заказы онлайн;</li><li>принимать оплату разными способами;</li><li>использовать рассрочку и сплит-оплату;</li><li>автоматически адаптировать пользовательский опыт под регион клиента;</li><li>передавать заказы и данные по ценам в учетные системы;</li><li>подключать маркетинговые инструменты для роста продаж и возврата клиентов.</li></ul></div>
+    </template>
+
+    <template id="detail-site-bgmu">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · БГМУ</p>
+        <h2 class="detail__title" id="detail-title">Разработка корпоративного сайта БГМУ</h2>
+        
+        <p class="detail__lead">Команда разработчиков Итач-софт с гордостью представляет результаты совместной работы с Белорусским государственным медицинским университетом. Наш опыт и профессионализм позволили создать веб-пространство, соответствующее самым высоким стандартам качества и современным требованиям.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.bsmu.by" target="_blank" rel="noopener noreferrer"><span>Открыть сайт bsmu.by</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-bgmu-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Дизайн</li><li>Верстка</li><li>Программирование</li><li>Наполнение сайта</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">7</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 UX/UI дизайнер</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>3 контент-специалиста</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Задача нашей команды включала в себя редизайн и разработку полностью нового корпоративного сайта для Белорусского Государственного Медицинского Университета.</p><h3 class="detail__h">Выполненные задачи</h3>
+<h4 class="detail__subh">Анализ и планирование</h4>
+<ul><li>Проведен детальный анализ старого сайта БГМУ для выявления его слабых мест и потребностей целевой аудитории.</li><li>На основе анализа сформулированы ключевые задачи и требования для нового сайта.</li></ul>
+<h4 class="detail__subh">Разработка нового уникального дизайна</h4>
+<ul><li>Создан современный и привлекательный дизайн, отражающий корпоративный стиль и ценности БГМУ.</li><li>Разработано более 50 макетов страниц, включая главную страницу, страницы факультетов, новостные разделы, страницы с информацией для абитуриентов и студентов и другие.</li><li>Дизайн адаптирован под различные устройства для обеспечения удобства пользователей на всех платформах (адаптивный дизайн).</li></ul>
+<h4 class="detail__subh">Разработка версии для слабовидящих</h4>
+<ul><li>Создана специальная версия сайта для слабовидящих, включающая возможность изменения размера шрифта, контраста и других параметров для улучшения доступности контента.</li></ul>
+<h4 class="detail__subh">Разработка многоязычной версии сайта</h4>
+<ul><li>Разработаны и внедрены три языковые версии сайта: русская, белорусская и английская.</li><li>Обеспечен легкий переключатель между языковыми версиями для удобства пользователей.</li></ul>
+<h4 class="detail__subh">Перенос контента со старого сайта</h4>
+<ul><li>Перенесен весь контент со старого сайта, включающий более 5000 страниц.</li><li>Контент был структурирован и оптимизирован для нового дизайна и функционала сайта.</li><li>Обеспечено сохранение всех ссылок и правильная индексация контента в поисковых системах.</li></ul>
+<h4 class="detail__subh">Разработка на CMS Битрикс</h4>
+<ul><li>Сайт разработан на платформе CMS Битрикс, обеспечивающей высокую производительность, безопасность и удобство управления контентом.</li><li>Внедрены необходимые модули и компоненты для реализации всех функций сайта.</li></ul>
+<h4 class="detail__subh">Тестирование и запуск</h4>
+<ul><li>Проведено комплексное тестирование всех функций сайта на различных устройствах и браузерах.</li><li>Исправлены выявленные ошибки и оптимизированы процессы.</li><li>Запуск сайта в рабочий режим и мониторинг его работы в первые недели.</li></ul>
+<h4 class="detail__subh">Обучение и поддержка</h4>
+<ul><li>Обучение персонала университета работе с новой CMS и управлению контентом.</li><li>Обеспечение технической поддержки на этапе внедрения и последующей эксплуатации.</li><li>Написание документации по тому, как пользоваться административной панелью сайта.</li></ul>
+<h3 class="detail__h">Результат</h3>
+<h4 class="detail__subh">Современный и удобный сайт</h4>
+<p>Новый дизайн и структура сайта улучшили восприятие и удобство использования для всех категорий пользователей.</p>
+<h4 class="detail__subh">Доступность</h4>
+<p>Версия для слабовидящих обеспечила доступность информации для людей с ограниченными возможностями.</p>
+<h4 class="detail__subh">Многоязычность</h4>
+<p>Три языковые версии сайта сделали информацию доступной для более широкой аудитории, включая иностранных студентов и партнеров.</p>
+<h4 class="detail__subh">Эффективное управление контентом</h4>
+<p>Использование CMS Битрикс упростило управление сайтом и обновление контента, что позволило оперативно реагировать на изменения и добавлять актуальную информацию.</p>
+<h4 class="detail__subh">Сохранение и оптимизация контента</h4>
+<p>Успешный перенос и оптимизация более 5000 страниц контента сохранили ценную информацию и улучшили её доступность для пользователей.</p><h3 class="detail__h">Заключение</h3>
+<p>Проект по разработке корпоративного сайта Белорусского государственного медицинского университета был успешно реализован. В результате университет получил современный, функциональный и удобный сайт, который удовлетворяет потребности различных категорий пользователей, обеспечивает высокую доступность информации и простоту управления контентом.</p></div>
+    </template>
+
+    <template id="detail-site-autolight">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · Автолайт Экспресс</p>
+        <h2 class="detail__title" id="detail-title">Разработка личного кабинета пользователей</h2>
+        
+        <p class="detail__lead">Компания Итач-софт успешно разработала личные кабинеты для юридических и физических лиц на сайте autolight.by. Основные задачи проекта включали создание уникального дизайна, использование современных технологий Битрикс и Vue.js, а также интеграцию с 1С.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.autolight.by" target="_blank" rel="noopener noreferrer"><span>Открыть сайт autolight.by</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-autolight-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Верстка</li><li>Программирование</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">3</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li></ul></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">месяцев работы над проектом</p></div></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Цель проекта: разработка удобного и интуитивно понятного личного кабинета для физических и юридических лиц, который позволит пользователям быстро и легко оформлять заказы, а также отслеживать всю необходимую информацию по заказам.</p><h3 class="detail__h">Выполненные работы</h3>
+<h4 class="detail__subh">Уникальный дизайн</h4>
+<ul><li>Разработан эксклюзивный дизайн, обеспечивающий удобство и привлекательность для пользователей.</li><li>Дизайн адаптирован для корректного отображения и удобного использования на всех устройствах, включая компьютеры, планшеты и смартфоны.</li></ul>
+<h4 class="detail__subh">Технологии</h4>
+<ul><li>Использованы передовые технологии Битрикс и Vue.js для создания быстрого и функционального интерфейса.</li><li>Внедрение системы управления контентом (CMS), позволяющей администраторам легко обновлять информацию и управлять материалами.</li></ul>
+<h4 class="detail__subh">Интеграция с 1С</h4>
+<ul><li>Проведена полная интеграция с системой 1С для синхронизации данных.</li><li>Режим реального времени: Обмен данными с 1С происходит в режиме реального времени.</li><li>Двусторонний обмен: Обеспечен двусторонний обмен данными для актуализации информации и улучшения взаимодействия.</li></ul>
+<h4 class="detail__subh">Регистрация и авторизация</h4>
+<ul><li>Реализована регистрация пользователей с помощью СМС-сервиса для обеспечения безопасности и удобства.</li></ul>
+<h4 class="detail__subh">Личный кабинет и обработка заказов</h4>
+<ul><li>Сложная логика обработки заказов: В зависимости от типа доставки, габаритов, города отправления и доставки пользователям предоставляются различные варианты доставки с разной стоимостью.</li><li>Выбор времени доставки: Пользователи могут выбрать удобное время доставки.</li><li>Отслеживание заказа: В личном кабинете пользователи могут видеть статус своего заказа в режиме реального времени и отслеживать посылку по трек-номеру.</li></ul>
+<h4 class="detail__subh">Нагрузочное тестирование</h4>
+<ul><li>Проведено нагрузочное тестирование для обеспечения стабильности и производительности сайта при высоких нагрузках.</li><li>Сайт успешно обрабатывает тысячи заказов ежедневно, обеспечивая надежную работу даже при пиковых нагрузках.</li></ul>
+<h3 class="detail__h">Результат</h3>
+<h4 class="detail__subh">Повышение удобства</h4>
+<p>Личные кабинеты обеспечили удобный доступ к персонализированной информации и услугам для юридических и физических лиц.</p>
+<h4 class="detail__subh">Улучшение функциональности</h4>
+<p>Современные технологии позволили создать быстрый и отзывчивый интерфейс, улучшив пользовательский опыт.</p>
+<h4 class="detail__subh">Эффективность управления</h4>
+<p>Интеграция с 1С повысила точность данных и упростила процессы управления.</p>
+<h4 class="detail__subh">Надежность и стабильность</h4>
+<p>Нагрузочное тестирование подтвердило способность сайта обрабатывать большой объем заказов, обеспечивая стабильную работу.</p>
+<h4 class="detail__subh">Оптимизация доставки</h4>
+<p>Сложная логика обработки заказов и возможность выбора времени доставки улучшили удобство и точность доставки для пользователей.</p>
+<p>Мы гордимся нашим вкладом в развитие сайта autolight.by и уверены, что созданные личные кабинеты значительно улучшат взаимодействие пользователей с платформой.</p></div>
+    </template>
+
+    <template id="detail-site-rozy">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · Розы.Бел</p>
+        <h2 class="detail__title" id="detail-title">Разработка интернет-магазина по доставке цветов</h2>
+        
+        <p class="detail__lead">Компания Итач-софт успешно разработала интернет-магазин для компании, специализирующейся на доставке цветов. Проект был выполнен на платформе Opencart с уникальным дизайном и интеграцией с различными системами для улучшения удобства работы и автоматизации бизнес-процессов.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.розы.бел" target="_blank" rel="noopener noreferrer"><span>Открыть сайт розы.бел</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-rozy-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Дизайн</li><li>Верстка</li><li>Программирование</li><li>Наполнение сайта</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 UX/UI дизайнер</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>1 контент-специалист</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Задача нашей команды включала в себя редизайн и разработку полностью нового интернет-магазина сайта для сети цветочных магазинов в Минске</p><h3 class="detail__h">Результаты</h3>
+<h4 class="detail__subh">Удобство для пользователей</h4>
+<p>Покупатели получили современный и удобный интернет-магазин с возможностью оплаты удобным способом и оперативной доставкой.</p>
+<h4 class="detail__subh">Автоматизация бизнес-процессов</h4>
+<p>Интеграция с CRM Битрикс24 позволила автоматизировать работу с заказами и клиентами, что значительно сократило время обработки и повысило точность данных.</p>
+<h4 class="detail__subh">Рост продаж</h4>
+<p>Благодаря улучшенной функциональности и удобству использования, увеличилось количество онлайн-заказов, что привело к росту выручки.</p>
+<h4 class="detail__subh">Повышение лояльности клиентов</h4>
+<p>Новый дизайн и удобство навигации положительно сказались на пользовательском опыте, что привлекло новых клиентов и повысило лояльность существующих.</p>
+<p>Проект по разработке интернет-магазина для сети цветочных магазинов в Минске на базе CMS OpenCart с уникальным дизайном и интеграцией с CRM Битрикс24 был успешно реализован. Он обеспечил удобство для покупателей и автоматизацию бизнес-процессов для компании, что привело к улучшению показателей продаж и общей эффективности бизнеса.</p></div>
+    </template>
+
+    <template id="detail-site-autogroup">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Сайт · Автогрупп</p>
+        <h2 class="detail__title" id="detail-title">Разработка корпоративного сайта для компании по доставке автомобилей из Америки</h2>
+        
+        <p class="detail__lead">Компания Итач-софт успешно разработала корпоративный сайт для компании, специализирующейся на доставке автомобилей из Америки. Проект был выполнен на платформе 1С-Битрикс с уникальным дизайном и внедрением множества полезных функций.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button><a class="btn btn--outline detail__site" href="https://www.autogroup.by" target="_blank" rel="noopener noreferrer"><span>Открыть сайт autogroup.by</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/site-autogroup-tile-0.webp" width="1440" height="940" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check detail__check--single"><li>Дизайн</li><li>Верстка</li><li>Программирование</li><li>Наполнение сайта</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 UX/UI дизайнер</li><li>1 frontend-разработчик</li><li>1 backend-разработчик</li><li>1 контент-специалист</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Цель и задачи</h3><p>Создание современного, функционального и удобного корпоративного сайта, который бы обеспечивал пользователям возможность отслеживания автомобилей, оплаты услуг и удобного взаимодействия с компанией.</p><h3 class="detail__h">Выполненные задачи</h3>
+<h4 class="detail__subh">Уникальный дизайн</h4>
+<p>Разработан эксклюзивный дизайн сайта, который подчеркивает профессионализм и надежность компании. Дизайн адаптирован для удобного использования на всех устройствах, включая компьютеры, планшеты и смартфоны.</p>
+<h4 class="detail__subh">Функционал отслеживания авто по VIN-номеру</h4>
+<p>Внедрен функционал, позволяющий клиентам отслеживать статус доставки автомобилей по VIN-номеру. Это обеспечивает прозрачность процесса и позволяет клиентам всегда быть в курсе текущего состояния своего заказа.</p>
+<h4 class="detail__subh">Система оплаты за услуги</h4>
+<p>Разработана и интегрирована система онлайн-оплаты, позволяющая клиентам удобно и безопасно оплачивать услуги компании. Поддерживаются различные способы оплаты, обеспечивающие максимальный комфорт для пользователей.</p>
+<h4 class="detail__subh">Интеграция с amoCRM</h4>
+<p>Произведена интеграция сайта с amoCRM, что позволяет автоматически передавать данные о клиентах и заказах в CRM-систему. Это улучшает управление клиентскими данными и повышает эффективность работы менеджеров.</p>
+<h4 class="detail__subh">Интеграция с Roistat</h4>
+<p>Сайт был интегрирован с аналитической системой Roistat, что позволяет отслеживать эффективность маркетинговых кампаний и оптимизировать рекламные бюджеты. Внедрение Roistat обеспечивает точную аналитику и контроль над маркетинговыми показателями.</p>
+<h3 class="detail__h">Результат</h3>
+<h4 class="detail__subh">Повышение удобства для клиентов</h4>
+<p>Новый сайт с функционалом отслеживания автомобилей и системой онлайн-оплаты значительно упростил взаимодействие клиентов с компанией.</p>
+<h4 class="detail__subh">Улучшение управления</h4>
+<p>Интеграция с amoCRM и Roistat обеспечила лучшее управление клиентскими данными и маркетинговыми кампаниями, что способствовало повышению эффективности работы компании.</p>
+<h4 class="detail__subh">Привлечение новых клиентов</h4>
+<p>Уникальный дизайн и удобный интерфейс сайта привлекли больше новых клиентов, увеличив общий объем заказов.</p>
+<p>Мы гордимся нашим вкладом в развитие компании по доставке автомобилей из Америки и уверены, что созданный сайт будет способствовать её дальнейшему росту и успеху.</p><h3 class="detail__h">Отзыв клиента</h3><article class="review-card detail-review glow-card"><div class="detail-review__side"><div class="review-card__top"><img class="review-card__logo" src="assets/img/reviews/autogroup.svg" width="250" height="63" alt="Автогруп" loading="lazy" /><span class="review-card__quote" aria-hidden="true">“</span></div><footer class="review-card__author"><span class="review-card__name">Болдюсов Дмитрий Григорьевич</span><span class="review-card__job">Руководитель</span></footer></div><blockquote class="review-card__text"><p>Настоящим письмом выражаем свою искреннюю благодарность компании «Итач-софт» за отличную работу, которую проделала Ваша компания по созданию и запуску нашего сайта, а также по разработке собственной специализированной CRM-системы.</p><p>В работе с Вами мы увидели профессионализм, знание технологий, системный подход, соблюдение сроков, способность увидеть и понять наши потребности, и предложить лучшее решение.</p><p>Надеемся на дальнейшее плодотворное сотрудничество с Вами!</p></blockquote></article></div>
+    </template>
 
   </body>
 </html>

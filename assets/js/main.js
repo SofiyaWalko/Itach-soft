@@ -961,6 +961,18 @@ function initMobileServicesNav() {
   });
 }
 
+// Лента технологий: скорость постоянная независимо от числа логотипов.
+// Ширина трека у страниц разная, а анимация в CSS идёт фиксированные 90 s —
+// поэтому длительность считаем от ширины списка (тот же темп, что на «Сайтах»)
+function initTechMarquee() {
+  const PX_PER_SECOND = 30;
+  document.querySelectorAll(".tech-marquee__track").forEach((track) => {
+    const list = track.querySelector(".tech-marquee__list");
+    if (!list) return;
+    track.style.animationDuration = `${Math.round(list.offsetWidth / PX_PER_SECOND)}s`;
+  });
+}
+
 // Сертификаты и награды: центральная карточка и две боковые под ней.
 // Клик по боковой переносит её сертификат в центр, очередь круговая
 function initAwards() {
@@ -1132,4 +1144,7 @@ document.querySelectorAll("[data-calc]").forEach((el) => window.initCalculator?.
 initCalcModal();
 initDetail(document.querySelector("[data-detail-modal]"));
 initCookieBanner(document.querySelector("[data-cookie]"));
+initTechMarquee();
+// После загрузки шрифтов ширина списка может измениться — пересчитываем длительность
+document.fonts?.ready.then(initTechMarquee);
 initAwards();
