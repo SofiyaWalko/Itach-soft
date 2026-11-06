@@ -4994,7 +4994,9 @@ html:has(.detail[open]) {
    и при prefers-reduced-motion — обычная горизонтальная прокрутка (formats--native) */
 .service-sections .team,
 .service-sections .tech,
-.service-sections .related {
+/* «Другие направления» стоит вне .service-sections (после закрывающего div) —
+   селектор с .service-sections её не ловит */
+.related {
   padding-block: 0 var(--space-12);
 }
 
@@ -5210,7 +5212,7 @@ html:has(.detail[open]) {
 
 /* ---------- Технологии: монохромная строка ---------- */
 /* ---------- Технологии ---------- */
-/* Заголовок по центру, под ним — широкий веер логотипов */
+/* Заголовок по центру, под ним — бегущие строки: логотип над названием технологии */
 .tech__inner {
   display: grid;
   justify-items: center;
@@ -5222,278 +5224,86 @@ html:has(.detail[open]) {
   max-inline-size: 42rem;
 }
 
-/* Папка: задняя створка с язычком справа, передний карман — с язычком слева.
-   Форму и раскладку веера считает скрипт по фактическим размерам — так
-   скругления не деформируются, а иконки всегда влезают по ширине */
-.tech-folder {
-  --tech-tile: 4rem;
-  --tech-spread: 2.5rem;
-  --tech-arc: 1.8px;
-  --tech-tilt: 2.4deg;
-  position: relative;
-  inline-size: 100%;
-  max-inline-size: 44rem;
-  block-size: 25rem;
-  color: var(--color-text);
-  isolation: isolate;
-  opacity: 0;
-  transform: translateY(2rem) scale(0.94);
-  transition:
-    opacity 0.6s ease,
-    transform 0.9s var(--ease-out);
+/* Две бегущие строки, направления чередуются.
+   Трек — две одинаковые копии списка, сдвиг на половину даёт бесшовный цикл */
+.tech-marquee {
+  margin-block-start: var(--space-6);
+  overflow: hidden;
 }
 
-.tech-folder.is-shown {
-  opacity: 1;
-  transform: none;
-}
-
-.tech-folder__glow {
-  position: absolute;
-  inset: var(--space-4) 8% auto;
-  block-size: 12.5rem;
-  border-radius: 50%;
-  background: radial-gradient(
-    closest-side,
-    rgb(255 122 31 / 0.16),
-    rgb(255 122 168 / 0.08) 55%,
-    transparent
-  );
-  filter: blur(18px);
-  z-index: -1;
-}
-
-.tech-folder__back {
-  position: absolute;
-  inset: 0.875rem 0 0;
-  /* Фирменный градиент: оранжевый держится дольше, розовый — только на дальнем краю */
-  background: linear-gradient(
-    135deg,
-    var(--color-drop-orange) 0%,
-    var(--color-drop-orange) 78%,
-    var(--color-drop-pink) 100%
-  );
-}
-
-.tech-folder__outline {
-  position: absolute;
-  inset: 0;
-  inline-size: 100%;
-  block-size: 100%;
-  overflow: visible;
-  pointer-events: none;
-}
-
-.tech-folder__outline path {
-  fill: none;
-  stroke-width: 2;
-}
-
-.tech-folder__icons {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  pointer-events: none;
-}
-
-/* Иконки лежат веером: --k задаёт позицию в ряду, --k2 — высоту дуги */
-.tech-folder__icon {
-  position: absolute;
-  inset-block-start: 5rem;
-  inset-inline-start: 50%;
-  inline-size: var(--tech-tile);
-  block-size: var(--tech-tile);
-  margin-inline-start: calc(var(--tech-tile) / -2);
-  z-index: calc(10 - var(--d));
-  opacity: 0;
-  transform: translate3d(0, 5rem, 0);
-  transition:
-    transform 0.9s var(--ease-out),
-    opacity 0.5s ease;
-  transition-delay: calc(0.35s + var(--i) * 0.06s);
-}
-
-.tech-folder.is-shown .tech-folder__icon {
-  opacity: 1;
-  transform: translate3d(
-    calc(var(--k) * var(--tech-spread)),
-    calc(var(--k2) * var(--tech-arc)),
-    0
-  ) rotate(calc(var(--k) * var(--tech-tilt)));
-  transition-delay: calc(var(--i) * 0.05s);
-}
-
-.tech-folder__tile {
-  position: relative;
-  display: grid;
-  place-items: center;
-  inline-size: 100%;
-  block-size: 100%;
-  border-radius: var(--radius-md);
-  background: rgb(255 255 255 / 0.94);
-  box-shadow:
-    0 0.75rem 1.75rem rgb(20 21 26 / 0.14),
-    0 0 0 1px rgb(20 21 26 / 0.07);
-  pointer-events: auto;
-  transition:
-    transform 0.45s var(--ease-out),
-    filter 0.3s ease;
-}
-
-/* Логотипы на сайте-источнике уже монохромные — держим их приглушёнными,
-   пока не заменят на цветные */
-.tech-folder__logo {
-  inline-size: 64%;
-  block-size: 50%;
-  object-fit: contain;
-  opacity: 0.65;
-}
-
-.tech-folder__label {
-  position: absolute;
-  inset-block-end: calc(100% + 0.5rem);
-  inset-inline-start: 50%;
-  padding: 0.25rem 0.625rem;
-  border: 1px solid var(--color-glass-stroke);
-  border-radius: var(--radius-pill);
-  background: rgb(255 255 255 / 0.86);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  color: var(--color-text);
-  font-size: 1.0625rem;
-  font-weight: 600;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateX(-50%) translateY(0.375rem);
-  transition:
-    opacity 0.25s ease,
-    transform 0.35s var(--ease-out);
-  pointer-events: none;
-}
-
-.tech-folder__front-wrap {
-  position: absolute;
-  inset-inline: 0;
-  inset-block-end: 0;
-  block-size: 13.125rem;
-  z-index: 100;
-}
-
-.tech-folder__front {
-  position: absolute;
-  inset: 0;
-  padding: 2.125rem 1.125rem 1rem;
-  /* Тот же градиент, но под белой стеклянной плёнкой — карман светлее задней створки */
-  background:
-    linear-gradient(160deg, rgb(255 255 255 / 0.74), rgb(255 255 255 / 0.52) 60%),
-    linear-gradient(
-      135deg,
-      var(--color-drop-orange) 0%,
-      var(--color-drop-orange) 78%,
-      var(--color-drop-pink) 100%
-    );
-}
-
-.tech-folder__caption {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.tech-folder__tags {
+.tech-marquee__track {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem;
-  margin: var(--space-2) 0 0;
+  inline-size: max-content;
+  animation: tech-marquee 90s linear infinite;
+}
+
+.tech-marquee__track--reverse {
+  animation-direction: reverse;
+}
+
+.tech-marquee__track + .tech-marquee__track {
+  margin-block-start: var(--space-3);
+}
+
+.tech-marquee__list {
+  display: flex;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.tech-folder__tag {
-  padding: 0.1875rem 0.75rem;
-  border: 1px solid transparent;
-  border-radius: var(--radius-pill);
-  /* Градиентный контур: белая заливка в padding-box, градиент виден только в рамке */
-  background:
-    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
-    linear-gradient(120deg, var(--color-drop-orange), var(--color-drop-pink)) border-box;
-  color: var(--color-text-2);
-  font-size: 1.0625rem;
-  font-weight: 500;
-  line-height: 1.5;
-  white-space: nowrap;
+.tech-marquee__tech {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: var(--space-1);
+  padding-inline: var(--space-4);
 }
 
-/* Наведение раскрывает веер шире, иконка под курсором приподнимается */
+/* Серые логотипы, как и названия; при наведении логотип обретает цвет */
+.tech-marquee__logo {
+  block-size: 2.5rem;
+  inline-size: auto;
+  max-inline-size: 8rem;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.5);
+  transition: filter var(--duration-base) var(--ease-out);
+}
+
+.tech-marquee__name {
+  color: var(--color-line-strong);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition: color var(--duration-base) var(--ease-out);
+}
+
 @media (hover: hover) {
-  .tech-folder:hover .tech-folder__icon {
-    transform: translate3d(
-      calc(var(--k) * var(--tech-spread) * 1.12),
-      calc(var(--k2) * var(--tech-arc)),
-      0
-    ) rotate(calc(var(--k) * var(--tech-tilt)));
-    transition-delay: 0s;
+  .tech-marquee__tech:hover .tech-marquee__logo {
+    filter: none;
   }
 
-  .tech-folder__icon:hover {
-    z-index: 50;
+  .tech-marquee__tech:hover .tech-marquee__name {
+    color: var(--color-text);
   }
+}
 
-  .tech-folder__icon:hover .tech-folder__tile {
-    transform: translateY(-0.75rem) scale(1.08);
-  }
-
-  .tech-folder__icon:hover .tech-folder__label {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+@keyframes tech-marquee {
+  to {
+    transform: translateX(-50%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tech-folder,
-  .tech-folder__icon,
-  .tech-folder__tile {
-    transition: none;
-  }
-
-  .tech-folder {
-    opacity: 1;
-    transform: none;
-  }
-
-  .tech-folder__icon,
-  .tech-folder.is-shown .tech-folder__icon {
-    opacity: 1;
-    transform: translate3d(
-      calc(var(--k) * var(--tech-spread)),
-      calc(var(--k2) * var(--tech-arc)),
-      0
-    ) rotate(calc(var(--k) * var(--tech-tilt)));
+  .tech-marquee__track {
+    animation: none;
   }
 }
 
-@media (max-width: 599px) {
-  .tech-folder {
-    --tech-tile: 3.5rem;
-  }
-
-  .tech-folder__icon {
-    inset-block-start: 2.5rem;
-  }
-
-  .tech-folder__front-wrap {
-    block-size: 15.5rem;
-  }
-
-  .tech-folder__front {
-    padding-block-start: 1.875rem;
-  }
-}
-
-/* ---------- Перелинковка: подуслуги направления ---------- */
+/* ---------- Перелинковка: другие направления услуг ----------
+   Пилюли с градиентным контуром — тот же приём, что у тегов карточек услуг на главной */
 .related__list {
   display: flex;
   flex-wrap: wrap;
@@ -5506,25 +5316,60 @@ html:has(.detail[open]) {
 }
 
 .related__link {
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-block-size: 2.75rem;
   padding: var(--space-1) var(--space-3);
-  border: 1px solid var(--color-line);
+  /* Градиентная рамка настоящим border (градиент на border-box): ровная по всему периметру */
+  border: var(--contour-width) solid transparent;
   border-radius: var(--radius-pill);
-  color: var(--color-text-2);
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    var(--gradient-flow) border-box;
+  background-size: auto, 200% 100%;
   font-size: 0.9375rem;
   font-weight: 600;
   line-height: 1.3;
-  transition:
-    color var(--duration-base) var(--ease-out),
-    border-color var(--duration-base) var(--ease-out);
+  transition: color var(--duration-base) var(--ease-out);
 }
 
 @media (hover: hover) {
   .related__link:hover {
-    color: var(--color-accent-strong);
-    border-color: var(--color-accent);
+    color: var(--color-surface);
+  }
+}
+
+/* При наведении градиентом заливается вся пилюля, рамка и заливка текут синхронно */
+.related__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .related__link:hover::after {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) {
+    .related__link:hover {
+      animation: border-flow 3s linear infinite;
+    }
+
+    .related__link:hover::after {
+      animation: gradient-flow 3s linear infinite;
+    }
   }
 }
 
