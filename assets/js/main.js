@@ -611,7 +611,8 @@ function initCalcModal() {
 
   document.addEventListener("click", (event) => {
     const trigger = event.target.closest('a[href="#calculator"], a[href$="index.html#calculator"], [data-calc-open]');
-    if (!trigger || modal.contains(trigger)) return;
+    // data-calc-scroll — ссылка ведёт якорем к встроенному калькулятору, попап не открываем
+    if (!trigger || trigger.hasAttribute("data-calc-scroll") || modal.contains(trigger)) return;
     event.preventDefault();
     root.resetCalculator?.();
     modal.showModal();
@@ -1007,6 +1008,121 @@ function initMobileServicesNav() {
   });
 }
 
+// Сертификаты и награды: центральная карточка и две боковые под ней.
+// Клик по боковой переносит её сертификат в центр, очередь круговая
+function initAwards() {
+  const section = document.querySelector("[data-awards]");
+  if (!section) return;
+  const dataEl = section.querySelector("[data-awards-data]");
+  const stage = section.querySelector("[data-awards-stage]");
+  if (!dataEl || !stage) return;
+
+  const data = JSON.parse(dataEl.textContent);
+  const total = data.length;
+  // Роли мигрируют между карточками, поэтому элементы берём по актуальному классу
+  const leftEl = () => stage.querySelector(".is-left");
+  const centerEl = () => stage.querySelector(".is-center");
+  const rightEl = () => stage.querySelector(".is-right");
+  const caption = section.querySelector("[data-awards-caption]");
+  const dotsBox = section.querySelector("[data-awards-dots]");
+  // Круговая очередь: слева — предыдущий, справа — следующий; клик по боковой крутит её
+  let positions = { left: total - 1, center: 0, right: 1 };
+  let busy = false;
+
+  const setImage = (el, index) => {
+    el.querySelector("img").src = data[index].src;
+    el.querySelector("img").alt = data[index].alt;
+  };
+
+  const dots = data.map((cert, dotIndex) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.setAttribute("aria-label", cert.caption);
+    dot.addEventListener("click", () => goTo(dotIndex));
+    dotsBox.append(dot);
+    return dot;
+  });
+
+  const updateDots = () => {
+    dots.forEach((dot, dotIndex) => {
+      if (dotIndex === positions.center) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+    });
+  };
+
+  const render = () => {
+    setImage(leftEl(), positions.left);
+    setImage(centerEl(), positions.center);
+    setImage(rightEl(), positions.right);
+    caption.textContent = data[positions.center].caption;
+    updateDots();
+  };
+
+  // Переход к конкретному сертификату по индикатору: картинки гаснут и проявляются уже новыми
+  const FADE_MS = 150; // совпадает с --duration-fast у .awards-show.is-switching img
+  const goTo = (index) => {
+    if (busy || index === positions.center) return;
+    busy = true;
+    const cards = [leftEl(), centerEl(), rightEl()];
+    cards.forEach((card) => card.classList.add("is-switching"));
+    setTimeout(() => {
+      positions = { left: (index - 1 + total) % total, center: index, right: (index + 1) % total };
+      render();
+      cards.forEach((card) => card.classList.remove("is-switching"));
+      setTimeout(() => {
+        busy = false;
+      }, 220);
+    }, FADE_MS);
+  };
+
+  // direction: 1 — клик по правой карточке, -1 — по левой
+  const rotate = (direction) => {
+    if (busy) return;
+    busy = true;
+    const left = leftEl();
+    const center = centerEl();
+    const right = rightEl();
+    const jumping = direction === 1 ? left : right;
+    const current = { ...positions };
+
+    // Скрываем перелетающую карточку до смены ролей: перенос мгновенный и незаметный
+    jumping.classList.add("is-jumping");
+    void jumping.offsetWidth; // фиксируем скрытое состояние, чтобы transform не анимировался
+
+    if (direction === 1) {
+      right.classList.replace("is-right", "is-center");
+      center.classList.replace("is-center", "is-left");
+      left.classList.replace("is-left", "is-right");
+      positions = { left: current.center, center: current.right, right: (current.right + 1) % total };
+    } else {
+      left.classList.replace("is-left", "is-center");
+      center.classList.replace("is-center", "is-right");
+      right.classList.replace("is-right", "is-left");
+      positions = { left: (current.left - 1 + total) % total, center: current.left, right: current.center };
+    }
+    setImage(jumping, direction === 1 ? positions.right : positions.left);
+    caption.textContent = data[positions.center].caption;
+    updateDots();
+
+    // Проявляем карточку уже на новом месте
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => jumping.classList.remove("is-jumping"));
+    });
+    setTimeout(() => {
+      busy = false;
+    }, 450);
+  };
+
+  // Роли карточек (классы) мигрируют между элементами — направление берём из класса на момент клика
+  stage.addEventListener("click", (event) => {
+    const card = event.target.closest(".awards-show");
+    if (!card) return;
+    if (card.classList.contains("is-left")) rotate(-1);
+    else if (card.classList.contains("is-right")) rotate(1);
+  });
+  render();
+}
+
 // Липкая мобильная CTA «Рассчитать стоимость»: появляется после прокрутки hero,
 // прячется, когда форма заявки на экране, чтобы не перекрывать её
 function initLeadCta() {
@@ -1060,3 +1176,4 @@ initFormatsScroll();
 initDetail(document.querySelector("[data-detail-modal]"));
 initCookieBanner(document.querySelector("[data-cookie]"));
 initLeadCta();
+initAwards();

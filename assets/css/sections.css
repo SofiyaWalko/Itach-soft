@@ -162,6 +162,12 @@
   margin-block-start: var(--space-6);
 }
 
+/* На «Услугах» лента идёт после отзывов: их нижний padding уже даёт 96px,
+   поэтому верхний margin ленты обнуляем, чтобы воздух не удвоился */
+.reviews + .clients {
+  margin-block-start: 0;
+}
+
 .clients__track {
   display: flex;
   inline-size: max-content;
@@ -510,6 +516,7 @@
 .process,
 .reviews,
 .news,
+.awards,
 .faq,
 .lead {
   padding-block: 0 var(--space-12);
@@ -4768,6 +4775,12 @@ html:has(.detail[open]) {
   padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) 0;
 }
 
+/* Отзывы идут сразу после списка направлений: нижнего отступа у него нет,
+   поэтому верхний отступ задаём отзывам */
+.services-page + .reviews {
+  margin-block-start: var(--space-12);
+}
+
 .services-page .section-title {
   margin-block-start: var(--space-2);
 }
@@ -4939,6 +4952,14 @@ html:has(.detail[open]) {
   text-align: start;
 }
 
+/* Заголовок hero крупнее обычных секций, но меньше hero главной (там до 5rem).
+   На мобильных размер остаётся общим для всех заголовков страницы */
+@media (min-width: 640px) {
+  .service-hero .section-title {
+    font-size: clamp(2.25rem, 0.9rem + 3.9vw, 4rem);
+  }
+}
+
 .service-hero__lead {
   max-inline-size: 38rem;
   font-size: clamp(1rem, 0.95rem + 0.4vw, 1.25rem);
@@ -4982,9 +5003,9 @@ html:has(.detail[open]) {
   white-space: nowrap;
 }
 
-/* Лента логотипов перед FAQ: предыдущая секция (отзывы) уже даёт 96px снизу,
-   верхний margin ленты обнуляем, чтобы воздух сверху и снизу был одинаковым */
-.service-sections .clients {
+/* Лента логотипов сразу под hero «Сайты»: нижний padding hero уже даёт 96px
+   воздуха, поэтому верхний margin ленты обнуляем — сверху и снизу одинаково */
+.service-hero + .clients {
   margin-block-start: 0;
 }
 
@@ -5000,21 +5021,23 @@ html:has(.detail[open]) {
   padding-block: 0 var(--space-12);
 }
 
-/* 96px от блока кейсов; у самого пина отступ сверху маленький,
-   чтобы в залипшем состоянии заголовок сидел сразу под шапкой */
+/* Блок стоимости идёт после «Сайта под любую задачу»: 96px сверху даёт
+   нижний паддинг предыдущей секции, поэтому margin секции обнулён.
+   У самого пина отступ сверху маленький, чтобы в залипшем состоянии
+   заголовок сидел сразу под шапкой */
 .service-sections .formats {
-  margin-block-start: var(--space-12);
+  margin-block-start: 0;
 }
 
-/* От блока кейсов до заголовка «Стоимость» — ровно 96px на десктопе:
-   нижний отступ кейсов убран, сверху у пина — отступ под шапку (24 + 72) */
+/* От блока кейсов до «Сайта под любую задачу» — 96px: нижний отступ кейсов
+   убран, воздух даёт верхний margin следующей секции */
 .service-sections .cases {
   padding-block-end: 0;
 }
 
 .formats__pin {
-  /* Залипает ниже липкой шапки; высота по контенту: до блока — 96px (margin секции),
-     после — 96px нижнего паддинга */
+  /* Залипает ниже липкой шапки; высота по контенту: до блока — 96px нижнего
+     паддинга предыдущей секции, после — 96px нижнего паддинга пина */
   position: sticky;
   inset-block-start: calc(var(--header-top) + var(--header-height) + var(--space-3));
   display: flex;
@@ -5302,6 +5325,179 @@ html:has(.detail[open]) {
   }
 }
 
+/* ---------- Наши достижения: сертификаты и награды ---------- */
+.awards__inner {
+  display: grid;
+  justify-items: center;
+  gap: 0;
+}
+
+.awards__lead {
+  max-inline-size: 46rem;
+  margin: var(--space-4) 0 0;
+  color: var(--color-text-2);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+/* Сцена: центральная карточка крупно, боковые меньше и заходят под неё */
+.awards-stage {
+  display: grid;
+  place-items: center;
+  inline-size: 100%;
+  margin-block-start: var(--space-6);
+}
+
+/* Формат карточки повторяет пропорции горизонтальных сертификатов (~√2):
+   альбомные вписываются с одинаковым полем со всех сторон, портретные — по высоте */
+.awards-show {
+  position: relative;
+  grid-area: 1 / 1;
+  inline-size: 50%;
+  aspect-ratio: 1.414;
+  border: 1px solid var(--color-glass-stroke);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-glass);
+  transition:
+    transform 0.65s var(--ease-out),
+    opacity 0.65s var(--ease-out),
+    box-shadow 0.65s var(--ease-out);
+}
+
+.awards-show img {
+  position: absolute;
+  inset: var(--space-2);
+  margin: auto;
+  max-inline-size: calc(100% - 2 * var(--space-2));
+  max-block-size: calc(100% - 2 * var(--space-2));
+  object-fit: contain;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+/* Смена по индикатору: картинка гаснет быстрее, чем проявляется новая */
+.awards-show.is-switching img {
+  opacity: 0;
+  transition-duration: var(--duration-fast);
+}
+
+.is-left {
+  z-index: 1;
+  transform: translateX(-61%) scale(0.78);
+}
+
+.is-center {
+  z-index: 2;
+}
+
+.is-right {
+  z-index: 1;
+  transform: translateX(61%) scale(0.78);
+}
+
+/* Карточка, перелетающая на противоположную сторону: скрываем мгновенно,
+   чтобы перенос роли не был виден пролётом через весь слайдер */
+.is-jumping {
+  opacity: 0;
+  transition: none;
+}
+
+@media (hover: hover) {
+  .is-left:hover,
+  .is-right:hover {
+    /* Подъём — микроинтеракция, поэтому быстрее, чем пролистывание */
+    transition-duration: var(--duration-base);
+  }
+
+  .is-left:hover {
+    transform: translateX(-61%) translateY(-0.75rem) scale(0.78);
+  }
+
+  .is-right:hover {
+    transform: translateX(61%) translateY(-0.75rem) scale(0.78);
+  }
+}
+
+/* Индикатор: маленькие серые полоски, активная темнее */
+.awards-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-block-start: var(--space-2);
+}
+
+.awards-dots button {
+  inline-size: 1.5rem;
+  block-size: 0.25rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-line-strong);
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+
+.awards-dots button[aria-current="true"] {
+  background: var(--color-text-2);
+}
+
+@media (hover: hover) {
+  .awards-dots button:hover {
+    background: var(--color-text-2);
+  }
+}
+
+.awards-caption {
+  max-inline-size: 46rem;
+  margin: var(--space-3) 0 0;
+  color: var(--color-text-2);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Плашки компетенций: на десктопе одна строка по ширине контейнера,
+   на узких экранах переносятся в 4 и 2 колонки */
+.awards-badges {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: var(--space-2);
+  inline-size: 100%;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.awards-badges img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+@media (max-width: 1279px) {
+  .awards-badges {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 639px) {
+  .awards-badges {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .awards-show,
+  .awards-show img {
+    transition: none;
+  }
+}
+
 /* ---------- Перелинковка: другие направления услуг ----------
    Пилюли с градиентным контуром — тот же приём, что у тегов карточек услуг на главной */
 .related__list {
@@ -5410,8 +5606,9 @@ html:has(.detail[open]) {
 
 
 /* ---------- Сайт под любую задачу: карточки форматов ---------- */
-/* Расстояние до блока стоимости уже даёт нижний паддинг пина (96px) */
+/* 96px от кейсов сверху; снизу — 96px нижнего паддинга до блока стоимости */
 .service-sections .solutions {
+  margin-block-start: var(--space-12);
   padding-block-end: var(--space-12);
 }
 
