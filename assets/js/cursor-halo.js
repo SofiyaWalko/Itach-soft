@@ -1,5 +1,5 @@
-// Стеклянный круг вместо системного курсора: следует за мышью почти без задержки
-// Только для точного указателя и без reduced motion.
+// Стеклянный круг, который плавно тянется за системным курсором.
+// Системный курсор при этом остаётся видимым. Только для точного указателя и без reduced motion.
 
 const FOLLOW_SPEED = 0.38;
 const SETTLE_DISTANCE = 0.1;
@@ -9,8 +9,6 @@ function initCursorHalo(halo) {
   const canTrack = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!canTrack || reducedMotion) return;
-
-  document.documentElement.classList.add("has-custom-cursor");
 
   // Открытые окна лежат в верхнем слое поверх всего; кружок тоже там и поднимается над каждым новым окном
   halo.popover = "manual";
@@ -43,7 +41,7 @@ function initCursorHalo(halo) {
     frame = isSettled ? 0 : requestAnimationFrame(render);
   }
 
-  // Над полями ввода кружок прячется: там нужен системный курсор-текст
+  // Над полями ввода кружок прячется, чтобы не мешать работе с текстом
   function updateState(element) {
     halo.classList.toggle("is-hidden", Boolean(element?.closest(TEXT_FIELD_SELECTOR)));
   }
