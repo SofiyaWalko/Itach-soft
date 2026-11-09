@@ -489,12 +489,6 @@ function initLeadForm(form) {
 
 // Появление блоков и заголовков при прокрутке: одиночные [data-reveal] и группы [data-reveal-stagger]
 function initScrollReveal() {
-  const targets = document.querySelectorAll("[data-reveal], [data-reveal-stagger]");
-
-  document.querySelectorAll("[data-reveal-stagger]").forEach((group) => {
-    [...group.children].forEach((child, index) => child.style.setProperty("--i", index));
-  });
-
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -506,7 +500,19 @@ function initScrollReveal() {
     },
     { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
   );
-  targets.forEach((target) => observer.observe(target));
+
+  document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+
+  document.querySelectorAll("[data-reveal-stagger]").forEach((group) => {
+    // data-reveal-pair: карточки появляются по строке сетки (парами) и каждая пара сама,
+    // когда до неё доскроллили — поэтому наблюдаем потомков, а не группу целиком
+    const pair = group.hasAttribute("data-reveal-pair");
+    [...group.children].forEach((child, index) => {
+      child.style.setProperty("--i", pair ? Math.floor(index / 2) : index);
+      if (pair) observer.observe(child);
+    });
+    if (!pair) observer.observe(group);
+  });
 }
 
 // Попап с формой заявки: открывается по кнопкам и ссылкам на #lead. Без JS те же ссылки ведут к форме внизу страницы

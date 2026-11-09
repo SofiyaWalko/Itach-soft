@@ -1137,16 +1137,24 @@
 
 /* ---------- Появление при прокрутке ----------
    [data-reveal] — один элемент всплывает, когда доходит до экрана;
-   [data-reveal-stagger] — его прямые потомки всплывают по очереди (--i задаёт скрипт).
+   [data-reveal-stagger] — его прямые потомки всплывают по очереди (--i задаёт скрипт);
+   [data-reveal-stagger][data-reveal-pair] — потомки всплывают парами по строке сетки,
+   каждая пара сама, когда до неё доскроллили.
    Анимация та же, что у hero (rise). Без JS и при reduced motion всё видно сразу */
 @media (prefers-reduced-motion: no-preference) {
   .js [data-reveal]:not(.is-revealed),
-  .js [data-reveal-stagger]:not(.is-revealed) > * {
+  .js [data-reveal-stagger]:not([data-reveal-pair]):not(.is-revealed) > *,
+  .js [data-reveal-pair] > *:not(.is-revealed) {
     opacity: 0;
   }
 
   [data-reveal].is-revealed,
-  [data-reveal-stagger].is-revealed > * {
+  [data-reveal-stagger]:not([data-reveal-pair]).is-revealed > * {
+    animation: rise 700ms var(--ease-out) backwards;
+    animation-delay: calc(min(var(--i, 0), 6) * 90ms);
+  }
+
+  [data-reveal-pair] > *.is-revealed {
     animation: rise 700ms var(--ease-out) backwards;
     animation-delay: calc(min(var(--i, 0), 6) * 90ms);
   }
@@ -4629,6 +4637,12 @@ html:has(.detail[open]) {
   color: var(--color-text);
 }
 
+/* На страницах услуг крошки стоят в одном контейнере с заголовком херо —
+   выравниваем по его левому краю, без отступа под логотип шапки */
+.service-hero .breadcrumbs {
+  margin-inline-start: 0;
+}
+
 /* ---------- Телефон: формы-заявки открываются не модалкой, а шторкой снизу ---------- */
 @media (max-width: 639px) {
   .modal {
@@ -4884,6 +4898,9 @@ html:has(.detail[open]) {
 /* Фон как на всём сайте — без градиентов и скруглений; контент слева, метафора справа */
 .service-hero {
   padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) var(--space-12);
+  /* Увеличенные иллюстрации выступают за колонку — обрезаем вылет по бокам,
+     чтобы он не давал горизонтальный скролл на промежуточных ширинах */
+  overflow-x: clip;
 }
 
 @media (max-width: 767px) {
@@ -4911,6 +4928,12 @@ html:has(.detail[open]) {
     max-inline-size: 22rem;
     margin-inline: auto;
   }
+
+  /* На телефоне картинка центрирована в колонке — растим её от центра,
+     иначе увеличение прижимало бы объект к правому краю */
+  .service-hero__figure img {
+    transform-origin: 50% 50%;
+  }
 }
 
 .service-hero__intro {
@@ -4927,6 +4950,22 @@ html:has(.detail[open]) {
   display: block;
   inline-size: 100%;
   block-size: auto;
+  /* Иллюстрации лежат в прозрачном поле под пропорцию херо, поэтому сам объект
+     кажется мельче блока. Увеличиваем масштабом от правого края: transform не
+     меняет раскладку, а рост уходит влево в зазор между колонками — правая
+     кромка картинки остаётся ровно по контейнеру, как шапка */
+  transform: scale(1.1);
+  transform-origin: 100% 50%;
+}
+
+/* Кадр шире пропорции херо: вертикальные поля съедают объект, и он выглядит
+   мельче, чем иллюстрации других страниц, — увеличиваем сильнее. Масштаб
+   ограничен запасом между колонками: 15% колонки умещаются в зазор и пустое
+   место справа от лида (max-inline-size: 38rem) и не наезжают на текст */
+@media (min-width: 768px) {
+  .service-hero__figure--wide img {
+    transform: scale(1.15);
+  }
 }
 
 /* До трёх колонок на десктопе. Раньше 1024px крупные значения («от 90 000 ₽» при 3.5rem)
