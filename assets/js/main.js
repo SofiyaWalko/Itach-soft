@@ -1231,8 +1231,10 @@ function initTextFill() {
       const rect = el.getBoundingClientRect();
       const viewport = innerHeight;
       // 0 — блок только вошёл снизу, 1 — почти ушёл за верхнюю кромку экрана.
-      // Окно в 1.1 высоты вьюпорта: закраска растянута на весь проход блока
-      const progress = Math.min(1, Math.max(0, (viewport * 0.9 - rect.top) / (viewport * 1.1)));
+      // На телефоне окно шире (2 высоты экрана): заявление читается дольше,
+      // и весь текст за один экран прокрутки не успевает закраситься
+      const travel = viewport * (innerWidth < 640 ? 2 : 1.1);
+      const progress = Math.min(1, Math.max(0, (viewport * 0.9 - rect.top) / travel));
       spans.forEach((span, index) => {
         // +4 слова перекрытия: соседние слова темнеют почти одновременно, без «лесенки»
         const local = Math.min(1, Math.max(0, progress * (spans.length + 4) - index));

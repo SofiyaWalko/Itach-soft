@@ -670,12 +670,29 @@
     display: none;
   }
 
+  /* Табы — в стиле тегов услуг на главной: пилюля с градиентной рамкой,
+     выбранный таб залит градиентом */
   .audience-tab {
     flex: none;
-    min-block-size: 3rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.9375rem;
+    min-block-size: 0;
+    block-size: 2.75rem;
+    padding-inline: 1.25rem;
+    border: var(--contour-width) solid transparent;
+    border-radius: var(--radius-pill);
+    background:
+      linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+      var(--gradient-flow) border-box;
+    background-size: auto, 200% 100%;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
     white-space: nowrap;
+  }
+
+  .audience-tab.is-active {
+    background: var(--gradient-flow) 0 0 / 200% 100%;
+    color: var(--color-surface);
+    animation: gradient-flow 3s linear infinite;
   }
 
   .audience-picker__panels {
@@ -688,6 +705,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .audience-tab.is-active {
+    animation: none;
+  }
+
   .audience-panel,
   .audience-panel__title,
   .audience-panel__text {
@@ -5287,12 +5308,6 @@ html:has(.detail[open]) {
     max-inline-size: 22rem;
     margin-inline: auto;
   }
-
-  /* На телефоне картинка центрирована в колонке — растим её от центра,
-     иначе увеличение прижимало бы объект к правому краю */
-  .service-hero__figure img {
-    transform-origin: 50% 50%;
-  }
 }
 
 .service-hero__intro {
@@ -5335,6 +5350,15 @@ html:has(.detail[open]) {
 @media (min-width: 1400px) {
   .service-hero__figure--xwide img {
     transform: scale(1.3);
+  }
+}
+
+/* На телефоне картинка центрирована в колонке — растим её от центра,
+   иначе увеличение прижимало бы объект к правому краю.
+   Правило после базового: при равной специфичности позже побеждает */
+@media (max-width: 767px) {
+  .service-hero__figure img {
+    transform-origin: 50% 50%;
   }
 }
 
