@@ -23,6 +23,8 @@
   --gradient-flow: linear-gradient(90deg, var(--color-drop-orange), var(--color-drop-pink), var(--color-drop-orange));
   /* Градиент цифр и акцентных надписей: оранжевый до середины, дальше в розовый */
   --gradient-text: linear-gradient(90deg, var(--color-drop-orange) 50%, var(--color-drop-pink) 100%);
+  /* Градиент цифр в карточках под hero: оранжевый почти до конца, розовый — на вылете */
+  --gradient-figures: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 85%);
 
   /* Типографика */
   --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;

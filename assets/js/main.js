@@ -79,6 +79,46 @@ function initGlowCards() {
   );
 }
 
+// «Кому подходит»: селектор аудиторий. Панель переключается наведением на десктопе
+// и кликом везде; стрелки двигают выбранный таб
+function initAudiencePicker() {
+  const picker = document.querySelector("[data-audience-picker]");
+  if (!picker) return;
+  const tabs = [...picker.querySelectorAll("[role='tab']")];
+  const panels = [...picker.querySelectorAll("[role='tabpanel']")];
+  const hoverSwitch = window.matchMedia("(hover: hover)").matches;
+
+  function select(index, focusTab = false) {
+    tabs.forEach((tab, i) => {
+      const on = i === index;
+      tab.classList.toggle("is-active", on);
+      tab.setAttribute("aria-selected", String(on));
+      tab.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach((panel, i) => panel.classList.toggle("is-active", i === index));
+    if (focusTab) tabs[index].focus();
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+      select(index);
+      // На узком экране выбранный таб может уйти за край ленты — докручиваем
+      tab.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    });
+    if (hoverSwitch) {
+      tab.addEventListener("pointerenter", () => select(index));
+    }
+    tab.addEventListener("keydown", (event) => {
+      const step = { ArrowDown: 1, ArrowUp: -1, ArrowRight: 1, ArrowLeft: -1 }[event.key];
+      if (!step) return;
+      event.preventDefault();
+      select((index + step + tabs.length) % tabs.length, true);
+    });
+  });
+
+  select(0);
+}
+
 // Стопка карточек услуг: чем больше карточек легло сверху, тем сильнее нижняя уменьшается и темнеет
 function initServiceStack() {
   const stack = document.querySelector("[data-service-stack]");
@@ -161,6 +201,33 @@ function initServiceTabs(list) {
   }
 
   select(0);
+}
+
+// «Проблемы, которые снимаем»: строки оживают по мере скролла — слово и штамп
+// приходят в цвет, когда строка доезжает до линии фокуса (как шаги процесса)
+function initProblemRows() {
+  const list = document.querySelector("[data-problem-rows]");
+  if (!list) return;
+  const rows = [...list.querySelectorAll(".problem-row")];
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FOCUS_LINE = 0.6;
+  let frame = 0;
+
+  function update() {
+    frame = 0;
+    const focusY = window.innerHeight * FOCUS_LINE;
+    rows.forEach((row) => {
+      const active = reducedMotion || row.getBoundingClientRect().top + 24 < focusY;
+      row.classList.toggle("is-active", active);
+    });
+  }
+
+  const schedule = () => {
+    if (!frame) frame = requestAnimationFrame(update);
+  };
+  addEventListener("scroll", schedule, { passive: true });
+  addEventListener("resize", schedule);
+  update();
 }
 
 // «Как мы работаем»: линия рисуется по мере прокрутки, шаги оживают, когда линия до них дошла
@@ -1131,12 +1198,56 @@ initMobileServicesNav();
 initScrollReveal();
 initGlowCards();
 initGlowFocus();
+initAudiencePicker();
 initSites();
 initServiceStack();
 document.querySelectorAll("[data-drag-scroll]").forEach(initDragScroll);
 initServiceTabs(document.querySelector("[data-service-stack]"));
 initProcess();
+initProblemRows();
 // Четыре инициализации живут в подключаемых на отдельных страницах скриптах
+// Заявления на страницах подуслуг ([data-text-fill]): слова серые и при скролле
+// по очереди закрашиваются в тёмный — прогресс считается от позиции блока в вьюпорте
+function initTextFill() {
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll("[data-text-fill]").forEach((el) => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.textContent = "";
+    const spans = words.map((word) => {
+      const span = document.createElement("span");
+      span.className = "text-fill__word";
+      span.textContent = word;
+      el.append(span, " ");
+      return span;
+    });
+    if (reduced) {
+      spans.forEach((span) => span.style.setProperty("--p", 1));
+      return;
+    }
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const rect = el.getBoundingClientRect();
+      const viewport = innerHeight;
+      // 0 — блок только вошёл снизу, 1 — почти ушёл за верхнюю кромку экрана.
+      // Окно в 1.1 высоты вьюпорта: закраска растянута на весь проход блока
+      const progress = Math.min(1, Math.max(0, (viewport * 0.9 - rect.top) / (viewport * 1.1)));
+      spans.forEach((span, index) => {
+        // +4 слова перекрытия: соседние слова темнеют почти одновременно, без «лесенки»
+        const local = Math.min(1, Math.max(0, progress * (spans.length + 4) - index));
+        span.style.setProperty("--p", local.toFixed(2));
+      });
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll);
+    update();
+  });
+}
+
 // (cursor-halo.js, hero-gl.js, lead-wave.js, calculator.js) — не всякая страница
 // их подключает, поэтому вызов через window с опциональной цепочкой: иначе
 // ReferenceError рвал всю оставшуюся инициализацию страницы
@@ -1154,3 +1265,4 @@ initTechMarquee();
 // После загрузки шрифтов ширина списка может измениться — пересчитываем длительность
 document.fonts?.ready.then(initTechMarquee);
 initAwards();
+initTextFill();

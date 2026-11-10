@@ -355,8 +355,343 @@
     grid-column: auto;
   }
 
+  /* Шесть карточек — сетка 3×2, чтобы вторая строка не оставалась с одной карточкой */
+  .task-list--six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .task-card {
     min-block-size: 18rem;
+  }
+}
+
+/* ---------- Страница «Корпоративные сайты»: проблемы ----------
+   Проблемы строками: ключевое слово слева серым, описание по центру,
+   справа — штамп «Решим» с градиентным контуром и градиентной надписью.
+   Эффектов наведения нет: слово и штамп «оживают» по мере скролла,
+   как шаги процесса (initProblemRows, класс is-active на строке) */
+.problems {
+  padding-block: 0 var(--space-12);
+}
+
+.problem-rows {
+  margin-block-start: var(--space-6);
+  padding: 0;
+  border-block-start: 1px solid var(--color-line);
+}
+
+.problem-row {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  min-block-size: 7rem;
+  padding-block: var(--space-3);
+  border-block-end: 1px solid var(--color-line);
+}
+
+.problem-row__keyword {
+  inline-size: fit-content;
+  background: var(--gradient-figures);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-drop-orange);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    filter 500ms var(--ease-out),
+    opacity 500ms var(--ease-out);
+}
+
+/* До активации строки слово приглушено, как цифра шага процесса */
+.js .problem-row:not(.is-active) .problem-row__keyword {
+  filter: grayscale(1);
+  opacity: 0.35;
+}
+
+.problem-row__desc {
+  color: var(--color-text);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+  transition: color 500ms var(--ease-out);
+}
+
+/* Как у шагов процесса: описание целиком серое, пока до строки не доскроллили */
+.js .problem-row:not(.is-active) .problem-row__desc {
+  color: color-mix(in srgb, var(--color-text-2) 40%, var(--color-bg));
+}
+
+/* Плашка-штамп: белая подложка, градиентный контур, градиентные галочка и текст */
+.problem-row__stamp {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: var(--contour-width) solid transparent;
+  border-radius: 0.625rem;
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    var(--gradient-flow) border-box;
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: rotate(-6deg);
+  transition:
+    opacity 500ms var(--ease-out),
+    transform 500ms var(--ease-out);
+}
+
+.problem-row__stamp-text {
+  background: var(--gradient-figures);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-drop-orange);
+}
+
+/* До активации строки штамп скрыт; без JS показываем всё сразу */
+.js .problem-row:not(.is-active) .problem-row__stamp {
+  opacity: 0;
+  transform: translateY(0.375rem) rotate(-6deg);
+}
+
+/* Узкие экраны: слово и штамп — одна строка, описание ниже */
+@media (max-width: 900px) {
+  .problem-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-2);
+    min-block-size: 0;
+  }
+
+  .problem-row__desc {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+/* ---------- Страница «Корпоративные сайты»: кому подходит ----------
+   Селектор аудиторий: список слева, панель выбранного пункта справа.
+   Переключение — наведением на десктопе и кликом везде; выбранный пункт
+   выделен градиентным контуром (единственное место градиента в блоке) */
+.audience {
+  padding-block: 0 var(--space-12);
+}
+
+.audience-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  /* Зазор как между карточками кейсов */
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+}
+
+.audience-picker__list {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.audience-tab {
+  display: flex;
+  align-items: center;
+  min-block-size: 4.25rem;
+  padding: var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+  font: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-align: start;
+  color: var(--color-text-2);
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+
+/* Градиентный контур у курсора на наведении даёт общий .glow-card */
+
+.audience-tab__text {
+  transition:
+    color var(--duration-base) var(--ease-out),
+    transform 400ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  .audience-tab:hover {
+    background-color: var(--color-bg-alt);
+    color: var(--color-text);
+  }
+
+  /* Сдвиг текста вправо — как у пунктов мега-меню и ссылок футера */
+  .audience-tab:hover .audience-tab__text {
+    transform: translateX(0.5rem);
+  }
+}
+
+/* Выбранный пункт: белая подложка */
+.audience-tab.is-active {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.audience-picker__panels {
+  display: grid;
+  min-block-size: 22rem;
+}
+
+/* Панели лежат в одной ячейке сетки: высота контейнера — по самой высокой,
+   переключение не дёргает раскладку */
+.audience-panel {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  /* Обрезка по внешнему краю рамки: overflow: hidden срезал бы градиентный
+     контур .glow-card, который рисуется за пределами карточки */
+  clip-path: inset(0 round var(--radius-lg));
+  background: var(--color-bg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 320ms var(--ease-out),
+    transform 320ms var(--ease-out),
+    visibility 0s linear 320ms;
+}
+
+.audience-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 320ms var(--ease-out),
+    transform 320ms var(--ease-out);
+}
+
+.audience-panel__title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  transition:
+    opacity 320ms var(--ease-out),
+    transform 320ms var(--ease-out);
+}
+
+/* На десктопе заголовок всегда занимает две строки: перенос задан явно,
+   чтобы не было ни однострочных заголовков, ни обрывов по одной букве */
+.audience-panel__line {
+  display: block;
+}
+
+@media (max-width: 1100px) {
+  .audience-panel__title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .audience-panel__line {
+    display: inline;
+  }
+}
+
+.audience-panel__muted {
+  color: var(--color-text-2);
+}
+
+/* Декоративные волны в нижнем правом углу карточки (фон у картинки прозрачный) */
+.audience-panel__art {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  z-index: 0;
+  inline-size: 46%;
+  max-inline-size: 26rem;
+  pointer-events: none;
+}
+
+/* Текст и заголовок над картинкой */
+.audience-panel__title,
+.audience-panel__text {
+  position: relative;
+}
+
+.audience-panel__text {
+  max-inline-size: 36ch;
+  color: var(--color-text-2);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+  transition:
+    opacity 320ms var(--ease-out) 60ms,
+    transform 320ms var(--ease-out) 60ms;
+}
+
+/* В скрытой панели контент сдвинут вниз: при переключении заголовок
+   и текст выезжают с лёгкой каскадной задержкой */
+.audience-panel:not(.is-active) .audience-panel__title,
+.audience-panel:not(.is-active) .audience-panel__text {
+  opacity: 0;
+  transform: translateY(0.75rem);
+}
+
+/* Узкие экраны: список — горизонтальная лента табов, панель ниже */
+@media (max-width: 900px) {
+  .audience-picker {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .audience-picker__list {
+    display: flex;
+    gap: var(--space-1);
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .audience-picker__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .audience-tab {
+    flex: none;
+    min-block-size: 3rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+  }
+
+  .audience-picker__panels {
+    min-block-size: 0;
+  }
+
+  .audience-panel {
+    padding: var(--space-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audience-panel,
+  .audience-panel__title,
+  .audience-panel__text {
+    transition: none;
   }
 }
 
@@ -502,6 +837,22 @@
 
   /* В узких карточках скриншот прижат к правому краю и шире карточки: справа он обрезается */
   .case-card:nth-child(n + 3) .case-card__shot {
+    inset-inline: var(--space-4) auto;
+    inline-size: 135%;
+    object-position: left top;
+    border-inline-end: 0;
+    border-start-end-radius: 0;
+  }
+
+  /* Три кейса — три равные карточки в один ряд: раскладка «2 больших + узкие»
+     оставила бы во втором ряду пустую половину */
+  .case-grid--three .case-card,
+  .case-grid--three .case-card:nth-child(-n + 2) {
+    grid-column: span 2;
+    aspect-ratio: 416 / 520;
+  }
+
+  .case-grid--three .case-card:nth-child(-n + 2) .case-card__shot {
     inset-inline: var(--space-4) auto;
     inline-size: 135%;
     object-position: left top;
@@ -3685,7 +4036,7 @@ html:has(.detail[open]) {
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.02em;
-  background: linear-gradient(120deg, var(--color-drop-orange) 0%, var(--color-drop-pink) 85%);
+  background: var(--gradient-figures);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -5037,26 +5388,20 @@ html:has(.detail[open]) {
   margin-block-start: var(--space-12);
 }
 
-/* В карточке три элемента (значение, подпись, примечание) — без space-between из двухэлементной */
-.service-hero .page-stat {
-  justify-content: start;
-  gap: 0.5rem;
-  min-block-size: 0;
-}
-
-.service-hero .page-stat__note {
-  margin: 0;
-  font-size: 1.0625rem;
-  line-height: 1.4;
-  color: var(--color-text-2);
-}
-
 /* Подписи с единицей («недель запуск на шаблоне») держим в одну строку:
    общий max-inline-size: 18ch для них слишком узкий */
 .service-hero .page-stat__text {
   max-inline-size: none;
   font-size: 1.0625rem;
   white-space: nowrap;
+}
+
+/* Двухэлементные карточки (цифра + подпись) — с отступами как у карточек блога:
+   подпись прижата к низу, между строками воздух */
+.page-stats--tall .page-stat {
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-block-size: 9rem;
 }
 
 /* Телефон: одинаковая ширина у всех карточек, значение чуть меньше —
@@ -5091,6 +5436,33 @@ html:has(.detail[open]) {
 .service-sections .formats {
   margin-block-start: var(--space-12);
   padding-block-end: var(--space-12);
+}
+
+/* ---------- Подуслуга: вводный текст ---------- */
+.service-about {
+  padding-block: 0 var(--space-12);
+}
+
+/* Заявление: блок по центру страницы, текст по левому краю. Слова серые и
+   при скролле по очереди закрашиваются в тёмный (initTextFill, --p на слове) */
+.service-about__statement {
+  max-inline-size: 52rem;
+  margin-inline: auto;
+  margin-block-start: var(--space-4);
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  text-align: start;
+  /* Без короткой последней строки из одного-двух слов */
+  text-wrap: pretty;
+}
+
+/* Серый для непрокрашенных слов светлее общего --color-text-2: крупный текст,
+   иначе тёмный и серый почти не отличаются */
+.text-fill__word {
+  --text-fill-idle: color-mix(in srgb, var(--color-text-2) 42%, var(--color-bg));
+  color: color-mix(in srgb, var(--color-text) calc(var(--p, 0) * 100%), var(--text-fill-idle));
 }
 
 .service-sections .cases {
@@ -5251,6 +5623,22 @@ html:has(.detail[open]) {
 @media (hover: hover) {
   .format-card:hover .format-card__arrow .icon {
     stroke: url(#gradient-contour);
+  }
+}
+
+/* Статичная карточка без перехода: без стрелки и сдвига контента при наведении */
+.format-card--static .format-card__title,
+.format-card--static .format-card__desc {
+  padding-inline-end: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) {
+    .format-card--static:hover .format-card__title,
+    .format-card--static:hover .format-card__desc,
+    .format-card--static:hover .format-card__prices {
+      transform: none;
+    }
   }
 }
 
