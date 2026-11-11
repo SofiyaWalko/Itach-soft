@@ -544,6 +544,25 @@
   color: var(--color-text);
 }
 
+/* Выбранный таб: градиентная дуга постоянно бежит по контуру
+   (тот же приём, что у карточек на тач-экранах) */
+.audience-tab.is-active::before {
+  background: conic-gradient(
+    from var(--glow-angle),
+    transparent 0deg 240deg,
+    var(--color-drop-orange) 300deg,
+    var(--color-drop-pink) 345deg,
+    transparent 360deg
+  );
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .audience-tab.is-active::before {
+    animation: glow-orbit 12s linear infinite;
+  }
+}
+
 .audience-picker__panels {
   display: grid;
   min-block-size: 22rem;
