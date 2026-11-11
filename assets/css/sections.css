@@ -840,6 +840,18 @@
   box-shadow: none;
 }
 
+/* На телефоне у всех карточек — вид «узких» с десктопа: скриншот шире карточки,
+   прижат к левому отступу и обрезается правым краем (прозрачные --bare не трогаем) */
+@media (max-width: 899px) {
+  .case-card__shot:not(.case-card__shot--bare) {
+    inset-inline: var(--space-4) auto;
+    inline-size: 135%;
+    object-position: left top;
+    border-inline-end: 0;
+    border-start-end-radius: 0;
+  }
+}
+
 @media (min-width: 900px) {
   .case-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
