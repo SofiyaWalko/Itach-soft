@@ -5622,6 +5622,16 @@ html:has(.detail[open]) {
   margin-block-start: var(--space-4);
 }
 
+/* Вводный абзац панели (например, описание типа интеграции) */
+.tools-intro {
+  max-inline-size: 56rem;
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-2);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
 .tools-panel {
   display: none;
 }
@@ -5664,6 +5674,50 @@ html:has(.detail[open]) {
   font-size: 1.0625rem;
   line-height: 1.5;
   text-wrap: pretty;
+}
+
+/* При переключении таба карточки выплывают каскадом: панель меняет display,
+   поэтому анимация запускается заново на каждом выборе */
+@media (prefers-reduced-motion: no-preference) {
+  .tools-panel.is-active .tools-item {
+    animation: tools-card-in 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .tools-panel.is-active .tools-item:nth-child(2) {
+    animation-delay: 70ms;
+  }
+
+  .tools-panel.is-active .tools-item:nth-child(3) {
+    animation-delay: 140ms;
+  }
+
+  .tools-panel.is-active .tools-item:nth-child(4) {
+    animation-delay: 210ms;
+  }
+
+  .tools-panel.is-active .tools-item:nth-child(5) {
+    animation-delay: 280ms;
+  }
+
+  .tools-panel.is-active .tools-item:nth-child(6) {
+    animation-delay: 350ms;
+  }
+
+  .tools-panel.is-active .tools-item:nth-child(n + 7) {
+    animation-delay: 420ms;
+  }
+
+  @keyframes tools-card-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 /* Узкие экраны: табы инструментов — горизонтальная лента, как «Кому подходит».

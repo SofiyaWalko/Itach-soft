@@ -559,6 +559,7 @@ def tools_block(p):
     )
     panels = "\n".join(
         f'''              <div class="tools-panel{' is-active' if i == 0 else ''}" role="tabpanel" id="tools-panel-{i+1}" aria-labelledby="tools-tab-{i+1}">
+                {f'<p class="tools-intro">{g["intro"]}</p>' if g.get("intro") else ''}
                 <ul class="tools-list">
                   {chr(10).join(f'<li class="tools-item glow-card"><h3 class="tools-item__name">{name}</h3><p class="tools-item__text">{text}</p></li>' for name, text in g["tools"])}
                 </ul>
@@ -578,6 +579,9 @@ def tools_block(p):
               <div class="tools-panels">
 {panels}
               </div>
+            </div>
+            <div class="section-action" data-reveal>
+              <a class="btn btn--outline" href="#lead">{p["tools_cta"]}</a>
             </div>
           </div>
         </section>
