@@ -603,7 +603,7 @@
 
 .audience-panel__title {
   font-size: 1.875rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.02em;
   transition:
@@ -702,7 +702,7 @@
       linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
       var(--gradient-flow) border-box;
     background-size: auto, 200% 100%;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--color-text);
     white-space: nowrap;
@@ -910,6 +910,22 @@
     object-position: left top;
     border-inline-end: 0;
     border-start-end-radius: 0;
+  }
+
+  /* Четыре кейса — четыре большие карточки в два ряда */
+  .case-grid--four .case-card,
+  .case-grid--four .case-card:nth-child(-n + 2) {
+    grid-column: span 3;
+    aspect-ratio: 637 / 483;
+  }
+
+  /* Большие карточки во втором ряду: сброс приёма «узких» (скриншот шире карточки) */
+  .case-grid--four .case-card:nth-child(n + 3) .case-card__shot {
+    inset-inline: var(--space-4);
+    inline-size: calc(100% - var(--space-4) * 2);
+    object-position: top;
+    border-inline-end: 1px solid var(--color-line);
+    border-start-end-radius: 0.75rem;
   }
 }
 
@@ -5487,10 +5503,15 @@ html:has(.detail[open]) {
   padding-block: 0 var(--space-12);
 }
 
-/* 96px от кейсов: их нижний отступ обнулён, воздух даёт margin секции */
+/* Воздух до «Форматов» даёт предыдущая секция: после кейсов (их нижний отступ
+   обнулён) — margin «Форматов», без кейсов — нижний padding «Проблем».
+   Двойной отступ исключён селектором соседства */
 .service-sections .formats {
-  margin-block-start: var(--space-12);
   padding-block-end: var(--space-12);
+}
+
+.service-sections .cases + .formats {
+  margin-block-start: var(--space-12);
 }
 
 /* ---------- Подуслуга: вводный текст ---------- */
@@ -5522,6 +5543,156 @@ html:has(.detail[open]) {
 
 .service-sections .cases {
   padding-block-end: 0;
+}
+
+/* ---------- Подуслуга «Внедрение»: ключевые инструменты ----------
+   Табы по группам в стиле пилюль калькулятора на главной; переключение по клику.
+   Под табами — панель со списком инструментов выбранной группы, карточки в столбик */
+.service-sections .tools {
+  padding-block: 0 var(--space-12);
+}
+
+.tools-picker {
+  margin-block-start: var(--space-6);
+}
+
+.tools-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+/* Пилюля как у .calc-option: постоянный градиентный контур, заливка — при наведении и выборе */
+.tools-tab {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-block-size: 2.75rem;
+  padding: 0.5rem 1.5rem;
+  border: var(--contour-width) solid transparent;
+  border-radius: var(--radius-pill);
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    var(--gradient-flow) border-box;
+  background-size: auto, 200% 100%;
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.tools-tab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.tools-tab.is-active {
+  color: var(--color-surface);
+}
+
+@media (hover: hover) {
+  .tools-tab:hover {
+    color: var(--color-surface);
+  }
+}
+
+.tools-tab.is-active::after {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .tools-tab:hover::after {
+    opacity: 1;
+  }
+}
+
+.tools-panels {
+  margin-block-start: var(--space-4);
+}
+
+.tools-panel {
+  display: none;
+}
+
+.tools-panel.is-active {
+  display: block;
+}
+
+.tools-list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Карточка инструмента: контур следует за курсором (.glow-card), заголовок 30, текст 17 */
+.tools-item {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+.tools-item__name {
+  margin: 0;
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.tools-item__text {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-2);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* Узкие экраны: табы инструментов — горизонтальная лента, как «Кому подходит».
+   Выбранный таб переливается градиентом, клик докручивает его в центр (общий JS) */
+@media (max-width: 900px) {
+  .tools-tabs {
+    flex-wrap: nowrap;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tools-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tools-tab {
+    flex: none;
+    white-space: nowrap;
+  }
+
+  .tools-tab.is-active::after {
+    animation: gradient-flow 3s linear infinite;
+  }
+}
+
+/* Мобильные: карточка инструмента, до которой дошёл скролл, получает пробег
+   градиентного контура по периметру — как карточки задач и новостей на главной */
+@media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .tools-item.is-swept::before {
+    animation: border-sweep 900ms linear;
+  }
 }
 
 .formats__note {
@@ -5697,10 +5868,8 @@ html:has(.detail[open]) {
   }
 }
 
-/* Карточки с одной строкой цены: цена прижата к описанию, а не к низу карточки */
-.format-card__link:has(.format-card__price:only-child) .format-card__prices {
-  margin-block-start: 0;
-}
+/* Цены всегда прижаты к низу карточки (margin-block-start: auto выше):
+   при описаниях разной длины серые капсулы стоят на одном уровне у всех карточек */
 
 /* Телефон: карточки друг под другом */
 @media (max-width: 639px) {

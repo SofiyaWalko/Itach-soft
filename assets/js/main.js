@@ -81,12 +81,13 @@ function initGlowCards() {
 
 // «Кому подходит»: селектор аудиторий. Панель переключается наведением на десктопе
 // и кликом везде; стрелки двигают выбранный таб
-function initAudiencePicker() {
-  const picker = document.querySelector("[data-audience-picker]");
-  if (!picker) return;
+function initTabPicker(picker) {
   const tabs = [...picker.querySelectorAll("[role='tab']")];
   const panels = [...picker.querySelectorAll("[role='tabpanel']")];
-  const hoverSwitch = window.matchMedia("(hover: hover)").matches;
+  // Переключение наведением — только если пикер явно не просил клик
+  const hoverSwitch =
+    window.matchMedia("(hover: hover)").matches &&
+    !picker.hasAttribute("data-no-hover-switch");
 
   function select(index, focusTab = false) {
     tabs.forEach((tab, i) => {
@@ -117,6 +118,13 @@ function initAudiencePicker() {
   });
 
   select(0);
+}
+
+function initAudiencePicker() {
+  // Селектор аудиторий «Кому подходит» и селектор инструментов — один паттерн табов
+  document
+    .querySelectorAll("[data-audience-picker], [data-tools-picker]")
+    .forEach(initTabPicker);
 }
 
 // Стопка карточек услуг: чем больше карточек легло сверху, тем сильнее нижняя уменьшается и темнеет
@@ -1192,12 +1200,34 @@ function initAwards() {
   render();
 }
 
+// Карточки инструментов («Ключевые инструменты внедрения»): когда карточка доходит
+// до экрана, по её контуру один раз пробегает градиентная волна (класс is-swept)
+function initToolsSweep() {
+  const items = document.querySelectorAll(".tools-item");
+  if (!items.length || !("IntersectionObserver" in window)) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.target.classList.contains("is-swept")) return;
+        entry.target.classList.add("is-swept");
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.5 },
+  );
+
+  items.forEach((item) => observer.observe(item));
+}
+
 initHeader();
 initServicesMegaMenu();
 initMobileServicesNav();
 initScrollReveal();
 initGlowCards();
 initGlowFocus();
+initToolsSweep();
 initAudiencePicker();
 initSites();
 initServiceStack();
