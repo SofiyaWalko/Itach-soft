@@ -105,6 +105,9 @@ CASE_META = {
     "case-zenit": ("Кейс · УК «Зенит»", 'УК «Зенит» <span class="section-title__muted">доработка Битрикс24 и автоматизация процессов</span>', "Доработка Битрикс24 для УК «Зенит»"),
     "case-hr": ("Кейс · HR-портал", 'HR-портал <span class="section-title__muted">доработка HR-модуля и оргструктуры</span>', "Доработка HR-модуля и оргструктуры на портале Битрикс24"),
     "case-zajamnae": ("Кейс · ZAJAMNAE", 'ZAJAMNAE <span class="section-title__muted">доработки Битрикс24 для бренда</span>', "Доработки Битрикс24 для бренда ZAJAMNAE"),
+    "case-miele": ("Кейс · Miele", 'Miele <span class="section-title__muted">интернет-магазин бытовой техники</span>', "Интернет-магазин бытовой техники Miele"),
+    "case-selfielab": ("Кейс · SelfieLab", 'SelfieLab <span class="section-title__muted">интернет-магазин косметики</span>', "Интернет-магазин косметики SelfieLab"),
+    "case-sibifood": ("Кейс · SibiFood", 'SibiFood <span class="section-title__muted">редизайн интернет-магазина продуктов</span>', "Редизайн интернет-магазина экологических продуктов SibiFood"),
     "case-alkor": ("Кейс · Алькор", 'Алькор <span class="section-title__muted">доработка Битрикс24 для бренда бриллиантов</span>', "Доработка Битрикс24 для Алькор Бриллианты России"),
     "case-maximus-int": ("Кейс · Maximus", 'Maximus <span class="section-title__muted">интеграция веб-платформы с Битрикс24</span>', "Интеграция веб-платформы Maximus с Битрикс24"),
     "case-vnedr-int": ("Кейс · Санаторий «Приозерный»", 'Санаторий «Приозерный» <span class="section-title__muted">внедрение и интеграции</span>', "Внедрение Битрикс24 и настройка интеграций для санатория «Приозерный»"),
@@ -189,7 +192,7 @@ def bento_html(c):
     return f'<div class="detail__bento">{"".join(tiles)}</div>' if tiles else ""
 
 
-def build_template(cid):
+def build_template(cid, with_site=False):
     # Уже свёрстанные на новом сайте кейсы дублируем без изменений; если в оригинале
     # нет бенто с цифрами, но данные есть — дополняем
     if cid in EXISTING:
@@ -204,8 +207,14 @@ def build_template(cid):
     about = c.get("about", [])
     lead = about[0] if about else c["title"]
 
-    # Кнопки «Открыть сайт» у кейсов по Битрикс24 нет — только «Обсудить похожий проект»
+    # Кнопка «Открыть сайт»: у кейсов «Битрикс24» её нет, на страницах «Сайтов» — есть
     site_btn = ""
+    if with_site and c.get("site"):
+        host = re.sub(r"^https?://(www\.)?", "", c["site"]).rstrip("/")
+        site_btn = (
+            f'<a class="btn btn--outline detail__site" href="{c["site"]}" target="_blank" rel="noopener noreferrer">'
+            f'<span>Открыть сайт {host}</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>'
+        )
 
     points = ""
     if c.get("points"):
@@ -712,10 +721,11 @@ def build(p):
         ]
     )
 
-from bitrix24_content import PAGES  # noqa: E402
+if __name__ == "__main__":
+    from bitrix24_content import PAGES  # noqa: E402
 
-for p in PAGES:
-    html = build(p)
-    out = ROOT / p["file"]
-    out.write_text(html, encoding="utf-8")
-    print(f"OK {out.name} ({len(html.splitlines())} строк)")
+    for p in PAGES:
+        html = build(p)
+        out = ROOT / p["file"]
+        out.write_text(html, encoding="utf-8")
+        print(f"OK {out.name} ({len(html.splitlines())} строк)")
