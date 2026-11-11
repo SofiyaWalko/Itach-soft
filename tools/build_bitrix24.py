@@ -107,7 +107,7 @@ CASE_META = {
     "case-zajamnae": ("Кейс · ZAJAMNAE", 'ZAJAMNAE <span class="section-title__muted">доработки Битрикс24 для бренда</span>', "Доработки Битрикс24 для бренда ZAJAMNAE"),
     "case-alkor": ("Кейс · Алькор", 'Алькор <span class="section-title__muted">доработка Битрикс24 для бренда бриллиантов</span>', "Доработка Битрикс24 для Алькор Бриллианты России"),
     "case-maximus-int": ("Кейс · Maximus", 'Maximus <span class="section-title__muted">интеграция веб-платформы с Битрикс24</span>', "Интеграция веб-платформы Maximus с Битрикс24"),
-    "case-vnedr-int": ("Кейс · Санаторий «Приозерный»", 'Санаторий «Приозерный» <span class="section-title__muted">внедрение Битрикс24 и настройка интеграций</span>', "Внедрение Битрикс24 и настройка интеграций для санатория «Приозерный»"),
+    "case-vnedr-int": ("Кейс · Санаторий «Приозерный»", 'Санаторий «Приозерный» <span class="section-title__muted">внедрение и интеграции</span>', "Внедрение Битрикс24 и настройка интеграций для санатория «Приозерный»"),
     "case-triovist": ("Кейс · Триовист", 'Триовист <span class="section-title__muted">приложение для Битрикс24: импорт кандидатов из rabota.by</span>', "Приложение для Битрикс24 по импорту кандидатов из rabota.by для Триовист"),
     "case-cititrade": ("Кейс · Рулез", 'Рулез <span class="section-title__muted">модернизация IT-инфраструктуры: IP-телефония и Битрикс24</span>', "Модернизация IT-инфраструктуры для Рулез: IP-телефония и доработка Битрикс24"),
     "case-docbank": ("Кейс · Свой Банк", 'Свой Банк <span class="section-title__muted">автоматизация документооборота</span>', "Автоматизация документооборота в Свой Банке"),
@@ -426,6 +426,9 @@ def cases(p):
     if not p.get("cases"):
         return ""
     cards = "\n".join(build_card(c) for c in p["cases"])
+    cases_heading = p.get("cases_title_html") or (
+        f'Кейсы <span class="section-title__muted">{p["cases_title"]}</span>'
+    )
     # Раскладка по числу кейсов: 2 — две большие (базовая), 3 — три маленькие в ряд,
     # 4 — четыре большие в два ряда, 5 — две большие + три маленькие (базовая)
     n = len(p["cases"])
@@ -438,7 +441,7 @@ def cases(p):
         <section class="cases" id="cases" aria-labelledby="cases-title">
           <div class="container">
             <h2 class="section-title" data-reveal id="cases-title">
-              Кейсы <span class="section-title__muted">{p["cases_title"]}</span>
+              {cases_heading}
             </h2>
             <div class="cases__scroller">
             <ul class="{grid_cls}" data-reveal-stagger>
@@ -566,13 +569,22 @@ def tools_block(p):
               </div>'''
         for i, g in enumerate(groups)
     )
-    return f'''        <!-- Ключевые инструменты: табы групп (переключение по клику), под ними панель выбранной группы -->
+    lead = f'<p class="tools-lead" data-reveal>{p["tools_lead"]}</p>\n            ' if p.get("tools_lead") else ""
+    cta = (
+        f'''<div class="section-action" data-reveal>
+              <a class="btn btn--outline" href="#lead">{p["tools_cta"]}</a>
+            </div>
+            '''
+        if p.get("tools_cta")
+        else ""
+    )
+    return f'''        <!-- Табы групп (переключение по клику), под ними панель выбранной группы -->
         <section class="tools" aria-labelledby="tools-title">
           <div class="container">
             <h2 class="section-title" data-reveal id="tools-title">
               {p["tools_title"]} <span class="section-title__muted">{p["tools_title_muted"]}</span>
             </h2>
-            <div class="tools-picker" data-tools-picker data-no-hover-switch data-reveal>
+            {lead}<div class="tools-picker" data-tools-picker data-no-hover-switch data-reveal>
               <div class="tools-tabs" role="tablist" aria-label="Группы инструментов">
 {tabs}
               </div>
@@ -580,10 +592,7 @@ def tools_block(p):
 {panels}
               </div>
             </div>
-            <div class="section-action" data-reveal>
-              <a class="btn btn--outline" href="#lead">{p["tools_cta"]}</a>
-            </div>
-          </div>
+            {cta}</div>
         </section>
 
 '''
@@ -690,7 +699,7 @@ def build(p):
             audience(p),
             process(p),
             tools_block(p),
-            SEG_TECH,
+            "" if p.get("hide_tech") else SEG_TECH,
             SEG_AWARDS,
             SEG_REVIEWS,
             faq(p),

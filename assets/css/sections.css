@@ -5552,6 +5552,16 @@ html:has(.detail[open]) {
   padding-block: 0 var(--space-12);
 }
 
+/* Вводный абзац под заголовком секции (опционально) */
+.tools-lead {
+  max-inline-size: 56rem;
+  margin: var(--space-3) 0 0;
+  color: var(--color-text-2);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
 .tools-picker {
   margin-block-start: var(--space-6);
 }

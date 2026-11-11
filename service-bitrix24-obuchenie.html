@@ -761,6 +761,74 @@
           </div>
         </section>
 
+        <!-- Табы групп (переключение по клику), под ними панель выбранной группы -->
+        <section class="tools" aria-labelledby="tools-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="tools-title">
+              Форматы обучения <span class="section-title__muted">сотрудников</span>
+            </h2>
+            <div class="tools-picker" data-tools-picker data-no-hover-switch data-reveal>
+              <div class="tools-tabs" role="tablist" aria-label="Группы инструментов">
+                <button class="tools-tab is-active" type="button" role="tab" id="tools-tab-1" aria-selected="true" aria-controls="tools-panel-1">
+                  <span>Индивидуальное обучение</span>
+                </button>
+                <button class="tools-tab" type="button" role="tab" id="tools-tab-2" aria-selected="false" aria-controls="tools-panel-2" tabindex="-1">
+                  <span>Корпоративное обучение</span>
+                </button>
+                <button class="tools-tab" type="button" role="tab" id="tools-tab-3" aria-selected="false" aria-controls="tools-panel-3" tabindex="-1">
+                  <span>Онлайн-обучение</span>
+                </button>
+                <button class="tools-tab" type="button" role="tab" id="tools-tab-4" aria-selected="false" aria-controls="tools-panel-4" tabindex="-1">
+                  <span>Обучение по ролям</span>
+                </button>
+                <button class="tools-tab" type="button" role="tab" id="tools-tab-5" aria-selected="false" aria-controls="tools-panel-5" tabindex="-1">
+                  <span>Глубокое обучение по автоматизации</span>
+                </button>
+              </div>
+              <div class="tools-panels">
+              <div class="tools-panel is-active" role="tabpanel" id="tools-panel-1" aria-labelledby="tools-tab-1">
+                
+                <ul class="tools-list">
+                  <li class="tools-item glow-card"><h3 class="tools-item__name">Для кого <span class='section-title__muted'>подходит</span></h3><p class="tools-item__text">Руководители, специалисты и новые сотрудники, которым нужен персональный подход к обучению.</p></li>
+<li class="tools-item glow-card"><h3 class="tools-item__name">Что включает <span class='section-title__muted'>и преимущества</span></h3><p class="tools-item__text">Персональная программа, разбор задач именно вашей компании, обучение в удобном темпе. Позволяет быстро освоить ключевые инструменты и получить рекомендации под реальные процессы.</p></li>
+                </ul>
+              </div>
+              <div class="tools-panel" role="tabpanel" id="tools-panel-2" aria-labelledby="tools-tab-2">
+                
+                <ul class="tools-list">
+                  <li class="tools-item glow-card"><h3 class="tools-item__name">Для кого <span class='section-title__muted'>подходит</span></h3><p class="tools-item__text">Отделы продаж, поддержки, маркетинга и проектные команды — все сотрудники, работающие в Битрикс24.</p></li>
+<li class="tools-item glow-card"><h3 class="tools-item__name">Что включает <span class='section-title__muted'>и преимущества</span></h3><p class="tools-item__text">Единый формат обучения для всех сотрудников. Помогает выстроить общие правила работы, корректно вести CRM и задачи, синхронизировать действия всех подразделений.</p></li>
+                </ul>
+              </div>
+              <div class="tools-panel" role="tabpanel" id="tools-panel-3" aria-labelledby="tools-tab-3">
+                
+                <ul class="tools-list">
+                  <li class="tools-item glow-card"><h3 class="tools-item__name">Для кого <span class='section-title__muted'>подходит</span></h3><p class="tools-item__text">Любые компании, в том числе расположенные в разных городах и странах.</p></li>
+<li class="tools-item glow-card"><h3 class="tools-item__name">Что включает <span class='section-title__muted'>и преимущества</span></h3><p class="tools-item__text">Удобно подключаться из любого места. Доступ к записям занятий, возможность обучения сразу нескольких сотрудников. Эффективно, если нужно быстро охватить команду без привязки к офису.</p></li>
+                </ul>
+              </div>
+              <div class="tools-panel" role="tabpanel" id="tools-panel-4" aria-labelledby="tools-tab-4">
+                
+                <ul class="tools-list">
+                  <li class="tools-item glow-card"><h3 class="tools-item__name">Для кого <span class='section-title__muted'>подходит</span></h3><p class="tools-item__text">Руководители, администраторы CRM и менеджеры по продажам.</p></li>
+<li class="tools-item glow-card"><h3 class="tools-item__name">Что включает <span class='section-title__muted'>и преимущества</span></h3><p class="tools-item__text">Каждая категория получает знания именно о тех инструментах, которые ей нужны. Руководство — аналитику и отчёты, менеджеры — работу с CRM, администраторы — настройки и управление доступами.</p></li>
+                </ul>
+              </div>
+              <div class="tools-panel" role="tabpanel" id="tools-panel-5" aria-labelledby="tools-tab-5">
+                
+                <ul class="tools-list">
+                  <li class="tools-item glow-card"><h3 class="tools-item__name">Для кого <span class='section-title__muted'>подходит</span></h3><p class="tools-item__text">Компании, которые хотят оптимизировать процессы и снизить ручную нагрузку команды.</p></li>
+<li class="tools-item glow-card"><h3 class="tools-item__name">Что включает <span class='section-title__muted'>и преимущества</span></h3><p class="tools-item__text">Изучение роботов, триггеров, бизнес-процессов, сценариев обработки лидов, автоматических напоминаний и распределения задач. Помогает значительно снизить ручную нагрузку и ускорить циклы продаж.</p></li>
+                </ul>
+              </div>
+              </div>
+            </div>
+            <div class="section-action" data-reveal>
+              <a class="btn btn--outline" href="#lead">Получить консультацию</a>
+            </div>
+            </div>
+        </section>
+
         <!-- 6. Технологии -->
         <section class="tech" aria-labelledby="tech-title">
           <div class="container tech__inner">
