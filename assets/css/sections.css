@@ -5632,14 +5632,17 @@ html:has(.detail[open]) {
 
 .tools-list {
   display: grid;
+  /* minmax(0, 1fr): длинные слова заголовков не растягивают колонку за пределы контейнера */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* Карточка инструмента: контур следует за курсором (.glow-card), заголовок 30, текст 17 */
+/* Карточка инструмента: контур следует за курсором (.glow-card), заголовок 24, текст 17 */
 .tools-item {
+  min-inline-size: 0;
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
@@ -5650,8 +5653,9 @@ html:has(.detail[open]) {
   margin: 0;
   font-size: 1.875rem;
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
 }
 
 .tools-item__text {
@@ -5684,6 +5688,10 @@ html:has(.detail[open]) {
 
   .tools-tab.is-active::after {
     animation: gradient-flow 3s linear infinite;
+  }
+
+  .tools-item__name {
+    font-size: 1.5rem;
   }
 }
 
