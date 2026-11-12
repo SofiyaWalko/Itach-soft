@@ -123,6 +123,23 @@ CASE_META = {
     "case-paritetbank": ("Кейс · Паритетбанк", 'Паритетбанк <span class="section-title__muted">автоматизация B2B-направления</span>', "Автоматизация B2B-направления в Паритетбанке"),
     "case-helix": ("Кейс · Helix", 'Helix <span class="section-title__muted">доработка Битрикс24 для лаборатории</span>', "Доработка Битрикс24 для лаборатории Helix"),
     "case-imkliva": ("Кейс · Imkliva Insurance", 'Imkliva Insurance <span class="section-title__muted">обработка обращений в Битрикс24</span>', "Система обработки обращений Imkliva Insurance"),
+    # направление «Сайты»
+    "case-moto": ("Кейс · Автогрупп", 'Автогрупп <span class="section-title__muted">промо-страница доставки мотоциклов из США</span>', "Промо-страница доставки мотоциклов из США Автогрупп"),
+    "case-plyusagrokhim": ("Кейс · Плюсагрохим", 'Плюсагрохим <span class="section-title__muted">сайт агрохимической компании</span>', "Сайт агрохимической компании Плюсагрохим"),
+    "case-smartopan": ("Кейс · SmartOpan", 'SmartOpan <span class="section-title__muted">сайт производителя сэндвич-панелей</span>', "Сайт производителя сэндвич-панелей SmartOpan"),
+    "case-bgmu-journal": ("Кейс · БГМУ", 'Медицинский журнал БГМУ <span class="section-title__muted">сайт научного издания</span>', "Сайт медицинского журнала БГМУ"),
+    "case-bgmu-professor": ("Кейс · БГМУ Профессор", 'БГМУ Профессор <span class="section-title__muted">сайт медицинских услуг с онлайн-записью</span>', "Сайт медицинских услуг БГМУ Профессор с онлайн-записью"),
+    "case-rival": ("Кейс · RIVAL", 'RIVAL <span class="section-title__muted">редизайн сайта производителя автозапчастей</span>', "Редизайн сайта производителя автозапчастей RIVAL"),
+    "case-avant-tekno": ("Кейс · АВАНТ-ТЕХНО", 'АВАНТ-ТЕХНО <span class="section-title__muted">восстановление сайта после вирусной атаки</span>', "Восстановление сайта и CRM АВАНТ-ТЕХНО после вирусной атаки"),
+    "case-atrium": ("Кейс · Atrium.by", 'Atrium.by <span class="section-title__muted">техническая поддержка интернет-магазина</span>', "Техническая поддержка интернет-магазина Atrium.by"),
+    "case-a100-support": ("Кейс · АЗС А-100", 'АЗС А-100 <span class="section-title__muted">доработки и техническая поддержка сайта</span>', "Доработки и техническая поддержка сайта АЗС А-100"),
+    "case-bnb-bank": ("Кейс · БНБ-Банк", 'БНБ-Банк <span class="section-title__muted">доработка функционала сайта банка</span>', "Доработка функционала сайта БНБ-Банка"),
+    "case-gadzhettreyd": ("Кейс · Гаджеттрэйд", 'Гаджеттрэйд <span class="section-title__muted">доработка и поддержка сайта электроники</span>', "Доработка сайта сети магазинов электроники Гаджеттрэйд"),
+    "case-autolight-kabinet": ("Кейс · АвтолайтЭкспресс", 'АвтолайтЭкспресс <span class="section-title__muted">личный кабинет с интеграцией 1С</span>', "Личный кабинет АвтолайтЭкспресс с интеграцией 1С"),
+    "case-b2b-kabinet": ("Кейс · АЗС А-100", 'АЗС А-100 <span class="section-title__muted">B2B-кабинет заказа топлива</span>', "Многофункциональный B2B-кабинет для АЗС А-100"),
+    "case-dodoma": ("Кейс · До дома", 'До дома <span class="section-title__muted">личный кабинет службы доставки</span>', "Личный кабинет службы доставки До дома"),
+    "case-maksiznay": ("Кейс · МаксиЗнай", 'МаксиЗнай <span class="section-title__muted">детская образовательная соцсеть</span>', "Детская образовательная социальная сеть МаксиЗнай"),
+    "case-maximus": ("Кейс · Maximus", 'Maximus <span class="section-title__muted">детская образовательная платформа</span>', "Детская образовательная платформа Maximus"),
 }
 
 
