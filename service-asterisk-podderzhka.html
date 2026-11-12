@@ -1,0 +1,1410 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Техническая поддержка VoIP-АТС — от 9 000 ₽/мес | Итач-софт</title>
+    <meta name="description" content="Техническая поддержка VoIP-станций на Asterisk и FreePBX: мониторинг, обновления, администрирование, устранение сбоев и доработки по SLA. Тарифы от 9 000 ₽/мес, режим 24/7." />
+    <script>document.documentElement.classList.add("js");</script>
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="assets/img/logos/logo.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+    <script src="assets/js/calculator.js" defer></script>
+    <script src="assets/js/lead-wave.js" defer></script>
+    <script src="assets/js/cursor-halo.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Техническая поддержка VoIP-телефонных станций",
+      "provider": {
+        "@type": "Organization",
+        "name": "Итач-софт",
+        "url": "https://itach-soft.ru"
+      },
+      "areaServed": [
+        "RU",
+        "BY"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Поддержка VoIP-станций — стандарт",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "RUB",
+            "minPrice": 9000
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Что входит в поддержку?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Мониторинг работоспособности, обновления Asterisk и FreePBX, администрирование станции, диагностика и устранение сбоев, консультации. На тарифах с доработками — включённые часы на изменения по запросу." }
+        },
+        {
+          "@type": "Question",
+          "name": "Берёте ли на поддержку станции, установленные не вами?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да: проводим аудит станции, устраняем критичные проблемы и берём на сопровождение. Передача занимает несколько дней — собираем доступы, изучаем конфигурацию и настраиваем мониторинг." }
+        },
+        {
+          "@type": "Question",
+          "name": "Как быстро реагируете на сбои?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Зависит от тарифа: на критичные ошибки — до 6 часов в рабочее время, на тарифе с SLA — до 1 часа, включая круглосуточный режим. Мониторинг замечает проблемы раньше сотрудников." }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли доработать функционал в рамках тарифа?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да: на тарифах с часами доработок выполняем изменения сценариев, добавляем модули и отчёты. Дополнительные часы — по фиксированной ставке." }
+        },
+        {
+          "@type": "Question",
+          "name": "Нужен ли договор?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да, работаем официально: договор с составом работ, временем реакции и отчётностью. Тариф можно менять, предупредив заранее, — без штрафов." }
+        }
+      ]
+    }
+    </script>
+  </head>
+
+  <body>
+    <div class="cursor-halo" aria-hidden="true" data-cursor-halo></div>
+
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <linearGradient id="gradient-contour" gradientUnits="userSpaceOnUse" x1="3" y1="3" x2="21" y2="21">
+        <stop offset="0" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <linearGradient id="gradient-number" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0.5" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <rect x="6.5" y="2" width="11" height="20" rx="3" />
+        <path d="M10.5 18.5h3" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <path
+          d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1.1 4.3 2.8 5.7L4.7 21l4.5-2.2c.9.2 1.8.3 2.8.3 5.1 0 9-3.6 9-8.1S17.1 3 12 3z"
+        />
+      </symbol>
+      <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+        <path d="M7 17 17 7" />
+        <path d="M8 7h9v9" />
+      </symbol>
+      <symbol id="icon-expand" viewBox="0 0 24 24">
+        <path d="M4 10V4h6" />
+        <path d="M20 14v6h-6" />
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path d="M4 6h16" />
+        <path d="M4 12h16" />
+        <path d="M4 18h16" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </symbol>
+      <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+        <path d="m6 9 6 6 6-6" />
+      </symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24">
+        <rect x="9" y="9" width="11" height="11" rx="2" />
+        <path d="M5 15V6a2 2 0 0 1 2-2h9" />
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="M5 12.5 9.5 17 19 7.5" />
+      </symbol>
+    </svg>
+
+    <header class="site-header" data-header>
+      <div class="container">
+        <div class="site-header__bar glass">
+          <a class="site-header__logo" href="index.html" aria-label="Итач-софт, на главную">
+            <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+          </a>
+
+          <nav class="site-header__nav" id="site-nav" aria-label="Основное меню">
+            <div class="nav__scroll">
+            <ul class="nav__list">
+              <li class="nav__item nav__item--services">
+                <a class="nav__link nav__link--services nav__link--desktop" href="services.html" aria-haspopup="true" aria-expanded="false" data-services-menu-trigger><span class="nav__text">Услуги</span></a>
+                <button class="nav__link nav__link--services nav__link--accordion" type="button" aria-expanded="false" aria-controls="services-submenu" data-services-submenu-toggle>
+                  <span class="nav__text">Услуги</span>
+                  <svg class="icon nav__chevron" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                </button>
+                <ul class="nav__submenu" id="services-submenu" data-services-submenu hidden>
+                  <li>
+                    <a class="nav__submenu-link" href="services.html"><span>Все услуги</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-sites.html"><span>Сайты</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-bitrix24.html"><span>Битрикс24</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-asterisk.html" aria-current="page"><span>IP-АТС на базе Asterisk</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-web-services.html"><span>Разработка веб-сервисов</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-support.html"><span>Техническая поддержка</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-outstaff.html"><span>Аутстаффинг и IT-услуги</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-ai.html"><span>AI-разработка</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li><a class="nav__link" href="portfolio.html"><span class="nav__text">Портфолио</span></a></li>
+              <li><a class="nav__link" href="index.html#about"><span class="nav__text">Компания</span></a></li>
+              <li><a class="nav__link" href="blog.html"><span class="nav__text">Блог</span></a></li>
+              <li><a class="nav__link" href="contacts.html"><span class="nav__text">Контакты</span></a></li>
+            </ul>
+            </div>
+            <div class="nav__contacts">
+              <a class="nav__phone" href="tel:+74812280296">
+                <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+                +7 (481) 228-02-96
+              </a>
+              <a class="nav__phone" href="mailto:info@itach-soft.ru">
+                <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+                info@itach-soft.ru
+              </a>
+            </div>
+          </nav>
+
+          <div class="site-header__actions">
+            <a class="site-header__contact site-header__email" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+            <a class="site-header__contact site-header__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="btn btn--primary btn--sm site-header__cta" href="#lead">
+              Заказать проект
+            </a>
+            <button
+              class="site-header__burger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-nav"
+              aria-label="Меню"
+              data-menu-toggle
+            >
+              <svg class="icon icon--open" aria-hidden="true"><use href="#icon-menu" /></svg>
+              <svg class="icon icon--close" aria-hidden="true"><use href="#icon-close" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="mega-menu__wrap"><div class="mega-menu" role="navigation" aria-label="Все услуги" data-services-menu hidden>
+          <div class="mega-menu__inner">
+            <div class="mega-menu__columns">
+              <ul class="mega-menu__categories" data-mega-categories>
+                <li>
+                  <a class="mega-menu__category" href="service-sites.html" data-mega-category="sites">
+                    <span class="mega-menu__category-title">Сайты</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-bitrix24.html" data-mega-category="bitrix24">
+                    <span class="mega-menu__category-title">Битрикс24</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-asterisk.html" data-mega-category="asterisk">
+                    <span class="mega-menu__category-title">IP-АТС на базе Asterisk</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-web-services.html" data-mega-category="web-services">
+                    <span class="mega-menu__category-title">Разработка веб-сервисов</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-support.html" data-mega-category="support">
+                    <span class="mega-menu__category-title">Техническая поддержка</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-outstaff.html" data-mega-category="outstaff">
+                    <span class="mega-menu__category-title">Аутстаффинг и IT-услуги</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-ai.html" data-mega-category="ai">
+                    <span class="mega-menu__category-title">AI-разработка</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+              </ul>
+
+              <div class="mega-menu__content">
+                <ul class="mega-menu__list" data-mega-items="sites">
+                  <li><a class="mega-menu__item" href="service-corporate-sites.html">Корпоративные сайты</a></li>
+                  <li><a class="mega-menu__item" href="service-internet-magaziny.html">Интернет-магазины</a></li>
+                  <li><a class="mega-menu__item" href="service-sayty-vizitki.html">Сайты-визитки</a></li>
+                  <li><a class="mega-menu__item" href="service-gotovye-shablony.html">Разработка сайта на готовых шаблонах</a></li>
+                  <li><a class="mega-menu__item" href="service-lending.html">Лендинги</a></li>
+                  <li><a class="mega-menu__item" href="service-gosudarstvennye.html">Сайты государственных организаций</a></li>
+                  <li><a class="mega-menu__item" href="service-sayty-na-bitriks.html">Сайты на Битрикс</a></li>
+                  <li><a class="mega-menu__item" href="service-podderzhka-saytov.html">Техническая поддержка сайтов</a></li>
+                  <li><a class="mega-menu__item" href="service-dorabotka-saytov.html">Доработка сайтов</a></li>
+                  <li><a class="mega-menu__item" href="service-veb-portaly.html">Разработка веб-порталов</a></li>
+                  <li><a class="mega-menu__item" href="service-audit-sayta.html">Комплексный аудит сайта</a></li>
+                  <li><a class="mega-menu__item" href="service-veb-dizayn.html">Разработка веб-дизайна сайта</a></li>
+                  <li><a class="mega-menu__item" href="service-lichnyy-kabinet.html">Разработка личного кабинета</a></li>
+                  <li><a class="mega-menu__item" href="service-react-prilozheniya.html">Разработка приложений на React JS</a></li>
+                  <li><a class="mega-menu__item" href="service-integratsiya-1c.html">Интеграция 1С с сайтом</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="bitrix24" hidden>
+                  <li><a class="mega-menu__item" href="service-bitrix24-vnedrenie.html">Внедрение и настройка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-dorabotka.html">Доработка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-integratsiya.html">Интеграция Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-avtomatizatsiya.html">Автоматизация бизнес-процессов в Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-telefoniya.html">IP-телефония для Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-podderzhka.html">Техническая поддержка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-obuchenie.html">Обучение Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-perenos.html">Перенос Битрикс24 из облака в коробку</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="asterisk" hidden>
+                  <li><a class="mega-menu__item" href="service-asterisk-vnedrenie.html">Внедрение IP-АТС на базе Asterisk</a></li>
+                  <li><a class="mega-menu__item" href="service-asterisk-nastroyka-voip.html">Настройка VoIP Asterisk</a></li>
+                  <li><a class="mega-menu__item" href="service-asterisk-bezopasnost.html">Обеспечение безопасности VoIP-АТС</a></li>
+                  <li><a class="mega-menu__item" href="service-asterisk-podderzhka.html">Техническая поддержка VoIP-телефонных станций</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="web-services" hidden>
+                  <li><a class="mega-menu__item" href="service-web-services-s-nulya.html">Разработка веб-сервисов с нуля</a></li>
+                  <li><a class="mega-menu__item" href="service-web-services-integratsiya.html">Интеграция сложных систем</a></li>
+                  <li><a class="mega-menu__item" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="support" hidden>
+                  <li><a class="mega-menu__item" href="service-podderzhka-saytov.html">Техническая поддержка сайтов</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-podderzhka.html">Техническая поддержка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-asterisk-podderzhka.html">Техническая поддержка VoIP-телефонных станций</a></li>
+                  <li><a class="mega-menu__item" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="outstaff" hidden>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-autstaffing/">IT-аутстаффинг</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/predostavlenie-it-spetsialistov/">Предоставление IT-специалистов под задачи бизнеса</a></li>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-konsultatsii/">IT-консультации</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="ai" hidden>
+                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/ai-razrabotka/">AI-разработка</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <aside class="mega-menu__aside">
+              <div class="mega-menu__promo glow-card">
+                <h3 class="mega-menu__promo-title">Узнайте стоимость разработки</h3>
+                <p class="mega-menu__promo-text">Опишите задачу — рассчитаем предварительную оценку проекта.</p>
+                <a class="btn btn--primary btn--sm mega-menu__promo-link" href="#lead">Рассчитать стоимость</a>
+                <img class="mega-menu__promo-image" src="assets/img/mega-menu-banner.webp" alt="" width="800" height="522" decoding="async">
+              </div>
+            </aside>
+          </div>
+        </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- 1. Hero -->
+      <section class="service-hero" aria-labelledby="service-hero-title">
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Хлебные крошки" data-reveal-stagger>
+            <a class="breadcrumbs__link" href="index.html">Главная</a>
+            <svg class="icon breadcrumbs__sep" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+            <a class="breadcrumbs__link" href="services.html">Услуги</a>
+            <svg class="icon breadcrumbs__sep" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+            <a class="breadcrumbs__link" href="service-asterisk.html">IP-АТС на базе Asterisk</a>
+            <svg class="icon breadcrumbs__sep" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+            <span class="breadcrumbs__current" aria-current="page">Поддержка VoIP-станций</span>
+          </nav>
+
+          <div class="service-hero__middle">
+            <div class="service-hero__intro">
+              <h1 class="section-title" id="service-hero-title" data-reveal>
+                Техническая поддержка <span class="section-title__muted">VoIP-станций</span>
+              </h1>
+
+              <div class="service-hero__content">
+                <p class="service-hero__lead" data-reveal>
+                  Берём на сопровождение телефонные станции на Asterisk и FreePBX: мониторинг, обновления, администрирование, устранение сбоев и доработки. Работаем по SLA с фиксированным временем реакции — вплоть до режима 24/7.
+                </p>
+                <div class="service-hero__actions" data-reveal>
+                  <a class="btn btn--primary" href="#calculator" data-calc-scroll>Рассчитать стоимость</a>
+                  <a class="btn btn--ghost" href="#cases">Смотреть кейсы</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- IP-телефон с логотипом Asterisk. Декоративная — смысл уже в заголовке -->
+            <figure class="service-hero__figure" data-reveal>
+              <img
+                src="assets/img/asterisk-hero.webp"
+                width="1520"
+                height="1163"
+                alt=""
+                aria-hidden="true"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </figure>
+          </div>
+
+                    <ul class="page-stats page-stats--tall" data-reveal-stagger>
+            <li class="page-stat glow-card" style="--i: 0">
+              <span class="page-stat__value">от 9 000 ₽</span>
+              <p class="page-stat__text">стоимость поддержки в месяц</p>
+            </li>
+            <li class="page-stat glow-card" style="--i: 1">
+              <span class="page-stat__value">до 1</span>
+              <p class="page-stat__text">часа — реакция на критические сбои</p>
+            </li>
+            <li class="page-stat glow-card" style="--i: 2">
+              <span class="page-stat__value">24/7</span>
+              <p class="page-stat__text">режим по договору</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Лента логотипов клиентов: сразу под hero и карточками с цифрами -->
+      <section class="clients" aria-label="Нам доверяют" data-reveal>
+        <div class="clients__track">
+          <ul class="clients__list">
+            <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="ЕРИП" loading="lazy" /></li>
+            <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="Autolight Express" loading="lazy" /></li>
+            <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="Zepter Bank" loading="lazy" /></li>
+            <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="Гиппо" loading="lazy" /></li>
+            <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="World Class" loading="lazy" /></li>
+            <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="Helix" loading="lazy" /></li>
+            <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="Санта" loading="lazy" /></li>
+            <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="Xiaomi" loading="lazy" /></li>
+            <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="БГМУ" loading="lazy" /></li>
+            <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="Розы.Бел" loading="lazy" /></li>
+            <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="Imkliva Insurance" loading="lazy" /></li>
+            <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="БНБ-Банк" loading="lazy" /></li>
+            <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="А-100" loading="lazy" /></li>
+          </ul>
+          <ul class="clients__list" aria-hidden="true">
+            <li><img src="assets/img/logos/erip.png" width="351" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/autolight.png" width="594" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/zepter-bank.png" width="612" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/gippo.png" width="408" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/worldclass.png" width="436" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/helix.png" width="370" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/santa.png" width="360" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/xiaomi.png" width="359" height="120" alt="" loading="lazy" /></li>
+            <li><img class="clients__logo--tall" src="assets/img/logos/bsmu.png" width="190" height="224" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/rozy-bel.png" width="332" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/imkliva.png" width="402" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/bnb-bank.png" width="514" height="120" alt="" loading="lazy" /></li>
+            <li><img src="assets/img/logos/a-100.png" width="508" height="120" alt="" loading="lazy" /></li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="service-sections">
+        <!-- Проблемы строками: ключевое слово слева серым, описание по центру,
+             справа — штамп «Решим». Каждая строка всплывает по мере скролла -->
+        <section class="problems" aria-labelledby="problems-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="problems-title">
+              Проблемы, которые <span class="section-title__muted">решаем</span>
+            </h2>
+            <ul class="problem-rows" data-problem-rows>
+              <li class="problem-row">
+                <span class="problem-row__keyword">Сбои</span>
+                <p class="problem-row__desc">Станция падает или теряет связь — и некому быстро починить</p>
+                <span class="problem-row__stamp" aria-hidden="true">
+                  <svg class="icon icon--gradient"><use href="#icon-check" /></svg>
+                  <span class="problem-row__stamp-text">Решим</span>
+                </span>
+              </li>
+              <li class="problem-row">
+                <span class="problem-row__keyword">Сопровождение</span>
+                <p class="problem-row__desc">Настройщик пропал: доступы и документация утеряны</p>
+                <span class="problem-row__stamp" aria-hidden="true">
+                  <svg class="icon icon--gradient"><use href="#icon-check" /></svg>
+                  <span class="problem-row__stamp-text">Решим</span>
+                </span>
+              </li>
+              <li class="problem-row">
+                <span class="problem-row__keyword">Обновления</span>
+                <p class="problem-row__desc">Обновлений боятся: после прошлого раза телефония встала</p>
+                <span class="problem-row__stamp" aria-hidden="true">
+                  <svg class="icon icon--gradient"><use href="#icon-check" /></svg>
+                  <span class="problem-row__stamp-text">Решим</span>
+                </span>
+              </li>
+              <li class="problem-row">
+                <span class="problem-row__keyword">Правки</span>
+                <p class="problem-row__desc">Изменить сценарий или добавить номер — недели ожидания</p>
+                <span class="problem-row__stamp" aria-hidden="true">
+                  <svg class="icon icon--gradient"><use href="#icon-check" /></svg>
+                  <span class="problem-row__stamp-text">Решим</span>
+                </span>
+              </li>
+              <li class="problem-row">
+                <span class="problem-row__keyword">Мониторинг</span>
+                <p class="problem-row__desc">Об аварии узнают от клиентов, а не от специалистов</p>
+                <span class="problem-row__stamp" aria-hidden="true">
+                  <svg class="icon icon--gradient"><use href="#icon-check" /></svg>
+                  <span class="problem-row__stamp-text">Решим</span>
+                </span>
+              </li>
+              <li class="problem-row">
+                <span class="problem-row__keyword">Развитие</span>
+                <p class="problem-row__desc">Новые функции не появляются: телефония стоит на месте</p>
+                <span class="problem-row__stamp" aria-hidden="true">
+                  <svg class="icon icon--gradient"><use href="#icon-check" /></svg>
+                  <span class="problem-row__stamp-text">Решим</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2. Кейсы -->
+        <section class="cases" id="cases" aria-labelledby="cases-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="cases-title">
+              Кейсы <span class="section-title__muted">сопровождения</span>
+            </h2>
+            <div class="cases__scroller">
+            <ul class="case-grid" data-reveal-stagger>
+<li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach-soft.ru/portfolio/vnedrenie-kontakt-tsentra-na-baze-ip-asterisk/" data-detail-open="case-erip">ЕРИП <span class="section-title__muted">контакт-центр на базе Asterisk и Битрикс24</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/cases/erip.jpg" width="1440" height="960" alt="Контакт-центр ЕРИП" loading="lazy" />
+              </li>
+<li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach.by/portfolio/vnedrenie-ip-ats-na-baze-asterisk-dlya-kompanii-worldclass/" data-detail-open="case-worldclass">World Class <span class="section-title__muted">внедрение IP-АТС на базе Asterisk</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/cases/case-worldclass.jpg" width="1440" height="960" alt="Внедрение IP-АТС Asterisk для World Class" loading="lazy" />
+              </li>
+<li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach.by/portfolio/vnedrenie-ats-i-moduley-avtoobzvona-i-obrabotki-zvonkov/" data-detail-open="case-zepter">Цептер Банк <span class="section-title__muted">АТС, автообзвон и обработка звонков</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/cases/case-zepter.jpg" width="1440" height="960" alt="Внедрение АТС и модуля автообзвона для Цептер Банка" loading="lazy" />
+              </li>
+              <li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach.by/portfolio/vnedrenie-modulya-integratsii-bitriks24-s-ip-ats-na-baze-asterisk/" data-detail-open="case-santa">Санта <span class="section-title__muted">интеграция Битрикс24 с IP-АТС Asterisk</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/detail/case-santa-tile-0.png" width="1440" height="940" alt="Внедрение модуля интеграции Битрикс24 с IP-АТС на базе Asterisk для Санты" loading="lazy" />
+              </li>
+              <li class="case-card glow-card">
+                <h3 class="case-card__title"><a class="case-card__link" href="https://itach.by/portfolio/vnedrenie-i-integratsiya-ip-telefonii-s-bitriks24/" data-detail-open="case-telefonia">Марко <span class="section-title__muted">внедрение и интеграция IP-телефонии с Битрикс24</span></a></h3>
+                <span class="card-expand" aria-hidden="true"><svg class="icon icon--gradient"><use href="#icon-expand" /></svg></span>
+                <img class="case-card__shot" src="assets/img/detail/case-telefonia-tile-0.jpg" width="1440" height="940" alt="Внедрение и интеграция IP-телефонии с Битрикс24 для холдинга «Марко»" loading="lazy" />
+              </li>
+            </ul>
+            </div>
+            <div class="section-action" data-reveal>
+              <a class="btn btn--outline" href="portfolio.html">Все кейсы</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Почему нам доверяют: карточки с отворотом, раскрывается на наведении -->
+        <section class="why" id="why" aria-labelledby="why-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="why-title">
+              Почему нам <span class="section-title__muted">доверяют</span>
+            </h2>
+            <div class="why__scroller">
+              <div class="why-cards" data-reveal-stagger>
+              <article class="why-card" tabindex="0">
+                <div class="why-card__body">
+                  <h3 class="why-card__title">Проактивный мониторинг</h3>
+                  <p class="why-card__text">Наблюдаем за системой постоянно и предотвращаем сбои.</p>
+                </div>
+                <span class="why-card__sheet" aria-hidden="true"></span>
+                <ul class="why-card__facts"><li class="why-card__fact">Мониторинг</li><li class="why-card__fact">Профилактика</li><li class="why-card__fact">Без сбоев</li></ul>
+                <span class="why-card__fold" aria-hidden="true"></span>
+              </article>
+              <article class="why-card" tabindex="0">
+                <div class="why-card__body">
+                  <h3 class="why-card__title">Высокая квалификация</h3>
+                  <p class="why-card__text">Сертифицированные специалисты с глубоким знанием VoIP.</p>
+                </div>
+                <span class="why-card__sheet" aria-hidden="true"></span>
+                <ul class="why-card__facts"><li class="why-card__fact">Сертификаты</li><li class="why-card__fact">VoIP</li><li class="why-card__fact">Опыт</li></ul>
+                <span class="why-card__fold" aria-hidden="true"></span>
+              </article>
+              <article class="why-card" tabindex="0">
+                <div class="why-card__body">
+                  <h3 class="why-card__title">Регулярные обновления</h3>
+                  <p class="why-card__text">Держим станции актуальными и защищёнными.</p>
+                </div>
+                <span class="why-card__sheet" aria-hidden="true"></span>
+                <ul class="why-card__facts"><li class="why-card__fact">Обновления</li><li class="why-card__fact">Безопасность</li><li class="why-card__fact">Актуальность</li></ul>
+                <span class="why-card__fold" aria-hidden="true"></span>
+              </article>
+              <article class="why-card" tabindex="0">
+                <div class="why-card__body">
+                  <h3 class="why-card__title">Поддержка по SLA</h3>
+                  <p class="why-card__text">Сроки реакции зафиксированы — станция работает без простоев.</p>
+                </div>
+                <span class="why-card__sheet" aria-hidden="true"></span>
+                <ul class="why-card__facts"><li class="why-card__fact">SLA</li><li class="why-card__fact">Реакция</li><li class="why-card__fact">Без простоев</li></ul>
+                <span class="why-card__fold" aria-hidden="true"></span>
+              </article>
+              <article class="why-card" tabindex="0">
+                <div class="why-card__body">
+                  <h3 class="why-card__title">Поддержка чужих проектов</h3>
+                  <p class="why-card__text">Берём на поддержку станции, установленные не нами.</p>
+                </div>
+                <span class="why-card__sheet" aria-hidden="true"></span>
+                <ul class="why-card__facts"><li class="why-card__fact">Любой подрядчик</li><li class="why-card__fact">Asterisk</li><li class="why-card__fact">Приёмка</li></ul>
+                <span class="why-card__fold" aria-hidden="true"></span>
+              </article>
+              <article class="why-card" tabindex="0">
+                <div class="why-card__body">
+                  <h3 class="why-card__title">Персональный менеджер</h3>
+                  <p class="why-card__text">Оперативно решает вопросы на всех этапах проекта.</p>
+                </div>
+                <span class="why-card__sheet" aria-hidden="true"></span>
+                <ul class="why-card__facts"><li class="why-card__fact">Связь</li><li class="why-card__fact">Скорость</li><li class="why-card__fact">Контроль</li></ul>
+                <span class="why-card__fold" aria-hidden="true"></span>
+              </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Услуги и стоимость -->
+        <section class="formats" id="formats" aria-labelledby="formats-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="formats-title">
+              Форматы и <span class="section-title__muted">стоимость</span>
+            </h2>
+            <p class="formats__note" data-reveal>
+              Стоимость зависит от масштаба и задач. Точную смету фиксируем в договоре — до начала работ.
+            </p>
+            <ul class="format-grid" data-reveal-stagger data-reveal-pair>
+              <li class="format-card format-card--static glow-card">
+                <div class="format-card__link">
+                  <h3 class="format-card__title">Стандарт</h3>
+                  <p class="format-card__desc">Мониторинг, обновления Asterisk и FreePBX, администрирование и консультации в рабочие часы, реакция на критические сбои до 6 часов.</p>
+                  <ul class="format-card__prices">
+                  <li class="format-card__price">
+                    <span class="format-card__price-label">Стоимость тарифа</span>
+                    <span class="format-card__price-value">от 9 000 ₽/мес</span>
+                  </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="format-card format-card--static glow-card">
+                <div class="format-card__link">
+                  <h3 class="format-card__title">По SLA 24/7</h3>
+                  <p class="format-card__desc">Круглосуточный режим, выделенная команда, включённые часы доработок и реакция на критические ошибки до 1 часа.</p>
+                  <ul class="format-card__prices">
+                  <li class="format-card__price">
+                    <span class="format-card__price-label">Стоимость тарифа</span>
+                    <span class="format-card__price-value">по проекту</span>
+                  </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Калькулятор стоимости -->
+        <section class="calc" id="calculator" aria-labelledby="calc-title">
+          <div class="container calc__layout" data-calc>
+            <div class="calc__intro" data-reveal>
+              <h2 class="section-title calc__title" id="calc-title">Рассчитайте стоимость работ <span class="section-title__muted">за 2 минуты</span></h2>
+            </div>
+            <div class="calc__panel glow-card" data-reveal>
+              <p class="calc__counter" data-calc-counter>Шаг 1 из 4</p>
+              <ol class="calc__tracker" data-calc-tracker>
+                <li><span class="visually-hidden">1. Услуга</span></li>
+                <li><span class="visually-hidden">2. Задача</span></li>
+                <li><span class="visually-hidden">3. Подробности</span></li>
+                <li><span class="visually-hidden">4. Контакты</span></li>
+              </ol>
+              <div class="calc__stage" tabindex="-1" data-calc-stage>
+                <h3 class="calc__title-step" data-calc-title>Выберите услугу</h3>
+                <div data-calc-body></div>
+                <div class="calc__contact" data-calc-contact hidden>
+                  <h3 class="calc__title-step">Почти готово!</h3>
+                  <p class="calc__text">Теперь у нас есть верхнеуровневые требования к вашему проекту. Заполните контактные данные ниже, и наши менеджеры оперативно свяжутся, чтобы сориентировать вас по стоимости и срокам реализации проекта.</p>
+                  <form class="lead-form calc__form" method="post" novalidate data-lead-form data-endpoint="">
+                    <input type="hidden" name="brief" data-calc-brief />
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="calc-name">Имя</label>
+                        <input class="lead-form__control" id="calc-name" name="name" type="text" autocomplete="name" required aria-describedby="calc-name-error" data-error="Укажите, как к вам обращаться" />
+                        <p class="lead-form__error" id="calc-name-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="calc-company">Название компании</label>
+                        <input class="lead-form__control" id="calc-company" name="company" type="text" autocomplete="organization" required aria-describedby="calc-company-error" data-error="Укажите название компании" />
+                        <p class="lead-form__error" id="calc-company-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="calc-phone">Телефон</label>
+                        <input class="lead-form__control" id="calc-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="calc-phone-error" data-error="Укажите телефон для связи" />
+                        <p class="lead-form__error" id="calc-phone-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="calc-email">E-mail</label>
+                        <input class="lead-form__control" id="calc-email" name="email" type="email" autocomplete="email" required aria-describedby="calc-email-error" data-error="Укажите корректный e-mail" />
+                        <p class="lead-form__error" id="calc-email-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="calc-message">Сообщение</label>
+                      <textarea class="lead-form__control lead-form__control--area" id="calc-message" name="message" rows="3" placeholder="Детали проекта, сроки, технологии и другая важная информация" aria-describedby="calc-message-error"></textarea>
+                      <p class="lead-form__error" id="calc-message-error"></p>
+                    </div>
+                    <div class="calc__form-actions">
+                      <button class="btn btn--ghost" type="button" data-calc-back-contact>Назад</button>
+                      <button class="btn btn--primary lead-form__submit" type="submit">Отправить</button>
+                    </div>
+                    <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+                    <p class="lead-form__status" role="status" data-lead-status></p>
+                  </form>
+                </div>
+              </div>
+              <div class="calc__nav">
+                <button class="btn btn--ghost btn--sm" type="button" data-calc-back hidden>Назад</button>
+                <button class="btn btn--primary btn--sm" type="button" data-calc-next disabled>Далее</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Процесс -->
+        <section class="process" id="process" aria-labelledby="process-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="process-title">
+              Как мы <span class="section-title__muted">работаем</span>
+            </h2>
+            <ol class="process-steps" data-process-steps>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">01</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Подключение и аудит</h3>
+                  <p class="process-step__text">Проводим аудит станции, собираем доступы и документацию, настраиваем мониторинг и фиксируем регламент времени реакции.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Аудит станции и подключённый тариф</p>
+                </div>
+              </li>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">02</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Мониторинг 24/7</h3>
+                  <p class="process-step__text">Следим за доступностью станции, нагрузкой, дисками и каналами связи. Об инцидентах узнаём раньше, чем их заметят сотрудники.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Стабильная телефония</p>
+                </div>
+              </li>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">03</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Работы по тарифу</h3>
+                  <p class="process-step__text">Выполняем обновления Asterisk и FreePBX, администрирование, мелкие правки сценариев и консультации администраторов.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Выполненные задачи по графику</p>
+                </div>
+              </li>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">04</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Отчётность</h3>
+                  <p class="process-step__text">Ежемесячно отчитываемся о работах, инцидентах и состоянии станции, даём рекомендации по развитию телефонии.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Прозрачная отчётность</p>
+                </div>
+              </li>
+              <li class="process-step">
+                <span class="process-step__number" aria-hidden="true">05</span>
+                <div class="process-step__body">
+                  <h3 class="process-step__title">Развитие</h3>
+                  <p class="process-step__text">Дорабатываем сценарии, подключаем модули обзвона и статистики, оптимизируем нагрузку по мере роста компании.</p>
+                </div>
+                <div class="process-step__result">
+                  <span class="process-step__result-label">Вы получаете</span>
+                  <p class="process-step__result-text">Телефония, которая развивается</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div class="container section-action" data-reveal>
+            <a class="btn btn--outline" href="#lead">Обсудить проект</a>
+          </div>
+        </section>
+
+        <!-- 5. Команда -->
+        <section class="team" aria-labelledby="team-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="team-title">
+              Кто будет <span class="section-title__muted">работать над проектом</span>
+            </h2>
+            <p class="team__lead" data-reveal>
+              Команда формируется индивидуально под каждый проект — состав и роли зависят от задач и сложности проекта
+            </p>
+            <ul class="team__row" data-reveal-stagger>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-project-manager.webp" width="522" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Проектный менеджер</span>
+                <span class="team-role__duty">Координирует работу команды, контролирует сроки, коммуникацию и выполнение задач по проекту.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-business-analyst.webp" width="564" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Бизнес-аналитик</span>
+                <span class="team-role__duty">Изучает задачи бизнеса, собирает требования и помогает определить структуру, функции и приоритеты проекта.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-system-engineer.webp" width="410" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Системный инженер</span>
+                <span class="team-role__duty">Настраивает IP-АТС, серверное окружение, маршрутизацию звонков и техническую инфраструктуру решения.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-frontend.webp" width="600" height="401" alt="" loading="lazy" />
+                <span class="team-role__name">Фронтенд-разработчик</span>
+                <span class="team-role__duty">Реализует интерфейсы, адаптивность и интерактивные элементы, обеспечивая корректную работу проекта на всех устройствах.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-backend.webp" width="600" height="393" alt="" loading="lazy" />
+                <span class="team-role__name">Бэкенд-разработчик</span>
+                <span class="team-role__duty">Отвечает за серверную логику, интеграции, базы данных и стабильную работу функционала системы.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-qa.webp" width="575" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">QA-инженер (тестировщик)</span>
+                <span class="team-role__duty">Проверяет функциональность, находит ошибки и контролирует качество проекта перед запуском.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-devops.webp" width="538" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">DevOps-инженер</span>
+                <span class="team-role__duty">Настраивает окружение, мониторинг, резервное копирование и обеспечивает надёжную работу проекта.</span>
+              </li>
+              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/role-account-manager.webp" width="594" height="600" alt="" loading="lazy" />
+                <span class="team-role__name">Аккаунт-менеджер</span>
+                <span class="team-role__duty">Сопровождает клиента после запуска, помогает с новыми задачами, приоритетами и дальнейшим развитием проекта.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 8. Наши достижения: сертификаты и награды -->
+        <section class="awards" aria-labelledby="awards-title" data-awards>
+          <div class="container awards__inner">
+            <h2 class="section-title" data-reveal id="awards-title">Наши <span class="section-title__muted">достижения</span></h2>
+            <p class="awards__lead" data-reveal>Официальные Платиновые партнёры Битрикс24 и Золотые партнёры 1С-Битрикс. Имеем сертификат Крупных корпоративных внедрений.</p>
+
+            <!-- Сцена: центральная карточка и две боковые под ней; клик по боковой крутит очередь по кругу -->
+            <div class="awards-stage" data-awards-stage data-reveal>
+              <button class="awards-show is-left" type="button" aria-label="Предыдущий сертификат">
+                <img src="" alt="" width="1200" height="848">
+              </button>
+              <div class="awards-show is-center">
+                <img src="" alt="" width="1200" height="848">
+              </div>
+              <button class="awards-show is-right" type="button" aria-label="Следующий сертификат">
+                <img src="" alt="" width="1200" height="848">
+              </button>
+            </div>
+            <div class="awards-dots" data-awards-dots role="group" aria-label="Сертификаты"></div>
+            <p class="awards-caption" data-awards-caption aria-live="polite"></p>
+
+            <!-- Плашки компетенций Битрикс24 и 1С-Битрикс — одной строкой по ширине контейнера -->
+            <ul class="awards-badges" data-reveal aria-label="Компетенции компании">
+              <li><img src="assets/img/awards/badges/b24_corp.svg" alt="Энтерпрайз" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_box.svg" alt="Коробочная версия" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_crm_4.svg" alt="CRM" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_automation.svg" alt="Автоматизация" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_1c.svg" alt="Интеграция с 1С" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/b24_sys.svg" alt="Системное администрирование" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/bitrix-gos.svg" alt="Решения для госорганизаций" width="350" height="100" loading="lazy" decoding="async"></li>
+              <li><img src="assets/img/awards/badges/bitrix-komposit.svg" alt="Композитный сайт" width="350" height="100" loading="lazy" decoding="async"></li>
+            </ul>
+          </div>
+
+          <script type="application/json" data-awards-data>[{"src": "assets/img/awards/cert-01.webp", "alt": "Сертификат 1С-Битрикс: компания Итач-софт — платиновый партнёр Битрикс24", "caption": "Настоящим сертификатом 1С-Битрикс подтверждает, что компания Итач-софт является платиновым партнёром Битрикс24"}, {"src": "assets/img/awards/cert-02.webp", "alt": "Сертификат 1С-Битрикс: компании Итач-софт присвоена компетенция «Энтерпрайз»", "caption": "Настоящим сертификатом 1С-Битрикс подтверждает, что компании Итач-софт присвоена компетенция «Энтерпрайз»"}, {"src": "assets/img/awards/cert-04.webp", "alt": "Диплом рейтинга Рунета, категория CRM", "caption": "Настоящим дипломом Итач-софт демонстрирует место компании в рейтинге Рунета - категория CRM"}, {"src": "assets/img/awards/cert-05.webp", "alt": "Диплом рейтинга Рунета, категория 1С (Битрикс)", "caption": "Настоящим дипломом Итач-софт демонстрирует место компании в рейтинге Рунета - категория 1С (Битрикс)"}, {"src": "assets/img/awards/cert-06.webp", "alt": "Диплом рейтинга веб-студий Беларуси 2026", "caption": "Настоящим дипломом Итач-софт подтверждает свое место в рейтинге WEB-студий Беларуси"}, {"src": "assets/img/awards/cert-07.webp", "alt": "Диплом рейтинга ИИ-разработчиков Байнета 2026", "caption": "Настоящим дипломом Итач-софт подтверждает свое место в рейтинге Байнета"}, {"src": "assets/img/awards/cert-08.webp", "alt": "Диплом рейтинга веб-интеграторов Беларуси 2026", "caption": "Настоящим дипломом Итач-софт подтверждает свое место в рейтинге WEB-интеграторов Беларуси"}, {"src": "assets/img/awards/cert-09.webp", "alt": "Сертификат 1С-Битрикс: компетенция «Системное администрирование и эксплуатация»", "caption": "Настоящим сертификатом компания «1С-Битрикс» подтверждает, что компании Итач-софт присвоена компетенция «Системное администрирование и эксплуатация»"}, {"src": "assets/img/awards/cert-10.webp", "alt": "Сертификат 1С-Битрикс: компетенция «Интеграция с 1С»", "caption": "Настоящим сертификатом компания «1С-Битрикс» подтверждает, что компании Итач-софт присвоена компетенция «Интеграция с 1С»"}, {"src": "assets/img/awards/cert-11.webp", "alt": "Сертификат 1С-Битрикс: компетенция «Коробочная версия»", "caption": "Настоящим сертификатом компания «1С-Битрикс» подтверждает, что компании Итач-софт присвоена компетенция «Коробочная версия»"}, {"src": "assets/img/awards/cert-12.webp", "alt": "Сертификат 1С-Битрикс: компетенция «CRM»", "caption": "Настоящим сертификатом компания «1С-Битрикс» подтверждает, что компании Итач-софт присвоена компетенция «CRM»"}, {"src": "assets/img/awards/cert-13.webp", "alt": "Диплом рейтинга Байнет", "caption": "Настоящим дипломом Итач-софт демонстрирует место компании в рейтинге Байнет"}, {"src": "assets/img/awards/cert-14.webp", "alt": "Сертификат соответствия СТБ ISO 9001-2015", "caption": "Настоящий сертификат соответствия удостоверяет, что система менеджмента качества соответствует требованиям СТБ ISO 9001-2015"}, {"src": "assets/img/awards/cert-03.webp", "alt": "Диплом победителя Премии «Народный выбор»", "caption": "Настоящим дипломом Итач-софт подтверждает, что компания является победителем Премии «Народный выбор»"}]</script>
+        </section>
+
+        <!-- 9. Отзывы -->
+        <section class="reviews" id="reviews" aria-labelledby="reviews-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="reviews-title">
+              Отзывы <span class="section-title__muted">клиентов</span>
+            </h2>
+          </div>
+          <div class="reviews__scroller" data-drag-scroll tabindex="0" role="region" aria-label="Отзывы клиентов, прокручивается по горизонтали">
+            <ul class="reviews__list" data-reveal-stagger>
+              <li class="review-card glow-card">
+                <div class="review-card__top">
+                  <img class="review-card__logo" src="assets/img/reviews/sberlizing.svg" width="300" height="42" alt="Сберлизинг" loading="lazy" />
+                  <span class="review-card__quote" aria-hidden="true">“</span>
+                </div>
+                <blockquote class="review-card__text">
+                  <p>От лица компании ЗАО «СберЛизинг» выражаем искреннюю благодарность разработчикам компании ООО «Итач-софт» за их профессионализм и ответственность в создании нашего нового сайта, а также разработку калькулятора для расчета лизинговых платежей.</p>
+                  <p>Благодаря Вашей компании ЗАО «СберЛизинг» получили качественный и функциональный сайт, который, на наш взгляд, достойно представляет нашу компанию, а также удобный инструмент для расчетов и будущих возможных интеграций в иные программные комплексы компании.</p>
+                </blockquote>
+                <footer class="review-card__author">
+                  <span class="review-card__name">И.А. Костюченко</span>
+                  <span class="review-card__job">Заместитель генерального директора по финансам</span>
+                </footer>
+              </li>
+              <li class="review-card glow-card">
+                <div class="review-card__top">
+                  <img class="review-card__logo" src="assets/img/reviews/alkor.svg" width="250" height="60" alt="Алькор Бриллианты России" loading="lazy" />
+                  <span class="review-card__quote" aria-hidden="true">“</span>
+                </div>
+                <blockquote class="review-card__text">
+                  <p>От лица нашей компании хочу сделать отзыв о совместно работе с ООО «Итач-софт».</p>
+                  <p>Компания «Итач-софт» очень ответственно подходит к нашим проектам. Они сформировали команду с которой налажена очень быстрая обратная связь.</p>
+                  <p>Все процессы максимально понятны и прозрачны. Мы добавлены на рабочий портал компании, где можем коммуницировать по задачам. Решать что-то по ходу и сразу. Делать быстрые созвоны. Это позволяет избежать затягивания разработки и принятия неправильных, неэффективных решений.</p>
+                </blockquote>
+                <footer class="review-card__author">
+                  <span class="review-card__name">Алексей Батура</span>
+                  <span class="review-card__job">Менеджер IT проектов</span>
+                </footer>
+              </li>
+              <li class="review-card glow-card">
+                <div class="review-card__top">
+                  <img class="review-card__logo" src="assets/img/reviews/bnb-bank.svg" width="250" height="59" alt="БНБ Банк" loading="lazy" />
+                  <span class="review-card__quote" aria-hidden="true">“</span>
+                </div>
+                <blockquote class="review-card__text">
+                  <p>ОАО «БНБ-Банк» искренне благодарит компанию ООО «Итач-софт» за качественное и своевременное обслуживание сайта нашей организации.</p>
+                  <p>За время работы сотрудники компании ООО «Итач-софт» проявили себя как добросовестные, исполнительные и отзывчивые специалисты. Все возникающие вопросы решались ими профессионально и в срок.</p>
+                  <p>Особенно хочется отметить ответственное и внимательное отношение к требованиям и пожеланиям со стороны нашей компании.</p>
+                </blockquote>
+                <footer class="review-card__author">
+                  <span class="review-card__name">Денис Чекун</span>
+                  <span class="review-card__job">Руководитель отдела цифрового маркетинга</span>
+                </footer>
+              </li>
+              <li class="review-card glow-card">
+                <div class="review-card__top">
+                  <img class="review-card__logo" src="assets/img/reviews/autogroup.svg" width="250" height="63" alt="Автогруп" loading="lazy" />
+                  <span class="review-card__quote" aria-hidden="true">“</span>
+                </div>
+                <blockquote class="review-card__text">
+                  <p>Настоящим письмом выражаем свою искреннюю благодарность компании «Итач-софт» за отличную работу, которую проделала Ваша компания по созданию и запуску нашего сайта, а также по разработке собственной специализированной CRM-системы.</p>
+                  <p>В работе с Вами мы увидели профессионализм, знание технологий, системный подход, соблюдение сроков, способность увидеть и понять наши потребности, и предложить лучшее решение.</p>
+                  <p>Надеемся на дальнейшее плодотворное сотрудничество с Вами!</p>
+                </blockquote>
+                <footer class="review-card__author">
+                  <span class="review-card__name">Болдюсов Дмитрий Григорьевич</span>
+                  <span class="review-card__job">Руководитель</span>
+                </footer>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 10. FAQ -->
+        <section class="faq" id="faq" aria-labelledby="faq-title">
+          <div class="container faq__layout" data-faq>
+            <div class="faq__intro" data-reveal>
+              <h2 class="section-title faq__title" id="faq-title">Частые вопросы <span class="section-title__muted">о поддержке VoIP-станций</span></h2>
+              <a class="btn btn--outline" href="#lead">Задать свой вопрос</a>
+            </div>
+                        <ul class="faq__list" data-reveal-stagger>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+                    <span class="faq__text">Что входит в поддержку?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+                  <div class="faq__answer-inner"><p>Мониторинг работоспособности, обновления Asterisk и FreePBX, администрирование станции, диагностика и устранение сбоев, консультации. На тарифах с доработками — включённые часы на изменения по запросу.</p></div>
+                </div>
+              </li>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+                    <span class="faq__text">Берёте ли на поддержку станции, установленные не вами?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+                  <div class="faq__answer-inner"><p>Да: проводим аудит станции, устраняем критичные проблемы и берём на сопровождение. Передача занимает несколько дней — собираем доступы, изучаем конфигурацию и настраиваем мониторинг.</p></div>
+                </div>
+              </li>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+                    <span class="faq__text">Как быстро реагируете на сбои?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+                  <div class="faq__answer-inner"><p>Зависит от тарифа: на критичные ошибки — до 6 часов в рабочее время, на тарифе с SLA — до 1 часа, включая круглосуточный режим. Мониторинг замечает проблемы раньше сотрудников.</p></div>
+                </div>
+              </li>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+                    <span class="faq__text">Можно ли доработать функционал в рамках тарифа?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+                  <div class="faq__answer-inner"><p>Да: на тарифах с часами доработок выполняем изменения сценариев, добавляем модули и отчёты. Дополнительные часы — по фиксированной ставке.</p></div>
+                </div>
+              </li>
+              <li class="faq__item glow-card">
+                <h3 class="faq__question">
+                  <button class="faq__trigger" type="button" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+                    <span class="faq__text">Нужен ли договор?</span>
+                    <span class="faq__toggle" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__answer" id="faq-a5" role="region" aria-labelledby="faq-q5">
+                  <div class="faq__answer-inner"><p>Да, работаем официально: договор с составом работ, временем реакции и отчётностью. Тариф можно менять, предупредив заранее, — без штрафов.</p></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <!-- 10. Форма -->
+      <section class="lead" id="lead" aria-labelledby="lead-title">
+        <div class="container">
+          <div class="lead__panel" data-reveal>
+            <canvas class="lead__wave" aria-hidden="true" data-lead-wave></canvas>
+            <div class="lead__intro">
+              <h2 class="section-title lead__title" id="lead-title">
+                Расскажите о вашем <span class="section-title__muted">проекте</span>
+              </h2>
+              <p class="lead__text">Опишите задачу — в течение часа ответим, как её решить, и рассчитаем предварительную стоимость.</p>
+            </div>
+            <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-name">Имя</label>
+                  <input class="lead-form__control" id="lead-name" name="name" type="text" autocomplete="name" required aria-describedby="lead-name-error" data-error="Укажите, как к вам обращаться" />
+                  <p class="lead-form__error" id="lead-name-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-company">Компания</label>
+                  <input class="lead-form__control" id="lead-company" name="company" type="text" autocomplete="organization" required aria-describedby="lead-company-error" data-error="Укажите название компании" />
+                  <p class="lead-form__error" id="lead-company-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-phone">Телефон</label>
+                  <input class="lead-form__control" id="lead-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="lead-phone-error" data-error="Укажите телефон для связи" />
+                  <p class="lead-form__error" id="lead-phone-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-email">E-mail</label>
+                  <input class="lead-form__control" id="lead-email" name="email" type="email" autocomplete="email" required aria-describedby="lead-email-error" data-error="Укажите корректный e-mail" />
+                  <p class="lead-form__error" id="lead-email-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="lead-task">Ваша задача</label>
+                <textarea class="lead-form__control lead-form__control--area" id="lead-task" name="task" rows="4" required aria-describedby="lead-task-error" data-error="Коротко опишите задачу"></textarea>
+                <p class="lead-form__error" id="lead-task-error"></p>
+              </div>
+              <button class="btn btn--primary lead-form__submit" type="submit">Обсудить проект</button>
+              <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+              <p class="lead-form__status" role="status" data-lead-status></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. Перелинковка: другие направления услуг -->
+      <section class="related" aria-labelledby="related-title">
+        <div class="container">
+          <h2 class="section-title" data-reveal id="related-title">
+            Другие <span class="section-title__muted">услуги направления</span>
+          </h2>
+                    <ul class="related__list" data-reveal-stagger>
+            <li><a class="related__link" href="service-asterisk.html">IP-АТС на базе Asterisk под ключ</a></li>
+            <li><a class="related__link" href="service-asterisk-vnedrenie.html">Внедрение IP-АТС на базе Asterisk</a></li>
+            <li><a class="related__link" href="service-asterisk-nastroyka-voip.html">Настройка VoIP Asterisk</a></li>
+            <li><a class="related__link" href="service-asterisk-bezopasnost.html">Обеспечение безопасности VoIP-АТС</a></li>
+            <li><a class="related__link" href="service-bitrix24-telefoniya.html">IP-телефония для Битрикс24</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__inner">
+          <div class="site-footer__top" data-reveal>
+            <a class="site-footer__logo" href="index.html" aria-label="Итач-софт, на главную">
+              <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+            </a>
+            <ul class="site-footer__socials" aria-label="Мы в соцсетях">
+              <li><a class="site-footer__social site-footer__social--telegram" href="https://t.me/Itachsoft_bot" target="_blank" rel="noopener" aria-label="Telegram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--youtube" href="https://www.youtube.com/@_ItachSoft_" target="_blank" rel="noopener" aria-label="YouTube"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--instagram" href="https://www.instagram.com/itach_soft/" target="_blank" rel="noopener" aria-label="Instagram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--tiktok" href="https://www.tiktok.com/@itach_soft_team" target="_blank" rel="noopener" aria-label="TikTok"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--linkedin" href="https://www.linkedin.com/company/80693063/" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--facebook" href="https://www.facebook.com/itachbelarus" target="_blank" rel="noopener" aria-label="Facebook"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+          <nav class="site-footer__columns" aria-label="Разделы сайта" data-reveal-stagger>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-bitrix24.html">Битрикс24</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-bitrix24-vnedrenie.html">Внедрение и настройка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-dorabotka.html">Доработка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-integratsiya.html">Интеграция Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-avtomatizatsiya.html">Автоматизация Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-telefoniya.html">IP-телефония для Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-podderzhka.html">Тех. поддержка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-obuchenie.html">Обучение Битрикс24</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-sites.html">Сайты</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-corporate-sites.html">Корпоративные сайты</a></li>
+                <li><a class="site-footer__link" href="service-internet-magaziny.html">Интернет-магазины</a></li>
+                <li><a class="site-footer__link" href="service-sayty-vizitki.html">Сайты-визитки</a></li>
+                <li><a class="site-footer__link" href="service-gosudarstvennye.html">Сайты госорганизаций</a></li>
+                <li><a class="site-footer__link" href="service-lending.html">Лендинг</a></li>
+                <li><a class="site-footer__link" href="service-gotovye-shablony.html">Разработка сайта на готовых шаблонах</a></li>
+                <li><a class="site-footer__link" href="service-podderzhka-saytov.html">Техническая поддержка сайтов</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-asterisk.html">IP-АТС на базе Asterisk</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-asterisk-vnedrenie.html">Внедрение IP-АТС на базе Asterisk</a></li>
+                <li><a class="site-footer__link" href="service-asterisk-nastroyka-voip.html">Настройка VoIP Asterisk</a></li>
+                <li><a class="site-footer__link" href="service-asterisk-bezopasnost.html">Безопасность VoIP-АТС</a></li>
+                <li><a class="site-footer__link" href="service-asterisk-podderzhka.html">Поддержка VoIP-станций</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-web-services.html">Веб-сервисы</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-web-services-s-nulya.html">Разработка веб-сервисов с нуля</a></li>
+                <li><a class="site-footer__link" href="service-web-services-integratsiya.html">Интеграция сложных систем</a></li>
+                <li><a class="site-footer__link" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-support.html">Техническая поддержка</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-podderzhka-saytov.html">Поддержка сайтов</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-podderzhka.html">Обслуживание Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-asterisk-podderzhka.html">Поддержка VoIP-станций</a></li>
+                <li><a class="site-footer__link" href="service-web-services-podderzhka.html">Поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title">Компания</h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="portfolio.html">Портфолио</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/garantii/">Гарантия</a></li>
+                <li><a class="site-footer__link" href="index.html#reviews">Отзывы</a></li>
+                <li><a class="site-footer__link" href="blog.html">Новости</a></li>
+                <li><a class="site-footer__link" href="https://itach-soft.ru/about/faq/">Вопросы и ответы</a></li>
+                <li><a class="site-footer__link" href="contacts.html">Контакты</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="site-footer__offices" data-reveal-stagger>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в Беларуси</h3>
+              <p class="site-footer__address">220083, Республика Беларусь, г. Минск, пр-т Дзержинского, 104-141, оф. 1201Б</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach.by">info@itach.by</a>
+              <a class="site-footer__link" href="tel:+375173884530">+375 17 388-45-30</a>
+            </address>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в России</h3>
+              <p class="site-footer__address">214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach-soft.ru">info@itach-soft.ru</a>
+              <a class="site-footer__link" href="tel:+74812280296">+7 (481) 228-02-96</a>
+            </address>
+          </div>
+          <div class="site-footer__bottom" data-reveal>
+            <p class="site-footer__legal">
+              ООО «Итач-софт». Юридический адрес: Республика Беларусь, г. Минск, 220141, пр. Независимости, д. 172, пом. 22.
+              УНП 192324962, регистрационный номер в Торговом реестре 466118 от 20.11.2019.
+              Техподдержка 24/7: <a class="site-footer__link" href="mailto:helpdesk@itach.by">helpdesk@itach.by</a>
+            </p>
+            <div class="site-footer__copy">
+              <p>© 2026 ООО «Итач-софт» — разработка программного обеспечения</p>
+              <a class="site-footer__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Политика конфиденциальности</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <section class="cookie" aria-labelledby="cookie-title" data-cookie hidden>
+      <img class="cookie__image" src="assets/img/kuki.webp" width="640" height="640" alt="" />
+      <div class="cookie__body">
+        <h2 class="cookie__title" id="cookie-title">Мы используем cookie</h2>
+        <p class="cookie__text">
+          Они помогают сайту работать стабильнее, а нам — понимать, что вам полезно.
+          <a class="cookie__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Подробнее</a>
+        </p>
+        <div class="cookie__actions">
+          <button class="btn btn--primary btn--sm" type="button" data-cookie-choice="all">Принять все</button>
+          <button class="btn btn--ghost btn--sm" type="button" data-cookie-choice="necessary">Только необходимые</button>
+        </div>
+      </div>
+    </section>
+
+    <dialog class="modal" id="lead-modal" aria-labelledby="lead-modal-title" data-lead-modal>
+      <div class="modal__panel">
+        <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close>
+          <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+        </button>
+        <h2 class="modal__title" id="lead-modal-title">
+          Расскажите о вашем <span class="section-title__muted">проекте</span>
+        </h2>
+        <p class="modal__text">Опишите задачу — в течение часа ответим, как её решить, и рассчитаем предварительную стоимость.</p>
+        <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-name">Имя</label>
+                        <input class="lead-form__control" id="modal-name" autofocus name="name" type="text" autocomplete="name" required aria-describedby="modal-name-error" data-error="Укажите, как к вам обращаться" />
+                        <p class="lead-form__error" id="modal-name-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-company">Компания</label>
+                        <input class="lead-form__control" id="modal-company" name="company" type="text" autocomplete="organization" required aria-describedby="modal-company-error" data-error="Укажите название компании" />
+                        <p class="lead-form__error" id="modal-company-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-phone">Телефон</label>
+                        <input class="lead-form__control" id="modal-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="modal-phone-error" data-error="Укажите телефон для связи" />
+                        <p class="lead-form__error" id="modal-phone-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-email">E-mail</label>
+                        <input class="lead-form__control" id="modal-email" name="email" type="email" autocomplete="email" required aria-describedby="modal-email-error" data-error="Укажите корректный e-mail" />
+                        <p class="lead-form__error" id="modal-email-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="modal-task">Ваша задача</label>
+                      <textarea class="lead-form__control lead-form__control--area" id="modal-task" name="task" rows="3" required aria-describedby="modal-task-error" data-error="Коротко опишите задачу"></textarea>
+                      <p class="lead-form__error" id="modal-task-error"></p>
+                    </div>
+                    <button class="btn btn--primary lead-form__submit" type="submit">Обсудить проект</button>
+                    <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+                    <p class="lead-form__status" role="status" data-lead-status></p>
+                  </form>
+      </div>
+    </dialog>
+
+    <dialog class="detail" id="detail-modal" aria-labelledby="detail-title" data-detail-modal>
+      <div class="detail__panel" tabindex="-1" data-detail-panel>
+        <div class="detail__handle" aria-hidden="true" data-detail-handle><span></span></div>
+        <button class="detail__close" type="button" aria-label="Закрыть" data-detail-close>
+          <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+        </button>
+        <div class="detail__content" data-detail-content></div>
+      </div>
+    </dialog>
+
+    <!-- Содержимое детальных окон кейсов: тексты и ссылки взяты с itach.by -->
+    <template id="detail-case-erip">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · ЕРИП</p>
+        <h2 class="detail__title" id="detail-title">Внедрение контакт-центра на базе IP-Asterisk</h2>
+        
+        <p class="detail__lead">Услугами платежной системой в ЕРИП пользуются миллионы физических и сотни тысячи юридических лиц. По всем вопросам клиенты обращаются в Контакт-центр компании за помощью. Чтобы упростить работу с запросами клиентов, фиксировать все обращения и снизить нагрузку на специалистов службы поддержки, руководство компании решило преобразовать работу Контакт-центра с помощью Битрикс24.</p>
+        <button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-erip-tile-0.webp" width="1600" height="901" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>Проведение бизнес-анализа</li><li>Написание технического задания</li><li>Развертывание серверной архитектуры под Битрикс24</li><li>Настройка Битрикс24</li><li>Интеграция с системой бронирования</li><li>Внедрение IP-телефонии</li><li>Обучение сотрудников</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">4</p><p class="detail-tile__label">месяца — длительность проекта</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">4</p><p class="detail-tile__label">специалиста в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 бизнес-аналитик</li><li>1 специалист по настройке Битрикс24</li><li>1 backend-разработчик</li></ul></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">40%</p><p class="detail-tile__label">рост регистрации и обработки обращений по e-mail</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">165</p><p class="detail-tile__label">нормо-часов в месяц высвободилось у специалистов при работе с e-mail</p></div></div>
+      <div class="detail__article"><h3 class="detail__h">Процесс работы</h3>
+<p>Интерфейс модуля распределения и обработки обращений. Для сокращения времени на адаптацию сотрудников, модуль разработали максимально похожим на тот, который специалисты использовали ранее, с привычными для них кнопками и названиями полей.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-00.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>Внедрение IP-телефонии и контроль нагрузки на сотрудников. С помощью интеграции с телефонной станцией все звонки фиксируются в Битрикс24. Прослушать звонок можно легко из карточки клиента. С входящим оператору Контакт-центра “поднимается” карточка звонка. Если информация об этом клиенте уже есть в системе, она отображается на экране. Также из карточки можно получить данные о предыдущих обращениях. А значит специалист понимает, с кем он общается, какие вопросы клиент задавал ранее, и может легко сформировать отчет по всем звонкам.</p>
+<p>Для сопровождаемых Контакт-центром систем выделили отдельные номера телефона и адреса электронной почты.</p>
+<p>На этапе прослушивания приветствия у клиента есть возможность выбрать проект, по которому ему необходима консультация.</p>
+<p>Так, при звонке в Контакт-центр ЕРИП, клиент может выбрать необходимую цифру исходя из тематики обращения:</p>
+<ol><li>консультирование, оплата, подключение к платежной системе в ЕРИП;</li><li>МСИ (межбанковская система идентификации).</li></ol>
+<p>На основании выбора клиента он направляется на соответствующую очередь – группу специалистов Контакт-центра, которые могут ему помочь).</p>
+<p>Оператору Контакт-центра “поднимается” вся история взаимодействия с клиентом и карточка регистрации обращения по тому проекту, который выбрал клиент.</p>
+<p>В режиме реального времени менеджеры и специалисты могут видеть:</p>
+<p>Интеграция с е-mail. Канал “электронная почта” представляет собой три почтовых ящика со своей логикой обработки сообщений в каждом. Система отображает на какие ящики сколько писем поступило и какое количество ожидают ответа.</p>
+<figure class="detail__figure detail__figure--portrait"><img src="assets/img/detail/case-erip-01.webp" width="337" height="762" alt="" loading="lazy" /></figure>
+<p>При ответе на обращение исходное письмо заявителя всегда перед глазами. Есть возможность использовать шаблоны писем и отправлять письмо на согласование менеджеру Контакт-центра. Менеджер может согласовать письмо и оно автоматически отправится клиенту либо отправить на доработку. Отправленное письмо сохраняется в CRM (Лид, Контакт, Компания).</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-02.webp" width="1600" height="900" alt="" loading="lazy" /></figure>
+<p>Для E-mail рассылки в модуле предусмотрена сегментация клиентской базы на основе дерева услуг платежной системы в ЕРИП.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-03.webp" width="1600" height="900" alt="" loading="lazy" /></figure>
+<p>Подключение соцсетей. Чтобы специалисты Контакт-центра не тратили время на отслеживание сообщений клиентов в соцсетях, все обращения из ВКонтакте, Facebook интегрированы в модуль и попадают в CRM во вкладку “Чаты”. При ответе специалист Контакт-центра может использовать шаблоны ответов, которые расположены рядом с диалоговым окном.</p>
+<p>Также есть возможность настроить рабочее время и систему автоматических уведомлений. Например, если клиент обращается в компанию в нерабочее время, то он получает автоматический ответ системы: «Вас приветствует Контакт-центр ЕРИП! К сожалению, в данный момент мы не можем вас проконсультировать».</p>
+<p>Обработка обращения. Каждой заявке, вне зависимости от канала, можно присвоить категорию и подкатегорию, посмотреть историю взаимодействия с клиентом, ответить на сообщение, делегировать другому специалисту Контакт-центра или сформировать задачу на вторую линию поддержки на основании запроса клиента.</p>
+<p>Все обращения сохраняются в CRM (Лид, Контакт, Компания).</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-04.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>В модуле предусмотрена настройка параметров:</p>
+<ul><li>Канал связи</li><li>Нагрузка на каждый канал и операторов</li><li>Очередь операторов</li><li>Отображение списка обращений</li></ul>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-05.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>Есть возможность указывать лимиты распределения одновременных обращений на оператора и на канал коммуникации в целом.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-06.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>В модуле можно распределять специалистов по каналам коммуникации. Менеджер может изменять настройки и параметры очередей Контакт-центра, видеть статусы всех сотрудников и управлять ими во время работы.</p>
+<p>Управлять своим рабочим временем может и специалист Контакт-центра. Разработана гибкая система статусов рабочего времени. В зависимости от установки статуса меняется маршрутизация входящих обращений клиента: доступен, перерыв, консультация, обработка e-mail/чатов.</p>
+<p>Бывают производственные ситуации, когда оператору Контакт-центра нужно решить сложный вопрос клиента, провести консультацию с менеджером Контакт-центра. Установка статуса “Консультация” выступает в качестве индикатора запроса консультации менеджера и прекращает распределение звонков, чатов и e-mail на специалиста.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-07.webp" width="1600" height="874" alt="" loading="lazy" /></figure>
+<p>В интерфейсе модуля можно сохранять индивидуальные настройки: списки полей, расположение колонок и сортировки.</p>
+<figure class="detail__figure"><img src="assets/img/detail/case-erip-08.webp" width="1600" height="1036" alt="" loading="lazy" /></figure>
+<p>База контрагентов. В Беларуси более 22 тыс. компаний, которые оказывают различные услуги и подключены к ЕРИП. В модуль обращений встроено Дерево услуг – справочник всех компаний, чьи услуги доступны для оплаты в ЕРИП. При регистрации обращения клиента специалист Контакт-центра указывает не только тематику запроса, но и услугу конкретной компании по которой возник вопрос.</p>
+<p>Для этого у специалиста Контакт-центра в форме регистрации обращений должны быть самые актуальные данные по всем поставщикам услуг и их услугам. Данные в CRM обновляются ежедневно.</p>
+<p>Обучение. Особенность погружения в новый софт – непрекращающийся поток обращений от клиентов, на которые нужно отвечать. Часть сотрудников “держала оборону” и принимала заявки, другие находились на обучении, потом происходила замена. Это позволило плавно переключить всех специалистов на работу в новой системе. Основной упор был сделан на обучение менеджеров Контакт-центра, чтобы при необходимости они могли обучить своих сотрудников.</p><h3 class="detail__h">Результаты</h3>
+<ol><li>Расширился список каналов коммуникации с клиентами.</li><li>Все каналы объединяет одна точка входа.</li><li>Сотрудники всех подразделений компании видят единый профиль клиента.</li><li>Полная информация о категориях вопросов, которые задают клиенты, собирается в одном месте.</li><li>Процесс обработки, согласования и отправки электронных писем проходит быстро и бесшовно.</li><li>Построена двухуровневая система поддержки клиентов, где в качестве первой линии поддержки выступает Контакт-центр, второй – структурные подразделения компании.</li></ol>
+<h4 class="detail__subh">В итоге</h4>
+<ul><li>Уменьшилась рутинная работа – отпала необходимость вручную сводить и формировать статистику и отчеты. Всё происходит автоматически. Как следствие, снизились ошибки, вызванные “человеческим фактором”.</li><li>Увеличилась прозрачность – руководители ЕРИП видят по каким источникам, тематикам, услугам и компаниям приходят обращения от клиентов.</li><li>Повысилась эффективность сотрудников – регистрация и обработка обращений по e-mail выросла на 40%, у специалистов высвободилось 165 нормо-часов в месяц. Обработка запросов по другим каналам увеличилась на 20%, у сотрудников высвободилось 85 нормо-часов в месяц.</li></ul>
+<h3 class="detail__h">О заказчике</h3>
+<p>Небанковская кредитно-финансовая организация ”Единое расчетное и информационное пространство“ – ЕРИП – это три важнейших направления:</p>
+<p>Платежная система в ЕРИП – система, которая позволяет совершать оплаты за товары, услуги и платежи в бюджет. В платежной системе в ЕРИП платежи доступны как физическим, так и юридическим лицам. Совершить оплату можно с использованием наличных денежных средств, электронных денег, банковских пластиковых и виртуальных карт. В системе зарегистрировано более 22 тыс. производителей, доступны к оплате более 80 тыс. услуг.</p>
+<p>Межбанковская система идентификации (МСИ) – это система, используемая для удаленной идентификации клиентов без их личного присутствия и предоставления им услуг с помощью цифровых каналов обслуживания.</p>
+<p>АИС «Расчет-ЖКУ» – это биллинговая система, которая обеспечивает функциональные возможности по учету, расчету и начислению платы за жилищно-коммунальные услуги, распределению и перечислению платы соответствующим поставщикам услуг.</p></div>
+    </template>
+
+    <template id="detail-case-worldclass">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · World Class</p>
+        <h2 class="detail__title" id="detail-title">Внедрение IP-АТС на базе Asterisk для компании World Class</h2>
+        <p class="detail__lead">Для компании WorldClass была внедрена IP-АТС на базе Asterisk, что позволило оптимизировать телефонную связь, улучшить качество обслуживания клиентов и снизить затраты на связь. Масштабируемость новой системы обеспечивает гибкость в адаптации к росту и изменяющимся потребностям бизнеса.</p>
+        <button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-worldclass-tile-0.jpg" width="1600" height="1067" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>Техническое задание на внедрение IP-АТС</li><li>Анализ требований и проектирование системы</li><li>Установку и настройку IP-АТС Asterisk</li><li>Интеграцию с внешними каналами связи</li><li>Автоматическое распределение звонков</li><li>Обучение сотрудников и техническую поддержку</li></ul></div>
+      <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">1</p><p class="detail-tile__label">месяц — длительность проекта</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">3</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 бизнес-аналитик</li><li>1 специалист инженерного отдела</li></ul></div></div>
+<div class="detail__article"><h3 class="detail__h">Выполненные работы</h3>
+<h4 class="detail__subh">Анализ и проектирование</h4>
+<ul><li>Проведён детальный анализ существующей телефонной инфраструктуры и определены требования к новой системе</li><li>Разработан проект IP-АТС: гибкая маршрутизация вызовов, управление очередями, запись разговоров</li></ul>
+<h4 class="detail__subh">Установка и настройка</h4>
+<ul><li>Установлена и настроена надёжная масштабируемая IP-АТС</li><li>Настроены внутренние номера и группы для упрощения коммуникаций между отделами и сотрудниками</li><li>Проведена интеграция с внешними каналами связи — используется существующее оборудование, снижены затраты</li><li>Внедрена функция автоматического распределения звонков — равномерная нагрузка между операторами и меньше времени ожидания для клиентов</li><li>Реализованы инструменты мониторинга и анализа звонков — улучшен контроль качества обслуживания</li></ul>
+<h4 class="detail__subh">Обучение и поддержка</h4>
+<p>Проведено обучение сотрудников — компания быстро перешла на новую телефонную платформу. Организованы регулярная техническая поддержка и мониторинг для стабильной работы системы.</p><h3 class="detail__h">Результаты</h3>
+<ul><li>Снижение затрат на телефонную связь благодаря IP-АТС и оптимизации управления вызовами</li><li>Улучшение качества обслуживания — сокращение времени ожидания и повышение эффективности операторов</li><li>Повышение эффективности внутренних коммуникаций и гибкости системы — компания готова к росту</li></ul></div>
+    </template>
+
+    <template id="detail-case-zepter">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · Цептер Банк</p>
+        <h2 class="detail__title" id="detail-title">Внедрение АТС и модулей автообзвона и обработки звонков</h2>
+        <p class="detail__lead">В рамках проекта для Цептер Банка установлена АТС на базе Asterisk и интегрированы модули автообзвона и ItachForms от Итач-софт. Модуль автообзвона автоматизировал обзвон клиентов для информирования и перенаправления на оператора, а ItachForms дал операторам удобный инструмент заполнения диалоговых форм после звонков.</p>
+        <button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-zepter-tile-0.jpg" width="1600" height="1067" alt="" /></figure>
+      <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>Изучение бизнес-процессов и техническое задание</li><li>Установку и настройку АТС на базе Asterisk</li><li>Внедрение модуля автообзвона</li><li>Интеграцию модуля ItachForms</li><li>Обучение и запуск</li></ul></div>
+      <div class="detail__article"><h3 class="detail__h">Выполненные работы</h3>
+<h4 class="detail__subh">АТС на базе Asterisk</h4>
+<p>Первым этапом стало детальное изучение бизнес-процессов банка и подготовка технического задания. После его утверждения проведена установка и настройка АТС на базе Asterisk — система обеспечила стабильное и гибкое управление звонками и позволила интегрировать дополнительные модули автоматизации.</p>
+<h4 class="detail__subh">Модуль автообзвона</h4>
+<p>Модуль автообзвона интегрирован с АТС и автоматически обзванивает клиентов для:</p>
+<ul><li>информирования о новых продуктах и услугах;</li><li>напоминания о сроках платежей и других важных событиях;</li><li>уведомления о маркетинговых акциях.</li></ul>
+<p>Если клиент хочет задать вопрос, звонок перенаправляется на оператора — банк оперативно реагирует на запросы и повышает уровень удовлетворённости клиентов.</p>
+<h4 class="detail__subh">Модуль ItachForms</h4>
+<p>Операторы заполняют диалоговые формы после ответа на входящий звонок — фиксируются важные примечания и комментарии. Вся история общения с клиентами сохраняется в удобном формате: улучшилось взаимодействие между отделами банка и минимизирован риск потери важной информации.</p><h3 class="detail__h">Результаты</h3>
+<ul><li>Существенно сокращено время массовых обзвонов — снижена нагрузка на операторов и улучшен клиентский опыт</li><li>Автоматизированы рутинные уведомления — выросла эффективность работы и снижены операционные затраты</li><li>Повышено качество обработки входящих звонков — операторы фиксируют данные и принимают решения на основе актуальной информации</li><li>Быстрая реакция и переключение на оператора во время автообзвона повысили лояльность клиентов к банку</li></ul></div>
+    </template>
+
+    <template id="detail-case-santa">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · Санта</p>
+        <h2 class="detail__title" id="detail-title">Внедрение модуля интеграции Битрикс24 с IP-АТС на базе Asterisk и консультации по работе Битрикс24</h2>
+        <p class="detail__lead">Для компании Санта была успешно внедрена интеграция IP-АТС на базе Asterisk с CRM Битрикс24, что позволило автоматизировать привязку звонков к клиентским карточкам и улучшить управление коммуникациями. Также были проведены консультации по работе с Битрикс24, включая настройку системы и обучение сотрудников. В результате, компания получила централизованное управление звонками, улучшенную аналитику и более эффективное использование CRM для повышения качества обслуживания и оптимизации бизнес-процессов.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-santa-tile-0.png" width="2880" height="1880" alt="" /></figure>
+
+
+      <div class="detail__article"><h3 class="detail__h">Выполненные задачи</h3><h4 class="detail__subh">Внедрение модуля интеграции Битрикс24 и IP-АТС на базе Asterisk</h4>
+<p>В рамках проекта был внедрен модуль, обеспечивающий интеграцию IP-АТС на базе Asterisk с Битрикс24. Основные элементы интеграции включали:</p>
+<ul><li><strong>Связь звонков с CRM:</strong> Интеграция позволила автоматически связывать входящие и исходящие звонки с карточками клиентов в Битрикс24, улучшая доступ к истории взаимодействий.</li><li><strong>Автоматическое создание лидов:</strong> Все телефонные звонки автоматически создавали лиды в CRM, упрощая процесс регистрации новых контактов и ускоряя обработку заявок.</li><li><strong>Запись и хранение звонков:</strong> Все разговоры записывались и сохранялись в карточках клиентов, что позволило сохранять полную историю коммуникаций и обеспечивало возможность последующего анализа.</li><li><strong>Аналитика звонков:</strong> Реализована система отчетности по звонкам, позволяющая отслеживать ключевые показатели, такие как количество звонков, их длительность и производительность операторов.</li></ul>
+<h4 class="detail__subh">Консультации по работе Битрикс24</h4>
+<p>В дополнение к техническому внедрению были предоставлены консультационные услуги по работе с Битрикс24:</p>
+<ul><li><strong>Настройка системы:</strong> Консультирование по настройке Битрикс24 в соответствии с требованиями и бизнес-процессами компании, что обеспечило эффективное использование всех функций CRM.</li><li><strong>Оптимизация процессов:</strong> Помощь в оптимизации бизнес-процессов в Битрикс24, чтобы обеспечить более эффективное управление задачами, продажами и взаимодействием с клиентами.</li><li><strong>Обучение сотрудников:</strong> Проведение обучающих сессий для сотрудников компании «Санта», чтобы они могли эффективно использовать новые возможности CRM и интеграцию с IP-АТС.</li></ul><h3 class="detail__h">Результаты</h3><h4 class="detail__subh">Улучшение взаимодействия с клиентами:</h4>
+<p>Интеграция IP-АТС с Битрикс24 позволила централизовать управление телефонными звонками и улучшить качество обслуживания клиентов.</p>
+<h4 class="detail__subh">Автоматизация обработки звонков:</h4>
+<p>Автоматическое создание лидов и привязка звонков к карточкам клиентов значительно ускорило процесс обработки новых заявок и повысило точность данных.</p>
+<h4 class="detail__subh">Повышение аналитики и контроля:</h4>
+<p>Возможность получения подробных отчетов по звонкам и аналитики производительности операторов улучшила контроль над коммуникациями и позволила оптимизировать работу отдела продаж.</p>
+<h4 class="detail__subh">Оптимизация работы с Битрикс24:</h4>
+<p>Консультации и обучение помогли настроить Битрикс24 под специфические потребности компании, что повысило общую эффективность и упростило работу сотрудников.</p>
+<h4 class="detail__subh">Заключение</h4>
+<p>Внедрение модуля интеграции IP-АТС на базе Asterisk с CRM Битрикс24 и предоставление консультаций по работе с системой для компании Санта способствовало значительному улучшению процессов взаимодействия с клиентами, автоматизации обработки звонков и повышению эффективности работы CRM. Эти меры позволили компании оптимизировать бизнес-процессы и улучшить качество обслуживания.</p></div>
+    </template>
+
+    <template id="detail-case-telefonia">
+      <header class="detail__head">
+        <p class="detail__eyebrow">Кейс · Марко</p>
+        <h2 class="detail__title" id="detail-title">Внедрение и интеграция IP-телефонии с Битрикс24</h2>
+        <p class="detail__lead">Марко – один из крупнейших холдингов в Беларуси, занимающийся производством и реализацией изделий из кожи и меха. Ежедневно в компанию поступает огромное количество входящих звонков, которые адресованы различным структурным подразделениям компании. Масштабная организационная структура холдинга и значительное количество входящих обращений, нуждающихся в обработке, обусловили необходимость создания единой системы коммуникаций и фиксации поступающих запросов.</p>
+        <div class="detail__actions"><button class="btn btn--primary" type="button" data-detail-lead>Обсудить похожий проект</button></div>
+      </header>
+      <figure class="detail__hero"><img src="assets/img/detail/case-telefonia-tile-0.jpg" width="2880" height="1880" alt="" /></figure>
+<div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>Составление технического задания</li><li>Установку программного обеспечения на сервер</li><li>Настройку IP-АТС</li><li>Интеграция IP-АТС с Битрикс24</li><li>Приемо-сдаточные испытания</li></ul></div>
+<div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">3</p><p class="detail-tile__label">месяца — длительность проекта</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">4</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 системный инженер</li><li>1 интегратор Битрикс24</li><li>1 тестировщик</li></ul></div></div>
+      <div class="detail__article"><h3 class="detail__h">Выполненные задачи:</h3><h4 class="detail__subh">Техническая документация</h4>
+<ul><li>Составлено детальное техническое задание на внедрение и интеграцию IP-телефонии с CRM "Битрикс24"</li></ul>
+<h4 class="detail__subh">Внедрение</h4>
+<ul><li>Выполнено подключение SIP-телефонии от МТС к IP-АТС Asterisk</li><li>Установлен модуль интеграции IP-АТС Asterisk с CRM Битрикс24 (собственная разработка Итач-софт)</li></ul>
+<h4 class="detail__subh">Настройка</h4>
+<ul><li>Настроены алгоритмы распределения входящих вызовов (при входящем звонке в любое время суток осуществляется поиск ответственного сотрудника в сущности CRM Битрикс24 по номеру телефона позвонившего клиента; если номер позвонившего клиента есть в CRM Битрикс24 и если IP-телефон ответственного сотрудника доступен и свободен, то звонок направляется на него в течение 15 секунд, если IP-телефон сотрудника занят/недоступен/не отвечает в течение 15 секунд, то звонок должен перейти на вн. номер сотрудника, который его заменяет)</li><li>Настроено автоматическое создание лида в CRM Битрикс24</li><li>Настроено сохранение записи разговора в CRM Битрикс24</li><li>Настроена функция исходящего звонка напрямую из CRM Битрикс24 (Click2Call)</li></ul><h3 class="detail__h">Результаты</h3><ul><li>Обеспечено <strong>стабильное и качественное соединение</strong> для совершения и приема звонков</li><li><strong>Сэкономлено время</strong> сотрудников на совершение звонков клиентам</li><li>Обеспечен <strong>учет и фиксация</strong> всех поступающих обращений в компанию</li><li><strong>Оптимизированы затраты</strong> на коммуникацию</li></ul></div>
+    </template>
+
+  </body>
+</html>

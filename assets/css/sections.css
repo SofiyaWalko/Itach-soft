@@ -5552,16 +5552,6 @@ html:has(.detail[open]) {
   padding-block: 0 var(--space-12);
 }
 
-/* Вводный абзац под заголовком секции (опционально) */
-.tools-lead {
-  max-inline-size: 56rem;
-  margin: var(--space-3) 0 0;
-  color: var(--color-text-2);
-  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-
 .tools-picker {
   margin-block-start: var(--space-6);
 }
@@ -5569,6 +5559,7 @@ html:has(.detail[open]) {
 .tools-tabs {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-1);
 }
 
@@ -5635,10 +5626,11 @@ html:has(.detail[open]) {
 /* Вводный абзац панели (например, описание типа интеграции) */
 .tools-intro {
   max-inline-size: 56rem;
-  margin: 0 0 var(--space-3);
+  margin: 0 auto var(--space-3);
   color: var(--color-text-2);
   font-size: 1.0625rem;
   line-height: 1.5;
+  text-align: center;
   text-wrap: pretty;
 }
 
@@ -5735,6 +5727,8 @@ html:has(.detail[open]) {
 @media (max-width: 900px) {
   .tools-tabs {
     flex-wrap: nowrap;
+    /* Лента скроллится от левого края: центрирование обрезало бы начало */
+    justify-content: flex-start;
     margin-inline: calc(-1 * var(--gutter));
     padding-inline: var(--gutter);
     overflow-x: auto;
@@ -5831,8 +5825,8 @@ html:has(.detail[open]) {
 }
 
 .format-card__title {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.375rem;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--color-text);
@@ -6432,3 +6426,293 @@ html:has(.detail[open]) {
   text-wrap: pretty;
 }
 
+/* ---------- «Почему нам доверяют»: карточки с загнутым уголком ----------
+   Техника как у Vercel «Recently shipped»: в правом нижнем углу лежит
+   оранжевая поверхность, край которой загнут бумагой. При наведении бумага
+   разворачивается через линию сгиба (отражение по диагонали), открывая
+   больше поверхности и однословные факты.
+   Анимация — на обычных свойствах (inline-size, clip-path, transform):
+   работает без @property и в старых Safari/Firefox тоже */
+.why {
+  padding-block: var(--space-12);
+}
+
+.why-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+}
+
+.why-card {
+  --fold: 3.5rem;
+  /* Время и кривая сгиба. Разные для раскрытия и закрытия — переход берёт
+     значения из состояния, в которое идёт (см. правила ниже) */
+  --fold-duration: 520ms;
+  --fold-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  min-block-size: 16.5rem;
+  padding: var(--space-4);
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg);
+  /* Обрезка по внешнему краю рамки: overflow: hidden срезал бы градиентный контур glow-card */
+  clip-path: inset(0 round var(--radius-lg));
+}
+
+.why-card:focus-visible {
+  border-color: var(--color-drop-orange);
+  outline: none;
+}
+
+/* Наведение: контур чуть темнее — карточка «отвечает» ещё до раскрытия */
+@media (hover: hover) {
+  .why-card:hover {
+    border-color: var(--color-line-strong);
+  }
+}
+
+/* Текст карточки лежит под загнутой бумагой */
+.why-card__body {
+  position: relative;
+  z-index: 3;
+}
+
+.why-card__title {
+  max-inline-size: 18ch;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.why-card__text {
+  max-inline-size: 21ch;
+  margin-block-start: var(--space-1);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--color-text-2);
+  text-wrap: pretty;
+}
+
+/* Оранжевая поверхность под отгибом — цвет кнопки «Заказать проект» */
+.why-card__sheet {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-end: 0;
+  inline-size: var(--fold);
+  block-size: var(--fold);
+  z-index: 1;
+  /* Фирменный градиент — тот же, что течёт по кнопке хедера при наведении */
+  background-color: var(--color-drop-orange);
+  background-image: var(--gradient-flow);
+  background-size: 200% 100%;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  /* Поверхность растёт синхронно с бумагой: тот же размер, время и кривая */
+  transition:
+    inline-size var(--fold-duration) var(--fold-ease),
+    block-size var(--fold-duration) var(--fold-ease);
+  will-change: inline-size, block-size;
+}
+
+/* Факты лежат на поверхности, но под бумагой: где накрывает отгиб — там их не видно */
+.why-card__facts {
+  position: absolute;
+  inset-inline-end: 0.875rem;
+  inset-block-end: 0.875rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.why-card__fact {
+  padding: 0.28125rem 0.6875rem;
+  border: 1px solid rgb(255 255 255 / 0.85);
+  border-radius: 999px;
+  background-color: transparent;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(0.375rem);
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 320ms var(--ease-out);
+}
+
+/* Лесенка вдоль диагонали сгиба: каждый следующий чип ближе к правому краю */
+.why-card__fact:nth-child(1) {
+  margin-inline-end: 1.125rem;
+}
+
+.why-card__fact:nth-child(2) {
+  margin-inline-end: 0.5rem;
+}
+
+/* Загнутая бумага: треугольник, отражённый через линию сгиба относительно
+   правого нижнего угла. calc() внутри matrix() не поддерживается — сдвиг
+   отдельным translate(): T · M = matrix(0, -1, -1, 0, -fold, -fold) */
+.why-card__fold {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-end: 0;
+  inline-size: var(--fold);
+  block-size: var(--fold);
+  /* Бумага лежит поверх текста: при раскрытии она накрывает заголовок и описание */
+  z-index: 5;
+  pointer-events: none;
+  transition:
+    inline-size var(--fold-duration) var(--fold-ease),
+    block-size var(--fold-duration) var(--fold-ease);
+  filter: drop-shadow(-3px -4px 9px rgb(20 20 27 / 0.22));
+}
+
+.why-card__fold::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Бумага: у сгиба тень, дальше подсветка и тело листа */
+  background-image: linear-gradient(
+    135deg,
+    var(--color-bg) 0 44%,
+    #d3d3da 47.5%,
+    #ffffff 51%,
+    #efeff3 60%,
+    var(--color-bg) 84%
+  );
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  transform-origin: 100% 100%;
+  transform: translate(calc(-1 * var(--fold)), calc(-1 * var(--fold))) matrix(0, -1, -1, 0, 0, 0);
+  transition: transform var(--fold-duration) var(--fold-ease);
+  will-change: transform;
+}
+
+/* Раскрытие: бумага отгибается, поверхность и факты открываются */
+@media (hover: hover) {
+  .why-card:hover,
+  .why-card:focus-visible {
+    --fold: 12.5rem;
+    /* Раскрытие — медленное и мягкое; закрытие берёт 520ms из базового правила */
+    --fold-duration: 1150ms;
+    --fold-ease: cubic-bezier(0.37, 0.02, 0.2, 1);
+  }
+
+  .why-card:hover .why-card__fact,
+  .why-card:focus-visible .why-card__fact {
+    opacity: 1;
+    transform: none;
+  }
+
+  .why-card:hover .why-card__fact:nth-child(1),
+  .why-card:focus-visible .why-card__fact:nth-child(1) {
+    transition-delay: 620ms;
+  }
+
+  .why-card:hover .why-card__fact:nth-child(2),
+  .why-card:focus-visible .why-card__fact:nth-child(2) {
+    transition-delay: 720ms;
+  }
+
+  .why-card:hover .why-card__fact:nth-child(3),
+  .why-card:focus-visible .why-card__fact:nth-child(3) {
+    transition-delay: 820ms;
+  }
+}
+
+/* На тач-экранах наведения нет: уголок остаётся декоративным,
+   факты встают обычным рядом под текстом карточки */
+@media (hover: none), (max-width: 639px) {
+  /* и на :hover тоже — иначе правило раскрытия перебивает мобильный размер */
+  .why-card,
+  .why-card:hover,
+  .why-card:focus-visible {
+    --fold: 5.5rem;
+    min-block-size: 0;
+    padding-block-end: var(--space-4);
+  }
+
+  .why-card__facts {
+    position: static;
+    inset: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.375rem;
+    margin-block-start: var(--space-3);
+    margin-inline-end: 4.5rem;
+  }
+
+  .why-card__facts .why-card__fact {
+    margin-inline-end: 0;
+    border-color: var(--color-line-strong);
+    color: var(--color-text);
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .why-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Телефон: горизонтальная лента — карточки листаются пальцем, по правому краю
+   выглядывает часть следующей. Механика та же, что у ленты кейсов:
+   обёртка-скроллер без боковых отступов + flex-список с padding-inline */
+@media (max-width: 639px) {
+  .why__scroller {
+    container-type: inline-size;
+    --slide-gap: 0.75rem;
+    --peek: 2.5rem;
+    --edge: var(--gutter);
+    --slide-width: calc(100cqw - var(--edge) - var(--peek) - var(--slide-gap));
+    margin: var(--space-5) calc(-1 * var(--gutter)) 0;
+    padding-block: 0.25rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    /* Snap с учётом бокового отступа, иначе первая карточка прилипнет к краю */
+    scroll-padding-inline: var(--edge);
+    scrollbar-width: none;
+  }
+
+  .why__scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+  .why-cards {
+    display: flex;
+    gap: var(--slide-gap);
+    inline-size: max-content;
+    min-inline-size: 100%;
+    margin: 0;
+    padding-inline: var(--edge);
+  }
+
+  .why-card {
+    flex: none;
+    inline-size: var(--slide-width);
+    scroll-snap-align: start;
+    min-block-size: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-card__sheet,
+  .why-card__fold,
+  .why-card__fold::before,
+  .why-card__fact {
+    transition: none;
+  }
+}
