@@ -641,30 +641,79 @@
             <p class="formats__note" data-reveal>
               Выберите тариф — состав часов и условия реакции зависит от объёма задач. Точные условия фиксируем в договоре
             </p>
-            <ul class="format-grid" data-reveal-stagger data-reveal-pair>
-              <li class="format-card format-card--static glow-card">
-                <div class="format-card__link">
-                  <h3 class="format-card__title">Базовый тариф</h3>
-                  <p class="format-card__desc">Мониторинг, резервное копирование, обновления, консультации пользователей и мелкие правки в рамках часов тарифа.</p>
-                  <ul class="format-card__prices">
-                  <li class="format-card__price">
-                    <span class="format-card__price-label">Стоимость</span>
-                    <span class="format-card__price-value">от 9 000 ₽/мес</span>
-                  </li>
-                  </ul>
+            <ul class="tariff-grid" data-reveal-stagger>
+              <li class="tariff-card glow-card">
+                <div class="tariff-card__head">
+                  <div class="tariff-card__title-row">
+                    <h3 class="tariff-card__title">Итач Базис</h3>
+                  </div>
+                  <p class="tariff-card__price"><span class="tariff-card__price-value">9 000 ₽</span><span class="tariff-card__price-period">/мес</span></p>
+                  <p class="tariff-card__desc">Базовый контроль портала: консультации, обновления и устранение сбоев в рабочие часы.</p>
+                  <a class="btn btn--primary btn--sm tariff-card__cta" href="#lead">Выбрать тариф</a>
                 </div>
+                <ul class="tariff-card__features">
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Консультации специалистов</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Обновления и администрирование портала</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Диагностика и устранение сбоев</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Мониторинг работоспособности</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Заявки в личном кабинете</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Реакция на критические ошибки — до 6 часов</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Поддержка 9:00–18:00</li>
+                </ul>
               </li>
-              <li class="format-card format-card--static glow-card">
-                <div class="format-card__link">
-                  <h3 class="format-card__title">Тариф 24/7</h3>
-                  <p class="format-card__desc">Расширенный SLA: поддержка без выходных, приоритетная реакция, больше часов на доработки и администрирование.</p>
-                  <ul class="format-card__prices">
-                  <li class="format-card__price">
-                    <span class="format-card__price-label">Стоимость</span>
-                    <span class="format-card__price-value">от 9 000 ₽/мес</span>
-                  </li>
-                  </ul>
+              <li class="tariff-card glow-card">
+                <div class="tariff-card__head">
+                  <div class="tariff-card__title-row">
+                    <h3 class="tariff-card__title">Итач Динамика</h3>
+                  </div>
+                  <p class="tariff-card__price"><span class="tariff-card__price-value">13 500 ₽</span><span class="tariff-card__price-period">/мес</span></p>
+                  <p class="tariff-card__desc">Плюс обучение, персональный менеджер и три часа доработок в месяц.</p>
+                  <a class="btn btn--primary btn--sm tariff-card__cta" href="#lead">Выбрать тариф</a>
                 </div>
+                <ul class="tariff-card__features">
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Всё из «Базиса»</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Обучение по работе с порталом</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Персональный менеджер</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>3 часа доработок в месяц</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Доп. час — 2 760 ₽</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Реакция на критические ошибки — до 4 часов</li>
+                </ul>
+              </li>
+              <li class="tariff-card glow-card">
+                <div class="tariff-card__head">
+                  <div class="tariff-card__title-row">
+                    <h3 class="tariff-card__title">Итач Профи</h3>
+                  </div>
+                  <p class="tariff-card__price"><span class="tariff-card__price-value">16 500 ₽</span><span class="tariff-card__price-period">/мес</span></p>
+                  <p class="tariff-card__desc">Больше часов на развитие портала и QA-инженер в команде.</p>
+                  <a class="btn btn--primary btn--sm tariff-card__cta" href="#lead">Выбрать тариф</a>
+                </div>
+                <ul class="tariff-card__features">
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Всё из «Динамики»</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>5 часов доработок в месяц</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Доп. час — 2 700 ₽</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>QA-инженер в команде</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Реакция на критические ошибки — до 4 часов</li>
+                </ul>
+              </li>
+              <li class="tariff-card tariff-card--featured glow-card">
+                <div class="tariff-card__head">
+                  <div class="tariff-card__title-row">
+                    <h3 class="tariff-card__title">Итач Решение</h3>
+                    <span class="tariff-card__badge">24/7</span>
+                  </div>
+                  <p class="tariff-card__price"><span class="tariff-card__price-value tariff-card__price-value--text">Индивидуально</span></p>
+                  <p class="tariff-card__desc">Максимум возможностей: безлимит доработок и поддержка 24/7.</p>
+                  <a class="btn btn--primary btn--sm tariff-card__cta" href="#lead">Выбрать тариф</a>
+                </div>
+                <ul class="tariff-card__features">
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Всё из «Профи»</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Безлимит доработок</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Доп. час — 2 640 ₽</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Поддержка 24/7</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Реакция на критические ошибки — до 1 часа</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Аналитики и дизайнеры в команде</li>
+                </ul>
               </li>
             </ul>
           </div>

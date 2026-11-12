@@ -441,6 +441,13 @@
       </section>
 
       <div class="service-sections">
+        <!-- О направлении -->
+        <section class="service-about">
+          <div class="container">
+            <p class="service-about__statement" data-text-fill>Поддержка — это не только реакция на сбои. Мы следим за состоянием системы, регулярно обновляем программные компоненты, делаем резервные копии и закрываем внешние угрозы, а ошибки и неисправности устраняем оперативно. Дополнительно консультируем пользователей, оптимизируем производительность, исправляем ошибки в коде и адаптируем ПО под новые требования — чтобы сервис работал бесперебойно, надёжно и безопасно.</p>
+          </div>
+        </section>
+
         <!-- Проблемы строками: ключевое слово слева серым, описание по центру,
              справа — штамп «Решим». Каждая строка всплывает по мере скролла -->
         <section class="problems" aria-labelledby="problems-title">
@@ -618,30 +625,79 @@
             <p class="formats__note" data-reveal>
               Стоимость зависит от масштаба и задач. Точную смету фиксируем в договоре — до начала работ.
             </p>
-            <ul class="format-grid" data-reveal-stagger data-reveal-pair>
-              <li class="format-card format-card--static glow-card">
-                <div class="format-card__link">
-                  <h3 class="format-card__title">Стандарт</h3>
-                  <p class="format-card__desc">Мониторинг, обновления, консультации и устранение сбоев в рабочие часы, заявки в личном кабинете, реакция на критические ошибки до 6 часов.</p>
-                  <ul class="format-card__prices">
-                  <li class="format-card__price">
-                    <span class="format-card__price-label">Стоимость тарифа</span>
-                    <span class="format-card__price-value">от 9 000 ₽/мес</span>
-                  </li>
-                  </ul>
+            <ul class="tariff-grid" data-reveal-stagger>
+              <li class="tariff-card glow-card">
+                <div class="tariff-card__head">
+                  <div class="tariff-card__title-row">
+                    <h3 class="tariff-card__title">Итач Базис</h3>
+                  </div>
+                  <p class="tariff-card__price"><span class="tariff-card__price-value">9 000 ₽</span><span class="tariff-card__price-period">/мес</span></p>
+                  <p class="tariff-card__desc">Базовый контроль сервиса и поддержка в рабочие часы.</p>
+                  <a class="btn btn--primary btn--sm tariff-card__cta" href="#lead">Выбрать тариф</a>
                 </div>
+                <ul class="tariff-card__features">
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Консультации специалистов</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Установка обновлений и администрирование</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Диагностика и устранение сбоев</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Мониторинг состояния систем</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Заявки в личном кабинете</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Реакция — до 6 часов</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Поддержка 9:00–18:00</li>
+                </ul>
               </li>
-              <li class="format-card format-card--static glow-card">
-                <div class="format-card__link">
-                  <h3 class="format-card__title">По SLA 24/7</h3>
-                  <p class="format-card__desc">Круглосуточный режим, выделенная команда, включённые часы доработок и реакция на критические ошибки до 1 часа.</p>
-                  <ul class="format-card__prices">
-                  <li class="format-card__price">
-                    <span class="format-card__price-label">Стоимость тарифа</span>
-                    <span class="format-card__price-value">по проекту</span>
-                  </li>
-                  </ul>
+              <li class="tariff-card glow-card">
+                <div class="tariff-card__head">
+                  <div class="tariff-card__title-row">
+                    <h3 class="tariff-card__title">Итач Динамика</h3>
+                  </div>
+                  <p class="tariff-card__price"><span class="tariff-card__price-value">13 500 ₽</span><span class="tariff-card__price-period">/мес</span></p>
+                  <p class="tariff-card__desc">Плюс обучение, персональный менеджер и три часа доработок в месяц.</p>
+                  <a class="btn btn--primary btn--sm tariff-card__cta" href="#lead">Выбрать тариф</a>
                 </div>
+                <ul class="tariff-card__features">
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Всё из «Базиса»</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Обучение сотрудников</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Персональный менеджер</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>3 часа доработок в месяц</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Доп. час — 2 760 ₽</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Реакция — до 4 часов</li>
+                </ul>
+              </li>
+              <li class="tariff-card glow-card">
+                <div class="tariff-card__head">
+                  <div class="tariff-card__title-row">
+                    <h3 class="tariff-card__title">Итач Профи</h3>
+                  </div>
+                  <p class="tariff-card__price"><span class="tariff-card__price-value">16 500 ₽</span><span class="tariff-card__price-period">/мес</span></p>
+                  <p class="tariff-card__desc">Больше часов на развитие сервиса и QA-инженер в команде.</p>
+                  <a class="btn btn--primary btn--sm tariff-card__cta" href="#lead">Выбрать тариф</a>
+                </div>
+                <ul class="tariff-card__features">
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Всё из «Динамики»</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>5 часов доработок в месяц</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Доп. час — 2 700 ₽</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>QA-инженер в команде</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Реакция — до 4 часов</li>
+                </ul>
+              </li>
+              <li class="tariff-card tariff-card--featured glow-card">
+                <div class="tariff-card__head">
+                  <div class="tariff-card__title-row">
+                    <h3 class="tariff-card__title">Итач Решение</h3>
+                    <span class="tariff-card__badge">24/7</span>
+                  </div>
+                  <p class="tariff-card__price"><span class="tariff-card__price-value tariff-card__price-value--text">Индивидуально</span></p>
+                  <p class="tariff-card__desc">Максимум возможностей: безлимит доработок и поддержка 24/7.</p>
+                  <a class="btn btn--primary btn--sm tariff-card__cta" href="#lead">Выбрать тариф</a>
+                </div>
+                <ul class="tariff-card__features">
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Всё из «Профи»</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Безлимит доработок</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Доп. час — 2 640 ₽</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Поддержка 24/7</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Реакция — до 1 часа</li>
+                    <li class="tariff-card__feature"><span class="tariff-card__check" aria-hidden="true"><svg class="icon"><use href="#icon-check" /></svg></span>Аналитики и дизайнеры в команде</li>
+                </ul>
               </li>
             </ul>
           </div>

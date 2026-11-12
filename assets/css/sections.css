@@ -5944,6 +5944,183 @@ html:has(.detail[open]) {
   }
 }
 
+/* ---------- Тарифы поддержки: карточки в одну строку ----------
+   Заголовок и вводная блока «Форматы и стоимость» остаются прежними; вместо
+   форматов — четыре тарифа: шапка с ценой и кнопкой + список условий */
+.tariff-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tariff-card {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  padding: var(--space-1);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+
+.tariff-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: calc(var(--radius-lg) - var(--space-1));
+  background: var(--color-bg-alt);
+}
+
+/* Максимальный тариф: шапка с фирменным градиентом, как акцентная карточка в референсе */
+.tariff-card--featured .tariff-card__head {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-drop-orange) 16%, var(--color-bg)) 0%,
+    color-mix(in srgb, var(--color-drop-pink) 20%, var(--color-bg)) 55%,
+    color-mix(in srgb, #8b7bf7 18%, var(--color-bg)) 100%
+  );
+}
+
+.tariff-card__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.tariff-card__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.tariff-card__badge {
+  flex: none;
+  padding: 0.1875rem 0.625rem;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-flow) 0 0 / 200% 100%;
+  color: var(--color-surface);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.tariff-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin: var(--space-1) 0 0;
+}
+
+.tariff-card__price-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.tariff-card__price-value--text {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.tariff-card__price-period {
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.tariff-card__desc {
+  /* Одинаковая высота описания: кнопки «Выбрать тариф» встают на одну линию */
+  min-block-size: 5.8em;
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.tariff-card__cta {
+  inline-size: 100%;
+  margin-block-start: var(--space-1);
+}
+
+.tariff-card__features {
+  display: grid;
+  gap: 0.625rem;
+  margin: var(--space-3) var(--space-1) var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.tariff-card__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-1);
+  color: var(--color-text-2);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+/* Галочка в кружке — как в референсе, но в нашем акцентном цвете */
+.tariff-card__check {
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  margin-block-start: 0.0625rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 50%;
+  color: var(--color-accent);
+}
+
+.tariff-card__check .icon {
+  inline-size: 0.6875rem;
+  block-size: 0.6875rem;
+}
+
+/* Планшет: две карточки в строке; телефон: по одной */
+@media (max-width: 1099px) {
+  .tariff-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Телефон: горизонтальная лента, как у кейсов и ролей команды —
+   одна карточка на экране и край следующей, со снапом по карточкам */
+@media (max-width: 639px) {
+  .tariff-grid {
+    display: flex;
+    gap: 0.75rem;
+    inline-size: calc(100% + 2 * var(--gutter));
+    margin: var(--space-6) calc(-1 * var(--gutter)) 0;
+    padding: 0.25rem var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .tariff-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tariff-card {
+    flex: none;
+    inline-size: min(85%, 22rem);
+    scroll-snap-align: start;
+  }
+}
+
 /* ---------- Команда проекта: компактная строка ролей ---------- */
 .team__row {
   display: grid;
