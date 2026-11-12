@@ -6830,7 +6830,12 @@ html:has(.detail[open]) {
 
   .why-card__facts .why-card__fact {
     margin-inline-end: 0;
-    border-color: var(--color-line-strong);
+    /* Контур тегов — фирменный градиент, как у пилюль табов и калькулятора */
+    border: var(--contour-width) solid transparent;
+    background:
+      linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+      var(--gradient-flow) border-box;
+    background-size: auto, 200% 100%;
     color: var(--color-text);
     opacity: 1;
     transform: none;
