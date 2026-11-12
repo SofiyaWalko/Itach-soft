@@ -140,6 +140,18 @@ CASE_META = {
     "case-dodoma": ("Кейс · До дома", 'До дома <span class="section-title__muted">личный кабинет службы доставки</span>', "Личный кабинет службы доставки До дома"),
     "case-maksiznay": ("Кейс · МаксиЗнай", 'МаксиЗнай <span class="section-title__muted">детская образовательная соцсеть</span>', "Детская образовательная социальная сеть МаксиЗнай"),
     "case-maximus": ("Кейс · Maximus", 'Maximus <span class="section-title__muted">детская образовательная платформа</span>', "Детская образовательная платформа Maximus"),
+    # направление «IP-АТС на базе Asterisk»
+    "case-beltelekom": ("Кейс · Белтелеком", 'Белтелеком <span class="section-title__muted">IP-АТС Asterisk и интеграция с Битрикс24</span>', "Внедрение IP-АТС Asterisk для Белтелекома"),
+    "case-worldclass": ("Кейс · World Class", 'World Class <span class="section-title__muted">внедрение IP-АТС на базе Asterisk</span>', "Внедрение IP-АТС Asterisk для World Class"),
+    "case-alatantur": ("Кейс · АлатанТур", 'АлатанТур <span class="section-title__muted">IP-телефония и интеграция с Битрикс24</span>', "Внедрение IP-телефонии и интеграция с Битрикс24 для АлатанТур"),
+    "case-pinskdrev": ("Кейс · Пинскдрев", 'Пинскдрев <span class="section-title__muted">IP-АТС Asterisk для холдинга</span>', "Внедрение IP-АТС Asterisk для холдинга «Пинскдрев»"),
+    "case-belita": ("Кейс · Белита", 'Белита <span class="section-title__muted">IP-АТС Asterisk и интеграция с Битрикс24</span>', "Внедрение IP-АТС Asterisk и интеграция с Битрикс24 для Белиты"),
+    "case-aktivlizing": ("Кейс · Активлизинг", 'Активлизинг <span class="section-title__muted">внедрение IP-АТС на базе Asterisk</span>', "Внедрение IP-АТС Asterisk для Активлизинга"),
+    "case-karandash": ("Кейс · Карандаш", 'Карандаш <span class="section-title__muted">внедрение IP-АТС на базе Asterisk</span>', "Внедрение IP-АТС Asterisk для компании Карандаш"),
+    "case-tvoya-stolitsa": ("Кейс · Твоя Столица", 'Твоя Столица <span class="section-title__muted">внедрение IP-АТС на базе Asterisk</span>', "Внедрение IP-АТС Asterisk для компании Твоя Столица"),
+    "case-viliya-park": ("Кейс · Вилия Парк", 'Вилия Парк <span class="section-title__muted">IP-АТС Asterisk для отельного комплекса</span>', "Внедрение IP-АТС Asterisk для Вилия Парк"),
+    "case-adel": ("Кейс · ADEL", 'ADEL <span class="section-title__muted">IP-телефония для сети аптек</span>', "Внедрение и настройка IP-телефонии для сети аптек ADEL"),
+    "case-santa": ("Кейс · Санта", 'Санта <span class="section-title__muted">интеграция Битрикс24 с IP-АТС Asterisk</span>', "Внедрение модуля интеграции Битрикс24 с IP-АТС на базе Asterisk для Санты"),
 }
 
 

@@ -147,6 +147,40 @@ CASE_MAP = {
     "case-maximus": ("razrabotka-detskoy-obrazovatelnoy-platformy-maksimus", "Кейс · Maximus",
                      'Maximus <span class="section-title__muted">детская образовательная платформа</span>',
                      "Детская образовательная платформа Maximus"),
+    # направление «IP-АТС на базе Asterisk»
+    "case-beltelekom": ("vnedrenie-ip-ats-na-baze-asterisk-dlya-rup-beltelekom", "Кейс · Белтелеком",
+                        'Белтелеком <span class="section-title__muted">IP-АТС Asterisk и интеграция с Битрикс24</span>',
+                        "Внедрение IP-АТС Asterisk для Белтелекома"),
+    "case-worldclass": ("vnedrenie-ip-ats-na-baze-asterisk-dlya-kompanii-worldclass", "Кейс · World Class",
+                        'World Class <span class="section-title__muted">внедрение IP-АТС на базе Asterisk</span>',
+                        "Внедрение IP-АТС Asterisk для World Class"),
+    "case-alatantur": ("vnedrenie-ip-telefonii-i-integratsiya-s-bitriks24-dlya-kompanii-alatantur", "Кейс · АлатанТур",
+                       'АлатанТур <span class="section-title__muted">IP-телефония и интеграция с Битрикс24</span>',
+                       "Внедрение IP-телефонии и интеграция с Битрикс24 для АлатанТур"),
+    "case-pinskdrev": ("vnedrenie-ip-ats-na-baze-asterisk-dlya-zao-kholdingovaya-kompaniya-pinskdrev", "Кейс · Пинскдрев",
+                       'Пинскдрев <span class="section-title__muted">IP-АТС Asterisk для холдинга</span>',
+                       "Внедрение IP-АТС Asterisk для холдинга «Пинскдрев»"),
+    "case-belita": ("vnedrenie-ip-ats-na-baze-asterisk-i-integratsiya-s-bitriks24-dlya-sp-belita-ooo", "Кейс · Белита",
+                    'Белита <span class="section-title__muted">IP-АТС Asterisk и интеграция с Битрикс24</span>',
+                    "Внедрение IP-АТС Asterisk и интеграция с Битрикс24 для Белиты"),
+    "case-aktivlizing": ("vnedrenie-ip-ats-na-baze-asterisk-dlya-kompanii-aktivlizing", "Кейс · Активлизинг",
+                         'Активлизинг <span class="section-title__muted">внедрение IP-АТС на базе Asterisk</span>',
+                         "Внедрение IP-АТС Asterisk для Активлизинга"),
+    "case-karandash": ("vnedrenie-ip-ats-na-baze-asterisk-dlya-kompanii-karandash", "Кейс · Карандаш",
+                       'Карандаш <span class="section-title__muted">внедрение IP-АТС на базе Asterisk</span>',
+                       "Внедрение IP-АТС Asterisk для компании Карандаш"),
+    "case-tvoya-stolitsa": ("vnedrenie-ip-ats-na-baze-asterisk-dlya-kompanii-tvoya-stolitsa", "Кейс · Твоя Столица",
+                            'Твоя Столица <span class="section-title__muted">внедрение IP-АТС на базе Asterisk</span>',
+                            "Внедрение IP-АТС Asterisk для компании Твоя Столица"),
+    "case-viliya-park": ("vnedrenie-ip-ats-na-baze-asterisk-dlya-viliya-park", "Кейс · Вилия Парк",
+                         'Вилия Парк <span class="section-title__muted">IP-АТС Asterisk для отельного комплекса</span>',
+                         "Внедрение IP-АТС Asterisk для Вилия Парк"),
+    "case-adel": ("vnedrenie-i-nastroyka-ip-telefonii-dlya-aptek-adel", "Кейс · ADEL",
+                  'ADEL <span class="section-title__muted">IP-телефония для сети аптек</span>',
+                  "Внедрение и настройка IP-телефонии для сети аптек ADEL"),
+    "case-santa": ("vnedrenie-modulya-integratsii-bitriks24-s-ip-ats-na-baze-asterisk", "Кейс · Санта",
+                   'Санта <span class="section-title__muted">интеграция Битрикс24 с IP-АТС Asterisk</span>',
+                   "Внедрение модуля интеграции Битрикс24 с IP-АТС на базе Asterisk для Санты"),
 }
 
 
@@ -360,13 +394,27 @@ def extract_case(case_id, slug):
     return data
 
 
-result = {}
-for cid, (slug, *_rest) in CASE_MAP.items():
-    d = extract_case(cid, slug)
-    result[cid] = d
-    print(f'{cid}: tile={"Y" if d["tile"] else "N"} shots={len(d["shots"])} points={len(d["points"])} team={len(d["team"])} dur={d["duration"]!r} secs={len(d["sections"])}')
+def main():
+    """Без аргументов — пересобрать все кейсы. С id кейсов — обновить только их,
+    остальные данные и подобранные обложки сохраняются."""
+    only = set(sys.argv[1:])
+    data_file = ROOT / "tools" / "cases_data.json"
+    if only:
+        result = json.loads(data_file.read_text(encoding="utf-8")) if data_file.exists() else {}
+    else:
+        result = {}
+    for cid, (slug, *_rest) in CASE_MAP.items():
+        if only and cid not in only:
+            continue
+        d = extract_case(cid, slug)
+        result[cid] = d
+        print(f'{cid}: tile={"Y" if d["tile"] else "N"} shots={len(d["shots"])} points={len(d["points"])} team={len(d["team"])} dur={d["duration"]!r} secs={len(d["sections"])}')
 
-(ROOT / "tools" / "cases_data.json").write_text(
-    json.dumps(result, ensure_ascii=False, indent=1), encoding="utf-8"
-)
-print("saved tools/cases_data.json")
+    unknown = only - set(CASE_MAP)
+    assert not unknown, f"неизвестные id: {unknown}"
+    data_file.write_text(json.dumps(result, ensure_ascii=False, indent=1), encoding="utf-8")
+    print("saved tools/cases_data.json")
+
+
+if __name__ == "__main__":
+    main()
