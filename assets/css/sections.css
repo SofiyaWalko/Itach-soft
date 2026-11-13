@@ -1563,7 +1563,8 @@
 @media (prefers-reduced-motion: no-preference) {
   .js [data-reveal]:not(.is-revealed),
   .js [data-reveal-stagger]:not([data-reveal-pair]):not(.is-revealed) > *,
-  .js [data-reveal-pair] > *:not(.is-revealed) {
+  .js [data-reveal-pair] > *:not(.is-revealed),
+  .js [data-reveal-rows] > *:not(.is-revealed) {
     opacity: 0;
   }
 
@@ -1573,7 +1574,8 @@
     animation-delay: calc(min(var(--i, 0), 6) * 90ms);
   }
 
-  [data-reveal-pair] > *.is-revealed {
+  [data-reveal-pair] > *.is-revealed,
+  [data-reveal-rows] > *.is-revealed {
     animation: rise 700ms var(--ease-out) backwards;
     animation-delay: calc(min(var(--i, 0), 6) * 90ms);
   }
@@ -6955,10 +6957,6 @@ html:has(.detail[open]) {
   text-wrap: balance;
 }
 
-.company-page--guarantee .company-section__title {
-  text-align: center;
-}
-
 .company-section__lead {
   max-inline-size: 62ch;
   margin-block-start: var(--space-2);
@@ -7071,7 +7069,7 @@ html:has(.detail[open]) {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-3);
-  margin: var(--space-6) 0 0;
+  margin: var(--space-4) 0 0;
   padding: 0;
   list-style: none;
 }
@@ -7090,6 +7088,114 @@ html:has(.detail[open]) {
 @media (min-width: 1180px) {
   .reviews-page__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Отзывы: фильтр по услуге над сеткой карточек */
+.reviews-block {
+  margin-block-start: var(--space-8);
+}
+
+.reviews-filter {
+  margin-block-start: 0;
+}
+
+.reviews-filter__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* ---------- Благодарственные письма: лента во всю ширину экрана ---------- */
+.letters {
+  margin-block-start: var(--space-6);
+}
+
+.letters__scroller {
+  /* Лента выходит из контейнера до краёв экрана; лишнее по бокам срезает overflow-x: clip у страницы */
+  margin-inline: calc(50% - 50vw);
+  padding-block: var(--space-1);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.letters__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Карточки стартуют на линии контейнера и уходят за правый край: последняя видимая
+   обрезана, поэтому сразу понятно, что лента прокручивается */
+.letters__list {
+  --edge: max(var(--gutter), calc((100% - var(--container-max)) / 2));
+  display: flex;
+  gap: var(--space-3);
+  inline-size: max-content;
+  min-inline-size: 100%;
+  margin: 0;
+  padding-inline: var(--edge);
+}
+
+.letters__list .review-scan {
+  flex: none;
+  inline-size: clamp(16rem, 24vw, 22rem);
+}
+
+/* На телефоне лента повторяет кейсы на главной: тот же зазор и узкий край следующей карточки */
+@media (max-width: 639px) {
+  .letters__scroller {
+    container-type: inline-size;
+    --edge: var(--gutter);
+    --slide-gap: 0.75rem;
+    --peek: 2.5rem;
+    --slide-width: calc(100cqw - var(--edge) - var(--peek) - var(--slide-gap));
+  }
+
+  .letters__list {
+    --edge: var(--gutter);
+    gap: var(--slide-gap);
+  }
+
+  .letters__list .review-scan {
+    inline-size: var(--slide-width);
+  }
+}
+
+/* Лента слишком широкая для наблюдателя появления при прокрутке (на телефоне в кадр
+   попадает меньше 10% её ширины), поэтому карточки въезжают сразу при загрузке */
+@media (prefers-reduced-motion: no-preference) {
+  .letters__list > li {
+    animation: rise 650ms var(--ease-out) backwards;
+  }
+
+  .letters__list > li:nth-child(2) {
+    animation-delay: 70ms;
+  }
+
+  .letters__list > li:nth-child(3) {
+    animation-delay: 140ms;
+  }
+
+  .letters__list > li:nth-child(4) {
+    animation-delay: 210ms;
+  }
+
+  .letters__list > li:nth-child(5) {
+    animation-delay: 280ms;
+  }
+
+  .letters__list > li:nth-child(6) {
+    animation-delay: 350ms;
+  }
+
+  /* Дальше ленты за первым экраном — анимировать нечего, экономим кадры */
+  .letters__list > li:nth-child(n + 7) {
+    animation: none;
   }
 }
 
@@ -7280,29 +7386,7 @@ html:has(.detail[open]) {
 }
 
 /* Отзывы: сканы благодарственных писем */
-.reviews-scans__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-
-.reviews-scans__head .company-section__lead {
-  margin-block-start: var(--space-1);
-}
-
-.review-scans {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
-  gap: var(--space-2);
-  margin: var(--space-4) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
 .review-scan {
-  overflow: hidden;
   border: 1px solid var(--color-glass-stroke);
   border-radius: var(--radius-md);
   background: var(--color-bg);
@@ -7311,6 +7395,7 @@ html:has(.detail[open]) {
 
 .review-scan__link {
   display: grid;
+  align-content: start;
   block-size: 100%;
 }
 
@@ -7319,6 +7404,8 @@ html:has(.detail[open]) {
   display: block;
   overflow: hidden;
   aspect-ratio: 3 / 4;
+  border-start-start-radius: calc(var(--radius-md) - 1px);
+  border-start-end-radius: calc(var(--radius-md) - 1px);
   background: var(--color-bg-alt);
 }
 
@@ -7338,7 +7425,7 @@ html:has(.detail[open]) {
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   background: var(--color-accent-soft);
-  color: var(--color-accent-deep);
+  color: var(--color-drop-orange);
   font-size: 0.6875rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -7347,6 +7434,7 @@ html:has(.detail[open]) {
 
 .review-scan__body {
   display: grid;
+  align-content: start;
   gap: 0.25rem;
   padding: var(--space-2) var(--space-3) var(--space-3);
 }
@@ -7363,6 +7451,13 @@ html:has(.detail[open]) {
   line-height: 1.4;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .review-scan__name,
+  .review-scan__service {
+    transition: transform 400ms var(--ease-out);
+  }
+}
+
 @media (hover: hover) {
   .review-scan:hover {
     border-color: var(--color-line-strong);
@@ -7370,6 +7465,11 @@ html:has(.detail[open]) {
 
   .review-scan:hover .review-scan__media img {
     scale: 1.03;
+  }
+
+  .review-scan:hover .review-scan__name,
+  .review-scan:hover .review-scan__service {
+    transform: translateX(0.75rem);
   }
 }
 

@@ -167,6 +167,16 @@ for item in META:
             </li>"""
     )
 
+# Услуга для фильтра отзывов — по порядку карточек в ленте главной
+REVIEW_SERVICES = ["sites", "sites", "support", "bitrix24", "bitrix24", "support", "sites"]
+chunks = REVIEWS_CARDS.split('<li class="review-card glow-card">')
+assert len(chunks) == len(REVIEW_SERVICES) + 1, "Изменилось число отзывов в ленте главной"
+REVIEW_CARDS_TAGGED = chunks[0]
+for service, chunk in zip(REVIEW_SERVICES, chunks[1:]):
+    REVIEW_CARDS_TAGGED += (
+        f'<li class="review-card glow-card" data-review-card data-service="{service}">' + chunk
+    )
+
 REVIEWS = (
     breadcrumbs("Отзывы")
     + """
@@ -180,27 +190,30 @@ REVIEWS = (
             </p>
           </div>
 
-          <ul class="reviews-page__grid" data-reveal-stagger>"""
-    + REVIEWS_CARDS
-    + """          </ul>
-
-          <section class="company-section" aria-labelledby="reviews-scans-title">
-            <div class="reviews-scans__head">
-              <div>
-                <h2 class="company-section__title" id="reviews-scans-title">Благодарственные письма</h2>
-                <p class="company-section__lead">
-                  Оригиналы писем и отзывов клиентов. Каждый документ открывается в PDF.
-                </p>
-              </div>
-              <a class="btn btn--outline" href="assets/docs/otzyvy-itach-soft.pdf" target="_blank" rel="noopener">
-                Скачать все отзывы (PDF)
-              </a>
-            </div>
-            <ul class="review-scans" data-reveal-stagger>
+          <section class="letters" aria-label="Благодарственные письма">
+            <div class="letters__scroller" data-drag-scroll tabindex="0" role="region" aria-label="Благодарственные письма, прокручиваются по горизонтали">
+              <ul class="letters__list">
 """
     + "\n".join(scan_cards)
     + """
-            </ul>
+              </ul>
+            </div>
+          </section>
+
+          <section class="reviews-block" data-reviews-filter aria-label="Отзывы клиентов">
+            <form class="reviews-filter" data-reveal>
+              <fieldset class="reviews-filter__group">
+                <legend class="visually-hidden">Фильтр отзывов по услуге</legend>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="review-service" value="" checked /><span class="calc-option__text">Все</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="review-service" value="sites" /><span class="calc-option__text">Сайты</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="review-service" value="bitrix24" /><span class="calc-option__text">Битрикс24</span></label>
+                <label class="calc-option"><input class="calc-option__input" type="radio" name="review-service" value="support" /><span class="calc-option__text">Поддержка</span></label>
+              </fieldset>
+              <p class="visually-hidden" role="status" data-reviews-status></p>
+            </form>
+            <ul class="reviews-page__grid" data-reveal-rows>"""
+    + REVIEW_CARDS_TAGGED
+    + """            </ul>
           </section>"""
 )
 
@@ -447,9 +460,8 @@ PAGES = [
 ]
 
 for filename, title, description, content in PAGES:
-    page_class = "company-page company-page--guarantee" if filename == "garantii.html" else "company-page"
     wrapper = (
-        f'      <section class="{page_class}" aria-labelledby="'
+        '      <section class="company-page" aria-labelledby="'
         + ("guarantee-title" if filename == "garantii.html" else
            "reviews-title" if filename == "otzyvy.html" else
            "faq-page-title" if filename == "faq.html" else "documents-title")

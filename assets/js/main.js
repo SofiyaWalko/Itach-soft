@@ -590,6 +590,24 @@ function initScrollReveal() {
     });
     if (!pair) observer.observe(group);
   });
+
+  // data-reveal-rows: каждая строка сетки появляется сама, карточки в строке — по очереди.
+  // Строку определяем по offsetTop, поэтому число колонок может быть любым
+  document.querySelectorAll("[data-reveal-rows]").forEach((group) => {
+    const rows = new Map();
+    [...group.children].forEach((child) => {
+      const top = child.offsetTop;
+      if (!rows.has(top)) rows.set(top, []);
+      rows.get(top).push(child);
+    });
+
+    rows.forEach((cells) => {
+      cells.forEach((cell, index) => {
+        cell.style.setProperty("--i", index);
+        observer.observe(cell);
+      });
+    });
+  });
 }
 
 // Попап с формой заявки: открывается по кнопкам и ссылкам на #lead. Без JS те же ссылки ведут к форме внизу страницы
@@ -1025,6 +1043,28 @@ function initCompanyDropdown() {
   });
 }
 
+// Фильтр отзывов по услуге: пилюли-радио скрывают карточки другой услуги
+function initReviewsFilter(root) {
+  if (!root) return;
+
+  const cards = [...root.querySelectorAll("[data-review-card]")];
+  const status = root.querySelector("[data-reviews-status]");
+
+  root.addEventListener("change", (event) => {
+    if (!event.target.matches('input[name="review-service"]')) return;
+
+    const service = event.target.value;
+    let shown = 0;
+    cards.forEach((card) => {
+      const visible = !service || card.dataset.service === service;
+      card.hidden = !visible;
+      if (visible) shown += 1;
+    });
+
+    if (status) status.textContent = `Показано ${shown} из ${cards.length}`;
+  });
+}
+
 // Услуги в мобильном меню: аккордеон «направления → услуги» собирается из данных мега-меню,
 // чтобы список услуг правился в одном месте
 function initMobileServicesNav() {
@@ -1289,6 +1329,7 @@ function initToolsSweep() {
 initHeader();
 initServicesMegaMenu();
 initCompanyDropdown();
+initReviewsFilter(document.querySelector("[data-reviews-filter]"));
 initMobileServicesNav();
 initScrollReveal();
 initGlowCards();
