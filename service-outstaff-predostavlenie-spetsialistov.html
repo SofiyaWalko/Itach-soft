@@ -149,7 +149,7 @@
             <ul class="nav__list">
               <li class="nav__item nav__item--services">
                 <a class="nav__link nav__link--services nav__link--desktop" href="services.html" aria-haspopup="true" aria-expanded="false" data-services-menu-trigger><span class="nav__text">Услуги</span></a>
-                <button class="nav__link nav__link--services nav__link--accordion" type="button" aria-expanded="false" aria-controls="services-submenu" data-services-submenu-toggle>
+                <button class="nav__link nav__link--services nav__link--accordion" type="button" aria-expanded="false" aria-controls="services-submenu" data-submenu-toggle>
                   <span class="nav__text">Услуги</span>
                   <svg class="icon nav__chevron" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
                 </button>
@@ -181,7 +181,20 @@
                 </ul>
               </li>
               <li><a class="nav__link" href="portfolio.html"><span class="nav__text">Портфолио</span></a></li>
-              <li><a class="nav__link" href="index.html#about"><span class="nav__text">Компания</span></a></li>
+              <li class="nav__item nav__item--dropdown" data-company-item>
+                <a class="nav__link nav__link--desktop" href="https://itach-soft.ru/about/" aria-haspopup="true" aria-expanded="false" aria-controls="company-submenu" data-company-menu-trigger><span class="nav__text">Компания</span></a>
+                <button class="nav__link nav__link--accordion" type="button" aria-expanded="false" aria-controls="company-submenu" data-submenu-toggle>
+                  <span class="nav__text">Компания</span>
+                  <svg class="icon nav__chevron" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                </button>
+                <ul class="nav-dropdown" id="company-submenu" data-company-menu hidden>
+                  <li><a class="nav-dropdown__link" href="https://itach-soft.ru/about/">О компании</a></li>
+                  <li><a class="nav-dropdown__link" href="garantii.html">Гарантия</a></li>
+                  <li><a class="nav-dropdown__link" href="otzyvy.html">Отзывы</a></li>
+                  <li><a class="nav-dropdown__link" href="faq.html">Ответы на часто <br />задаваемые вопросы</a></li>
+                  <li><a class="nav-dropdown__link" href="dokumenty.html">Документы</a></li>
+                </ul>
+              </li>
               <li><a class="nav__link" href="blog.html"><span class="nav__text">Блог</span></a></li>
               <li><a class="nav__link" href="contacts.html"><span class="nav__text">Контакты</span></a></li>
             </ul>
@@ -1619,10 +1632,11 @@
               <h3 class="site-footer__title">Компания</h3>
               <ul class="site-footer__list">
                 <li><a class="site-footer__link" href="portfolio.html">Портфолио</a></li>
-                <li><a class="site-footer__link" href="https://itach-soft.ru/about/garantii/">Гарантия</a></li>
-                <li><a class="site-footer__link" href="index.html#reviews">Отзывы</a></li>
+                <li><a class="site-footer__link" href="garantii.html">Гарантия</a></li>
+                <li><a class="site-footer__link" href="otzyvy.html">Отзывы</a></li>
                 <li><a class="site-footer__link" href="blog.html">Новости</a></li>
-                <li><a class="site-footer__link" href="https://itach-soft.ru/about/faq/">Вопросы и ответы</a></li>
+                <li><a class="site-footer__link" href="faq.html">Вопросы и ответы</a></li>
+                <li><a class="site-footer__link" href="dokumenty.html">Документы</a></li>
                 <li><a class="site-footer__link" href="contacts.html">Контакты</a></li>
               </ul>
             </div>

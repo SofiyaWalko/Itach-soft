@@ -1,0 +1,461 @@
+"""Собирает четыре страницы раздела «Компания» на общем каркасе главной.
+
+Шапка, подвал и форма заявки берутся из index.html, поэтому правки в них
+подхватываются при повторном запуске. Материалы — с itach.by.
+"""
+
+import json
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
+META = json.loads((ROOT / "tools" / "reviews_data.json").read_text(encoding="utf-8"))
+
+
+def shell(title: str, description: str) -> tuple[str, str]:
+    """Возвращает (голова с шапкой, подвал) страницы."""
+    prefix = INDEX[: INDEX.index('    <main id="main">')]
+    prefix = re.sub(r"<title>.*?</title>", f"<title>{title}</title>", prefix, count=1, flags=re.S)
+    prefix = re.sub(
+        r'<meta\s+name="description"\s+content=".*?"\s*/>',
+        f'<meta name="description" content="{description}" />',
+        prefix,
+        count=1,
+        flags=re.S,
+    )
+    prefix = prefix.replace('<body class="home">', "<body>")
+    # Главной нужны WebGL-лента и калькулятор, внутренним страницам — нет
+    prefix = prefix.replace('    <script src="assets/js/hero-gl.js" defer></script>\n', "")
+    prefix = prefix.replace('    <script src="assets/js/calculator.js" defer></script>\n', "")
+    # На этих страницах нет калькулятора — кнопка в мега-меню ведёт к форме заявки
+    prefix = prefix.replace('mega-menu__promo-link" href="#calculator"', 'mega-menu__promo-link" href="#lead"')
+
+    footer_start = INDEX.index('    <footer class="site-footer">')
+    # Диалог кейса и его шаблоны нужны только главной — отрезаем
+    suffix = INDEX[footer_start : INDEX.index('    <dialog class="detail"')] + "  </body>\n</html>\n"
+    return prefix, suffix
+
+
+def lead_section() -> str:
+    start = INDEX.index('<section class="lead" id="lead"')
+    end = INDEX.index("</section>", start) + len("</section>")
+    return INDEX[start:end]
+
+
+def breadcrumbs(current: str) -> str:
+    return f"""          <nav class="breadcrumbs" aria-label="Хлебные крошки" data-reveal-stagger>
+            <a class="breadcrumbs__link" href="index.html">Главная</a>
+            <svg class="icon breadcrumbs__sep" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+            <span class="breadcrumbs__current" aria-current="page">{current}</span>
+          </nav>"""
+
+
+def page(title: str, description: str, content: str) -> str:
+    prefix, suffix = shell(title, description)
+    return prefix + '    <main id="main">\n' + content + "\n" + lead_section() + "\n    </main>\n\n" + suffix
+
+
+# ---------- Гарантия ----------
+
+GUARANTEE = (
+    breadcrumbs("Гарантия")
+    + """
+          <div class="company-page__head">
+            <h1 class="section-title" id="guarantee-title" data-reveal>
+              Гарантия <span class="section-title__muted">до 24 месяцев</span>
+            </h1>
+            <p class="company-page__lead" data-reveal>
+              Отвечаем за качество решений, которые разрабатываем и внедряем. Если в течение гарантийного срока
+              обнаружится ошибка по нашей вине — исправим её бесплатно.
+            </p>
+          </div>
+
+          <ul class="page-stats" data-reveal-stagger>
+            <li class="page-stat glow-card">
+              <span class="page-stat__value">24 мес</span>
+              <p class="page-stat__text">гарантия с момента подписания акта</p>
+            </li>
+            <li class="page-stat glow-card">
+              <span class="page-stat__value">3</span>
+              <p class="page-stat__text">направления гарантии</p>
+            </li>
+            <li class="page-stat glow-card">
+              <span class="page-stat__value">4 ч</span>
+              <p class="page-stat__text">реакция поддержки на обращения</p>
+            </li>
+            <li class="page-stat glow-card">
+              <span class="page-stat__value">24/7</span>
+              <p class="page-stat__text">поддержка после запуска</p>
+            </li>
+          </ul>
+
+          <section class="company-section" aria-labelledby="guarantee-directions-title">
+            <h2 class="company-section__title" id="guarantee-directions-title" data-reveal>
+              На что распространяется <span class="section-title__muted">гарантия</span>
+            </h2>
+            <div class="guarantee__grid" data-reveal-stagger>
+              <article class="guarantee-card glow-card">
+                <h3 class="guarantee-card__title">Сайты и веб-сервисы</h3>
+                <p class="guarantee-card__text">
+                  Разработка и доработка корпоративных сайтов, порталов, интернет-магазинов, лендингов и веб-приложений.
+                </p>
+              </article>
+              <article class="guarantee-card glow-card">
+                <h3 class="guarantee-card__title">Битрикс24</h3>
+                <p class="guarantee-card__text">
+                  Внедрение, настройка и доработка CRM: воронки, бизнес-процессы, интеграции и права доступа.
+                </p>
+              </article>
+              <article class="guarantee-card glow-card">
+                <h3 class="guarantee-card__title">IP-АТС на базе Asterisk</h3>
+                <p class="guarantee-card__text">
+                  Внедрение и доработка телефонной станции, настройка VoIP, интеграция с CRM и сценарии обработки звонков.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="company-section" aria-labelledby="guarantee-terms-title">
+            <h2 class="company-section__title" id="guarantee-terms-title" data-reveal>
+              Условия <span class="section-title__muted">и исключения</span>
+            </h2>
+            <div class="guarantee__terms" data-reveal-stagger>
+              <div class="guarantee__panel glow-card">
+                <h3 class="guarantee__panel-title">Что покрывает гарантия</h3>
+                <ul class="guarantee__list">
+                  <li>Срок — до 24 месяцев с момента подписания акта выполненных работ.</li>
+                  <li>Гарантия действует, если в настройки системы не вмешивались третьи лица.</li>
+                  <li>Распространяется только на ошибки, вызванные действиями исполнителя.</li>
+                  <li>Если проблема возникла по вине заказчика, помогаем с устранением — в рамках отдельной задачи.</li>
+                </ul>
+              </div>
+              <div class="guarantee__panel guarantee__panel--muted">
+                <h3 class="guarantee__panel-title">Гарантия не распространяется на</h3>
+                <ul class="guarantee__list guarantee__list--exceptions">
+                  <li>Доработку и настройку программ сторонних разработчиков, если это не было отражено в договоре.</li>
+                  <li>Случаи взлома или DOS-атак третьих лиц.</li>
+                  <li>Орфографические и стилистические ошибки текста, не относящиеся к производственным дефектам.</li>
+                  <li>Оптимизацию быстродействия ПО.</li>
+                </ul>
+              </div>
+            </div>
+          </section>"""
+)
+
+# ---------- Отзывы ----------
+
+REVIEWS_CARDS = re.search(
+    r'<ul class="reviews__list"[^>]*>(.*?)</ul>', INDEX, re.S
+).group(1)
+
+scan_cards = []
+for item in META:
+    name = item["name"].replace('"', "&quot;")
+    service = item["service"]
+    scan_cards.append(
+        f"""            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="{item['pdf']}" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="{item['thumb']}" width="283" height="400" alt="Отзыв компании {name}" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">{name}</span>
+                  <span class="review-scan__service">{service}</span>
+                </span>
+              </a>
+            </li>"""
+    )
+
+REVIEWS = (
+    breadcrumbs("Отзывы")
+    + """
+          <div class="company-page__head">
+            <h1 class="section-title" id="reviews-title" data-reveal>
+              Отзывы <span class="section-title__muted">клиентов</span>
+            </h1>
+            <p class="company-page__lead" data-reveal>
+              Банки, лизинговые компании, ритейл, образование и промышленность. Собрали отзывы клиентов
+              о проектах, которые мы разработали и продолжаем поддерживать.
+            </p>
+          </div>
+
+          <ul class="reviews-page__grid" data-reveal-stagger>"""
+    + REVIEWS_CARDS
+    + """          </ul>
+
+          <section class="company-section" aria-labelledby="reviews-scans-title">
+            <div class="reviews-scans__head">
+              <div>
+                <h2 class="company-section__title" id="reviews-scans-title">Благодарственные письма</h2>
+                <p class="company-section__lead">
+                  Оригиналы писем и отзывов клиентов. Каждый документ открывается в PDF.
+                </p>
+              </div>
+              <a class="btn btn--outline" href="assets/docs/otzyvy-itach-soft.pdf" target="_blank" rel="noopener">
+                Скачать все отзывы (PDF)
+              </a>
+            </div>
+            <ul class="review-scans" data-reveal-stagger>
+"""
+    + "\n".join(scan_cards)
+    + """
+            </ul>
+          </section>"""
+)
+
+# ---------- FAQ ----------
+
+FAQ_DATA = [
+    (
+        "faq-company",
+        "О компании и экспертизе",
+        [
+            ("Почему Итач-софт можно доверить сложный IT-проект?",
+             "Работаем по выстроенным процессам: аналитика, проектирование, разработка, тестирование и поддержка. Под каждую задачу собираем команду с нужной экспертизой, а качество подтверждают повторные проекты и рекомендации клиентов."),
+            ("Сколько лет компания работает на рынке и какой у вас опыт?",
+             "Компания основана в 2013 году. За это время реализовали сотни проектов, а совокупный опыт команды — более 1 000 000 часов разработки, внедрения и сопровождения."),
+            ("Чем занимается компания Итач-софт?",
+             "Разрабатываем программное обеспечение и веб-сервисы, автоматизируем бизнес-процессы. Основные направления — Битрикс24, сайты и веб-приложения, контакт-центры и IP-телефония на базе Asterisk."),
+            ("Можно ли дорабатывать уже внедрённые системы?",
+             "Да. Подключаемся к действующим проектам, проводим аудит, находим узкие места и предлагаем план оптимизации и развития — без необходимости переписывать всё с нуля."),
+            ("Вы работаете только с проектами «под ключ» или с отдельными задачами?",
+             "В обоих форматах: можем взять проект целиком — от аналитики до запуска и поддержки, — либо выполнить точечную доработку CRM, сайта, веб-сервиса или телефонии."),
+            ("Какие задачи бизнеса вы решаете?",
+             "Автоматизируем продажи и клиентский сервис, снижаем ручной труд и количество ошибок, делаем процессы прозрачными, интегрируем системы между собой, создаём и развиваем цифровые продукты."),
+            ("Настраиваете ли вы CRM под специфику бизнеса?",
+             "Да, без шаблонных решений. Сначала разбираем реальные процессы компании и задачи сотрудников, затем настраиваем воронки, поля, права доступа и автоматизации под эту логику."),
+        ],
+    ),
+    (
+        "faq-bitrix24",
+        "Битрикс24 и автоматизация",
+        [
+            ("Как проходит внедрение Битрикс24?",
+             "Анализируем бизнес-процессы, проектируем структуру CRM, настраиваем воронки, права доступа и автоматизации, подключаем интеграции с сайтом, телефонией и почтой. Затем тестируем, запускаем и обучаем сотрудников. Базовая CRM обычно занимает до месяца."),
+            ("Почему вы рекомендуете Битрикс24 для автоматизации бизнеса?",
+             "Это универсальная платформа, которая объединяет CRM, задачи, коммуникации, аналитику и автоматизацию. При грамотной настройке она повышает управляемость бизнеса и прозрачность работы сотрудников."),
+        ],
+    ),
+    (
+        "faq-sites",
+        "Сайты и веб-сервисы",
+        [
+            ("Предоставляете ли вы услуги по SEO-оптимизации для сайтов?",
+             "Да, базовая SEO-оптимизация входит в процесс разработки: закладываем необходимые элементы, чтобы сайт корректно индексировался и был виден в поисковых системах."),
+            ("Как проходит процесс разработки сайта?",
+             "Обсуждаем требования и цели, проектируем структуру и внешний вид, разрабатываем функционал, тестируем и оптимизируем, запускаем проект. После передачи сайта остаёмся на поддержке и доработках."),
+            ("Какие виды сайтов вы разрабатываете?",
+             "Корпоративные сайты, интернет-магазины, лендинги, сложные веб-приложения и интерфейсы, а также специализированные сервисы под требования бизнеса."),
+        ],
+    ),
+    (
+        "faq-telephony",
+        "IP-телефония",
+        [
+            ("Какие дополнительные услуги вы предоставляете по настройке IP-АТС?",
+             "Интеграцию с CRM, мониторинг и регулярные обновления, автоматическую маршрутизацию звонков, голосовое меню и отчёты. Набор опций настраиваем индивидуально под задачи компании."),
+            ("Включаете ли вы техническую поддержку в стоимость внедрения IP-АТС?",
+             "Нет. После внедрения поддержка оформляется отдельным договором с ежемесячной абонентской платой: мониторинг, оперативное устранение неисправностей и консультации. Есть тарифы с обслуживанием 24/7 и неограниченным числом обращений."),
+            ("Предоставляете ли вы обучение для сотрудников по работе с IP-АТС?",
+             "Да, после внедрения. Показываем, как управлять звонками, пользоваться голосовой почтой и конференц-связью. Обучение проводим отдельно для администраторов и конечных пользователей."),
+            ("Какие функции будут настроены в IP-АТС на базе Asterisk для моего бизнеса?",
+             "Маршрутизация звонков, голосовая почта, автоответчики, конференц-связь, интеграция с CRM, голосовые меню IVR, отчётность и мониторинг. Дополнительно обеспечиваем безопасность VoIP-канала."),
+        ],
+    ),
+    (
+        "faq-support",
+        "Гарантии, качество и поддержка",
+        [
+            ("Как работает техническая поддержка?",
+             "Поддержка доступна 24/7. До 90% обращений закрываем в течение первых 4 часов."),
+            ("Что происходит после запуска проекта?",
+             "Остаёмся на связи: сопровождаем систему, консультируем сотрудников и оперативно решаем возникающие вопросы."),
+            ("Какую гарантию вы предоставляете на выполненные работы?",
+             'До 24 месяцев на разработанные и внедрённые решения. Гарантия распространяется на ошибки, возникшие по вине исполнителя. Подробные условия — на странице <a href="garantii.html">«Гарантия»</a>.'),
+        ],
+    ),
+    (
+        "faq-process",
+        "Процесс работы",
+        [
+            ("Можно ли обратиться за консультацией без заказа услуг?",
+             "Да. Можно задать вопрос через форму на сайте или получить консультацию специалиста до начала сотрудничества."),
+            ("Как контролируются сроки и качество?",
+             "Ведём проект поэтапно: фиксируем сроки, регулярно отчитываемся и используем современные системы управления проектами. Вы всегда понимаете, на каком этапе находится работа и что делается сейчас."),
+            ("Как формируется команда под проект?",
+             "За проектом закрепляется персональный менеджер. Он координирует выделенную команду аналитиков, разработчиков и интеграторов под задачи проекта."),
+            ("С чего начинается сотрудничество?",
+             "С первичной консультации и бесплатного экспресс-аудита бизнес-процессов. Это помогает определить объём работ и предложить оптимальное решение."),
+        ],
+    ),
+]
+
+nav_items = "\n".join(
+    f"""              <li><a class="faq-page__nav-link" href="#{cid}">{title}</a></li>"""
+    for cid, title, _ in FAQ_DATA
+)
+
+group_html = []
+q_num = 1
+for cid, title, questions in FAQ_DATA:
+    items = []
+    for question, answer in questions:
+        items.append(
+            f"""                <li class="faq__item glow-card">
+                  <h3 class="faq__question">
+                    <button class="faq__trigger" type="button" id="faq-q{q_num}" aria-expanded="false" aria-controls="faq-a{q_num}">
+                      <span class="faq__text">{question}</span>
+                      <span class="faq__toggle" aria-hidden="true"></span>
+                    </button>
+                  </h3>
+                  <div class="faq__answer" id="faq-a{q_num}" role="region" aria-labelledby="faq-q{q_num}">
+                    <div class="faq__answer-inner"><p>{answer}</p></div>
+                  </div>
+                </li>"""
+        )
+        q_num += 1
+    group_html.append(
+        f"""            <section class="faq-page__group" id="{cid}" aria-labelledby="{cid}-title">
+              <h2 class="faq-page__category" id="{cid}-title">{title}</h2>
+              <ul class="faq__list">
+"""
+        + "\n".join(items)
+        + """
+              </ul>
+            </section>"""
+    )
+
+FAQ = (
+    breadcrumbs("Ответы на вопросы")
+    + """
+          <div class="company-page__head">
+            <h1 class="section-title" id="faq-page-title" data-reveal>
+              Часто задаваемые <span class="section-title__muted">вопросы</span>
+            </h1>
+            <p class="company-page__lead" data-reveal>
+              Собрали ответы на вопросы, которые чаще всего задают перед началом работы:
+              о компании, сроках, гарантии и поддержке.
+            </p>
+          </div>
+
+          <div class="faq-page__layout" data-faq>
+            <nav aria-label="Категории вопросов">
+              <ul class="faq-page__nav">
+"""
+    + nav_items
+    + """
+              </ul>
+            </nav>
+            <div>
+"""
+    + "\n".join(group_html)
+    + """
+            </div>
+          </div>"""
+)
+
+# ---------- Документы ----------
+
+DOCS = [
+    (
+        "Сублицензионный договор (оферта)",
+        "Публичный договор на предоставление права использования программ для ЭВМ · PDF",
+        "https://itach.by/docs/public-contract-cloudbitrix24.pdf",
+    ),
+    (
+        "Прейскурант цен на лицензионное вознаграждение",
+        "Программа «1С-Битрикс24» · PDF",
+        "https://itach.by/docs/price.pdf",
+    ),
+    (
+        "Политика в отношении обработки персональных данных",
+        "Порядок обработки и защиты персональных данных · PDF",
+        "https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf",
+    ),
+]
+
+doc_cards = "\n".join(
+    f"""            <li>
+              <a class="doc-card" href="{url}" target="_blank" rel="noopener">
+                <span class="doc-card__icon" aria-hidden="true">PDF</span>
+                <span class="doc-card__body">
+                  <span class="doc-card__title">{title}</span>
+                  <span class="doc-card__meta">{meta}</span>
+                </span>
+                <span class="doc-card__arrow" aria-hidden="true">
+                  <svg class="icon"><use href="#icon-arrow-up-right" /></svg>
+                </span>
+              </a>
+            </li>"""
+    for title, meta, url in DOCS
+)
+
+DOCUMENTS = (
+    breadcrumbs("Документы")
+    + """
+          <div class="company-page__head">
+            <h1 class="section-title" id="documents-title" data-reveal>
+              Документы <span class="section-title__muted">и оферты</span>
+            </h1>
+            <p class="company-page__lead" data-reveal>
+              Договоры, прейскуранты и официальные документы для работы с Итач-софт.
+              Все файлы открываются в формате PDF.
+            </p>
+          </div>
+
+          <ul class="docs-list" data-reveal-stagger>
+"""
+    + doc_cards
+    + """
+          </ul>
+
+          <p class="company-section__lead">
+            Не нашли нужный документ? Напишите нам — подготовим договор, счёт или карточку предприятия.
+          </p>
+          <div class="company-page__actions" data-reveal>
+            <a class="btn btn--primary" href="mailto:info@itach.by">Запросить документ</a>
+            <a class="btn btn--ghost" href="contacts.html">Реквизиты и контакты</a>
+          </div>"""
+)
+
+PAGES = [
+    (
+        "garantii.html",
+        "Гарантия до 24 месяцев — Итач-софт",
+        "Гарантия до 24 месяцев на разработку сайтов, внедрение Битрикс24 и IP-АТС на базе Asterisk: условия, направления и исключения.",
+        GUARANTEE,
+    ),
+    (
+        "otzyvy.html",
+        "Отзывы клиентов — Итач-софт",
+        "Отзывы и благодарственные письма клиентов Итач-софт: банки, лизинг, ритейл, образование и промышленность. Сканы документов в PDF.",
+        REVIEWS,
+    ),
+    (
+        "faq.html",
+        "Ответы на часто задаваемые вопросы — Итач-софт",
+        "Ответы на частые вопросы о работе с Итач-софт: опыт компании, внедрение Битрикс24, разработка сайтов, IP-телефония, гарантия и поддержка.",
+        FAQ,
+    ),
+    (
+        "dokumenty.html",
+        "Документы — Итач-софт",
+        "Договоры, прейскуранты и официальные документы Итач-софт для работы с сайтами, Битрикс24 и IP-телефонией.",
+        DOCUMENTS,
+    ),
+]
+
+for filename, title, description, content in PAGES:
+    page_class = "company-page company-page--guarantee" if filename == "garantii.html" else "company-page"
+    wrapper = (
+        f'      <section class="{page_class}" aria-labelledby="'
+        + ("guarantee-title" if filename == "garantii.html" else
+           "reviews-title" if filename == "otzyvy.html" else
+           "faq-page-title" if filename == "faq.html" else "documents-title")
+        + '">\n        <div class="container">\n'
+        + content
+        + "\n        </div>\n      </section>"
+    )
+    (ROOT / filename).write_text(page(title, description, wrapper), encoding="utf-8")
+    print("written", filename)

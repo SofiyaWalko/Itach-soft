@@ -31,19 +31,21 @@ function initHeader() {
     setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
   });
 
-  const servicesToggle = header.querySelector("[data-services-submenu-toggle]");
-  const servicesSubmenu = header.querySelector("[data-services-submenu]");
-  if (servicesToggle && servicesSubmenu) {
-    servicesToggle.addEventListener("click", (event) => {
+  // Аккордеоны бургер-меню («Услуги», «Компания»): список раскрывается под пунктом
+  header.querySelectorAll("[data-submenu-toggle]").forEach((toggle) => {
+    const submenu = document.getElementById(toggle.getAttribute("aria-controls"));
+    if (!submenu) return;
+
+    toggle.addEventListener("click", (event) => {
       event.stopPropagation();
-      const open = servicesToggle.getAttribute("aria-expanded") !== "true";
-      servicesToggle.setAttribute("aria-expanded", String(open));
-      servicesSubmenu.hidden = !open;
+      const open = toggle.getAttribute("aria-expanded") !== "true";
+      toggle.setAttribute("aria-expanded", String(open));
+      submenu.hidden = !open;
     });
 
-    // Клик по категории закрывает всё меню, как остальные пункты
-    servicesSubmenu.addEventListener("click", () => setMenuOpen(false));
-  }
+    // Клик по пункту списка закрывает всё меню, как остальные пункты
+    submenu.addEventListener("click", () => setMenuOpen(false));
+  });
 
   header.addEventListener("click", (event) => {
     if (event.target.closest(".nav__link, .nav__phone")) setMenuOpen(false);
@@ -960,6 +962,69 @@ function initServicesMegaMenu() {
   activate(categories[0].dataset.megaCategory);
 }
 
+// «Компания»: компактный выпадающий список под пунктом, открывается по наведению.
+// На сенсорных и мобильных его заменяет аккордеон бургер-меню (см. initHeader)
+function initCompanyDropdown() {
+  const item = document.querySelector("[data-company-item]");
+  const menu = item?.querySelector("[data-company-menu]");
+  const trigger = item?.querySelector("[data-company-menu-trigger]");
+  if (!item || !menu || !trigger) return;
+  if (window.matchMedia("(hover: none), (max-width: 1023px)").matches) return;
+
+  let openTimer;
+  let closeTimer;
+  // Возврат фокуса на пункт после Escape не должен снова открывать список
+  let ignoreFocusOpen = false;
+
+  const setOpen = (open) => {
+    menu.hidden = !open;
+    trigger.setAttribute("aria-expanded", String(open));
+  };
+
+  const openMenu = () => {
+    clearTimeout(closeTimer);
+    clearTimeout(openTimer);
+    openTimer = setTimeout(() => setOpen(true), 60);
+  };
+
+  const closeMenu = () => {
+    clearTimeout(openTimer);
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => setOpen(false), 160);
+  };
+
+  item.addEventListener("mouseenter", openMenu);
+  item.addEventListener("mouseleave", closeMenu);
+
+  // Переход по ссылке (в том числе на якорь) убирает список с экрана
+  menu.addEventListener("click", (event) => {
+    if (event.target.closest(".nav-dropdown__link")) setOpen(false);
+  });
+
+  item.addEventListener("focusin", () => {
+    if (ignoreFocusOpen) {
+      ignoreFocusOpen = false;
+      return;
+    }
+    clearTimeout(closeTimer);
+    setOpen(true);
+  });
+
+  item.addEventListener("focusout", (event) => {
+    if (item.contains(event.relatedTarget)) return;
+    closeMenu();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || menu.hidden) return;
+    clearTimeout(openTimer);
+    clearTimeout(closeTimer);
+    ignoreFocusOpen = true;
+    setOpen(false);
+    trigger.focus();
+  });
+}
+
 // Услуги в мобильном меню: аккордеон «направления → услуги» собирается из данных мега-меню,
 // чтобы список услуг правился в одном месте
 function initMobileServicesNav() {
@@ -1223,6 +1288,7 @@ function initToolsSweep() {
 
 initHeader();
 initServicesMegaMenu();
+initCompanyDropdown();
 initMobileServicesNav();
 initScrollReveal();
 initGlowCards();

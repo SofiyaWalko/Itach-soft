@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Отзывы клиентов — Итач-софт</title>
+    <meta name="description" content="Отзывы и благодарственные письма клиентов Итач-софт: банки, лизинг, ритейл, образование и промышленность. Сканы документов в PDF." />
+    <script>document.documentElement.classList.add("js");</script>
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="assets/img/logos/logo.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+    <script src="assets/js/lead-wave.js" defer></script>
+    <script src="assets/js/cursor-halo.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="cursor-halo" aria-hidden="true" data-cursor-halo></div>
+
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <linearGradient id="gradient-contour" gradientUnits="userSpaceOnUse" x1="3" y1="3" x2="21" y2="21">
+        <stop offset="0" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <linearGradient id="gradient-number" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0.5" style="stop-color: var(--color-drop-orange)" />
+        <stop offset="1" style="stop-color: var(--color-drop-pink)" />
+      </linearGradient>
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <rect x="6.5" y="2" width="11" height="20" rx="3" />
+        <path d="M10.5 18.5h3" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <path
+          d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1.1 4.3 2.8 5.7L4.7 21l4.5-2.2c.9.2 1.8.3 2.8.3 5.1 0 9-3.6 9-8.1S17.1 3 12 3z"
+        />
+      </symbol>
+      <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+        <path d="M7 17 17 7" />
+        <path d="M8 7h9v9" />
+      </symbol>
+      <symbol id="icon-expand" viewBox="0 0 24 24">
+        <path d="M4 10V4h6" />
+        <path d="M20 14v6h-6" />
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path d="M4 6h16" />
+        <path d="M4 12h16" />
+        <path d="M4 18h16" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </symbol>
+      <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+        <path d="m6 9 6 6 6-6" />
+      </symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24">
+        <rect x="9" y="9" width="11" height="11" rx="2" />
+        <path d="M5 15V6a2 2 0 0 1 2-2h9" />
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="M5 12.5 9.5 17 19 7.5" />
+      </symbol>
+    </svg>
+
+    <header class="site-header" data-header>
+      <div class="container">
+        <div class="site-header__bar glass">
+          <a class="site-header__logo" href="index.html" aria-label="Итач-софт, на главную">
+            <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+          </a>
+
+          <nav class="site-header__nav" id="site-nav" aria-label="Основное меню">
+            <div class="nav__scroll">
+            <ul class="nav__list">
+              <li class="nav__item nav__item--services">
+                <a class="nav__link nav__link--services nav__link--desktop" href="services.html" aria-haspopup="true" aria-expanded="false" data-services-menu-trigger><span class="nav__text">Услуги</span></a>
+                <button class="nav__link nav__link--services nav__link--accordion" type="button" aria-expanded="false" aria-controls="services-submenu" data-submenu-toggle>
+                  <span class="nav__text">Услуги</span>
+                  <svg class="icon nav__chevron" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                </button>
+                <ul class="nav__submenu" id="services-submenu" data-services-submenu hidden>
+                  <li>
+                    <a class="nav__submenu-link" href="services.html"><span>Все услуги</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-sites.html"><span>Сайты</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-bitrix24.html"><span>Битрикс24</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-asterisk.html"><span>IP-АТС на базе Asterisk</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-web-services.html"><span>Разработка веб-сервисов</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-support.html"><span>Техническая поддержка</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-outstaff.html"><span>Аутстаффинг и IT-услуги</span></a>
+                  </li>
+                  <li>
+                    <a class="nav__submenu-link" href="service-ai.html"><span>AI-разработка</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li><a class="nav__link" href="portfolio.html"><span class="nav__text">Портфолио</span></a></li>
+              <li class="nav__item nav__item--dropdown" data-company-item>
+                <a class="nav__link nav__link--desktop" href="https://itach-soft.ru/about/" aria-haspopup="true" aria-expanded="false" aria-controls="company-submenu" data-company-menu-trigger><span class="nav__text">Компания</span></a>
+                <button class="nav__link nav__link--accordion" type="button" aria-expanded="false" aria-controls="company-submenu" data-submenu-toggle>
+                  <span class="nav__text">Компания</span>
+                  <svg class="icon nav__chevron" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                </button>
+                <ul class="nav-dropdown" id="company-submenu" data-company-menu hidden>
+                  <li><a class="nav-dropdown__link" href="https://itach-soft.ru/about/">О компании</a></li>
+                  <li><a class="nav-dropdown__link" href="garantii.html">Гарантия</a></li>
+                  <li><a class="nav-dropdown__link" href="otzyvy.html">Отзывы</a></li>
+                  <li><a class="nav-dropdown__link" href="faq.html">Ответы на часто <br />задаваемые вопросы</a></li>
+                  <li><a class="nav-dropdown__link" href="dokumenty.html">Документы</a></li>
+                </ul>
+              </li>
+              <li><a class="nav__link" href="blog.html"><span class="nav__text">Блог</span></a></li>
+              <li><a class="nav__link" href="contacts.html"><span class="nav__text">Контакты</span></a></li>
+            </ul>
+            </div>
+            <div class="nav__contacts">
+              <a class="nav__phone" href="tel:+74812280296">
+                <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+                +7 (481) 228-02-96
+              </a>
+              <a class="nav__phone" href="mailto:info@itach-soft.ru">
+                <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+                info@itach-soft.ru
+              </a>
+            </div>
+          </nav>
+
+          <div class="site-header__actions">
+            <a class="site-header__contact site-header__email" href="mailto:info@itach-soft.ru">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-mail" /></svg>
+              info@itach-soft.ru
+            </a>
+            <a class="site-header__contact site-header__phone" href="tel:+74812280296">
+              <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-phone" /></svg>
+              +7 (481) 228-02-96
+            </a>
+            <a class="btn btn--primary btn--sm site-header__cta" href="#lead">
+              Заказать проект
+            </a>
+            <button
+              class="site-header__burger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-nav"
+              aria-label="Меню"
+              data-menu-toggle
+            >
+              <svg class="icon icon--open" aria-hidden="true"><use href="#icon-menu" /></svg>
+              <svg class="icon icon--close" aria-hidden="true"><use href="#icon-close" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="mega-menu__wrap"><div class="mega-menu" role="navigation" aria-label="Все услуги" data-services-menu hidden>
+          <div class="mega-menu__inner">
+            <div class="mega-menu__columns">
+              <ul class="mega-menu__categories" data-mega-categories>
+                <li>
+                  <a class="mega-menu__category" href="service-sites.html" data-mega-category="sites">
+                    <span class="mega-menu__category-title">Сайты</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-bitrix24.html" data-mega-category="bitrix24">
+                    <span class="mega-menu__category-title">Битрикс24</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-asterisk.html" data-mega-category="asterisk">
+                    <span class="mega-menu__category-title">IP-АТС на базе Asterisk</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-web-services.html" data-mega-category="web-services">
+                    <span class="mega-menu__category-title">Разработка веб-сервисов</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-support.html" data-mega-category="support">
+                    <span class="mega-menu__category-title">Техническая поддержка</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-outstaff.html" data-mega-category="outstaff">
+                    <span class="mega-menu__category-title">Аутстаффинг и IT-услуги</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="mega-menu__category" href="service-ai.html" data-mega-category="ai">
+                    <span class="mega-menu__category-title">AI-разработка</span>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+                  </a>
+                </li>
+              </ul>
+
+              <div class="mega-menu__content">
+                <ul class="mega-menu__list" data-mega-items="sites">
+                  <li><a class="mega-menu__item" href="service-corporate-sites.html">Корпоративные сайты</a></li>
+                  <li><a class="mega-menu__item" href="service-internet-magaziny.html">Интернет-магазины</a></li>
+                  <li><a class="mega-menu__item" href="service-sayty-vizitki.html">Сайты-визитки</a></li>
+                  <li><a class="mega-menu__item" href="service-gotovye-shablony.html">Разработка сайта на готовых шаблонах</a></li>
+                  <li><a class="mega-menu__item" href="service-lending.html">Лендинги</a></li>
+                  <li><a class="mega-menu__item" href="service-gosudarstvennye.html">Сайты государственных организаций</a></li>
+                  <li><a class="mega-menu__item" href="service-sayty-na-bitriks.html">Сайты на Битрикс</a></li>
+                  <li><a class="mega-menu__item" href="service-podderzhka-saytov.html">Техническая поддержка сайтов</a></li>
+                  <li><a class="mega-menu__item" href="service-dorabotka-saytov.html">Доработка сайтов</a></li>
+                  <li><a class="mega-menu__item" href="service-veb-portaly.html">Разработка веб-порталов</a></li>
+                  <li><a class="mega-menu__item" href="service-audit-sayta.html">Комплексный аудит сайта</a></li>
+                  <li><a class="mega-menu__item" href="service-veb-dizayn.html">Разработка веб-дизайна сайта</a></li>
+                  <li><a class="mega-menu__item" href="service-lichnyy-kabinet.html">Разработка личного кабинета</a></li>
+                  <li><a class="mega-menu__item" href="service-react-prilozheniya.html">Разработка приложений на React JS</a></li>
+                  <li><a class="mega-menu__item" href="service-integratsiya-1c.html">Интеграция 1С с сайтом</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="bitrix24" hidden>
+                  <li><a class="mega-menu__item" href="service-bitrix24-vnedrenie.html">Внедрение и настройка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-dorabotka.html">Доработка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-integratsiya.html">Интеграция Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-avtomatizatsiya.html">Автоматизация бизнес-процессов в Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-telefoniya.html">IP-телефония для Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-podderzhka.html">Техническая поддержка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-obuchenie.html">Обучение Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-perenos.html">Перенос Битрикс24 из облака в коробку</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="asterisk" hidden>
+                  <li><a class="mega-menu__item" href="service-asterisk-vnedrenie.html">Внедрение IP-АТС на базе Asterisk</a></li>
+                  <li><a class="mega-menu__item" href="service-asterisk-nastroyka-voip.html">Настройка VoIP Asterisk</a></li>
+                  <li><a class="mega-menu__item" href="service-asterisk-bezopasnost.html">Обеспечение безопасности VoIP-АТС</a></li>
+                  <li><a class="mega-menu__item" href="service-asterisk-podderzhka.html">Техническая поддержка VoIP-телефонных станций</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="web-services" hidden>
+                  <li><a class="mega-menu__item" href="service-web-services-s-nulya.html">Разработка веб-сервисов с нуля</a></li>
+                  <li><a class="mega-menu__item" href="service-web-services-integratsiya.html">Интеграция сложных систем</a></li>
+                  <li><a class="mega-menu__item" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="support" hidden>
+                  <li><a class="mega-menu__item" href="service-podderzhka-saytov.html">Техническая поддержка сайтов</a></li>
+                  <li><a class="mega-menu__item" href="service-bitrix24-podderzhka.html">Техническая поддержка Битрикс24</a></li>
+                  <li><a class="mega-menu__item" href="service-asterisk-podderzhka.html">Техническая поддержка VoIP-телефонных станций</a></li>
+                  <li><a class="mega-menu__item" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="outstaff" hidden>
+                  <li><a class="mega-menu__item" href="service-outstaff-autstaffing.html">IT-аутстаффинг</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-predostavlenie-spetsialistov.html">Предоставление IT-специалистов под задачи бизнеса</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-konsultatsii.html">IT-консультации</a></li>
+                </ul>
+                <ul class="mega-menu__list" data-mega-items="ai" hidden>
+                  <li><a class="mega-menu__item" href="service-ai.html">AI-разработка</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <aside class="mega-menu__aside">
+              <div class="mega-menu__promo glow-card">
+                <h3 class="mega-menu__promo-title">Узнайте стоимость разработки</h3>
+                <p class="mega-menu__promo-text">Ответьте на несколько вопросов и получите предварительную оценку проекта.</p>
+                <a class="btn btn--primary btn--sm mega-menu__promo-link" href="#lead">Рассчитать стоимость</a>
+                <img class="mega-menu__promo-image" src="assets/img/mega-menu-banner.webp" alt="" width="800" height="522" decoding="async">
+              </div>
+            </aside>
+          </div>
+        </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="company-page" aria-labelledby="reviews-title">
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Хлебные крошки" data-reveal-stagger>
+            <a class="breadcrumbs__link" href="index.html">Главная</a>
+            <svg class="icon breadcrumbs__sep" aria-hidden="true"><use href="#icon-chevron-down" /></svg>
+            <span class="breadcrumbs__current" aria-current="page">Отзывы</span>
+          </nav>
+          <div class="company-page__head">
+            <h1 class="section-title" id="reviews-title" data-reveal>
+              Отзывы <span class="section-title__muted">клиентов</span>
+            </h1>
+            <p class="company-page__lead" data-reveal>
+              Банки, лизинговые компании, ритейл, образование и промышленность. Собрали отзывы клиентов
+              о проектах, которые мы разработали и продолжаем поддерживать.
+            </p>
+          </div>
+
+          <ul class="reviews-page__grid" data-reveal-stagger>
+            <li class="review-card glow-card">
+              <div class="review-card__top">
+                <img class="review-card__logo" src="assets/img/reviews/sberlizing.svg" width="300" height="42" alt="Сберлизинг" loading="lazy" />
+                <span class="review-card__quote" aria-hidden="true">“</span>
+              </div>
+              <blockquote class="review-card__text">
+                <p>От лица компании ЗАО «СберЛизинг» выражаем искреннюю благодарность разработчикам компании ООО «Итач-софт» за их профессионализм и ответственность в создании нашего нового сайта, а также разработку калькулятора для расчета лизинговых платежей.</p>
+                <p>Благодаря Вашей компании ЗАО «СберЛизинг» получили качественный и функциональный сайт, который, на наш взгляд, достойно представляет нашу компанию, а также удобный инструмент для расчетов и будущих возможных интеграций в иные программные комплексы компании.</p>
+              </blockquote>
+              <footer class="review-card__author">
+                <span class="review-card__name">И.А. Костюченко</span>
+                <span class="review-card__job">Заместитель генерального директора по финансам</span>
+              </footer>
+            </li>
+            <li class="review-card glow-card">
+              <div class="review-card__top">
+                <img class="review-card__logo" src="assets/img/reviews/alkor.svg" width="250" height="60" alt="Алькор Бриллианты России" loading="lazy" />
+                <span class="review-card__quote" aria-hidden="true">“</span>
+              </div>
+              <blockquote class="review-card__text">
+                <p>От лица нашей компании хочу сделать отзыв о совместно работе с ООО «Итач-софт».</p>
+                <p>Компания «Итач-софт» очень ответственно подходит к нашим проектам. Они сформировали команду с которой налажена очень быстрая обратная связь.</p>
+                <p>Все процессы максимально понятны и прозрачны. Мы добавлены на рабочий портал компании, где можем коммуницировать по задачам. Решать что-то по ходу и сразу. Делать быстрые созвоны. Это позволяет избежать затягивания разработки и принятия неправильных, неэффективных решений.</p>
+              </blockquote>
+              <footer class="review-card__author">
+                <span class="review-card__name">Алексей Батура</span>
+                <span class="review-card__job">Менеджер IT проектов</span>
+              </footer>
+            </li>
+            <li class="review-card glow-card">
+              <div class="review-card__top">
+                <img class="review-card__logo" src="assets/img/reviews/bnb-bank.svg" width="250" height="59" alt="БНБ Банк" loading="lazy" />
+                <span class="review-card__quote" aria-hidden="true">“</span>
+              </div>
+              <blockquote class="review-card__text">
+                <p>ОАО «БНБ-Банк» искренне благодарит компанию ООО «Итач-софт» за качественное и своевременное обслуживание сайта нашей организации.</p>
+                <p>За время работы сотрудники компании ООО «Итач-софт» проявили себя как добросовестные, исполнительные и отзывчивые специалисты. Все возникающие вопросы решались ими профессионально и в срок.</p>
+                <p>Особенно хочется отметить ответственное и внимательное отношение к требованиям и пожеланиям со стороны нашей компании.</p>
+              </blockquote>
+              <footer class="review-card__author">
+                <span class="review-card__name">Денис Чекун</span>
+                <span class="review-card__job">Руководитель отдела цифрового маркетинга</span>
+              </footer>
+            </li>
+            <li class="review-card glow-card">
+              <div class="review-card__top">
+                <img class="review-card__logo" src="assets/img/reviews/zdes-i-seychas.svg" width="181" height="40" alt="Здесь и Сейчас" loading="lazy" />
+                <span class="review-card__quote" aria-hidden="true">“</span>
+              </div>
+              <blockquote class="review-card__text">
+                <p>От имени ООО "Бизнес школа "Здесь и Сейчас" выражаю искреннюю благодарность компании "Итач-софт" за высокий профессионализм и качественное выполнение работы по переносу нашей CRM-системы Битрикс24 из облачного хостинга на собственные серверные мощности.</p>
+                <p>Проект был успешно реализован в строгом соответствии с нашими ожиданиям и техническими требованиями. Все работы были выполнены в установленные сроки, с соблюдением согласованного объема и прозрачного ценообразования, что стало для нас значимым показателем надежности подрядчика.</p>
+              </blockquote>
+              <footer class="review-card__author">
+                <span class="review-card__name">Д.М. Богович</span>
+                <span class="review-card__job">Директор</span>
+              </footer>
+            </li>
+            <li class="review-card glow-card">
+              <div class="review-card__top">
+                <img class="review-card__logo" src="assets/img/reviews/bft.svg" width="180" height="40" alt="БФТ" loading="lazy" />
+                <span class="review-card__quote" aria-hidden="true">“</span>
+              </div>
+              <blockquote class="review-card__text">
+                <p>Банковско-финансовая телесеть выражает благодарность компании ООО «Итач-софт» за выполненные работы по интеграции портала Битрикс24 и ПО БФТ, внедрению IP-телефонии на базе Asterisk и интеграции с порталом Битрикс24. Интеграция с порталом Битрикс24 позволила нам упростить процесс работы с клиентами. Звонки автоматически записываются и сохраняются в соответствующих карточках клиентов, что дает возможность в любой момент прослушивать запись разговор и быстро ознакомиться с деталями общения. Мы получили надежную и функциональную систему коммуникации, которая значительно улучшила работу.</p>
+              </blockquote>
+              <footer class="review-card__author">
+                <span class="review-card__name">Цвирко Ю. С.</span>
+                <span class="review-card__job">Заместитель директора по коммерческим вопросам</span>
+              </footer>
+            </li>
+            <li class="review-card glow-card">
+              <div class="review-card__top">
+                <img class="review-card__logo" src="assets/img/reviews/maximus.svg" width="250" height="47" alt="Максимус" loading="lazy" />
+                <span class="review-card__quote" aria-hidden="true">“</span>
+              </div>
+              <blockquote class="review-card__text">
+                <p>Выражаем благодарность коллективу компании ООО "Итач-софт" за создание и ежедневную своевременную техническую поддержку нашей детской развивающей платформы.</p>
+                <p>Скорость реагирования, оперативность в принятии решений и забота - главные отличительные черты компании, которая помогает в затруднительных ситуациях, радуется нашим достижениям и качественно реализует разработку нужного функционала компьютерных программ.</p>
+                <p>С Вами мы сможем больше!</p>
+              </blockquote>
+              <footer class="review-card__author">
+                <span class="review-card__name">А.Л. Зубарь</span>
+                <span class="review-card__job">Директор</span>
+              </footer>
+            </li>
+            <li class="review-card glow-card">
+              <div class="review-card__top">
+                <img class="review-card__logo" src="assets/img/reviews/autogroup.svg" width="250" height="63" alt="Автогруп" loading="lazy" />
+                <span class="review-card__quote" aria-hidden="true">“</span>
+              </div>
+              <blockquote class="review-card__text">
+                <p>Настоящим письмом выражаем свою искреннюю благодарность компании «Итач-софт» за отличную работу, которую проделала Ваша компания по созданию и запуску нашего сайта, а также по разработке собственной специализированной CRM-системы.</p>
+                <p>В работе с Вами мы увидели профессионализм, знание технологий, системный подход, соблюдение сроков, способность увидеть и понять наши потребности, и предложить лучшее решение.</p>
+                <p>Надеемся на дальнейшее плодотворное сотрудничество с Вами!</p>
+              </blockquote>
+              <footer class="review-card__author">
+                <span class="review-card__name">Болдюсов Дмитрий Григорьевич</span>
+                <span class="review-card__job">Руководитель</span>
+              </footer>
+            </li>
+                    </ul>
+
+          <section class="company-section" aria-labelledby="reviews-scans-title">
+            <div class="reviews-scans__head">
+              <div>
+                <h2 class="company-section__title" id="reviews-scans-title">Благодарственные письма</h2>
+                <p class="company-section__lead">
+                  Оригиналы писем и отзывов клиентов. Каждый документ открывается в PDF.
+                </p>
+              </div>
+              <a class="btn btn--outline" href="assets/docs/otzyvy-itach-soft.pdf" target="_blank" rel="noopener">
+                Скачать все отзывы (PDF)
+              </a>
+            </div>
+            <ul class="review-scans" data-reveal-stagger>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/redprint.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/redprint.jpg" width="283" height="400" alt="Отзыв компании РэдПринт" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">РэдПринт</span>
+                  <span class="review-scan__service">Разработка сайта интернет-магазина</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/rozybel-b24.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/rozybel-b24.jpg" width="283" height="400" alt="Отзыв компании РозыБел Б24" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">РозыБел Б24</span>
+                  <span class="review-scan__service">Внедрение CRM Битрикс24</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/totek.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/totek.jpg" width="283" height="400" alt="Отзыв компании Тотек" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Тотек</span>
+                  <span class="review-scan__service">Внедрение Битрикс24</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/sitibetonstroy.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/sitibetonstroy.jpg" width="283" height="400" alt="Отзыв компании Ситибетонстрой" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Ситибетонстрой</span>
+                  <span class="review-scan__service">Разработка корпоративного сайта</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/sberlizing.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/sberlizing.jpg" width="283" height="400" alt="Отзыв компании СберЛизинг" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">СберЛизинг</span>
+                  <span class="review-scan__service">Разработка бизнес-сайта</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/rozy-bel.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/rozy-bel.jpg" width="283" height="400" alt="Отзыв компании Розы Бел" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Розы Бел</span>
+                  <span class="review-scan__service">Интеграция Битрикс24</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/kristallprovayder.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/kristallprovayder.jpg" width="283" height="400" alt="Отзыв компании КристаллПровайдер" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">КристаллПровайдер</span>
+                  <span class="review-scan__service">Разработка сайта для бизнеса под ключ</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/zid-bay.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/zid-bay.jpg" width="283" height="400" alt="Отзыв компании ЗИД Бай" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">ЗИД Бай</span>
+                  <span class="review-scan__service">Интеграция Битрикс24</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/zdes-i-seychas.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/zdes-i-seychas.jpg" width="283" height="400" alt="Отзыв компании Здесь и сейчас" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Здесь и сейчас</span>
+                  <span class="review-scan__service">Автоматизация бизнес-процессов в Битрикс24</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/e2e4.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/e2e4.jpg" width="283" height="400" alt="Отзыв компании Е2Е4" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Е2Е4</span>
+                  <span class="review-scan__service">Техническая поддержка</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/bnb-bank.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/bnb-bank.jpg" width="283" height="400" alt="Отзыв компании БНБ Банк" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">БНБ Банк</span>
+                  <span class="review-scan__service">Техническая поддержка сайта</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/bellegprom.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/bellegprom.jpg" width="283" height="400" alt="Отзыв компании Беллегпром" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Беллегпром</span>
+                  <span class="review-scan__service">Обслуживание сайта</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/alkor.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/alkor.jpg" width="283" height="400" alt="Отзыв компании Алькор" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Алькор</span>
+                  <span class="review-scan__service">Обслуживание официального сайта</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/aims-solutions.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/aims-solutions.jpg" width="283" height="400" alt="Отзыв компании Аймис Солюшинс" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Аймис Солюшинс</span>
+                  <span class="review-scan__service">Создание веб-сервиса</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/autogroup.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/autogroup.jpg" width="283" height="400" alt="Отзыв компании Autogroup.by" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Autogroup.by</span>
+                  <span class="review-scan__service">Разработка веб-сервиса</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/rayval.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/rayval.jpg" width="283" height="400" alt="Отзыв компании Райвал" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Райвал</span>
+                  <span class="review-scan__service">Техническое обслуживание сайта</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/a-100.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/a-100.jpg" width="283" height="400" alt="Отзыв компании А-100" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">А-100</span>
+                  <span class="review-scan__service">Обслуживание официального сайта</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/beltamozhservis.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/beltamozhservis.jpg" width="283" height="400" alt="Отзыв компании Белтаможсервис" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Белтаможсервис</span>
+                  <span class="review-scan__service">Интеграция систем</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/nootropics.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/nootropics.jpg" width="283" height="400" alt="Отзыв компании Nootropics.ru" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Nootropics.ru</span>
+                  <span class="review-scan__service">Интеграция с Битрикс24</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/nlc.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/nlc.jpg" width="283" height="400" alt="Отзыв компании NLC — Новая лизинговая компания" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">NLC — Новая лизинговая компания</span>
+                  <span class="review-scan__service">Разработка корпоративного сайта</span>
+                </span>
+              </a>
+            </li>
+            <li class="review-scan glow-card">
+              <a class="review-scan__link" href="assets/docs/reviews/maximus.pdf" target="_blank" rel="noopener">
+                <span class="review-scan__media">
+                  <img src="assets/img/reviews/scans/maximus.jpg" width="283" height="400" alt="Отзыв компании Maximus" loading="lazy" />
+                </span>
+                <span class="review-scan__body">
+                  <span class="review-scan__name">Maximus</span>
+                  <span class="review-scan__service">Техническая поддержка сайта</span>
+                </span>
+              </a>
+            </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+<section class="lead" id="lead" aria-labelledby="lead-title">
+        <div class="container">
+          <div class="lead__panel" data-reveal>
+            <canvas class="lead__wave" aria-hidden="true" data-lead-wave></canvas>
+            <div class="lead__intro">
+              <h2 class="section-title lead__title" id="lead-title">
+                Расскажите, что хотите <span class="section-title__muted">улучшить в бизнесе</span>
+              </h2>
+              <p class="lead__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+            </div>
+            <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-name">Имя</label>
+                  <input class="lead-form__control" id="lead-name" name="name" type="text" autocomplete="name" required aria-describedby="lead-name-error" data-error="Укажите, как к вам обращаться" />
+                  <p class="lead-form__error" id="lead-name-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-company">Компания</label>
+                  <input class="lead-form__control" id="lead-company" name="company" type="text" autocomplete="organization" required aria-describedby="lead-company-error" data-error="Укажите название компании" />
+                  <p class="lead-form__error" id="lead-company-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__row">
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-phone">Телефон</label>
+                  <input class="lead-form__control" id="lead-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="lead-phone-error" data-error="Укажите телефон для связи" />
+                  <p class="lead-form__error" id="lead-phone-error"></p>
+                </div>
+                <div class="lead-form__field">
+                  <label class="lead-form__label" for="lead-email">E-mail</label>
+                  <input class="lead-form__control" id="lead-email" name="email" type="email" autocomplete="email" required aria-describedby="lead-email-error" data-error="Укажите корректный e-mail" />
+                  <p class="lead-form__error" id="lead-email-error"></p>
+                </div>
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="lead-task">Ваша задача</label>
+                <textarea class="lead-form__control lead-form__control--area" id="lead-task" name="task" rows="4" required aria-describedby="lead-task-error" data-error="Коротко опишите задачу"></textarea>
+                <p class="lead-form__error" id="lead-task-error"></p>
+              </div>
+              <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+              <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+              <p class="lead-form__status" role="status" data-lead-status></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__inner">
+          <div class="site-footer__top" data-reveal>
+            <a class="site-footer__logo" href="index.html" aria-label="Итач-софт, на главную">
+              <img src="assets/img/logos/logo.png" width="62" height="45" alt="" />
+            </a>
+            <ul class="site-footer__socials" aria-label="Мы в соцсетях">
+              <li><a class="site-footer__social site-footer__social--telegram" href="https://t.me/Itachsoft_bot" target="_blank" rel="noopener" aria-label="Telegram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--youtube" href="https://www.youtube.com/@_ItachSoft_" target="_blank" rel="noopener" aria-label="YouTube"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--instagram" href="https://www.instagram.com/itach_soft/" target="_blank" rel="noopener" aria-label="Instagram"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--tiktok" href="https://www.tiktok.com/@itach_soft_team" target="_blank" rel="noopener" aria-label="TikTok"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--linkedin" href="https://www.linkedin.com/company/80693063/" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+              <li><a class="site-footer__social site-footer__social--facebook" href="https://www.facebook.com/itachbelarus" target="_blank" rel="noopener" aria-label="Facebook"><span class="site-footer__icon" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+          <nav class="site-footer__columns" aria-label="Разделы сайта" data-reveal-stagger>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-bitrix24.html">Битрикс24</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-bitrix24-vnedrenie.html">Внедрение и настройка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-dorabotka.html">Доработка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-integratsiya.html">Интеграция Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-avtomatizatsiya.html">Автоматизация Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-telefoniya.html">IP-телефония для Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-podderzhka.html">Тех. поддержка Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-obuchenie.html">Обучение Битрикс24</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-sites.html">Сайты</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-corporate-sites.html">Корпоративные сайты</a></li>
+                <li><a class="site-footer__link" href="service-internet-magaziny.html">Интернет-магазины</a></li>
+                <li><a class="site-footer__link" href="service-sayty-vizitki.html">Сайты-визитки</a></li>
+                <li><a class="site-footer__link" href="service-gosudarstvennye.html">Сайты госорганизаций</a></li>
+                <li><a class="site-footer__link" href="service-lending.html">Лендинг</a></li>
+                <li><a class="site-footer__link" href="service-gotovye-shablony.html">Разработка сайта на готовых шаблонах</a></li>
+                <li><a class="site-footer__link" href="service-podderzhka-saytov.html">Техническая поддержка сайтов</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-asterisk.html">IP-АТС на базе Asterisk</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-asterisk-vnedrenie.html">Внедрение IP-АТС на базе Asterisk</a></li>
+                <li><a class="site-footer__link" href="service-asterisk-nastroyka-voip.html">Настройка VoIP Asterisk</a></li>
+                <li><a class="site-footer__link" href="service-asterisk-bezopasnost.html">Безопасность VoIP-АТС</a></li>
+                <li><a class="site-footer__link" href="service-asterisk-podderzhka.html">Поддержка VoIP-станций</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-web-services.html">Веб-сервисы</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-web-services-s-nulya.html">Разработка веб-сервисов с нуля</a></li>
+                <li><a class="site-footer__link" href="service-web-services-integratsiya.html">Интеграция сложных систем</a></li>
+                <li><a class="site-footer__link" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title"><a class="site-footer__title-link" href="service-support.html">Техническая поддержка</a></h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="service-podderzhka-saytov.html">Поддержка сайтов</a></li>
+                <li><a class="site-footer__link" href="service-bitrix24-podderzhka.html">Обслуживание Битрикс24</a></li>
+                <li><a class="site-footer__link" href="service-asterisk-podderzhka.html">Поддержка VoIP-станций</a></li>
+                <li><a class="site-footer__link" href="service-web-services-podderzhka.html">Поддержка ПО</a></li>
+              </ul>
+            </div>
+            <div class="site-footer__column">
+              <h3 class="site-footer__title">Компания</h3>
+              <ul class="site-footer__list">
+                <li><a class="site-footer__link" href="portfolio.html">Портфолио</a></li>
+                <li><a class="site-footer__link" href="garantii.html">Гарантия</a></li>
+                <li><a class="site-footer__link" href="otzyvy.html">Отзывы</a></li>
+                <li><a class="site-footer__link" href="blog.html">Новости</a></li>
+                <li><a class="site-footer__link" href="faq.html">Вопросы и ответы</a></li>
+                <li><a class="site-footer__link" href="dokumenty.html">Документы</a></li>
+                <li><a class="site-footer__link" href="contacts.html">Контакты</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="site-footer__offices" data-reveal-stagger>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в Беларуси</h3>
+              <p class="site-footer__address">220083, Республика Беларусь, г. Минск, пр-т Дзержинского, 104-141, оф. 1201Б</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach.by">info@itach.by</a>
+              <a class="site-footer__link" href="tel:+375173884530">+375 17 388-45-30</a>
+            </address>
+            <address class="site-footer__office">
+              <h3 class="site-footer__title">Офис в России</h3>
+              <p class="site-footer__address">214000, Российская Федерация, г. Смоленск, ул. Большая Советская, д. 16/17, оф. 60</p>
+              <p class="site-footer__hours">Пн–Пт 9:00–17:00, Сб–Вс выходные</p>
+              <a class="site-footer__link" href="mailto:info@itach-soft.ru">info@itach-soft.ru</a>
+              <a class="site-footer__link" href="tel:+74812280296">+7 (481) 228-02-96</a>
+            </address>
+          </div>
+          <div class="site-footer__bottom" data-reveal>
+            <p class="site-footer__legal">
+              ООО «Итач-софт». Юридический адрес: Республика Беларусь, г. Минск, 220141, пр. Независимости, д. 172, пом. 22.
+              УНП 192324962, регистрационный номер в Торговом реестре 466118 от 20.11.2019.
+              Техподдержка 24/7: <a class="site-footer__link" href="mailto:helpdesk@itach.by">helpdesk@itach.by</a>
+            </p>
+            <div class="site-footer__copy">
+              <p>© 2026 ООО «Итач-софт» — разработка программного обеспечения</p>
+              <a class="site-footer__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Политика конфиденциальности</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <section class="cookie" aria-labelledby="cookie-title" data-cookie hidden>
+      <img class="cookie__image" src="assets/img/kuki.webp" width="640" height="640" alt="" />
+      <div class="cookie__body">
+        <h2 class="cookie__title" id="cookie-title">Мы используем cookie</h2>
+        <p class="cookie__text">
+          Они помогают сайту работать стабильнее, а нам — понимать, что вам полезно.
+          <a class="cookie__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">Подробнее</a>
+        </p>
+        <div class="cookie__actions">
+          <button class="btn btn--primary btn--sm" type="button" data-cookie-choice="all">Принять все</button>
+          <button class="btn btn--ghost btn--sm" type="button" data-cookie-choice="necessary">Только необходимые</button>
+        </div>
+      </div>
+    </section>
+
+    <dialog class="modal" id="lead-modal" aria-labelledby="lead-modal-title" data-lead-modal>
+      <div class="modal__panel">
+        <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close>
+          <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+        </button>
+        <h2 class="modal__title" id="lead-modal-title">Остались <span class="section-title__muted">вопросы?</span></h2>
+        <p class="modal__text">Разберём вашу задачу, предложим подходящее решение и определим следующие шаги.</p>
+        <form class="lead-form" method="post" novalidate data-lead-form data-endpoint="">
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-name">Имя</label>
+                        <input class="lead-form__control" id="modal-name" autofocus name="name" type="text" autocomplete="name" required aria-describedby="modal-name-error" data-error="Укажите, как к вам обращаться" />
+                        <p class="lead-form__error" id="modal-name-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-company">Компания</label>
+                        <input class="lead-form__control" id="modal-company" name="company" type="text" autocomplete="organization" required aria-describedby="modal-company-error" data-error="Укажите название компании" />
+                        <p class="lead-form__error" id="modal-company-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__row">
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-phone">Телефон</label>
+                        <input class="lead-form__control" id="modal-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="modal-phone-error" data-error="Укажите телефон для связи" />
+                        <p class="lead-form__error" id="modal-phone-error"></p>
+                      </div>
+                      <div class="lead-form__field">
+                        <label class="lead-form__label" for="modal-email">E-mail</label>
+                        <input class="lead-form__control" id="modal-email" name="email" type="email" autocomplete="email" required aria-describedby="modal-email-error" data-error="Укажите корректный e-mail" />
+                        <p class="lead-form__error" id="modal-email-error"></p>
+                      </div>
+                    </div>
+                    <div class="lead-form__field">
+                      <label class="lead-form__label" for="modal-task">Ваша задача</label>
+                      <textarea class="lead-form__control lead-form__control--area" id="modal-task" name="task" rows="3" required aria-describedby="modal-task-error" data-error="Коротко опишите задачу"></textarea>
+                      <p class="lead-form__error" id="modal-task-error"></p>
+                    </div>
+                    <button class="btn btn--primary lead-form__submit" type="submit">Получить консультацию</button>
+                    <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
+                    <p class="lead-form__status" role="status" data-lead-status></p>
+                  </form>
+      </div>
+    </dialog>
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Содержимое детальных окон кейсов и новостей: тексты и ссылки взяты с itach-soft.ru -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

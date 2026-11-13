@@ -1,0 +1,212 @@
+[
+ {
+  "href": "/upload/resize_cache/iblock/b59/5enze891lz9p2ulkonx72mefw183iqs5/1200_1200_1/РэдПринт.jpg",
+  "alt": "РэдПринт",
+  "service": "Разработка сайта интернет-магазина",
+  "slug": "redprint",
+  "word": 1,
+  "pdf": "assets/docs/reviews/redprint.pdf",
+  "thumb": "assets/img/reviews/scans/redprint.jpg",
+  "name": "РэдПринт"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/849/h5ypbc6x7rjuxkkqyiabmdmrpmaf3jn0/1200_1200_1/РозыБел Б24.jpg",
+  "alt": "РозыБел Б24",
+  "service": "Внедрение CRM Битрикс24",
+  "slug": "rozybel-b24",
+  "word": 2,
+  "pdf": "assets/docs/reviews/rozybel-b24.pdf",
+  "thumb": "assets/img/reviews/scans/rozybel-b24.jpg",
+  "name": "РозыБел Б24"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/23c/l4ameru2lb3x69cdhfdgumcgvsrj19jy/1200_1200_1/Отзыв Тотек.jpg",
+  "alt": "Отзыв Тотек",
+  "service": "Внедрение Битрикс24",
+  "slug": "totek",
+  "word": 3,
+  "pdf": "assets/docs/reviews/totek.pdf",
+  "thumb": "assets/img/reviews/scans/totek.jpg",
+  "name": "Тотек"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/b67/4nqhb71crnlugqbb54q2utxnsbssspae/1200_1200_1/отзыв ситибетонстрой.jpg",
+  "alt": "отзыв ситибетонстрой",
+  "service": "Разработка корпоративного сайта",
+  "slug": "sitibetonstroy",
+  "word": 4,
+  "pdf": "assets/docs/reviews/sitibetonstroy.pdf",
+  "thumb": "assets/img/reviews/scans/sitibetonstroy.jpg",
+  "name": "Ситибетонстрой"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/ac7/s5w6ef2wp4dd2e2pq2pfy8a9bq7rpdmd/1200_1200_1/Отзыв СберЛизинг.jpg",
+  "alt": "Отзыв СберЛизинг",
+  "service": "Разработка бизнес-сайта",
+  "slug": "sberlizing",
+  "word": 5,
+  "pdf": "assets/docs/reviews/sberlizing.pdf",
+  "thumb": "assets/img/reviews/scans/sberlizing.jpg",
+  "name": "СберЛизинг"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/881/4y6urzjuvlifmi3a0ledhvcvu50kt4a9/1200_1200_1/Отзыв Розы бел.jpg",
+  "alt": "Отзыв Розы бел",
+  "service": "Интеграция Битрикс24",
+  "slug": "rozy-bel",
+  "word": 6,
+  "pdf": "assets/docs/reviews/rozy-bel.pdf",
+  "thumb": "assets/img/reviews/scans/rozy-bel.jpg",
+  "name": "Розы Бел"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/8d3/2jbm0x1zj8ja0y4u5icdr1ddkl5hoube/1200_1200_1/Отзыв КристаллПровайдер.jpg",
+  "alt": "Отзыв КристаллПровайдер",
+  "service": "Разработка сайта для бизнеса под ключ",
+  "slug": "kristallprovayder",
+  "word": 7,
+  "pdf": "assets/docs/reviews/kristallprovayder.pdf",
+  "thumb": "assets/img/reviews/scans/kristallprovayder.jpg",
+  "name": "КристаллПровайдер"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/216/par62w28pyuq1dwlhwthjr94f9j436nu/1200_1200_1/отзыв зид бай.jpg",
+  "alt": "отзыв зид бай",
+  "service": "Интеграция Битрикс24",
+  "slug": "zid-bay",
+  "word": 8,
+  "pdf": "assets/docs/reviews/zid-bay.pdf",
+  "thumb": "assets/img/reviews/scans/zid-bay.jpg",
+  "name": "ЗИД Бай"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/e5e/nogibkm0fv9r51haos5myscbiy0f8ulu/1200_1200_1/Отзыв Здесь и сейчас.jpg",
+  "alt": "Отзыв Здесь и сейчас",
+  "service": "Автоматизация бизнес-процессов в Битрикс24",
+  "slug": "zdes-i-seychas",
+  "word": 9,
+  "pdf": "assets/docs/reviews/zdes-i-seychas.pdf",
+  "thumb": "assets/img/reviews/scans/zdes-i-seychas.jpg",
+  "name": "Здесь и сейчас"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/8c6/14mhzh3vymuxfpjoe6unvsz2v5lgkyhl/1200_1200_1/Отзыв Е2Е4.jpg",
+  "alt": "Отзыв Е2Е4",
+  "service": "Техническая поддержка",
+  "slug": "e2e4",
+  "word": 10,
+  "pdf": "assets/docs/reviews/e2e4.pdf",
+  "thumb": "assets/img/reviews/scans/e2e4.jpg",
+  "name": "Е2Е4"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/931/hivdd965y3lqsthlwfssaj2t226p6tjx/1200_1200_1/Отзыв БНБ банк.jpg",
+  "alt": "Отзыв БНБ банк",
+  "service": "Техническая поддержка сайта",
+  "slug": "bnb-bank",
+  "word": 11,
+  "pdf": "assets/docs/reviews/bnb-bank.pdf",
+  "thumb": "assets/img/reviews/scans/bnb-bank.jpg",
+  "name": "БНБ Банк"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/36b/pxpcfqdo4qkbuiyveyf9l0un26frdght/1200_1200_1/Отзыв Беллегпром.jpg",
+  "alt": "Отзыв Беллегпром",
+  "service": "Обслуживание сайта",
+  "slug": "bellegprom",
+  "word": 12,
+  "pdf": "assets/docs/reviews/bellegprom.pdf",
+  "thumb": "assets/img/reviews/scans/bellegprom.jpg",
+  "name": "Беллегпром"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/3ef/q9n7yzopqd87lniorio8el8az8iahvpj/1200_1200_1/Отзыв Алькор.jpg",
+  "alt": "Отзыв Алькор",
+  "service": "Обслуживание официального сайта",
+  "slug": "alkor",
+  "word": 13,
+  "pdf": "assets/docs/reviews/alkor.pdf",
+  "thumb": "assets/img/reviews/scans/alkor.jpg",
+  "name": "Алькор"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/48c/78bxnrjwlbwrq834d5rpqlvvfagdkbb2/1200_1200_1/Отзыв Аймис Солюшинс.jpg",
+  "alt": "Отзыв Аймис Солюшинс",
+  "service": "Создание веб-сервиса",
+  "slug": "aims-solutions",
+  "word": 14,
+  "pdf": "assets/docs/reviews/aims-solutions.pdf",
+  "thumb": "assets/img/reviews/scans/aims-solutions.jpg",
+  "name": "Аймис Солюшинс"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/f05/8lb4igex7spy2m9pp4bd1zk2rgswdtn6/1200_1200_1/Отзыв autogroup.by.jpg",
+  "alt": "Отзыв autogroup.by",
+  "service": "Разработка веб-сервиса",
+  "slug": "autogroup",
+  "word": 15,
+  "pdf": "assets/docs/reviews/autogroup.pdf",
+  "thumb": "assets/img/reviews/scans/autogroup.jpg",
+  "name": "Autogroup.by"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/68e/qcv2khlxvys6ky7oqq70nm26r80erqeu/1200_1200_1/Благодарственное письмо от Райвал.jpg",
+  "alt": "Благодарственное письмо от Райвал",
+  "service": "Техническое обслуживание сайта",
+  "slug": "rayval",
+  "word": 16,
+  "pdf": "assets/docs/reviews/rayval.pdf",
+  "thumb": "assets/img/reviews/scans/rayval.jpg",
+  "name": "Райвал"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/0b9/33uabyfvckxkbk5p3qqxhscgysj17lyz/1200_1200_1/Благодарность от А-100.jpg",
+  "alt": "Благодарность от А-100",
+  "service": "Обслуживание официального сайта",
+  "slug": "a-100",
+  "word": 17,
+  "pdf": "assets/docs/reviews/a-100.pdf",
+  "thumb": "assets/img/reviews/scans/a-100.jpg",
+  "name": "А-100"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/275/qffijjgeqhciyqhqvpk898yi3v7jkegh/1200_1200_1/Белтаможсервис Б24 и АТС-1.jpg",
+  "alt": "Белтаможсервис Б24 и АТС-1",
+  "service": "Интеграция систем",
+  "slug": "beltamozhservis",
+  "word": 18,
+  "pdf": "assets/docs/reviews/beltamozhservis.pdf",
+  "thumb": "assets/img/reviews/scans/beltamozhservis.jpg",
+  "name": "Белтаможсервис"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/f7d/nnspnilc3f2kqq5o6vd3cvceeacg2xka/1200_1200_1/nootropics.ru.jpg",
+  "alt": "nootropics.ru",
+  "service": "Интеграция с Битрикс24",
+  "slug": "nootropics",
+  "word": 19,
+  "pdf": "assets/docs/reviews/nootropics.pdf",
+  "thumb": "assets/img/reviews/scans/nootropics.jpg",
+  "name": "Nootropics.ru"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/8e5/vr8r6oju2xkxxio8x9zo4933oszzj0cn/1200_1200_1/NLC - Новая лизинговая компания.jpg",
+  "alt": "NLC - Новая лизинговая компания",
+  "service": "Разработка корпоративного сайта",
+  "slug": "nlc",
+  "word": 20,
+  "pdf": "assets/docs/reviews/nlc.pdf",
+  "thumb": "assets/img/reviews/scans/nlc.jpg",
+  "name": "NLC — Новая лизинговая компания"
+ },
+ {
+  "href": "/upload/resize_cache/iblock/2a4/owlf3h9p4w0mhv7z1lmdzxgzm9uul576/1200_1200_1/Maximus.jpg",
+  "alt": "Maximus",
+  "service": "Техническая поддержка сайта",
+  "slug": "maximus",
+  "word": 21,
+  "pdf": "assets/docs/reviews/maximus.pdf",
+  "thumb": "assets/img/reviews/scans/maximus.jpg",
+  "name": "Maximus"
+ }
+]
