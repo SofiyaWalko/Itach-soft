@@ -1268,6 +1268,70 @@
           </div>
         </section>
 
+        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
+             переключение наведением на десктопе и кликом везде -->
+        <section class="audience" aria-labelledby="segments-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="segments-title">
+              Кому <span class="section-title__muted">подходит</span>
+            </h2>
+            <div class="audience-picker" data-audience-picker data-reveal>
+              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
+                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
+                  <span class="audience-tab__text">Ручным процессам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
+                  <span class="audience-tab__text">Кабинету для клиентов</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
+                  <span class="audience-tab__text">Внутренним системам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
+                  <span class="audience-tab__text">B2B-платформам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
+                  <span class="audience-tab__text">Отраслевым задачам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
+                  <span class="audience-tab__text">Своему продукту</span>
+                </button>
+              </div>
+              <div class="audience-picker__panels">
+                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Ручные процессы</h3>
+                  <p class="audience-panel__text">Автоматизировать рутину, которая держится на Excel и переписке</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Самообслуживание клиентов</h3>
+                  <p class="audience-panel__text">Дать клиентам доступ к заказам, документам и заявкам</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Внутренние системы</h3>
+                  <p class="audience-panel__text">Собрать данные из разрозненных сервисов в одном окне</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Платформа для партнёров</h3>
+                  <p class="audience-panel__text">Запустить сервис для оптовых клиентов и партнёров</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Отраслевые решения</h3>
+                  <p class="audience-panel__text">Собрать сервис под специфику рынка, если готового ПО нет</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Собственный продукт</h3>
+                  <p class="audience-panel__text">Проверить идею на MVP и масштабировать без переписывания</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- 8. Наши достижения: сертификаты и награды -->
         <section class="awards" aria-labelledby="awards-title" data-awards>
           <div class="container awards__inner">

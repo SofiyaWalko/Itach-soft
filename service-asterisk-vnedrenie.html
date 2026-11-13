@@ -845,6 +845,70 @@
           </div>
         </section>
 
+        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
+             переключение наведением на десктопе и кликом везде -->
+        <section class="audience" aria-labelledby="segments-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="segments-title">
+              Кому <span class="section-title__muted">подходит</span>
+            </h2>
+            <div class="audience-picker" data-audience-picker data-reveal>
+              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
+                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
+                  <span class="audience-tab__text">Офисам и филиалам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
+                  <span class="audience-tab__text">Отделам продаж</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
+                  <span class="audience-tab__text">Битрикс24 и CRM</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
+                  <span class="audience-tab__text">Контакт-центрам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
+                  <span class="audience-tab__text">Малому бизнесу</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
+                  <span class="audience-tab__text">Новым офисам</span>
+                </button>
+              </div>
+              <div class="audience-picker__panels">
+                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Офисы и филиалы</h3>
+                  <p class="audience-panel__text">Объединить телефонию нескольких площадок в одну систему</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Отделы продаж</h3>
+                  <p class="audience-panel__text">Распределять звонки между менеджерами и не терять обращения</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Компании на Битрикс24</h3>
+                  <p class="audience-panel__text">Связать звонки с карточками клиентов и сделками</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Контакт-центры</h3>
+                  <p class="audience-panel__text">Маршрутизация, очереди и запись разговоров под поток звонков</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Небольшие компании</h3>
+                  <p class="audience-panel__text">Получить корпоративную телефонию без сложной инфраструктуры</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Открытие новых офисов</h3>
+                  <p class="audience-panel__text">Подключить АТС новой площадки в сжатые сроки</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- 8. Наши достижения: сертификаты и награды -->
         <section class="awards" aria-labelledby="awards-title" data-awards>
           <div class="container awards__inner">

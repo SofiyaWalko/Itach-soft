@@ -845,6 +845,70 @@
           </div>
         </section>
 
+        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
+             переключение наведением на десктопе и кликом везде -->
+        <section class="audience" aria-labelledby="segments-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="segments-title">
+              Кому <span class="section-title__muted">подходит</span>
+            </h2>
+            <div class="audience-picker" data-audience-picker data-reveal>
+              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
+                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
+                  <span class="audience-tab__text">Мошенническим звонкам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
+                  <span class="audience-tab__text">Записям</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
+                  <span class="audience-tab__text">Удалённому доступу</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
+                  <span class="audience-tab__text">Правилам и доступам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
+                  <span class="audience-tab__text">Проверке АТС</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
+                  <span class="audience-tab__text">Требованиям</span>
+                </button>
+              </div>
+              <div class="audience-picker__panels">
+                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Защита от фрода</h3>
+                  <p class="audience-panel__text">Не допустить перехвата линий и звонков за счёт компании</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Защита записей</h3>
+                  <p class="audience-panel__text">Сохранить записи разговоров и персональные данные клиентов</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Удалённые подключения</h3>
+                  <p class="audience-panel__text">Разрешить внешние подключения только сотрудникам</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Регламент доступов</h3>
+                  <p class="audience-panel__text">Выстроить уровни доступа и правила для сотрудников</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Аудит текущей АТС</h3>
+                  <p class="audience-panel__text">Понять, какие уязвимости уже есть в инфраструктуре</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Требования безопасности</h3>
+                  <p class="audience-panel__text">Привести телефонию к требованиям компании и регуляторов</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- 8. Наши достижения: сертификаты и награды -->
         <section class="awards" aria-labelledby="awards-title" data-awards>
           <div class="container awards__inner">
