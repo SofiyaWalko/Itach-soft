@@ -599,6 +599,9 @@ ABOUT = f"""      <section class="about-hero" aria-labelledby="about-title">
                 </div>
               </div>
             </div>
+            <div class="section-action" data-reveal>
+              <a class="btn btn--outline" href="assets/docs/itach-soft-presentation.pdf" download>Скачать презентацию</a>
+            </div>
           </div>
         </section>
 
