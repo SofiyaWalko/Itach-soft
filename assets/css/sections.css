@@ -3334,6 +3334,15 @@ html:has(.detail[open]) {
 
 .calc__nav [data-calc-next] {
   margin-inline-start: auto;
+  font-weight: 600;
+}
+
+/* Неактивна, пока услуга не выбрана: вместо серого --color-line — светлая
+   подложка строки цены из карточек «Услуги и стоимость» */
+.calc__nav [data-calc-next]:disabled {
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  box-shadow: none;
 }
 
 .calc__nav [hidden],
