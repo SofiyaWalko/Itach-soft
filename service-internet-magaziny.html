@@ -303,9 +303,9 @@
                   <li><a class="mega-menu__item" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
                 </ul>
                 <ul class="mega-menu__list" data-mega-items="outstaff" hidden>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-autstaffing/">IT-аутстаффинг</a></li>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/predostavlenie-it-spetsialistov/">Предоставление IT-специалистов под задачи бизнеса</a></li>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-konsultatsii/">IT-консультации</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-autstaffing.html">IT-аутстаффинг</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-predostavlenie-spetsialistov.html">Предоставление IT-специалистов под задачи бизнеса</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-konsultatsii.html">IT-консультации</a></li>
                 </ul>
                 <ul class="mega-menu__list" data-mega-items="ai" hidden>
                   <li><a class="mega-menu__item" href="service-ai.html">AI-разработка</a></li>
@@ -707,68 +707,6 @@
           </div>
         </section>
 
-        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
-             переключение наведением на десктопе и кликом везде -->
-        <section class="audience" aria-labelledby="segments-title">
-          <div class="container">
-            <h2 class="section-title" data-reveal id="segments-title">
-              Кому <span class="section-title__muted">подходит</span>
-            </h2>
-            <div class="audience-picker" data-audience-picker data-reveal>
-              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
-                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
-                  <span class="audience-tab__text">Розничным магазинам и сетям</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
-                  <span class="audience-tab__text">Производителям и дистрибьюторам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
-                  <span class="audience-tab__text">Оптовым компаниям</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
-                  <span class="audience-tab__text">Собственным брендам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
-                  <span class="audience-tab__text">Продавцам на маркетплейсах</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
-                  <span class="audience-tab__text">Новым игрокам e-commerce</span>
-                </button>
-              </div>
-              <div class="audience-picker__panels">
-                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Розничные магазины <span class="audience-panel__line audience-panel__muted">и сети</span></h3>
-                  <p class="audience-panel__text">Вывести ассортимент в онлайн и собирать заказы круглосуточно — без увеличения штата</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Производители <span class="audience-panel__line audience-panel__muted">и дистрибьюторы</span></h3>
-                  <p class="audience-panel__text">Продавать напрямую конечному покупателю: каталог, цены, заказы и аналитика в одном месте</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Оптовые <span class="audience-panel__line audience-panel__muted">компании</span></h3>
-                  <p class="audience-panel__text">Организовать оптовые продажи онлайн: заявки, личные цены и документы без звонков и переписки</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Собственные <span class="audience-panel__line audience-panel__muted">бренды</span></h3>
-                  <p class="audience-panel__text">Витрина бренда под полным контролем: ассортимент, цены и прямой контакт с покупателем</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Продавцы на <span class="audience-panel__line audience-panel__muted">маркетплейсах</span></h3>
-                  <p class="audience-panel__text">Свой канал продаж рядом с маркетплейсами: повторные продажи и лояльная аудитория</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Выход <span class="audience-panel__line audience-panel__muted">в e-commerce</span></h3>
-                  <p class="audience-panel__text">Запустить онлайн-продажи с нуля — от аналитики ниши до первых заказов</p>
-                </div>
-              </div>
-            </div>
-        </section>
 
         <!-- 4. Процесс -->
         <section class="process" id="process" aria-labelledby="process-title">
@@ -1165,6 +1103,69 @@
           </div>
         </section>
 
+        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
+             переключение наведением на десктопе и кликом везде -->
+        <section class="audience" aria-labelledby="segments-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="segments-title">
+              Кому <span class="section-title__muted">подходит</span>
+            </h2>
+            <div class="audience-picker" data-audience-picker data-reveal>
+              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
+                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
+                  <span class="audience-tab__text">Розничным магазинам и сетям</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
+                  <span class="audience-tab__text">Производителям и дистрибьюторам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
+                  <span class="audience-tab__text">Оптовым компаниям</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
+                  <span class="audience-tab__text">Собственным брендам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
+                  <span class="audience-tab__text">Продавцам на маркетплейсах</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
+                  <span class="audience-tab__text">Новым игрокам e-commerce</span>
+                </button>
+              </div>
+              <div class="audience-picker__panels">
+                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Розничные магазины <span class="audience-panel__line audience-panel__muted">и сети</span></h3>
+                  <p class="audience-panel__text">Вывести ассортимент в онлайн и собирать заказы круглосуточно — без увеличения штата</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Производители <span class="audience-panel__line audience-panel__muted">и дистрибьюторы</span></h3>
+                  <p class="audience-panel__text">Продавать напрямую конечному покупателю: каталог, цены, заказы и аналитика в одном месте</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Оптовые <span class="audience-panel__line audience-panel__muted">компании</span></h3>
+                  <p class="audience-panel__text">Организовать оптовые продажи онлайн: заявки, личные цены и документы без звонков и переписки</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Собственные <span class="audience-panel__line audience-panel__muted">бренды</span></h3>
+                  <p class="audience-panel__text">Витрина бренда под полным контролем: ассортимент, цены и прямой контакт с покупателем</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Продавцы на <span class="audience-panel__line audience-panel__muted">маркетплейсах</span></h3>
+                  <p class="audience-panel__text">Свой канал продаж рядом с маркетплейсами: повторные продажи и лояльная аудитория</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Выход <span class="audience-panel__line audience-panel__muted">в e-commerce</span></h3>
+                  <p class="audience-panel__text">Запустить онлайн-продажи с нуля — от аналитики ниши до первых заказов</p>
+                </div>
+              </div>
+            </div>
+        </section>
+
         <!-- 8. Наши достижения: сертификаты и награды -->
         <section class="awards" aria-labelledby="awards-title" data-awards>
           <div class="container awards__inner">
@@ -1326,7 +1327,7 @@
                   <div class="faq__answer-inner"><p>Да: подключаем приём платежей — карты, ЕРИП и другие способы — и службы доставки с расчётом стоимости на сайте. Покупатель оплачивает заказ и выбирает доставку без участия менеджера.</p></div>
                 </div>
               </li>
-            
+            </ul>
           </div>
         </section>
       </div>
@@ -1657,7 +1658,7 @@
 <div class="detail__points"><h3 class="detail__points-title">Проект включал</h3><ul class="detail__check"><li>установку и настройку шаблона</li><li>интеграцию сайта с Мой склад</li><li>перенос контента</li><li>сохранение SEO-позиций</li><li>тестирование</li></ul></div>
 <div class="detail__bento"><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">1</p><p class="detail-tile__label">месяц — длительность проекта</p></div><div class="detail-tile detail-tile--stat glow-card"><p class="detail-tile__value">5</p><p class="detail-tile__label">специалистов в команде</p><ul class="detail-tile__list"><li>1 менеджер проекта</li><li>1 backend-разработчик</li><li>1 тестировщик</li><li>1 SEO-специалист</li><li>1 контент-менеджер</li></ul></div></div>
       <div class="detail__article"><p>Дизайн сайта устарел и не соответствовал позиционированию, что стало причиной низкой конверсии и достаточно высоким уровнем отказов. Пользователи уходили после просмотра 1–2 страниц, более того 62% трафика приходилось на мобильные устройства, но сайт не был в полной мере адаптирован под смартфоны, что негативно отражалось на уровне взаимодействия пользователей с сайтом.</p><h3 class="detail__h">Выполненные задачи:</h3><h4 class="detail__subh">Общая настройка решения:</h4>
-<ul><li><strong>применены фирменные цвета</strong> бренда, загружен логотип в высоком разрешении, настроены контактные данные (телефон, email, адрес) в футере и хедере, включены социальные сети и часы работы.</li><li>реализовано <strong>адаптивное навигационное меню</strong> с логотипом, кнопкой «Звонок», поиском, корзиной и иконкой профиля. Добавлены быстрые ссылки на акции, контакты и FAQ.</li><li>структурировано меню по категориям («Техника для кухни», «Техника для дома», «Уход за бельем» и др.)</li><li>список товаров: реализованы <strong>пагинация, фильтрация</strong> по цене, цвету, типу управления и др.</li><li>карточка товара: добавлены детальные характеристики, <strong>рейтинг, кнопки «В корзину», «Купить в 1 клик»</strong>.</li><li>корзина и оформление заказа: реализован динамический подсчет итога, скидки по промокодам, предложение доставки и оплаты, возможность редактирования количества, удаления позиций, сохранение корзины для авторизованных пользователей. <li>поля оформления заказа: настроены обязательные поля (ФИО, телефон, email, адрес), а также <strong>2 способа оплаты</strong> (наличными и на основании счет-фактуры), настроены <strong>2 способа доставки</strong> (доставка курьером и самовывоз).</li><li>авторизация/регистрация: регистрация по email с подтверждением через письмо, вход через соцсети (опционально), восстановление пароля.</li><li>профиль пользователя: <strong>личный кабинет</strong> с разделами, включающими личные данные, историю заказов, сохраненные товары.</li><li>история заказов: отображаются все заказы с номерами, статусами, датами, суммами, ссылками на накладные и возможность повторного заказа.</li></ul>
+<ul><li><strong>применены фирменные цвета</strong> бренда, загружен логотип в высоком разрешении, настроены контактные данные (телефон, email, адрес) в футере и хедере, включены социальные сети и часы работы.</li><li>реализовано <strong>адаптивное навигационное меню</strong> с логотипом, кнопкой «Звонок», поиском, корзиной и иконкой профиля. Добавлены быстрые ссылки на акции, контакты и FAQ.</li><li>структурировано меню по категориям («Техника для кухни», «Техника для дома», «Уход за бельем» и др.)</li><li>список товаров: реализованы <strong>пагинация, фильтрация</strong> по цене, цвету, типу управления и др.</li><li>карточка товара: добавлены детальные характеристики, <strong>рейтинг, кнопки «В корзину», «Купить в 1 клик»</strong>.</li><li>корзина и оформление заказа: реализован динамический подсчет итога, скидки по промокодам, предложение доставки и оплаты, возможность редактирования количества, удаления позиций, сохранение корзины для авторизованных пользователей.</li><li>поля оформления заказа: настроены обязательные поля (ФИО, телефон, email, адрес), а также <strong>2 способа оплаты</strong> (наличными и на основании счет-фактуры), настроены <strong>2 способа доставки</strong> (доставка курьером и самовывоз).</li><li>авторизация/регистрация: регистрация по email с подтверждением через письмо, вход через соцсети (опционально), восстановление пароля.</li><li>профиль пользователя: <strong>личный кабинет</strong> с разделами, включающими личные данные, историю заказов, сохраненные товары.</li><li>история заказов: отображаются все заказы с номерами, статусами, датами, суммами, ссылками на накладные и возможность повторного заказа.</li></ul>
 <h4 class="detail__subh">Настройка кастомных интеграций:</h4>
 <ul><li>реализована двусторонняя синхронизация с <strong>"Мой Склад"</strong>, посредством которой передаются данные по товарам, ценам, остаткам и заказам.</li></ul>
 <h4 class="detail__subh">Сохранение SEO и перенос контента:</h4>

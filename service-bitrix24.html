@@ -41,16 +41,7 @@
       "offers": [
         {
           "@type": "Offer",
-          "name": "Внедрение Битрикс24",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "priceCurrency": "RUB",
-            "minPrice": 90000
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "Интеграция Битрикс24",
+          "name": "Внедрение и настройка Битрикс24",
           "priceSpecification": {
             "@type": "PriceSpecification",
             "priceCurrency": "RUB",
@@ -68,11 +59,38 @@
         },
         {
           "@type": "Offer",
-          "name": "Автоматизация процессов",
+          "name": "Интеграция Битрикс24",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "RUB",
+            "minPrice": 90000
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Автоматизация бизнес-процессов в Битрикс24",
           "priceSpecification": {
             "@type": "PriceSpecification",
             "priceCurrency": "RUB",
             "minPrice": 60000
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "IP-телефония для Битрикс24",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "RUB",
+            "minPrice": 45000
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Техническая поддержка Битрикс24",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "RUB",
+            "minPrice": 9000
           }
         },
         {
@@ -82,6 +100,15 @@
             "@type": "PriceSpecification",
             "priceCurrency": "RUB",
             "minPrice": 9000
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Перенос Битрикс24 из облака в коробку",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "RUB",
+            "minPrice": 90000
           }
         }
       ]
@@ -218,10 +245,10 @@
                     <a class="nav__submenu-link" href="services.html"><span>Все услуги</span></a>
                   </li>
                   <li>
-                    <a class="nav__submenu-link" href="service-sites.html" aria-current="page"><span>Сайты</span></a>
+                    <a class="nav__submenu-link" href="service-sites.html"><span>Сайты</span></a>
                   </li>
                   <li>
-                    <a class="nav__submenu-link" href="service-bitrix24.html"><span>Битрикс24</span></a>
+                    <a class="nav__submenu-link" href="service-bitrix24.html" aria-current="page"><span>Битрикс24</span></a>
                   </li>
                   <li>
                     <a class="nav__submenu-link" href="service-asterisk.html"><span>IP-АТС на базе Asterisk</span></a>
@@ -377,9 +404,9 @@
                   <li><a class="mega-menu__item" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
                 </ul>
                 <ul class="mega-menu__list" data-mega-items="outstaff" hidden>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-autstaffing/">IT-аутстаффинг</a></li>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/predostavlenie-it-spetsialistov/">Предоставление IT-специалистов под задачи бизнеса</a></li>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-konsultatsii/">IT-консультации</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-autstaffing.html">IT-аутстаффинг</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-predostavlenie-spetsialistov.html">Предоставление IT-специалистов под задачи бизнеса</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-konsultatsii.html">IT-консультации</a></li>
                 </ul>
                 <ul class="mega-menu__list" data-mega-items="ai" hidden>
                   <li><a class="mega-menu__item" href="service-ai.html">AI-разработка</a></li>
@@ -563,19 +590,6 @@
                 </a>
               </li>
               <li class="format-card glow-card">
-                <a class="format-card__link" href="service-bitrix24-integratsiya.html" aria-label="Интеграция Битрикс24 — подробнее">
-                  <h3 class="format-card__title">Интеграция Битрикс24</h3>
-                  <p class="format-card__desc">Связываем портал с 1С, сайтом, телефонией и другими сервисами, автоматизируем обмен данными.</p>
-                  <ul class="format-card__prices">
-                    <li class="format-card__price">
-                      <span class="format-card__price-label">Стоимость</span>
-                      <span class="format-card__price-value">от 90 000 ₽</span>
-                    </li>
-                  </ul>
-                  <span class="format-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
-                </a>
-              </li>
-              <li class="format-card glow-card">
                 <a class="format-card__link" href="service-bitrix24-dorabotka.html" aria-label="Доработка Битрикс24 — подробнее">
                   <h3 class="format-card__title">Доработка Битрикс24</h3>
                   <p class="format-card__desc">Реализуем любую задачу для коробочной или облачной версии продукта.</p>
@@ -589,8 +603,21 @@
                 </a>
               </li>
               <li class="format-card glow-card">
-                <a class="format-card__link" href="service-bitrix24-avtomatizatsiya.html" aria-label="Автоматизация бизнес-процессов — подробнее">
-                  <h3 class="format-card__title">Автоматизация бизнес-процессов</h3>
+                <a class="format-card__link" href="service-bitrix24-integratsiya.html" aria-label="Интеграция Битрикс24 — подробнее">
+                  <h3 class="format-card__title">Интеграция Битрикс24</h3>
+                  <p class="format-card__desc">Связываем портал с 1С, сайтом, телефонией и другими сервисами, автоматизируем обмен данными.</p>
+                  <ul class="format-card__prices">
+                    <li class="format-card__price">
+                      <span class="format-card__price-label">Стоимость</span>
+                      <span class="format-card__price-value">от 90 000 ₽</span>
+                    </li>
+                  </ul>
+                  <span class="format-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-up-right" /></svg></span>
+                </a>
+              </li>
+              <li class="format-card glow-card">
+                <a class="format-card__link" href="service-bitrix24-avtomatizatsiya.html" aria-label="Автоматизация бизнес-процессов в Битрикс24 — подробнее">
+                  <h3 class="format-card__title">Автоматизация бизнес-процессов в Битрикс24</h3>
                   <p class="format-card__desc">Упрощаем обработку лидов, ведение сделок и внутренний документооборот.</p>
                   <ul class="format-card__prices">
                     <li class="format-card__price">
@@ -615,8 +642,8 @@
                 </a>
               </li>
               <li class="format-card glow-card">
-                <a class="format-card__link" href="service-bitrix24-podderzhka.html" aria-label="Техподдержка Битрикс24 — подробнее">
-                  <h3 class="format-card__title">Техподдержка Битрикс24</h3>
+                <a class="format-card__link" href="service-bitrix24-podderzhka.html" aria-label="Техническая поддержка Битрикс24 — подробнее">
+                  <h3 class="format-card__title">Техническая поддержка Битрикс24</h3>
                   <p class="format-card__desc">Устраняем проблемы с корпоративным порталом и следим за его стабильной работой.</p>
                   <ul class="format-card__prices">
                     <li class="format-card__price">
@@ -641,8 +668,8 @@
                 </a>
               </li>
               <li class="format-card glow-card">
-                <a class="format-card__link" href="https://itach-soft.ru/services/bitriks24/" target="_blank" rel="noopener" aria-label="Перенос из облака в коробку — подробнее">
-                  <h3 class="format-card__title">Перенос из облака в коробку</h3>
+                <a class="format-card__link" href="service-bitrix24-perenos.html" aria-label="Перенос Битрикс24 из облака в коробку — подробнее">
+                  <h3 class="format-card__title">Перенос Битрикс24 из облака в коробку</h3>
                   <p class="format-card__desc">Переводим компанию на коробочную версию с настройкой под отраслевую специфику.</p>
                   <ul class="format-card__prices">
                     <li class="format-card__price">

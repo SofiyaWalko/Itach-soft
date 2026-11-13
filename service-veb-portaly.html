@@ -303,9 +303,9 @@
                   <li><a class="mega-menu__item" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
                 </ul>
                 <ul class="mega-menu__list" data-mega-items="outstaff" hidden>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-autstaffing/">IT-аутстаффинг</a></li>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/predostavlenie-it-spetsialistov/">Предоставление IT-специалистов под задачи бизнеса</a></li>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-konsultatsii/">IT-консультации</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-autstaffing.html">IT-аутстаффинг</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-predostavlenie-spetsialistov.html">Предоставление IT-специалистов под задачи бизнеса</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-konsultatsii.html">IT-консультации</a></li>
                 </ul>
                 <ul class="mega-menu__list" data-mega-items="ai" hidden>
                   <li><a class="mega-menu__item" href="service-ai.html">AI-разработка</a></li>
@@ -707,68 +707,6 @@
           </div>
         </section>
 
-        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
-             переключение наведением на десктопе и кликом везде -->
-        <section class="audience" aria-labelledby="segments-title">
-          <div class="container">
-            <h2 class="section-title" data-reveal id="segments-title">
-              Кому <span class="section-title__muted">подходит</span>
-            </h2>
-            <div class="audience-picker" data-audience-picker data-reveal>
-              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
-                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
-                  <span class="audience-tab__text">Компаниям со сложными процессами</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
-                  <span class="audience-tab__text">Сервисным компаниям</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
-                  <span class="audience-tab__text">B2B-платформам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
-                  <span class="audience-tab__text">Образовательным проектам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
-                  <span class="audience-tab__text">Логистике и доставке</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
-                  <span class="audience-tab__text">Стартапам</span>
-                </button>
-              </div>
-              <div class="audience-picker__panels">
-                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Сложные <span class="audience-panel__line audience-panel__muted">процессы</span></h3>
-                  <p class="audience-panel__text">Автоматизировать операции: заявки, документы и согласования в одном окне</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Сервисные <span class="audience-panel__line audience-panel__muted">компании</span></h3>
-                  <p class="audience-panel__text">Личные кабинеты клиентов: заказы, оплата и история обращений</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">B2B- <span class="audience-panel__line audience-panel__muted">платформы</span></h3>
-                  <p class="audience-panel__text">Онлайн-площадка для партнёров: каталог, цены, документы и обмен данными</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Образовательные <span class="audience-panel__line audience-panel__muted">проекты</span></h3>
-                  <p class="audience-panel__text">Портал обучения: курсы, расписание, прогресс и оплата</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Логистика <span class="audience-panel__line audience-panel__muted">и доставка</span></h3>
-                  <p class="audience-panel__text">Трекинг, заявки и интеграции с картами и учётными системами</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Стартапы <span class="audience-panel__line audience-panel__muted">с MVP</span></h3>
-                  <p class="audience-panel__text">MVP сервиса для проверки гипотезы — с заделом на рост</p>
-                </div>
-              </div>
-            </div>
-        </section>
 
         <!-- 4. Процесс -->
         <section class="process" id="process" aria-labelledby="process-title">
@@ -1165,6 +1103,69 @@
           </div>
         </section>
 
+        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
+             переключение наведением на десктопе и кликом везде -->
+        <section class="audience" aria-labelledby="segments-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="segments-title">
+              Кому <span class="section-title__muted">подходит</span>
+            </h2>
+            <div class="audience-picker" data-audience-picker data-reveal>
+              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
+                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
+                  <span class="audience-tab__text">Компаниям со сложными процессами</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
+                  <span class="audience-tab__text">Сервисным компаниям</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
+                  <span class="audience-tab__text">B2B-платформам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
+                  <span class="audience-tab__text">Образовательным проектам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
+                  <span class="audience-tab__text">Логистике и доставке</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
+                  <span class="audience-tab__text">Стартапам</span>
+                </button>
+              </div>
+              <div class="audience-picker__panels">
+                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Сложные <span class="audience-panel__line audience-panel__muted">процессы</span></h3>
+                  <p class="audience-panel__text">Автоматизировать операции: заявки, документы и согласования в одном окне</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Сервисные <span class="audience-panel__line audience-panel__muted">компании</span></h3>
+                  <p class="audience-panel__text">Личные кабинеты клиентов: заказы, оплата и история обращений</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">B2B- <span class="audience-panel__line audience-panel__muted">платформы</span></h3>
+                  <p class="audience-panel__text">Онлайн-площадка для партнёров: каталог, цены, документы и обмен данными</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Образовательные <span class="audience-panel__line audience-panel__muted">проекты</span></h3>
+                  <p class="audience-panel__text">Портал обучения: курсы, расписание, прогресс и оплата</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Логистика <span class="audience-panel__line audience-panel__muted">и доставка</span></h3>
+                  <p class="audience-panel__text">Трекинг, заявки и интеграции с картами и учётными системами</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Стартапы <span class="audience-panel__line audience-panel__muted">с MVP</span></h3>
+                  <p class="audience-panel__text">MVP сервиса для проверки гипотезы — с заделом на рост</p>
+                </div>
+              </div>
+            </div>
+        </section>
+
         <!-- 8. Наши достижения: сертификаты и награды -->
         <section class="awards" aria-labelledby="awards-title" data-awards>
           <div class="container awards__inner">
@@ -1326,7 +1327,7 @@
                   <div class="faq__answer-inner"><p>Закладываем запас по архитектуре и проводим нагрузочное тестирование перед запуском. После запуска следим за метриками и при росте аудитории масштабируем инфраструктуру — сервис не «ляжет» в пиковый день.</p></div>
                 </div>
               </li>
-            
+            </ul>
           </div>
         </section>
       </div>

@@ -303,9 +303,9 @@
                   <li><a class="mega-menu__item" href="service-web-services-podderzhka.html">Техническая поддержка ПО</a></li>
                 </ul>
                 <ul class="mega-menu__list" data-mega-items="outstaff" hidden>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-autstaffing/">IT-аутстаффинг</a></li>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/predostavlenie-it-spetsialistov/">Предоставление IT-специалистов под задачи бизнеса</a></li>
-                  <li><a class="mega-menu__item" href="https://itach-soft.ru/services/autstaff/it-konsultatsii/">IT-консультации</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-autstaffing.html">IT-аутстаффинг</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-predostavlenie-spetsialistov.html">Предоставление IT-специалистов под задачи бизнеса</a></li>
+                  <li><a class="mega-menu__item" href="service-outstaff-konsultatsii.html">IT-консультации</a></li>
                 </ul>
                 <ul class="mega-menu__list" data-mega-items="ai" hidden>
                   <li><a class="mega-menu__item" href="service-ai.html">AI-разработка</a></li>
@@ -708,68 +708,6 @@
           </div>
         </section>
 
-        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
-             переключение наведением на десктопе и кликом везде -->
-        <section class="audience" aria-labelledby="segments-title">
-          <div class="container">
-            <h2 class="section-title" data-reveal id="segments-title">
-              Кому <span class="section-title__muted">подходит</span>
-            </h2>
-            <div class="audience-picker" data-audience-picker data-reveal>
-              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
-                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
-                  <span class="audience-tab__text">Интернет-магазинам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям на 1С</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
-                  <span class="audience-tab__text">Складской торговле</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
-                  <span class="audience-tab__text">Производственным компаниям</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
-                  <span class="audience-tab__text">Тем, у кого всё сломалось</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
-                  <span class="audience-tab__text">Тем, кто растёт</span>
-                </button>
-              </div>
-              <div class="audience-picker__panels">
-                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Интернет- <span class="audience-panel__line audience-panel__muted">магазины</span></h3>
-                  <p class="audience-panel__text">Каталог, цены и остатки всегда актуальны — без ручной работы</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Компании <span class="audience-panel__line audience-panel__muted">на 1С</span></h3>
-                  <p class="audience-panel__text">Сайт, дружественный с учётной системой: заказы сразу в 1С</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Складская <span class="audience-panel__line audience-panel__muted">торговля</span></h3>
-                  <p class="audience-panel__text">Остатки на сайте равны остаткам на складе: меньше отмен и недовольных клиентов</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Производственные <span class="audience-panel__line audience-panel__muted">компании</span></h3>
-                  <p class="audience-panel__text">Спецификации, комплекты и нестандартная номенклатура — в обмене с сайтом</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Ремонт <span class="audience-panel__line audience-panel__muted">обмена</span></h3>
-                  <p class="audience-panel__text">Разобраться в чужой интеграции и починить обмен без остановки продаж</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Рост <span class="audience-panel__line audience-panel__muted">ассортимента</span></h3>
-                  <p class="audience-panel__text">Обмен, который тянет тысячи позиций и не падает в пиковые дни</p>
-                </div>
-              </div>
-            </div>
-        </section>
 
         <!-- 4. Процесс -->
         <section class="process" id="process" aria-labelledby="process-title">
@@ -1166,6 +1104,69 @@
           </div>
         </section>
 
+        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
+             переключение наведением на десктопе и кликом везде -->
+        <section class="audience" aria-labelledby="segments-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="segments-title">
+              Кому <span class="section-title__muted">подходит</span>
+            </h2>
+            <div class="audience-picker" data-audience-picker data-reveal>
+              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
+                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
+                  <span class="audience-tab__text">Интернет-магазинам</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
+                  <span class="audience-tab__text">Компаниям на 1С</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
+                  <span class="audience-tab__text">Складской торговле</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
+                  <span class="audience-tab__text">Производственным компаниям</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
+                  <span class="audience-tab__text">Тем, у кого всё сломалось</span>
+                </button>
+                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
+                  <span class="audience-tab__text">Тем, кто растёт</span>
+                </button>
+              </div>
+              <div class="audience-picker__panels">
+                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Интернет- <span class="audience-panel__line audience-panel__muted">магазины</span></h3>
+                  <p class="audience-panel__text">Каталог, цены и остатки всегда актуальны — без ручной работы</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Компании <span class="audience-panel__line audience-panel__muted">на 1С</span></h3>
+                  <p class="audience-panel__text">Сайт, дружественный с учётной системой: заказы сразу в 1С</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Складская <span class="audience-panel__line audience-panel__muted">торговля</span></h3>
+                  <p class="audience-panel__text">Остатки на сайте равны остаткам на складе: меньше отмен и недовольных клиентов</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Производственные <span class="audience-panel__line audience-panel__muted">компании</span></h3>
+                  <p class="audience-panel__text">Спецификации, комплекты и нестандартная номенклатура — в обмене с сайтом</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Ремонт <span class="audience-panel__line audience-panel__muted">обмена</span></h3>
+                  <p class="audience-panel__text">Разобраться в чужой интеграции и починить обмен без остановки продаж</p>
+                </div>
+                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
+                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
+                  <h3 class="audience-panel__title">Рост <span class="audience-panel__line audience-panel__muted">ассортимента</span></h3>
+                  <p class="audience-panel__text">Обмен, который тянет тысячи позиций и не падает в пиковые дни</p>
+                </div>
+              </div>
+            </div>
+        </section>
+
         <!-- 8. Наши достижения: сертификаты и награды -->
         <section class="awards" aria-labelledby="awards-title" data-awards>
           <div class="container awards__inner">
@@ -1327,7 +1328,7 @@
                   <div class="faq__answer-inner"><p>Настраиваем уведомления: команда узнаёт о сбоях раньше клиентов. Плюс журнал обмена с историей — видно, что и когда синхронизировалось, а резервный сценарий даёт время на починку без остановки продаж.</p></div>
                 </div>
               </li>
-            
+            </ul>
           </div>
         </section>
       </div>
