@@ -7514,3 +7514,76 @@ html:has(.detail[open]) {
 .docs-list + .company-section__lead {
   margin-block-start: var(--space-4);
 }
+
+/* ---------- Страница «О компании» ---------- */
+.about-hero {
+  padding-block: calc(var(--header-top) + var(--header-height) + var(--space-4)) var(--space-12);
+}
+
+.about-hero .breadcrumbs {
+  margin-inline-start: 0;
+}
+
+/* Каждая секция страницы сама задаёт воздух снизу; лента клиентов — через margin */
+.about-sections > section:not(.clients) {
+  padding-block: 0 var(--space-12);
+}
+
+.about-sections > .clients {
+  margin-block: 0 var(--space-12);
+}
+
+.about-letters .letters__scroller {
+  margin-block-start: var(--space-4);
+}
+
+/* Таймлайн истории: линия, градиентные точки, год над текстом */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  max-inline-size: 56rem;
+  margin-block-start: var(--space-4);
+  padding-inline-start: var(--space-5);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.5rem;
+  inset-inline-start: 0.4375rem;
+  inline-size: 1px;
+  background: var(--color-line);
+}
+
+.timeline__item {
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.35rem;
+  inset-inline-start: calc(-1 * var(--space-5) + 0.0625rem);
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  border-radius: 50%;
+  background: var(--gradient-flow);
+  box-shadow: 0 0 0 3px var(--color-bg);
+}
+
+.timeline__year {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.timeline__text {
+  color: var(--color-text-2);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+

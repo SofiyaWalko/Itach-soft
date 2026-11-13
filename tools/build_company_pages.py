@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
+SERVICE_SITES = (ROOT / "service-sites.html").read_text(encoding="utf-8")
 META = json.loads((ROOT / "tools" / "reviews_data.json").read_text(encoding="utf-8"))
 
 
@@ -419,6 +420,150 @@ DOCUMENTS = (
           </ul>"""
 )
 
+# ---------- О компании ----------
+
+def section_from(source, start_marker):
+    start = source.index(start_marker)
+    end = source.index("      </section>", start) + len("      </section>")
+    return source[start:end]
+
+
+AWARDS = section_from(INDEX, "      <!-- Наши достижения")
+CLIENTS = section_from(INDEX, '      <section class="clients"')
+# Блок технологий переиспользуем со страницы услуги «Сайты»: две ленты
+TECH = section_from(SERVICE_SITES, '        <section class="tech"')
+
+
+def stat(value, text):
+    return f"""            <li class="page-stat glow-card">
+              <span class="page-stat__value">{value}</span>
+              <p class="page-stat__text">{text}</p>
+            </li>"""
+
+
+def benefit(title, text):
+    return f"""              <article class="guarantee-card glow-card">
+                <h3 class="guarantee-card__title">{title}</h3>
+                <p class="guarantee-card__text">{text}</p>
+              </article>"""
+
+
+def timeline_item(year, text):
+    return f"""              <li class="timeline__item">
+                <span class="timeline__year">{year}</span>
+                <p class="timeline__text">{text}</p>
+              </li>"""
+
+
+def role(name, file, width, height, duty):
+    return f"""              <li class="team-role glow-card">
+                <img class="team-role__image" src="assets/img/team/{file}" width="{width}" height="{height}" alt="" loading="lazy" />
+                <span class="team-role__name">{name}</span>
+                <span class="team-role__duty">{duty}</span>
+              </li>"""
+
+
+LETTERS_CARDS = "\n".join(scan_cards)
+
+ABOUT = f"""      <section class="about-hero" aria-labelledby="about-title">
+        <div class="container">
+{breadcrumbs("О компании")}
+          <div class="company-page__head">
+            <h1 class="section-title" id="about-title" data-reveal>
+              О компании <span class="section-title__muted">Итач-софт</span>
+            </h1>
+            <p class="company-page__lead" data-reveal>
+              IT-компания полного цикла: разрабатываем программное обеспечение, сайты и веб-сервисы,
+              внедряем Битрикс24 и IP-телефонию на Asterisk. Работаем с 2013 года.
+            </p>
+          </div>
+
+          <ul class="page-stats" data-reveal-stagger>
+{stat("2013", "год основания компании")}
+{stat("50+", "сертифицированных специалистов")}
+{stat("1 млн+", "часов опыта команды")}
+{stat("100+", "проектов на Битрикс24 в год")}
+          </ul>
+        </div>
+      </section>
+
+      <div class="about-sections">
+        <section class="about-benefits" aria-labelledby="about-benefits-title">
+          <div class="container">
+            <h2 class="section-title" id="about-benefits-title" data-reveal>
+              Что мы даём <span class="section-title__muted">бизнесу</span>
+            </h2>
+            <div class="guarantee__grid" data-reveal-stagger>
+{benefit("Рост продаж", "Помогаем увеличивать объём продаж и средний чек за счёт цифровых инструментов и автоматизации процессов.")}
+{benefit("Скорость обслуживания", "Ускоряем работу с обращениями клиентов и повышаем их удовлетворённость — растёт CSI.")}
+{benefit("Меньше издержек", "Сокращаем ручной труд и потери из-за долгих согласований и ошибок в данных.")}
+{benefit("Охват аудитории", "Объединяем каналы лидогенерации в одну систему и снижаем потери клиентов на пути к покупке.")}
+            </div>
+          </div>
+        </section>
+
+        <section class="about-history" aria-labelledby="about-history-title">
+          <div class="container">
+            <h2 class="section-title" id="about-history-title" data-reveal>
+              Наша <span class="section-title__muted">история</span>
+            </h2>
+            <p class="company-page__lead">
+              История компании складывается из личной истории каждого сотрудника. Мы начали в 2013 году
+              в Минске и выросли в команду, которая делает проекты для Беларуси и за её пределами.
+            </p>
+            <ol class="timeline" data-reveal-stagger>
+{timeline_item("2020—2026", "Вступили в Парк высоких технологий, открыли филиал в Варшаве и вышли на международный рынок.")}
+{timeline_item("2019", "Усилили разработку сайтов, веб-сервисов, приложений для Битрикс24 и IP-АТС Asterisk.")}
+{timeline_item("2018", "Сфокусировались на внедрении Битрикс24 и контакт-центрах на Asterisk, закрыли направление аутсорсинга IT-инфраструктуры.")}
+{timeline_item("2015", "«Айти-Монтаж» переименована в «Итач-Софт». Основной фокус — контакт-центры Asterisk и приложения.")}
+{timeline_item("2013—2014", "Компания основана в Минске. Начали с аутсорсинга IT-инфраструктуры и продажи оборудования, запустили веб-разработку и установку контакт-центров.")}
+            </ol>
+          </div>
+        </section>
+
+{AWARDS}
+
+        <section class="team" aria-labelledby="team-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="team-title">
+              Команда <span class="section-title__muted">Итач-софт</span>
+            </h2>
+            <p class="team__lead" data-reveal>
+              Более 50 сертифицированных специалистов. 70% новых клиентов приходят по рекомендации:
+              собираем команду под задачу и оставляем персонального менеджера на связи.
+            </p>
+            <ul class="team__row" data-reveal-stagger>
+{role("Проектный менеджер", "role-project-manager.webp", 522, 600, "Координирует работу команды, контролирует сроки, коммуникацию и выполнение задач по проекту.")}
+{role("Бизнес-аналитик", "role-business-analyst.webp", 564, 600, "Изучает задачи бизнеса, собирает требования и помогает определить структуру, функции и приоритеты проекта.")}
+{role("UX/UI дизайнер", "role-ux-ui-designer.webp", 530, 600, "Проектирует пользовательские сценарии, прототипы и визуальную концепцию сайта, чтобы он был удобным и понятным.")}
+{role("Фронтенд-разработчик", "role-frontend.webp", 600, 401, "Реализует интерфейсы, адаптивность и интерактивные элементы, обеспечивая корректную работу сайта на всех устройствах.")}
+{role("Бэкенд-разработчик", "role-backend.webp", 600, 393, "Отвечает за серверную логику, интеграции, базы данных и стабильную работу функционала сайта.")}
+{role("QA-инженер (тестировщик)", "role-qa.webp", 575, 600, "Проверяет функциональность, находит ошибки и контролирует качество проекта перед запуском.")}
+{role("Контент-менеджер / копирайтер", "role-copywriter.webp", 578, 600, "Готовит и структурирует тексты, помогает раскрыть преимущества компании и сделать страницы понятными для клиентов.")}
+{role("DevOps-инженер", "role-devops.webp", 538, 600, "Настраивает окружение, мониторинг, резервное копирование и обеспечивает надёжную работу проекта.")}
+{role("Аккаунт-менеджер", "role-account-manager.webp", 594, 600, "Сопровождает клиента после запуска, помогает с новыми задачами, приоритетами и дальнейшим развитием сайта.")}
+            </ul>
+          </div>
+        </section>
+
+{TECH}
+
+        <section class="about-letters" aria-labelledby="about-letters-title">
+          <div class="container">
+            <h2 class="section-title" id="about-letters-title" data-reveal>
+              Благодарственные <span class="section-title__muted">письма</span>
+            </h2>
+          </div>
+          <div class="letters__scroller" data-drag-scroll tabindex="0" role="region" aria-label="Благодарственные письма, прокручиваются по горизонтали">
+            <ul class="letters__list">
+{LETTERS_CARDS}
+            </ul>
+          </div>
+        </section>
+
+{CLIENTS}
+      </div>"""
+
 PAGES = [
     (
         "garantii.html",
@@ -458,3 +603,13 @@ for filename, title, description, content in PAGES:
     )
     (ROOT / filename).write_text(page(title, description, wrapper), encoding="utf-8")
     print("written", filename)
+
+(ROOT / "about.html").write_text(
+    page(
+        "О компании — Итач-софт",
+        "Итач-софт — IT-компания полного цикла из Минска: разработка ПО, сайтов, внедрение Битрикс24 и IP-телефонии на Asterisk с 2013 года. 50+ специалистов и 1 млн часов опыта.",
+        ABOUT,
+    ),
+    encoding="utf-8",
+)
+print("written about.html")
