@@ -7109,9 +7109,31 @@ html:has(.detail[open]) {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  /* У fieldset по умолчанию min-inline-size: min-content — иначе лента фильтров
+     вылезает за контейнер вместо горизонтальной прокрутки */
+  min-inline-size: 0;
   margin: 0;
   padding: 0;
   border: 0;
+}
+
+/* На телефоне фильтры листаются одной строкой, как табы категорий в FAQ */
+@media (max-width: 639px) {
+  .reviews-filter__group {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-block: 0.25rem;
+  }
+
+  .reviews-filter__group::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews-filter__group .calc-option {
+    flex: none;
+  }
 }
 
 /* ---------- Благодарственные письма: лента во всю ширину экрана ---------- */
@@ -7204,92 +7226,61 @@ html:has(.detail[open]) {
   }
 }
 
-/* FAQ: навигация по категориям слева, вопросы справа */
+/* FAQ: категории вопросов — переключатель над списком, видна одна категория */
 .faq-page__layout {
-  display: grid;
-  gap: var(--space-4);
   margin-block-start: var(--space-6);
 }
 
+/* Без JS табы не нужны: вопросы идут подряд, навигация скрыта */
 .faq-page__nav {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  margin-block-end: var(--space-4);
 }
 
-.faq-page__nav-link {
+.js .faq-page__nav {
+  display: flex;
+}
+
+.faq-page__tab {
   display: inline-flex;
   align-items: center;
-  min-block-size: 2.5rem;
-  padding: 0.5rem 0.875rem;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-pill);
-  color: var(--color-text-2);
   font-size: 0.9375rem;
-  font-weight: 600;
-  line-height: 1.2;
-  transition:
-    color var(--duration-fast) var(--ease-out),
-    background-color var(--duration-fast) var(--ease-out),
-    border-color var(--duration-fast) var(--ease-out);
 }
 
-@media (hover: hover) {
-  .faq-page__nav-link:hover {
-    border-color: var(--color-line-strong);
-    background: var(--color-bg-alt);
-    color: var(--color-text);
-  }
+.faq-page__tab[aria-selected="true"] {
+  color: var(--color-surface);
+}
+
+.faq-page__tab[aria-selected="true"]::after {
+  opacity: 1;
 }
 
 .faq-page__group {
-  margin-block-start: var(--space-6);
   scroll-margin-block-start: calc(var(--header-top) + var(--header-height) + var(--space-2));
 }
 
-.faq-page__group:first-child {
-  margin-block-start: 0;
+.js .faq-page__group:not(.is-active) {
+  display: none;
 }
 
-.faq-page__category {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-.faq-page__group .faq__list {
-  margin-block-start: var(--space-3);
-}
-
-@media (min-width: 1024px) {
-  .faq-page__layout {
-    grid-template-columns: 16rem minmax(0, 1fr);
-    gap: var(--space-6);
-    align-items: start;
-  }
-
+/* На телефоне длинные подписи не переносятся на шесть строк — табы листаются по горизонтали */
+@media (max-width: 639px) {
   .faq-page__nav {
-    position: sticky;
-    inset-block-start: calc(var(--header-top) + var(--header-height) + var(--space-2));
-    display: grid;
-    gap: 0.25rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-block: 0.25rem;
   }
 
-  .faq-page__nav-link {
-    justify-content: flex-start;
-    padding: 0.625rem 0.875rem;
-    border: 0;
-    border-radius: var(--radius-sm);
-    text-align: start;
+  .faq-page__nav::-webkit-scrollbar {
+    display: none;
   }
 
-  .faq-page__nav-link:hover {
-    background: var(--color-bg-alt);
+  .faq-page__tab {
+    flex: none;
   }
 }
 

@@ -311,20 +311,16 @@
             </p>
           </div>
 
-          <div class="faq-page__layout" data-faq>
-            <nav aria-label="Категории вопросов">
-              <ul class="faq-page__nav">
-              <li><a class="faq-page__nav-link" href="#faq-company">О компании и экспертизе</a></li>
-              <li><a class="faq-page__nav-link" href="#faq-bitrix24">Битрикс24 и автоматизация</a></li>
-              <li><a class="faq-page__nav-link" href="#faq-sites">Сайты и веб-сервисы</a></li>
-              <li><a class="faq-page__nav-link" href="#faq-telephony">IP-телефония</a></li>
-              <li><a class="faq-page__nav-link" href="#faq-support">Гарантии, качество и поддержка</a></li>
-              <li><a class="faq-page__nav-link" href="#faq-process">Процесс работы</a></li>
-              </ul>
-            </nav>
-            <div>
-            <section class="faq-page__group" id="faq-company" aria-labelledby="faq-company-title">
-              <h2 class="faq-page__category" id="faq-company-title">О компании и экспертизе</h2>
+          <div class="faq-page__layout" data-faq data-faq-tabs>
+            <div class="faq-page__nav" role="tablist" aria-label="Категории вопросов">
+              <button class="calc-option faq-page__tab" type="button" role="tab" id="faq-tab-faq-company" aria-selected="true" aria-controls="faq-company" data-faq-tab="faq-company" tabindex="0">О компании и экспертизе</button>
+              <button class="calc-option faq-page__tab" type="button" role="tab" id="faq-tab-faq-bitrix24" aria-selected="false" aria-controls="faq-bitrix24" data-faq-tab="faq-bitrix24" tabindex="-1">Битрикс24 и автоматизация</button>
+              <button class="calc-option faq-page__tab" type="button" role="tab" id="faq-tab-faq-sites" aria-selected="false" aria-controls="faq-sites" data-faq-tab="faq-sites" tabindex="-1">Сайты и веб-сервисы</button>
+              <button class="calc-option faq-page__tab" type="button" role="tab" id="faq-tab-faq-telephony" aria-selected="false" aria-controls="faq-telephony" data-faq-tab="faq-telephony" tabindex="-1">IP-телефония</button>
+              <button class="calc-option faq-page__tab" type="button" role="tab" id="faq-tab-faq-support" aria-selected="false" aria-controls="faq-support" data-faq-tab="faq-support" tabindex="-1">Гарантии, качество и поддержка</button>
+              <button class="calc-option faq-page__tab" type="button" role="tab" id="faq-tab-faq-process" aria-selected="false" aria-controls="faq-process" data-faq-tab="faq-process" tabindex="-1">Процесс работы</button>
+            </div>
+            <section class="faq-page__group is-active" id="faq-company" role="tabpanel" aria-labelledby="faq-tab-faq-company">
               <ul class="faq__list">
                 <li class="faq__item glow-card">
                   <h3 class="faq__question">
@@ -405,8 +401,7 @@
                 </li>
               </ul>
             </section>
-            <section class="faq-page__group" id="faq-bitrix24" aria-labelledby="faq-bitrix24-title">
-              <h2 class="faq-page__category" id="faq-bitrix24-title">Битрикс24 и автоматизация</h2>
+            <section class="faq-page__group" id="faq-bitrix24" role="tabpanel" aria-labelledby="faq-tab-faq-bitrix24">
               <ul class="faq__list">
                 <li class="faq__item glow-card">
                   <h3 class="faq__question">
@@ -432,8 +427,7 @@
                 </li>
               </ul>
             </section>
-            <section class="faq-page__group" id="faq-sites" aria-labelledby="faq-sites-title">
-              <h2 class="faq-page__category" id="faq-sites-title">Сайты и веб-сервисы</h2>
+            <section class="faq-page__group" id="faq-sites" role="tabpanel" aria-labelledby="faq-tab-faq-sites">
               <ul class="faq__list">
                 <li class="faq__item glow-card">
                   <h3 class="faq__question">
@@ -470,8 +464,7 @@
                 </li>
               </ul>
             </section>
-            <section class="faq-page__group" id="faq-telephony" aria-labelledby="faq-telephony-title">
-              <h2 class="faq-page__category" id="faq-telephony-title">IP-телефония</h2>
+            <section class="faq-page__group" id="faq-telephony" role="tabpanel" aria-labelledby="faq-tab-faq-telephony">
               <ul class="faq__list">
                 <li class="faq__item glow-card">
                   <h3 class="faq__question">
@@ -519,8 +512,7 @@
                 </li>
               </ul>
             </section>
-            <section class="faq-page__group" id="faq-support" aria-labelledby="faq-support-title">
-              <h2 class="faq-page__category" id="faq-support-title">Гарантии, качество и поддержка</h2>
+            <section class="faq-page__group" id="faq-support" role="tabpanel" aria-labelledby="faq-tab-faq-support">
               <ul class="faq__list">
                 <li class="faq__item glow-card">
                   <h3 class="faq__question">
@@ -557,8 +549,7 @@
                 </li>
               </ul>
             </section>
-            <section class="faq-page__group" id="faq-process" aria-labelledby="faq-process-title">
-              <h2 class="faq-page__category" id="faq-process-title">Процесс работы</h2>
+            <section class="faq-page__group" id="faq-process" role="tabpanel" aria-labelledby="faq-tab-faq-process">
               <ul class="faq__list">
                 <li class="faq__item glow-card">
                   <h3 class="faq__question">
@@ -606,7 +597,6 @@
                 </li>
               </ul>
             </section>
-            </div>
           </div>
         </div>
       </section>

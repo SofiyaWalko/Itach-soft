@@ -305,13 +305,13 @@ FAQ_DATA = [
 ]
 
 nav_items = "\n".join(
-    f"""              <li><a class="faq-page__nav-link" href="#{cid}">{title}</a></li>"""
-    for cid, title, _ in FAQ_DATA
+    f"""              <button class="calc-option faq-page__tab" type="button" role="tab" id="faq-tab-{cid}" aria-selected="{'true' if index == 0 else 'false'}" aria-controls="{cid}" data-faq-tab="{cid}" tabindex="{0 if index == 0 else -1}">{title}</button>"""
+    for index, (cid, title, _) in enumerate(FAQ_DATA)
 )
 
 group_html = []
 q_num = 1
-for cid, title, questions in FAQ_DATA:
+for index, (cid, title, questions) in enumerate(FAQ_DATA):
     items = []
     for question, answer in questions:
         items.append(
@@ -329,8 +329,7 @@ for cid, title, questions in FAQ_DATA:
         )
         q_num += 1
     group_html.append(
-        f"""            <section class="faq-page__group" id="{cid}" aria-labelledby="{cid}-title">
-              <h2 class="faq-page__category" id="{cid}-title">{title}</h2>
+        f"""            <section class="faq-page__group{' is-active' if index == 0 else ''}" id="{cid}" role="tabpanel" aria-labelledby="faq-tab-{cid}">
               <ul class="faq__list">
 """
         + "\n".join(items)
@@ -352,19 +351,15 @@ FAQ = (
             </p>
           </div>
 
-          <div class="faq-page__layout" data-faq>
-            <nav aria-label="Категории вопросов">
-              <ul class="faq-page__nav">
+          <div class="faq-page__layout" data-faq data-faq-tabs>
+            <div class="faq-page__nav" role="tablist" aria-label="Категории вопросов">
 """
     + nav_items
     + """
-              </ul>
-            </nav>
-            <div>
+            </div>
 """
     + "\n".join(group_html)
     + """
-            </div>
           </div>"""
 )
 

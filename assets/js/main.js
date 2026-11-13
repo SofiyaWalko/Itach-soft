@@ -1062,7 +1062,57 @@ function initReviewsFilter(root) {
     });
 
     if (status) status.textContent = `Показано ${shown} из ${cards.length}`;
+
+    // На телефоне лента фильтров листается: выбранная пилюля доезжает до центра
+    event.target
+      .closest(".calc-option")
+      ?.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
   });
+}
+
+// FAQ: категории вопросов переключаются табами, видна только активная.
+// Без JS все категории выводятся подряд, поэтому контент не теряется
+function initFaqTabs(root) {
+  if (!root) return;
+
+  const tabs = [...root.querySelectorAll("[data-faq-tab]")];
+  const panels = tabs.map((tab) => document.getElementById(tab.dataset.faqTab));
+  if (!tabs.length || panels.some((panel) => !panel)) return;
+
+  const activate = (index, { focusTab = false, updateHash = true } = {}) => {
+    tabs.forEach((tab, i) => {
+      const active = i === index;
+      tab.setAttribute("aria-selected", String(active));
+      tab.tabIndex = active ? 0 : -1;
+      panels[i].hidden = !active;
+      panels[i].classList.toggle("is-active", active);
+    });
+
+    if (focusTab) tabs[index].focus();
+    if (updateHash) history.replaceState(null, "", `#${tabs[index].dataset.faqTab}`);
+  };
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+      activate(index);
+      // На телефоне лента табов листается: докручиваем выбранный таб к центру
+      tab.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    });
+    tab.addEventListener("keydown", (event) => {
+      let next;
+      if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
+      else if (event.key === "ArrowLeft") next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === "Home") next = 0;
+      else if (event.key === "End") next = tabs.length - 1;
+      else return;
+
+      event.preventDefault();
+      activate(next, { focusTab: true });
+    });
+  });
+
+  const initial = tabs.findIndex((tab) => `#${tab.dataset.faqTab}` === location.hash);
+  activate(initial === -1 ? 0 : initial, { updateHash: false });
 }
 
 // Услуги в мобильном меню: аккордеон «направления → услуги» собирается из данных мега-меню,
@@ -1330,6 +1380,7 @@ initHeader();
 initServicesMegaMenu();
 initCompanyDropdown();
 initReviewsFilter(document.querySelector("[data-reviews-filter]"));
+initFaqTabs(document.querySelector("[data-faq-tabs]"));
 initMobileServicesNav();
 initScrollReveal();
 initGlowCards();
