@@ -6668,10 +6668,11 @@ html:has(.detail[open]) {
   }
 }
 
-/* Текст карточки лежит под загнутой бумагой */
+/* Текст карточки лежит под отворотом: при раскрытии градиентная поверхность
+   накрывает его, а не просвечивает сквозь текст */
 .why-card__body {
   position: relative;
-  z-index: 3;
+  z-index: 1;
 }
 
 .why-card__title {
@@ -6698,7 +6699,7 @@ html:has(.detail[open]) {
   inset-block-end: 0;
   inline-size: var(--fold);
   block-size: var(--fold);
-  z-index: 1;
+  z-index: 2;
   /* Фирменный градиент — тот же, что течёт по кнопке хедера при наведении */
   background-color: var(--color-drop-orange);
   background-image: var(--gradient-flow);
@@ -6716,7 +6717,7 @@ html:has(.detail[open]) {
   position: absolute;
   inset-inline-end: 0.875rem;
   inset-block-end: 0.875rem;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
