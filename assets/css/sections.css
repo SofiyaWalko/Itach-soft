@@ -6608,7 +6608,7 @@ html:has(.detail[open]) {
    оранжевая поверхность, край которой загнут бумагой. При наведении бумага
    разворачивается через линию сгиба (отражение по диагонали), открывая
    больше поверхности и однословные факты.
-   Анимация — на обычных свойствах (inline-size, clip-path, transform):
+   Анимация — на обычных свойствах (inline-size, block-size, opacity):
    работает без @property и в старых Safari/Firefox тоже */
 .why {
   padding-block: var(--space-12);
@@ -6735,8 +6735,13 @@ html:has(.detail[open]) {
   margin-inline-end: 0.5rem;
 }
 
-/* Загнутая бумага: треугольник, отражённый через линию сгиба относительно
-   правого нижнего угла. calc() внутри matrix() не поддерживается — сдвиг
+/* Загнутая бумага: квадрат во весь угол, отражённый через линию сгиба
+   относительно правого нижнего угла. Сдвиг задан в процентах собственного
+   размера, а не через var(--fold): тогда transform не зависит от анимируемой
+   ширины/высоты листа. Геометрия сгиба всегда выводится из фактического
+   размера (inset: 0), поэтому при резком уходе курсора отворот не может
+   «перевернуться»: бежит только одна анимация размера, без рассинхрона
+   между ней и transform. calc() внутри matrix() не поддерживается — сдвиг
    отдельным translate(): T · M = matrix(0, -1, -1, 0, -fold, -fold) */
 .why-card__fold {
   position: absolute;
@@ -6768,9 +6773,7 @@ html:has(.detail[open]) {
   );
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
   transform-origin: 100% 100%;
-  transform: translate(calc(-1 * var(--fold)), calc(-1 * var(--fold))) matrix(0, -1, -1, 0, 0, 0);
-  transition: transform var(--fold-duration) var(--fold-ease);
-  will-change: transform;
+  transform: translate(-100%, -100%) matrix(0, -1, -1, 0, 0, 0);
 }
 
 /* Раскрытие: бумага отгибается, поверхность и факты открываются */
@@ -6893,7 +6896,6 @@ html:has(.detail[open]) {
 @media (prefers-reduced-motion: reduce) {
   .why-card__sheet,
   .why-card__fold,
-  .why-card__fold::before,
   .why-card__fact {
     transition: none;
   }
