@@ -6632,6 +6632,13 @@ html:has(.detail[open]) {
   margin-block-start: var(--space-6);
 }
 
+/* Четыре преимущества на «О компании» — в одну строку на широком экране */
+@media (min-width: 1280px) {
+  .why-cards--four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 .why-card {
   --fold: 3.5rem;
   /* Время и кривая сгиба. Разные для раскрытия и закрытия — переход берёт
@@ -7537,53 +7544,147 @@ html:has(.detail[open]) {
   margin-block-start: var(--space-4);
 }
 
-/* Таймлайн истории: линия, градиентные точки, год над текстом */
-.timeline {
+/* История: горизонтальный таймлайн. Секция закрепляется, пока лента проезжает влево */
+.history {
   position: relative;
-  display: grid;
-  gap: var(--space-4);
-  max-inline-size: 56rem;
-  margin-block-start: var(--space-4);
-  padding-inline-start: var(--space-5);
 }
 
-.timeline::before {
+/* Панель по высоте контента: после проезда ленты не остаётся пустого «хвоста» */
+.history__sticky {
+  position: sticky;
+  inset-block-start: calc(var(--header-top) + var(--header-height) + var(--space-3));
+  display: grid;
+  align-content: start;
+  padding-block: clamp(2rem, 5svh, 3.5rem) 0;
+}
+
+.history__viewport {
+  overflow: hidden;
+  margin-block-start: var(--space-5);
+  /* Совпадает с левым краем .container, но лента уходит за правый край экрана */
+  padding-inline: max(var(--gutter), calc(50vw - var(--container-max) / 2));
+  outline: none;
+}
+
+.history__viewport:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.history__track {
+  /* Ширина колонки под годы в 56px: «2013—2014» и «2020—2026» должны помещаться в строку */
+  --history-event-w: 19rem;
+  --history-gap: clamp(2rem, 4vw, 4rem);
+  --history-step: calc(var(--history-event-w) + var(--history-gap));
+  display: grid;
+  inline-size: max-content;
+  will-change: transform;
+}
+
+/* Линия таймлайна и точки над годами */
+.history__rail {
+  position: relative;
+  display: flex;
+  block-size: 0.75rem;
+  margin-block-end: var(--space-5);
+}
+
+.history__rail::before {
   content: "";
   position: absolute;
-  inset-block: 0.5rem;
-  inset-inline-start: 0.4375rem;
-  inline-size: 1px;
-  background: var(--color-line);
+  inset-block-start: 50%;
+  inset-inline: 0;
+  block-size: 1px;
+  background: var(--color-line-strong);
 }
 
-.timeline__item {
-  position: relative;
-  display: grid;
-  gap: 0.25rem;
-}
-
-.timeline__item::before {
+/* Заливка линии: открывается слева направо по мере прокрутки закреплённой панели */
+.history__rail::after {
   content: "";
   position: absolute;
-  inset-block-start: 0.35rem;
-  inset-inline-start: calc(-1 * var(--space-5) + 0.0625rem);
+  inset-block-start: 50%;
+  inset-inline: 0;
+  block-size: 2px;
+  background: var(--gradient-flow);
+  transform: translateY(-50%);
+  clip-path: inset(0 calc(100% - var(--history-progress, 0%)) 0 0);
+}
+
+.history__point {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  inline-size: var(--history-step);
+}
+
+.history__point:last-child {
+  inline-size: var(--history-event-w);
+}
+
+.history__point::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 0;
   inline-size: 0.75rem;
   block-size: 0.75rem;
   border-radius: 50%;
   background: var(--gradient-flow);
-  box-shadow: 0 0 0 3px var(--color-bg);
+  transform: translateY(-50%);
 }
 
-.timeline__year {
+.history__events {
+  display: flex;
+  gap: var(--history-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.history-event {
+  display: grid;
+  flex: none;
+  align-content: start;
+  gap: var(--space-3);
+  inline-size: var(--history-event-w);
+}
+
+.history-event__year {
+  display: inline-block;
+  inline-size: fit-content;
+  background: var(--gradient-figures);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-drop-orange);
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  /* Размер и начертание как у цифр в карточках после заголовка */
+  font-size: 3.5rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
 }
 
-.timeline__text {
+.history-event__text {
+  margin: 0;
   color: var(--color-text-2);
   font-size: 1.0625rem;
   line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .history__sticky {
+    position: static;
+  }
+
+  .history__viewport {
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+  }
+
+  .history-event {
+    scroll-snap-align: start;
+  }
 }
 

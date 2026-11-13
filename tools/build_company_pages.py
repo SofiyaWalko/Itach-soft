@@ -441,18 +441,37 @@ def stat(value, text):
             </li>"""
 
 
-def benefit(title, text):
-    return f"""              <article class="guarantee-card glow-card">
-                <h3 class="guarantee-card__title">{title}</h3>
-                <p class="guarantee-card__text">{text}</p>
+def benefit(title, text, facts):
+    chips = "".join(f'<li class="why-card__fact">{fact}</li>' for fact in facts)
+    return f"""              <article class="why-card" tabindex="0">
+                <div class="why-card__body">
+                  <h3 class="why-card__title">{title}</h3>
+                  <p class="why-card__text">{text}</p>
+                </div>
+                <span class="why-card__sheet" aria-hidden="true"></span>
+                <ul class="why-card__facts">{chips}</ul>
+                <span class="why-card__fold" aria-hidden="true"></span>
               </article>"""
 
 
-def timeline_item(year, text):
-    return f"""              <li class="timeline__item">
-                <span class="timeline__year">{year}</span>
-                <p class="timeline__text">{text}</p>
-              </li>"""
+HISTORY = [
+    ("2013—2014", "Компания основана в Минске. Начали с аутсорсинга IT-инфраструктуры и продажи оборудования, запустили веб-разработку и установку контакт-центров."),
+    ("2015", "«Айти-Монтаж» переименована в «Итач-Софт». Основной фокус — контакт-центры Asterisk и приложения."),
+    ("2018", "Сфокусировались на внедрении Битрикс24 и контакт-центрах на Asterisk, закрыли направление аутсорсинга IT-инфраструктуры."),
+    ("2019", "Усилили разработку сайтов, веб-сервисов, приложений для Битрикс24 и IP-АТС Asterisk."),
+    ("2020—2026", "Вступили в Парк высоких технологий, открыли филиал в Варшаве и вышли на международный рынок."),
+]
+
+
+def history_event(year, text):
+    return f"""                    <li class="history-event">
+                      <span class="history-event__year">{year}</span>
+                      <p class="history-event__text">{text}</p>
+                    </li>"""
+
+
+def history_points():
+    return "\n".join('                    <span class="history__point"></span>' for _ in HISTORY)
 
 
 def role(name, file, width, height, duty):
@@ -493,35 +512,85 @@ ABOUT = f"""      <section class="about-hero" aria-labelledby="about-title">
             <h2 class="section-title" id="about-benefits-title" data-reveal>
               Что мы даём <span class="section-title__muted">бизнесу</span>
             </h2>
-            <div class="guarantee__grid" data-reveal-stagger>
-{benefit("Рост продаж", "Помогаем увеличивать объём продаж и средний чек за счёт цифровых инструментов и автоматизации процессов.")}
-{benefit("Скорость обслуживания", "Ускоряем работу с обращениями клиентов и повышаем их удовлетворённость — растёт CSI.")}
-{benefit("Меньше издержек", "Сокращаем ручной труд и потери из-за долгих согласований и ошибок в данных.")}
-{benefit("Охват аудитории", "Объединяем каналы лидогенерации в одну систему и снижаем потери клиентов на пути к покупке.")}
+            <div class="why__scroller">
+              <div class="why-cards why-cards--four" data-reveal-stagger>
+{benefit("Рост продаж", "Помогаем увеличивать объём продаж и средний чек за счёт цифровых инструментов и автоматизации процессов.", ["Рост", "Выше чек", "Больше заявок"])}
+{benefit("Скорость обслуживания", "Ускоряем работу с обращениями клиентов и повышаем их удовлетворённость — растёт CSI.", ["Быстрее", "Выше CSI", "Меньше ожидания"])}
+{benefit("Меньше издержек", "Сокращаем ручной труд и потери из-за долгих согласований и ошибок в данных.", ["Экономия", "Точные данные", "Меньше рутины"])}
+{benefit("Охват аудитории", "Объединяем каналы лидогенерации в одну систему и снижаем потери клиентов на пути к покупке.", ["Охват", "Все каналы", "Меньше потерь"])}
+              </div>
             </div>
           </div>
         </section>
 
         <section class="about-history" aria-labelledby="about-history-title">
-          <div class="container">
-            <h2 class="section-title" id="about-history-title" data-reveal>
-              Наша <span class="section-title__muted">история</span>
-            </h2>
-            <p class="company-page__lead">
-              История компании складывается из личной истории каждого сотрудника. Мы начали в 2013 году
-              в Минске и выросли в команду, которая делает проекты для Беларуси и за её пределами.
-            </p>
-            <ol class="timeline" data-reveal-stagger>
-{timeline_item("2020—2026", "Вступили в Парк высоких технологий, открыли филиал в Варшаве и вышли на международный рынок.")}
-{timeline_item("2019", "Усилили разработку сайтов, веб-сервисов, приложений для Битрикс24 и IP-АТС Asterisk.")}
-{timeline_item("2018", "Сфокусировались на внедрении Битрикс24 и контакт-центрах на Asterisk, закрыли направление аутсорсинга IT-инфраструктуры.")}
-{timeline_item("2015", "«Айти-Монтаж» переименована в «Итач-Софт». Основной фокус — контакт-центры Asterisk и приложения.")}
-{timeline_item("2013—2014", "Компания основана в Минске. Начали с аутсорсинга IT-инфраструктуры и продажи оборудования, запустили веб-разработку и установку контакт-центров.")}
-            </ol>
+          <div class="history" data-history>
+            <div class="history__sticky" data-history-sticky>
+              <div class="container">
+                <h2 class="section-title" id="about-history-title" data-reveal>
+                  Наша <span class="section-title__muted">история</span>
+                </h2>
+              </div>
+              <div class="history__viewport" data-history-viewport tabindex="0" role="region" aria-label="История компании, прокручивается по горизонтали">
+                <div class="history__track" data-history-track>
+                  <div class="history__rail" aria-hidden="true">
+{history_points()}
+                  </div>
+                  <ol class="history__events">
+{chr(10).join(history_event(year, text) for year, text in HISTORY)}
+                  </ol>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
 {AWARDS}
+
+        <!-- Чем занимается компания: табы по направлениям, под ними — карточки работ -->
+        <section class="tools" aria-labelledby="works-title">
+          <div class="container">
+            <h2 class="section-title" data-reveal id="works-title">
+              Чем занимается <span class="section-title__muted">компания Итач-софт?</span>
+            </h2>
+            <div class="tools-picker" data-tools-picker data-no-hover-switch data-reveal>
+              <div class="tools-tabs" role="tablist" aria-label="Направления работы">
+                <button class="tools-tab is-active" type="button" role="tab" id="works-tab-1" aria-selected="true" aria-controls="works-panel-1">
+                  <span>Сайты</span>
+                </button>
+                <button class="tools-tab" type="button" role="tab" id="works-tab-2" aria-selected="false" aria-controls="works-panel-2" tabindex="-1">
+                  <span>Битрикс24 и веб-сервисы</span>
+                </button>
+                <button class="tools-tab" type="button" role="tab" id="works-tab-3" aria-selected="false" aria-controls="works-panel-3" tabindex="-1">
+                  <span>IT-инфраструктура</span>
+                </button>
+              </div>
+              <div class="tools-panels">
+                <div class="tools-panel is-active" role="tabpanel" id="works-panel-1" aria-labelledby="works-tab-1">
+                  <ul class="tools-list">
+                    <li class="tools-item glow-card"><h3 class="tools-item__name">Корпоративные <span class="section-title__muted">сайты</span></h3><p class="tools-item__text">Проектируем и разрабатываем сайты для компаний: структура, дизайн, вёрстка, наполнение и запуск под ключ.</p></li>
+                    <li class="tools-item glow-card"><h3 class="tools-item__name">Сайты-визитки <span class="section-title__muted">и лендинги</span></h3><p class="tools-item__text">Быстрые страницы для презентации услуги или запуска рекламной кампании — с заявками и аналитикой.</p></li>
+                    <li class="tools-item glow-card"><h3 class="tools-item__name">Интернет-<span class="section-title__muted">магазины</span></h3><p class="tools-item__text">Каталог, корзина, оплата и доставка, интеграции с 1С и CRM — магазин, готовый к продажам.</p></li>
+                  </ul>
+                </div>
+                <div class="tools-panel" role="tabpanel" id="works-panel-2" aria-labelledby="works-tab-2">
+                  <ul class="tools-list">
+                    <li class="tools-item glow-card"><h3 class="tools-item__name">Веб-сервисы и ПО <span class="section-title__muted">с нуля</span></h3><p class="tools-item__text">Разрабатываем сервисы и приложения под задачи бизнеса: от прототипа и архитектуры до запуска и поддержки.</p></li>
+                    <li class="tools-item glow-card"><h3 class="tools-item__name">Внедрение <span class="section-title__muted">Битрикс24</span></h3><p class="tools-item__text">Настраиваем CRM, задачи, телефонию и интеграции, переносим данные и обучаем сотрудников.</p></li>
+                    <li class="tools-item glow-card"><h3 class="tools-item__name">Доработка и поддержка <span class="section-title__muted">Битрикс24</span></h3><p class="tools-item__text">Развиваем существующую систему: новые сценарии, интеграции, обновления и техподдержка по SLA.</p></li>
+                  </ul>
+                </div>
+                <div class="tools-panel" role="tabpanel" id="works-panel-3" aria-labelledby="works-tab-3">
+                  <ul class="tools-list">
+                    <li class="tools-item glow-card"><h3 class="tools-item__name">VoIP Asterisk <span class="section-title__muted">и IP-телефония</span></h3><p class="tools-item__text">Проектируем и настраиваем IP-АТС, подключаем операторов и интегрируем телефонию с CRM.</p></li>
+                    <li class="tools-item glow-card"><h3 class="tools-item__name">IT-услуги <span class="section-title__muted">и аутстафф</span></h3><p class="tools-item__text">Берём на себя поддержку IT-инфраструктуры или выделяем специалистов в вашу команду.</p></li>
+                    <li class="tools-item glow-card"><h3 class="tools-item__name">Тестирование <span class="section-title__muted">ПО</span></h3><p class="tools-item__text">Проверяем функциональность, нагрузку и безопасность продукта до запуска и после обновлений.</p></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section class="team" aria-labelledby="team-title">
           <div class="container">

@@ -1379,8 +1379,71 @@ function initToolsSweep() {
   items.forEach((item) => observer.observe(item));
 }
 
+// История на «О компании»: пока страница прокручивается, блок закреплён,
+// а горизонтальная лента проезжает влево на длину своего переполнения
+function initHistoryTimeline() {
+  const section = document.querySelector("[data-history]");
+  if (!section) return;
+  const sticky = section.querySelector("[data-history-sticky]");
+  const viewport = section.querySelector("[data-history-viewport]");
+  const track = section.querySelector("[data-history-track]");
+  const events = [...section.querySelectorAll(".history-event")];
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  let shift = 0;
+  let frame = 0;
+
+  const update = () => {
+    if (reduced.matches || !shift) return;
+    const pinTop = parseFloat(getComputedStyle(sticky).top) || 0;
+    const progress = Math.min(1, Math.max(0, (pinTop - section.getBoundingClientRect().top) / shift));
+    track.style.transform = `translate3d(${-progress * shift}px, 0, 0)`;
+    section.style.setProperty("--history-progress", `${progress * 100}%`);
+  };
+
+  const measure = () => {
+    if (reduced.matches) {
+      shift = 0;
+      section.style.removeProperty("height");
+      track.style.removeProperty("transform");
+      section.style.setProperty("--history-progress", "100%");
+      return;
+    }
+    const styles = getComputedStyle(viewport);
+    const visible = viewport.clientWidth - parseFloat(styles.paddingInlineStart) - parseFloat(styles.paddingInlineEnd);
+    shift = Math.max(0, track.scrollWidth - visible);
+    section.style.height = `${sticky.offsetHeight + shift}px`;
+    if (shift) update();
+    else section.style.setProperty("--history-progress", "100%");
+  };
+
+  viewport.addEventListener("keydown", (event) => {
+    if (reduced.matches || !shift) return;
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    event.preventDefault();
+    const step = shift / Math.max(1, events.length - 1);
+    window.scrollBy({ top: event.key === "ArrowRight" ? step : -step, behavior: "smooth" });
+  });
+
+  addEventListener(
+    "scroll",
+    () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        update();
+      });
+    },
+    { passive: true },
+  );
+  addEventListener("resize", measure);
+  reduced.addEventListener?.("change", measure);
+  document.fonts?.ready.then(measure);
+  measure();
+}
+
 initHeader();
 initServicesMegaMenu();
+initHistoryTimeline();
 initCompanyDropdown();
 initReviewsFilter(document.querySelector("[data-reviews-filter]"));
 initFaqTabs(document.querySelector("[data-faq-tabs]"));
