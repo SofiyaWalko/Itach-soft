@@ -7294,27 +7294,32 @@ html:has(.detail[open]) {
 }
 
 .doc-card {
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
+  /* Справа место под круглую стрелку, как у карточки услуги */
+  padding: var(--space-3) 5rem var(--space-3) var(--space-4);
   border: 1px solid var(--color-glass-stroke);
   border-radius: var(--radius-md);
   background: var(--color-bg);
-  transition:
-    border-color var(--duration-fast) var(--ease-out),
-    box-shadow var(--duration-fast) var(--ease-out);
 }
 
+/* Плашка PDF: белая заливка, градиентный контур как у кнопок и пилюль */
 .doc-card__icon {
   display: grid;
   place-items: center;
   flex: none;
   inline-size: 3rem;
   block-size: 3rem;
+  border: var(--contour-width) solid transparent;
   border-radius: 0.875rem;
-  background: var(--color-accent-soft);
-  color: var(--color-accent-deep);
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    var(--gradient-flow) border-box;
+  background-size: auto, 200% 100%;
+  color: var(--color-text);
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -7340,44 +7345,69 @@ html:has(.detail[open]) {
   line-height: 1.4;
 }
 
-.doc-card__arrow {
-  display: grid;
-  place-items: center;
-  flex: none;
-  margin-inline-start: auto;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
-  border: 1px solid var(--color-line);
-  border-radius: 50%;
-  color: var(--color-text);
-  transition: border-color var(--duration-fast) var(--ease-out);
-}
-
-.doc-card__arrow .icon {
-  inline-size: 1.125rem;
-  block-size: 1.125rem;
-}
-
-@media (hover: hover) {
-  .doc-card:hover {
-    border-color: var(--color-line-strong);
-    box-shadow: var(--shadow-glass);
-  }
-
-  .doc-card:hover .doc-card__arrow {
-    border-color: var(--color-text);
+@media (prefers-reduced-motion: no-preference) {
+  .doc-card__icon,
+  .doc-card__body {
+    transition: transform 400ms var(--ease-out);
   }
 }
 
+/* Только на широких экранах с мышью: на мобильной ширине у .glow-card работает
+   бегущий контур с opacity: 1, и полноразмерная заливка перекрыла бы содержимое */
+@media (hover: hover) and (min-width: 640px) {
+  /* На десктопе вместо контура — лёгкая градиентная заливка, как у карточек услуг */
+  .doc-card::before {
+    inset: 0;
+    padding: 0;
+    background: var(--gradient-flow);
+    background-size: 200% 100%;
+    -webkit-mask: none;
+    mask: none;
+  }
+
+  .doc-card:hover::before {
+    opacity: 0.09;
+  }
+
+  .doc-card:hover .doc-card__icon,
+  .doc-card:hover .doc-card__body {
+    transform: translateX(0.75rem);
+  }
+
+  .doc-card:hover .card-arrow::before {
+    opacity: 1;
+  }
+
+  .doc-card:hover .card-arrow .icon {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* На телефоне плашка слева сверху, стрелка справа сверху, текст — под ними */
 @media (max-width: 479px) {
   .doc-card {
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "icon arrow"
+      "body body";
+    align-items: start;
+    gap: var(--space-2) var(--space-3);
     padding: var(--space-3);
   }
 
-  .doc-card__arrow {
-    inline-size: 2.25rem;
-    block-size: 2.25rem;
+  .doc-card__icon {
+    grid-area: icon;
+  }
+
+  .doc-card__body {
+    grid-area: body;
+  }
+
+  .doc-card .card-arrow {
+    position: static;
+    grid-area: arrow;
+    justify-self: end;
   }
 }
 

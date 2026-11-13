@@ -385,13 +385,13 @@ DOCS = [
 
 doc_cards = "\n".join(
     f"""            <li>
-              <a class="doc-card" href="{url}" target="_blank" rel="noopener">
+              <a class="doc-card glow-card" href="{url}" target="_blank" rel="noopener">
                 <span class="doc-card__icon" aria-hidden="true">PDF</span>
                 <span class="doc-card__body">
                   <span class="doc-card__title">{title}</span>
                   <span class="doc-card__meta">{meta}</span>
                 </span>
-                <span class="doc-card__arrow" aria-hidden="true">
+                <span class="card-arrow" aria-hidden="true">
                   <svg class="icon"><use href="#icon-arrow-up-right" /></svg>
                 </span>
               </a>
@@ -412,19 +412,11 @@ DOCUMENTS = (
             </p>
           </div>
 
-          <ul class="docs-list" data-reveal-stagger>
+          <ul class="docs-list" data-glow-group data-reveal-stagger>
 """
     + doc_cards
     + """
-          </ul>
-
-          <p class="company-section__lead">
-            Не нашли нужный документ? Напишите нам — подготовим договор, счёт или карточку предприятия.
-          </p>
-          <div class="company-page__actions" data-reveal>
-            <a class="btn btn--primary" href="mailto:info@itach.by">Запросить документ</a>
-            <a class="btn btn--ghost" href="contacts.html">Реквизиты и контакты</a>
-          </div>"""
+          </ul>"""
 )
 
 PAGES = [

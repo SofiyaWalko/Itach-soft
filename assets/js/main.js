@@ -358,8 +358,11 @@ function initGlowFocus() {
       if (visibleShare < MIN_VISIBLE_SHARE && !coversScreen) return;
       const distance = Math.hypot(rect.left + rect.width / 2 - viewportWidth / 2, rect.top + rect.height / 2 - viewportHeight / 2);
       candidates.set(card, distance);
-      const current = best.get(card.parentElement);
-      if (!current || distance < current.distance) best.set(card.parentElement, { card, distance });
+      // Группа карточек получает один активный контур: там, где карточки лежат в отдельных <li>,
+      // группу задаёт data-glow-group, иначе группируем по общему родителю
+      const group = card.closest("[data-glow-group]") ?? card.parentElement;
+      const current = best.get(group);
+      if (!current || distance < current.distance) best.set(group, { card, distance });
     });
 
     // Гистерезис: пока прежняя карточка списка ещё хорошо видна, контур с неё уходит только когда другая заметно ближе к центру
