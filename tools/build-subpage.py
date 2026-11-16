@@ -178,6 +178,10 @@ def generate(slug, c):
     s = re.sub(r'<section class="related" aria-labelledby="related-title">.*?\n      </section>(?=\n    </main>)',
                build_related(c["related"], slug), s, count=1, flags=re.DOTALL)
 
+    # Калькулятор из шаблона: на странице поддержки открываем обслуживание сайтов
+    need = "4" if slug == "service-podderzhka-saytov" else "0"
+    s = re.sub(r'data-calc-default-need="\d+"', f'data-calc-default-need="{need}"', s, count=1)
+
     out = ROOT / f"{slug}.html"
     io.open(out, "w", encoding="utf-8", newline="\n").write(s)
     print(f"built {out.name}")

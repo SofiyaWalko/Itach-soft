@@ -271,7 +271,57 @@ const CALC_SERVICES = [
   },
 ];
 
-const CALC_STEP_TITLES = ["Выберите услугу", "Что конкретно необходимо?", "Подробности проекта"];
+// ---------------------------------------------------------------- цены и расчёт
+// База — опубликованные на сайте цены «от». Вилка ориентировочная:
+// сложность поднимает верхнюю границу, интеграции и дизайн добавляют проценты.
+const CALC_PRICES = {
+  "Битрикс24|Внедрение Битрикс24": 90000,
+  "Битрикс24|Настройка Битрикс24": 90000,
+  "Битрикс24|Техническая поддержка Битрикс24": { price: 9000, unit: "monthly" },
+  "Битрикс24|Обучение Битрикс24": 9000,
+  "Битрикс24|Доработка Битрикс24": 60000,
+  "Битрикс24|Автоматизация бизнес-процессов в Битрикс24": 60000,
+  "Битрикс24|Установка коробочной версии Битрикс24": 90000,
+  "IP-АТС на базе Asterisk|Возможности и решения VoIP-АТС под ключ": 90000,
+  "IP-АТС на базе Asterisk|Настройка VoIP Asterisk": 45000,
+  "IP-АТС на базе Asterisk|Обеспечение безопасности VoIP-АТС": 45000,
+  "IP-АТС на базе Asterisk|Техническая поддержка VoIP-телефонных станций": { price: 9000, unit: "monthly" },
+  "Создание сайтов|Сайт-визитка": 120000,
+  "Создание сайтов|Корпоративный сайт": 195000,
+  "Создание сайтов|Интернет-магазин": 290000,
+  "Создание сайтов|Лендинг": 150000,
+  "Создание сайтов|Обслуживание сайтов": { price: 9000, unit: "monthly" },
+  "Создание сайтов|Сайты государственных организаций и органов управления": 350000,
+  "Аутстаффинг и IT-услуги|IT-аутстаффинг": { price: 2880, unit: "hourly" },
+  "Аутстаффинг и IT-услуги|Предоставление IT-специалистов под задачи бизнеса": { price: 2880, unit: "hourly" },
+  "Аутстаффинг и IT-услуги|IT-консультации": { price: 2880, unit: "hourly" },
+  "AI-разработка|AI-чат-боты и виртуальные ассистенты": 150000,
+  "AI-разработка|Корпоративные AI-ассистенты": 300000,
+  "AI-разработка|AI-интеграции с CRM Битрикс24": 240000,
+  "AI-разработка|Интеллектуальный поиск по документам": 300000,
+  "AI-разработка|AI для обработки документов": 300000,
+  "AI-разработка|Предиктивная аналитика": 450000,
+  "AI-разработка|Рекомендательные системы": 450000,
+  "AI-разработка|AI-модули для сайтов и веб-сервисов": 150000,
+  "AI-разработка|Компьютерное зрение": 300000,
+  "AI-разработка|AI для анализа обращений и коммуникаций": 240000,
+};
+
+const CALC_COMPLEXITY = [
+  { label: "Простая", min: 1, max: 1.3 },
+  { label: "Средняя", min: 1, max: 1.8 },
+  { label: "Высокая", min: 1.25, max: 2.5 },
+];
+const CALC_SERVICE_KEYS = ["bitrix24", "asterisk", "sites", "outstaff", "ai"];
+const CALC_MONTHLY_TIERS = [9000, 13500, 16500];
+const CALC_INTEGRATION_RATE = 0.05;
+const CALC_INTEGRATION_RATE_MAX = 0.08;
+const CALC_DESIGN_RATE = 0.2;
+const CALC_DESIGN_RATE_MAX = 0.3;
+const CALC_MONTHLY_MIN = 9000;
+const CALC_MONTHLY_MAX = 16500;
+
+let calcUid = 0;
 
 const calcCapitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
@@ -279,72 +329,264 @@ function calcEscape(text) {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+const formatMoney = (value) => Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+const roundTo = (value, step) => Math.round(value / step) * step;
+
+function calcPriceInfo(service, need) {
+  const entry = CALC_PRICES[`${service.name}|${need.name}`];
+  if (entry === undefined) return { price: 0, unit: "project" };
+  if (typeof entry === "number") return { price: entry, unit: "project" };
+  return { price: entry.price, unit: entry.unit || "project" };
+}
+
+function calcEstimate(state) {
+  const service = CALC_SERVICES[state.service];
+  const need = service.needs[state.need];
+  const info = calcPriceInfo(service, need);
+  const complexity = CALC_COMPLEXITY[state.complexity];
+  if (!info.price) return null;
+
+  if (info.unit === "monthly") {
+    const monthly = CALC_MONTHLY_TIERS[state.complexity];
+    return { unit: "monthly", low: monthly, high: monthly, monthlyLow: 0, monthlyHigh: 0, rows: [] };
+  }
+
+  if (info.unit === "hourly") {
+    return {
+      unit: "hourly",
+      low: roundTo(info.price * complexity.min, 10),
+      high: roundTo(info.price * complexity.max, 10),
+      monthlyLow: 0,
+      monthlyHigh: 0,
+      rows: [],
+    };
+  }
+
+  const integrations = state.integrations;
+  const devLow = roundTo(info.price * complexity.min, 5000);
+  const devHigh = roundTo(info.price * complexity.max, 5000);
+  const intLow = roundTo(devLow * CALC_INTEGRATION_RATE * integrations, 1000);
+  const intHigh = roundTo(devHigh * CALC_INTEGRATION_RATE_MAX * integrations, 1000);
+  const designLow = state.design ? roundTo(devLow * CALC_DESIGN_RATE, 1000) : 0;
+  const designHigh = state.design ? roundTo(devHigh * CALC_DESIGN_RATE_MAX, 1000) : 0;
+  const monthlyLow = state.support ? Math.max(CALC_MONTHLY_MIN, roundTo(info.price * 0.03, 500)) : 0;
+  const monthlyHigh = state.support ? Math.max(CALC_MONTHLY_MAX, roundTo(info.price * 0.05, 500)) : 0;
+
+  const rows = [{ label: "Разработка", low: devLow, high: devHigh }];
+  if (integrations > 0) rows.push({ label: "Интеграции", low: intLow, high: intHigh });
+  if (state.design) rows.push({ label: "Дизайн", low: designLow, high: designHigh });
+  if (state.support) rows.push({ label: "Поддержка", low: monthlyLow, high: monthlyHigh, suffix: " ₽/мес" });
+
+  return {
+    unit: "project",
+    low: devLow + intLow + designLow,
+    high: devHigh + intHigh + designHigh,
+    monthlyLow,
+    monthlyHigh,
+    rows,
+  };
+}
+
+const rangeText = (low, high, suffix) =>
+  low === high ? `${formatMoney(low)}${suffix}` : `${formatMoney(low)} – ${formatMoney(high)}${suffix}`;
+
+function calcShell(id) {
+  return `
+    <div class="calc__choices glow-card">
+      <fieldset class="calc__group">
+        <legend class="calc__question">Услуга</legend>
+        <div class="calc__options calc__options--large" data-calc-services></div>
+      </fieldset>
+      <fieldset class="calc__group">
+        <legend class="calc__question">Задача</legend>
+        <div class="calc__options calc__options--large" data-calc-needs></div>
+      </fieldset>
+      <fieldset class="calc__group">
+        <legend class="calc__question">Сложность</legend>
+        <div class="calc__options" data-calc-complexity></div>
+      </fieldset>
+      <div class="calc__group" data-calc-integrations-field>
+        <label class="calc__question" for="calc-integrations-${id}">
+          Интеграции с другими системами
+          <output class="calc__range-value" for="calc-integrations-${id}" data-calc-range-value>1</output>
+        </label>
+        <input class="calc__range" id="calc-integrations-${id}" type="range" min="0" max="10" step="1" value="1" data-calc-integrations />
+      </div>
+      <div class="calc__toggles" data-calc-toggles>
+        <label class="calc-toggle">
+          <input class="calc-toggle__input" type="checkbox" data-calc-design />
+          <span class="calc-toggle__switch" aria-hidden="true"></span>
+          <span class="calc-toggle__text">
+            <span class="calc-toggle__title">Дизайн (UX/UI)</span>
+            <span class="calc-toggle__desc">Прототип и дизайн экранов до разработки</span>
+          </span>
+        </label>
+        <label class="calc-toggle">
+          <input class="calc-toggle__input" type="checkbox" checked data-calc-support />
+          <span class="calc-toggle__switch" aria-hidden="true"></span>
+          <span class="calc-toggle__text">
+            <span class="calc-toggle__title">Поддержка и развитие</span>
+            <span class="calc-toggle__desc">Обновления, исправления и доработки каждый месяц</span>
+          </span>
+        </label>
+      </div>
+      <div class="calc__questions" data-calc-questions></div>
+    </div>
+    <aside class="calc__price" aria-label="Ориентировочная стоимость">
+      <p class="calc__price-eyebrow">Ориентировочная стоимость</p>
+      <p class="calc__price-value" data-calc-price-value aria-live="polite">—</p>
+      <p class="calc__price-monthly" data-calc-monthly hidden></p>
+      <div class="calc__breakdown" data-calc-breakdown>
+        <dl data-calc-breakdown-rows></dl>
+      </div>
+      <a class="btn btn--primary calc__cta" href="#lead" data-calc-quote>Получить точную смету</a>
+      <p class="calc__note">Ориентировочная цена по опубликованным тарифам. Точная смета — после обсуждения задачи.</p>
+    </aside>`;
+}
+
 function initCalculator(root) {
   if (!root) return;
+  const config = root.querySelector("[data-calc-config]");
+  if (!config) return;
 
-  const stage = root.querySelector("[data-calc-stage]");
-  const body = root.querySelector("[data-calc-body]");
-  const title = root.querySelector("[data-calc-title]");
-  const contact = root.querySelector("[data-calc-contact]");
-  const brief = root.querySelector("[data-calc-brief]");
-  const counter = root.querySelector("[data-calc-counter]");
-  const back = root.querySelector("[data-calc-back]");
-  const next = root.querySelector("[data-calc-next]");
-  const backFromContact = root.querySelector("[data-calc-back-contact]");
-  const nav = root.querySelector(".calc__nav");
-  const trackerItems = [...root.querySelectorAll("[data-calc-tracker] > li")];
+  const id = ++calcUid;
+  // На подстранице услуги калькулятор открывается на её направлении
+  const defaultService = Math.max(0, CALC_SERVICE_KEYS.indexOf(config.dataset.calcDefault || "bitrix24"));
+  const defaultNeed = Math.min(
+    Number(config.dataset.calcDefaultNeed || 0),
+    CALC_SERVICES[defaultService].needs.length - 1,
+  );
+  const state = {
+    service: defaultService,
+    need: defaultNeed,
+    complexity: 1,
+    integrations: 1,
+    design: false,
+    support: true,
+    answers: {},
+  };
 
-  const state = { step: 0, service: null, need: null, answers: {} };
-  let advanceTimer = 0;
+  config.innerHTML = calcShell(id);
+
+  const servicesEl = config.querySelector("[data-calc-services]");
+  const needsEl = config.querySelector("[data-calc-needs]");
+  const complexityEl = config.querySelector("[data-calc-complexity]");
+  const integrationsField = config.querySelector("[data-calc-integrations-field]");
+  const integrationsInput = config.querySelector("[data-calc-integrations]");
+  const rangeValue = config.querySelector("[data-calc-range-value]");
+  const toggles = config.querySelector("[data-calc-toggles]");
+  const questionsEl = config.querySelector("[data-calc-questions]");
+  const priceValue = config.querySelector("[data-calc-price-value]");
+  const monthlyEl = config.querySelector("[data-calc-monthly]");
+  const breakdown = config.querySelector("[data-calc-breakdown]");
+  const breakdownRows = config.querySelector("[data-calc-breakdown-rows]");
 
   const service = () => CALC_SERVICES[state.service];
-  const need = () => service()?.needs[state.need];
-  const isStepDone = () => (state.step === 0 ? state.service !== null : state.step === 1 ? state.need !== null : true);
+  const need = () => service().needs[state.need];
 
-  function optionHtml({ type, name, value, label, checked }) {
+  function optionHtml(type, name, value, label, checked) {
     return `<label class="calc-option calc-option--${type}">
       <input class="calc-option__input" type="${type}" name="${name}" value="${calcEscape(String(value))}"${checked ? " checked" : ""} />
       <span class="calc-option__text">${calcEscape(calcCapitalize(label))}</span>
     </label>`;
   }
 
-  function renderChoice(kind, items, selected) {
-    const options = items
-      .map((label, index) => optionHtml({ type: "radio", name: `calc-${kind}`, value: index, label, checked: index === selected }))
-      .join("");
-    return `<fieldset class="calc__group" data-calc-kind="${kind}">
-      <legend class="visually-hidden">${calcEscape(CALC_STEP_TITLES[state.step])}</legend>
-      <div class="calc__options calc__options--large">${options}</div>
-    </fieldset>`;
+  function renderChoices() {
+    servicesEl.innerHTML = CALC_SERVICES.map((item, index) =>
+      optionHtml("radio", `calc-${id}-service`, index, item.name, index === state.service),
+    ).join("");
+    renderNeeds();
+    complexityEl.innerHTML = CALC_COMPLEXITY.map((item, index) =>
+      optionHtml("radio", `calc-${id}-complexity`, index, item.label, index === state.complexity),
+    ).join("");
+    renderQuestions();
   }
 
-  function renderQuestion(question, index) {
-    const saved = state.answers[index];
-    if (question.type === "text") {
-      return `<div class="calc__group">
-        <label class="calc__question" for="calc-text-${index}">${calcEscape(question.text)}</label>
-        <textarea class="lead-form__control lead-form__control--area" id="calc-text-${index}" rows="2" data-calc-text="${index}">${calcEscape(saved || "")}</textarea>
-      </div>`;
-    }
-    const options = question.options
-      .map((label) =>
-        optionHtml({
-          type: question.type,
-          name: `calc-q-${index}`,
-          value: label,
+  function renderNeeds() {
+    needsEl.innerHTML = service().needs.map((item, index) =>
+      optionHtml("radio", `calc-${id}-need`, index, item.name, index === state.need),
+    ).join("");
+  }
+
+  function renderQuestions() {
+    questionsEl.innerHTML = need().questions.map((question, index) => {
+      const saved = state.answers[index];
+      if (question.type === "text") {
+        return `<div class="calc__group">
+          <label class="calc__question" for="calc-${id}-text-${index}">${calcEscape(question.text)}</label>
+          <textarea class="lead-form__control lead-form__control--area" id="calc-${id}-text-${index}" rows="2" data-calc-text="${index}">${calcEscape(saved || "")}</textarea>
+        </div>`;
+      }
+      const options = question.options.map((label) =>
+        optionHtml(
+          question.type,
+          `calc-${id}-q-${index}`,
           label,
-          checked: question.type === "radio" ? saved === label : Boolean(saved?.includes(label)),
-        }),
-      )
-      .join("");
-    return `<fieldset class="calc__group" data-calc-question="${index}">
-      <legend class="calc__question">${calcEscape(question.text)}${question.type === "checkbox" ? '<span class="calc__hint">Можно выбрать несколько</span>' : ""}</legend>
-      <div class="calc__options">${options}</div>
-    </fieldset>`;
+          label,
+          question.type === "radio" ? saved === label : Boolean(saved?.includes(label)),
+        ),
+      ).join("");
+      return `<fieldset class="calc__group" data-calc-question="${index}">
+        <legend class="calc__question">${calcEscape(question.text)}${question.type === "checkbox" ? '<span class="calc__hint">Можно выбрать несколько</span>' : ""}</legend>
+        <div class="calc__options">${options}</div>
+      </fieldset>`;
+    }).join("");
+  }
+
+  function updateVisibility() {
+    const isProject = calcPriceInfo(service(), need()).unit === "project";
+    integrationsField.hidden = !isProject;
+    toggles.hidden = !isProject;
+  }
+
+  function updatePrice() {
+    const estimate = calcEstimate(state);
+    if (!estimate) {
+      priceValue.textContent = "По запросу";
+      monthlyEl.hidden = true;
+      breakdown.hidden = true;
+      return;
+    }
+
+    if (estimate.unit === "monthly") {
+      priceValue.textContent = rangeText(estimate.low, estimate.high, " ₽/мес");
+      monthlyEl.hidden = true;
+      breakdown.hidden = true;
+    } else if (estimate.unit === "hourly") {
+      priceValue.textContent = rangeText(estimate.low, estimate.high, " ₽/час");
+      monthlyEl.hidden = true;
+      breakdown.hidden = true;
+    } else {
+      priceValue.textContent = rangeText(estimate.low, estimate.high, " ₽");
+      monthlyEl.hidden = !estimate.monthlyHigh;
+      if (!monthlyEl.hidden) {
+        monthlyEl.innerHTML = `<span>Поддержка</span> ${rangeText(estimate.monthlyLow, estimate.monthlyHigh, " ₽/мес")}`;
+      }
+      breakdown.hidden = false;
+      breakdownRows.innerHTML = estimate.rows
+        .map(
+          (row) =>
+            `<div><dt>${row.label}</dt><dd>${rangeText(row.low, row.high, row.suffix || " ₽")}</dd></div>`,
+        )
+        .join("");
+    }
   }
 
   function briefLines() {
-    const lines = [`Услуга: ${service().name}`, `Что необходимо: ${need().name}`];
+    const estimate = calcEstimate(state);
+    const lines = [
+      `Услуга: ${service().name}`,
+      `Задача: ${need().name}`,
+      `Сложность: ${CALC_COMPLEXITY[state.complexity].label}`,
+    ];
+    if (estimate?.unit === "project") {
+      lines.push(`Интеграций: ${state.integrations}`, `Дизайн: ${state.design ? "да" : "нет"}`, `Поддержка: ${state.support ? "да" : "нет"}`);
+    }
+    if (estimate) {
+      const suffix = estimate.unit === "monthly" ? " ₽/мес" : estimate.unit === "hourly" ? " ₽/час" : " ₽";
+      lines.push(`Ориентировочная стоимость: ${rangeText(estimate.low, estimate.high, suffix)}`);
+    }
     need().questions.forEach((question, index) => {
       const answer = state.answers[index];
       const text = Array.isArray(answer) ? answer.join(", ") : answer;
@@ -353,93 +595,107 @@ function initCalculator(root) {
     return lines;
   }
 
-  function render() {
-    const onContact = state.step === CALC_LAST_STEP;
-    title.hidden = onContact;
-    body.hidden = onContact;
-    contact.hidden = !onContact;
-
-    if (state.step === 0) {
-      body.innerHTML = renderChoice("service", CALC_SERVICES.map((item) => item.name), state.service);
-    } else if (state.step === 1) {
-      body.innerHTML = renderChoice("need", service().needs.map((item) => item.name), state.need);
-    } else if (state.step === 2) {
-      body.innerHTML = need().questions.map(renderQuestion).join("");
-    } else {
-      brief.value = briefLines().join("\n");
-    }
-    if (!onContact) title.textContent = CALC_STEP_TITLES[state.step];
-
-    counter.textContent = `Шаг ${state.step + 1} из ${CALC_LAST_STEP + 1}`;
-    back.hidden = state.step === 0;
-    // На последнем шаге «Назад» стоит рядом с кнопкой отправки внутри формы
-    nav.hidden = onContact;
-    next.disabled = !isStepDone();
-    trackerItems.forEach((item, index) => {
-      item.classList.toggle("is-done", index < state.step);
-      item.classList.toggle("is-current", index === state.step);
-      if (index === state.step) item.setAttribute("aria-current", "step");
-      else item.removeAttribute("aria-current");
-    });
+  function syncRange() {
+    const value = Number(integrationsInput.value);
+    rangeValue.textContent = String(value);
+    integrationsInput.style.setProperty("--range-fill", `${(value / Number(integrationsInput.max)) * 100}%`);
   }
 
-  function go(step, { moveFocus = true } = {}) {
-    clearTimeout(advanceTimer);
-    state.step = step;
-    render();
-    // Перезапуск анимации появления шага
-    stage.classList.remove("is-entering");
-    void stage.offsetWidth;
-    stage.classList.add("is-entering");
-    if (moveFocus) stage.focus({ preventScroll: true });
-  }
-
-  stage.addEventListener("change", (event) => {
+  config.addEventListener("change", (event) => {
     const input = event.target;
-    const group = input.closest("[data-calc-kind], [data-calc-question]");
-    if (!group) return;
 
-    if (group.dataset.calcKind === "service") {
-      if (state.service !== Number(input.value)) {
-        state.service = Number(input.value);
-        state.need = null;
-        state.answers = {};
-      }
-    } else if (group.dataset.calcKind === "need") {
-      if (state.need !== Number(input.value)) {
-        state.need = Number(input.value);
-        state.answers = {};
-      }
-    } else {
-      const index = Number(group.dataset.calcQuestion);
-      state.answers[index] =
-        input.type === "radio" ? input.value : [...group.querySelectorAll("input:checked")].map((item) => item.value);
+    if (input.name === `calc-${id}-service`) {
+      state.service = Number(input.value);
+      state.need = 0;
+      state.answers = {};
+      renderNeeds();
+      renderQuestions();
+      updateVisibility();
+      updatePrice();
       return;
     }
 
-    next.disabled = !isStepDone();
-    // Выбор услуги и задачи сразу ведёт дальше; короткая пауза, чтобы успеть увидеть выбранный вариант
-    advanceTimer = setTimeout(() => go(state.step + 1), CALC_ADVANCE_DELAY);
+    if (input.name === `calc-${id}-need`) {
+      state.need = Number(input.value);
+      state.answers = {};
+      renderQuestions();
+      updateVisibility();
+      updatePrice();
+      return;
+    }
+
+    if (input.name === `calc-${id}-complexity`) {
+      state.complexity = Number(input.value);
+      updatePrice();
+      return;
+    }
+
+    if (input.matches("[data-calc-design]")) {
+      state.design = input.checked;
+      updatePrice();
+      return;
+    }
+
+    if (input.matches("[data-calc-support]")) {
+      state.support = input.checked;
+      updatePrice();
+      return;
+    }
+
+    const group = input.closest("[data-calc-question]");
+    if (!group) return;
+    const index = Number(group.dataset.calcQuestion);
+    state.answers[index] =
+      input.type === "radio" ? input.value : [...group.querySelectorAll("input:checked")].map((item) => item.value);
   });
 
-  stage.addEventListener("input", (event) => {
-    if (event.target.dataset.calcText === undefined) return;
-    state.answers[Number(event.target.dataset.calcText)] = event.target.value.trim();
+  config.addEventListener("input", (event) => {
+    if (event.target.matches("[data-calc-integrations]")) {
+      state.integrations = Number(event.target.value);
+      syncRange();
+      updatePrice();
+      return;
+    }
+    if (event.target.matches("[data-calc-text]")) {
+      state.answers[Number(event.target.dataset.calcText)] = event.target.value.trim();
+    }
   });
 
-  back.addEventListener("click", () => go(state.step - 1));
-  backFromContact.addEventListener("click", () => go(state.step - 1));
-  next.addEventListener("click", () => go(state.step + 1));
+  // CTA кладёт собранный бриф в поле задачи и открывает форму заявки.
+  // Ссылку создаём после инициализации общей формы, поэтому обработчик свой
+  config.addEventListener("click", (event) => {
+    const cta = event.target.closest("[data-calc-quote]");
+    if (!cta) return;
+    const task = document.getElementById("modal-task");
+    if (task) task.value = briefLines().join("\n");
+    const modal = document.querySelector("[data-lead-modal]");
+    if (modal && typeof modal.showModal === "function") {
+      event.preventDefault();
+      // Из попапа калькулятора не наслаиваем окна: сначала закрываем его
+      const calcModal = cta.closest("[data-calc-modal]");
+      if (calcModal?.open) calcModal.close();
+      modal.showModal();
+    }
+  });
 
-  render();
+  renderChoices();
+  syncRange();
+  updateVisibility();
+  updatePrice();
 
-  // Попап открывается каждый раз с чистого первого шага
   root.resetCalculator = () => {
-    state.service = null;
-    state.need = null;
+    state.service = defaultService;
+    state.need = defaultNeed;
+    state.complexity = 1;
+    state.integrations = 1;
+    state.design = false;
+    state.support = true;
     state.answers = {};
-    root.querySelector("form")?.reset();
-    go(0, { moveFocus: false });
+    integrationsInput.value = "1";
+    renderChoices();
+    syncRange();
+    updateVisibility();
+    updatePrice();
   };
 }
 
@@ -447,8 +703,7 @@ window.initCalculator = initCalculator;
 
 // Попап с калькулятором: собирается здесь и добавляется на каждую страницу,
 // чтобы кнопка «Рассчитать стоимость» в мега-меню открывала его на месте,
-// а не вела на главную. Инициализация шагов — общим initCalculator в main.js.
-// ID полей с префиксом calc-pop: на главной рядом живёт встроенный калькулятор с calc-*.
+// а не вела на главную.
 const CALC_POPUP_HTML = `
 <dialog class="modal calc-modal" data-calc-modal aria-labelledby="calc-modal-title">
   <div class="modal__panel">
@@ -457,63 +712,7 @@ const CALC_POPUP_HTML = `
     </button>
     <h2 class="modal__title" id="calc-modal-title">Рассчитайте стоимость <span class="section-title__muted">за 2 минуты</span></h2>
     <div class="calc__panel" data-calc>
-      <p class="calc__counter" data-calc-counter>Шаг 1 из 4</p>
-      <ol class="calc__tracker" data-calc-tracker>
-        <li><span class="visually-hidden">1. Услуга</span></li>
-        <li><span class="visually-hidden">2. Задача</span></li>
-        <li><span class="visually-hidden">3. Подробности</span></li>
-        <li><span class="visually-hidden">4. Контакты</span></li>
-      </ol>
-      <div class="calc__stage" tabindex="-1" data-calc-stage>
-        <h3 class="calc__title-step" data-calc-title>Выберите услугу</h3>
-        <div data-calc-body></div>
-        <div class="calc__contact" data-calc-contact hidden>
-          <h3 class="calc__title-step">Почти готово!</h3>
-          <p class="calc__text">Теперь у нас есть верхнеуровневые требования к вашему проекту. Заполните контактные данные ниже, и наши менеджеры оперативно свяжутся, чтобы сориентировать вас по стоимости и срокам реализации проекта.</p>
-          <form class="lead-form calc__form" method="post" novalidate data-lead-form data-endpoint="">
-            <input type="hidden" name="brief" data-calc-brief />
-            <div class="lead-form__row">
-              <div class="lead-form__field">
-                <label class="lead-form__label" for="calc-pop-name">Имя</label>
-                <input class="lead-form__control" id="calc-pop-name" name="name" type="text" autocomplete="name" required aria-describedby="calc-pop-name-error" data-error="Укажите, как к вам обращаться" />
-                <p class="lead-form__error" id="calc-pop-name-error"></p>
-              </div>
-              <div class="lead-form__field">
-                <label class="lead-form__label" for="calc-pop-company">Название компании</label>
-                <input class="lead-form__control" id="calc-pop-company" name="company" type="text" autocomplete="organization" required aria-describedby="calc-pop-company-error" data-error="Укажите название компании" />
-                <p class="lead-form__error" id="calc-pop-company-error"></p>
-              </div>
-            </div>
-            <div class="lead-form__row">
-              <div class="lead-form__field">
-                <label class="lead-form__label" for="calc-pop-phone">Телефон</label>
-                <input class="lead-form__control" id="calc-pop-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+\d\s\-\(\)]{7,}" aria-describedby="calc-pop-phone-error" data-error="Укажите телефон для связи" />
-                <p class="lead-form__error" id="calc-pop-phone-error"></p>
-              </div>
-              <div class="lead-form__field">
-                <label class="lead-form__label" for="calc-pop-email">E-mail</label>
-                <input class="lead-form__control" id="calc-pop-email" name="email" type="email" autocomplete="email" required aria-describedby="calc-pop-email-error" data-error="Укажите корректный e-mail" />
-                <p class="lead-form__error" id="calc-pop-email-error"></p>
-              </div>
-            </div>
-            <div class="lead-form__field">
-              <label class="lead-form__label" for="calc-pop-message">Сообщение</label>
-              <textarea class="lead-form__control lead-form__control--area" id="calc-pop-message" name="message" rows="3" placeholder="Детали проекта, сроки, технологии и другая важная информация" aria-describedby="calc-pop-message-error"></textarea>
-              <p class="lead-form__error" id="calc-pop-message-error"></p>
-            </div>
-            <div class="calc__form-actions">
-              <button class="btn btn--ghost" type="button" data-calc-back-contact>Назад</button>
-              <button class="btn btn--primary lead-form__submit" type="submit">Отправить</button>
-            </div>
-            <p class="lead-form__consent">Нажимая кнопку, вы соглашаетесь на <a class="lead-form__link" href="https://itach-soft.ru/upload/politika-v-otnoshenii-personalnih-dannih.pdf">обработку персональных данных</a>.</p>
-            <p class="lead-form__status" role="status" data-lead-status></p>
-          </form>
-        </div>
-      </div>
-      <div class="calc__nav">
-        <button class="btn btn--ghost btn--sm" type="button" data-calc-back hidden>Назад</button>
-        <button class="btn btn--primary btn--sm" type="button" data-calc-next disabled>Далее</button>
-      </div>
+      <div class="calc__config" data-calc-config></div>
     </div>
   </div>
 </dialog>`;

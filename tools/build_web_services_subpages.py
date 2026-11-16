@@ -661,6 +661,10 @@ def generate(slug, c):
         + s[tpl_end:]
     )
 
+    # Калькулятор из шаблона: на странице поддержки открываем обслуживание сайтов
+    need = "4" if slug == "service-web-services-podderzhka" else "0"
+    s = re.sub(r'data-calc-default-need="\d+"', f'data-calc-default-need="{need}"', s, count=1)
+
     out = b.ROOT / f"{slug}.html"
     out.write_text(s, encoding="utf-8")
     print(f"built {out.name}: {len(cards)} кейсов")

@@ -694,7 +694,7 @@ def head(p):
 
 # ---------------------------------------------------------------- сборка
 def build(p):
-    return "".join(
+    html = "".join(
         [
             head(p),
             M_MAIN + "\n",
@@ -721,6 +721,12 @@ def build(p):
             SEG_TAIL,
         ]
     )
+    # Калькулятор скопирован из образца сайтов — на страницах Битрикс24
+    # он должен открываться на внедрении, а на странице поддержки — на поддержке
+    html = html.replace('data-calc-default="sites"', 'data-calc-default="bitrix24"')
+    if p["file"] == "service-bitrix24-podderzhka.html":
+        html = html.replace('data-calc-default-need="0"', 'data-calc-default-need="2"')
+    return html
 
 if __name__ == "__main__":
     from bitrix24_content import PAGES  # noqa: E402

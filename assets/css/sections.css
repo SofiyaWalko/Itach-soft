@@ -739,8 +739,7 @@
    Один слайд во всю ширину контейнера, следующий выглядывает справа.
    Слайды листаются автоматически, протяжкой и стрелками с клавиатуры */
 .audience-carousel {
-  /* Верхний отступ вместе с полем вьюпорта даёт прежние 48 px до карточек */
-  margin-block-start: var(--space-2);
+  margin-block-start: var(--space-6);
 }
 
 .audience-carousel__viewport {
@@ -749,12 +748,9 @@
   --audience-slide-w: min(calc(100vw - 2 * var(--gutter)), var(--container-max));
   overflow: hidden;
   padding-inline: var(--audience-edge);
-  /* Место для мягкой тени карточки сверху и снизу: иначе её срезает обрезка ленты */
-  padding-block: var(--space-4);
-  /* Слева обрезаем по правому краю предыдущего слайда (край контейнера минус зазор):
-     ушедший слайд не выглядывает, но тень активной карточки остаётся видимой.
-     Справа оставляем вылет до края экрана — как в «What's new?» */
-  clip-path: inset(0 0 0 calc(var(--audience-edge) - var(--audience-gap)));
+  /* Слева обрезаем по краю контейнера: ушедший слайд не выглядывает,
+     справа оставляем вылет до края экрана — как в «What's new?» */
+  clip-path: inset(0 0 0 var(--audience-edge));
   outline: none;
 }
 
@@ -786,8 +782,6 @@
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  /* Та же мягкая тень, что у карточек сертификатов в «Наших достижениях» */
-  box-shadow: var(--shadow-glass);
 }
 
 /* Отступы вокруг изображения задаёт padding карточки, поэтому внутренний радиус
@@ -3285,84 +3279,138 @@ html:has(.detail[open]) {
   padding-block: 0 var(--space-12);
 }
 
+/* Калькулятор: заголовок сверху, ниже — выбор слева и стоимость справа */
 .calc__layout {
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .calc__title {
-  text-align: start;
+  text-align: center;
 }
 
-/* Панель — светлая карточка; градиентный контур появляется при наведении (общий .glow-card) */
-.calc__panel {
+/* Вторая строка заголовка — «за 2 минуты» */
+.calc__title .section-title__muted {
+  display: block;
+}
+
+.calc__lead {
+  max-inline-size: 46rem;
+  margin: var(--space-2) auto 0;
+  color: var(--color-text-2);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.calc__config {
+  display: grid;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+/* Левая колонка — белая карточка с выбором; контур при наведении общий .glow-card */
+.calc__choices {
+  --glow-radius: 320px;
   display: flex;
   flex-direction: column;
-  min-block-size: 30rem;
-  padding: var(--space-4) var(--space-3);
+  padding: var(--space-4);
   border: 1px solid var(--color-line);
   border-radius: calc(var(--radius-lg) + 0.5rem);
   background: var(--color-bg);
-  --glow-radius: 260px;
 }
 
-.calc__counter {
-  inline-size: fit-content;
-  margin: 0 0 var(--space-2);
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Правая колонка — стоимость на градиенте из акцентной карточки тарифа
+   на странице поддержки сайтов */
+.calc__price {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--color-drop-orange) 16%, var(--color-line));
+  border-radius: calc(var(--radius-lg) + 0.5rem);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-drop-orange) 16%, var(--color-bg)) 0%,
+    color-mix(in srgb, var(--color-drop-pink) 20%, var(--color-bg)) 55%,
+    color-mix(in srgb, #8b7bf7 18%, var(--color-bg)) 100%
+  );
+}
+
+.calc__price-eyebrow {
+  margin: 0;
+  color: var(--color-text-2);
   font-size: 0.9375rem;
-  font-weight: 700;
-}
-
-/* Индикатор прохождения: четыре сегмента, пройденные и текущий заполняются градиентом */
-.calc__tracker {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.5rem;
-  margin: 0 0 var(--space-4);
-  padding: 0;
-  list-style: none;
-}
-
-.calc__tracker li {
-  position: relative;
-  block-size: 0.375rem;
-  overflow: hidden;
-  border-radius: var(--radius-pill);
-  background: var(--color-line);
-}
-
-.calc__tracker li::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: var(--gradient-flow) 0 0 / 200% 100%;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 400ms var(--ease-out);
-}
-
-.calc__tracker li.is-done::before,
-.calc__tracker li.is-current::before {
-  transform: scaleX(1);
-}
-
-.calc__stage {
-  flex: 1;
-  outline: none;
-}
-
-.calc__title-step {
-  margin: 0 0 var(--space-3);
-  font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.calc__price-value {
+  margin: 0;
+  font-size: clamp(2rem, 1.4rem + 1.6vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   text-wrap: balance;
+}
+
+.calc__price-monthly {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / 0.55);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.calc__price-monthly span {
+  color: var(--color-text-2);
+  font-weight: 500;
+}
+
+.calc__breakdown {
+  margin-block-start: var(--space-1);
+  padding-block-start: var(--space-2);
+  border-block-start: 1px solid color-mix(in srgb, var(--color-text) 14%, transparent);
+}
+
+.calc__breakdown dl {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+}
+
+.calc__breakdown dl > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: 0.9375rem;
+}
+
+.calc__breakdown dt {
+  color: var(--color-text-2);
+}
+
+.calc__breakdown dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: end;
+}
+
+.calc__cta {
+  inline-size: 100%;
+  margin-block-start: var(--space-1);
+}
+
+.calc__note {
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .calc__group {
@@ -3497,89 +3545,175 @@ html:has(.detail[open]) {
   min-block-size: 4.5rem;
 }
 
-.calc__text {
-  max-inline-size: 40rem;
-  margin: 0 0 var(--space-3);
-  color: var(--color-text-2);
-  line-height: 1.6;
+/* Слайдер интеграций: заполненная часть — градиентом */
+.calc__range {
+  inline-size: 100%;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--color-accent);
 }
 
-/* Форма внутри панели без своей рамки: рамка у самой панели */
-.calc__form {
-  padding: 0;
-  border: 0;
-  background: none;
-  animation: none;
+.calc__range::-webkit-slider-runnable-track {
+  block-size: 0.375rem;
+  border-radius: var(--radius-pill);
+  background:
+    linear-gradient(90deg, var(--color-drop-orange), var(--color-drop-pink)) 0 0 / var(--range-fill, 10%) 100% no-repeat,
+    var(--color-line);
 }
 
-/* Отправка и «Назад» в одном ряду, «Назад» правее */
-.calc__form-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+.calc__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  margin-block-start: -0.4375rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+}
+
+.calc__range::-moz-range-track {
+  block-size: 0.375rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-line);
+}
+
+.calc__range::-moz-range-progress {
+  block-size: 0.375rem;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-flow);
+}
+
+.calc__range::-moz-range-thumb {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+}
+
+.calc__range:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-pill);
+}
+
+.calc__range-value {
+  margin-inline-start: 0.5rem;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+/* Переключатели дополнительных опций */
+.calc__toggles {
+  display: grid;
   gap: var(--space-2);
+  margin-block-end: var(--space-4);
 }
 
-/* Согласие на обработку данных — к правой стороне, под кнопкой «Отправить» */
-.calc__contact .lead-form__consent {
-  text-align: end;
-}
-
-.calc__nav {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-2);
-  margin-block-start: var(--space-3);
-}
-
-.calc__nav [data-calc-next] {
-  margin-inline-start: auto;
-  font-weight: 600;
-}
-
-/* Неактивна, пока услуга не выбрана: вместо серого --color-line — светлая
-   подложка строки цены из карточек «Услуги и стоимость» */
-.calc__nav [data-calc-next]:disabled {
-  background: var(--color-bg-alt);
-  color: var(--color-text);
-  box-shadow: none;
-}
-
-.calc__nav [hidden],
-.calc__nav[hidden] {
+/* Услуги с оплатой за месяц или час не показывают интеграции и доп. опции:
+   собственный display у контейнеров сильнее атрибута hidden */
+.calc__config [hidden] {
   display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .calc__stage.is-entering {
-    animation: calc-step-in 320ms var(--ease-out);
-  }
+.calc-toggle {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  cursor: pointer;
+}
 
-  @keyframes calc-step-in {
-    from {
-      opacity: 0;
-      transform: translateY(0.75rem);
-    }
-  }
+.calc-toggle__input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.calc-toggle__switch {
+  position: relative;
+  flex: none;
+  inline-size: 2.75rem;
+  block-size: 1.5rem;
+  margin-block-start: 0.0625rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-line-strong);
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+
+.calc-toggle__switch::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.1875rem;
+  inset-inline-start: 0.1875rem;
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  box-shadow: 0 1px 3px rgb(20 21 26 / 0.2);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.calc-toggle__input:checked + .calc-toggle__switch {
+  background: var(--gradient-flow);
+}
+
+.calc-toggle__input:checked + .calc-toggle__switch::after {
+  transform: translateX(1.25rem);
+}
+
+.calc-toggle:has(:focus-visible) .calc-toggle__switch {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.calc-toggle__text {
+  min-inline-size: 0;
+}
+
+.calc-toggle__title {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.calc-toggle__desc {
+  display: block;
+  margin-block-start: 0.125rem;
+  color: var(--color-text-2);
+  font-size: 0.875rem;
+  line-height: 1.4;
 }
 
 @media (min-width: 640px) {
-  .calc__panel {
+  .calc__choices,
+  .calc__price {
     padding: var(--space-5);
   }
 }
 
 @media (min-width: 1024px) {
-  .calc__layout {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: var(--space-8);
-    align-items: start;
+  .calc__config {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   }
 
-  .calc__intro {
+  .calc__price {
     position: sticky;
-    inset-block-start: calc(var(--header-top) + var(--header-height) + var(--space-8));
+    inset-block-start: calc(var(--header-top) + var(--header-height) + var(--space-3));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calc-toggle__switch,
+  .calc-toggle__switch::after {
+    transition: none;
   }
 }
 
@@ -5337,21 +5471,28 @@ html:has(.detail[open]) {
   font-size: clamp(1.5rem, 1.15rem + 1.3vw, 2.5rem);
 }
 
-.calc-modal .calc__title-step {
-  font-size: 1.125rem;
+/* В попапе калькулятор идёт одной колонкой: сначала выбор, под ним стоимость */
+.calc-modal .calc__panel {
+  margin-block-start: var(--space-2);
 }
 
-/* Рамку, фон и высоту панели даёт сам попап — двойной контур и пустота не нужны */
-.calc-modal .calc__panel {
-  min-block-size: 0;
-  margin-block-start: var(--space-2);
+.calc-modal .calc__config {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.calc-modal .calc__choices {
   padding: 0;
   border: 0;
   background: none;
 }
 
-/* На невысоком десктопном окне шаги 3–4 не должны прокручиваться: уплотняем
-   отступы и пилюли шагов. Мобильная шторка остаётся как есть */
+.calc-modal .calc__price {
+  position: static;
+  /* В попапе стоимость показываем до длинного списка вопросов */
+  order: -1;
+}
+
+/* На невысоком десктопном окне уплотняем отступы и пилюли */
 @media (min-width: 640px) and (max-height: 760px) {
   .calc-modal .modal__panel {
     padding: var(--space-3) var(--space-3) var(--space-2);
@@ -5359,18 +5500,6 @@ html:has(.detail[open]) {
 
   .calc-modal .modal__title {
     font-size: 1.375rem;
-  }
-
-  .calc-modal .calc__counter {
-    margin-block-end: var(--space-1);
-  }
-
-  .calc-modal .calc__tracker {
-    margin-block-end: var(--space-2);
-  }
-
-  .calc-modal .calc__title-step {
-    margin-block-end: var(--space-2);
   }
 
   .calc-modal .calc__group {
@@ -5392,11 +5521,6 @@ html:has(.detail[open]) {
 
   .calc-modal .calc__options--large .calc-option {
     min-block-size: 2.75rem;
-  }
-
-  /* Пояснение перед формой не влезает в невысокое окно — подписи полей и так понятны */
-  .calc-modal .calc__contact .calc__text {
-    display: none;
   }
 
   .calc-modal .lead-form__control--area {
