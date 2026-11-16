@@ -1300,7 +1300,8 @@
   display: grid;
   place-items: center;
   block-size: 2.75rem;
-  padding-inline: 1.5rem;
+  /* Компактный боковой отступ: ширина тега зависит от текста, а не от пустоты внутри */
+  padding-inline: var(--space-2);
   /* Градиентная рамка настоящим border (градиент на border-box): ровная по всему периметру */
   border: var(--contour-width) solid transparent;
   border-radius: var(--radius-pill);
@@ -1351,6 +1352,14 @@
       animation: gradient-flow 3s linear infinite;
     }
 }
+}
+
+/* Теги направлений на планшете и компьютере — того же размера, что крупные табы в калькуляторе */
+@media (min-width: 640px) {
+  .service-card__tag {
+    block-size: 3.25rem;
+    font-size: 1rem;
+  }
 }
 
 .websites {
@@ -3445,7 +3454,8 @@ html:has(.detail[open]) {
   display: grid;
   place-items: center;
   min-block-size: 2.75rem;
-  padding: 0.5rem 1.5rem;
+  /* Боковой отступ компактный: ширина пилюли определяется длиной подписи, а не пустотой */
+  padding: 0.5rem var(--space-2);
   border: var(--contour-width) solid transparent;
   border-radius: var(--radius-pill);
   background:
@@ -3460,9 +3470,9 @@ html:has(.detail[open]) {
   transition: color var(--duration-base) var(--ease-out);
 }
 
+/* Крупные группы отличаются высотой и кеглем, боковой отступ — общий для всех пилюль калькулятора */
 .calc__options--large .calc-option {
   min-block-size: 3.25rem;
-  padding-inline: var(--space-4);
   font-size: 1rem;
 }
 
@@ -3799,6 +3809,12 @@ html:has(.detail[open]) {
 
   .section-action {
     margin-block-start: var(--space-4);
+  }
+
+  /* Калькулятор: пилюли выбора на телефоне того же размера, что теги в карточках направлений */
+  .calc__options--large .calc-option {
+    min-block-size: 2.75rem;
+    font-size: 0.875rem;
   }
 
   /* Направления услуг: табы с разделами и одна карточка выбранного раздела */
