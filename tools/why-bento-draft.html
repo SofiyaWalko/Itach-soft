@@ -1,0 +1,70 @@
+<!-- Временный черновик блока «Почему нам доверяют» в виде bento-сетки.
+     Снят со страницы service-web-services-integratsiya.html, чтобы там
+     остался общий вид карточек с отворотом. Стили оставлены в
+     assets/css/sections.css (.why-bento).
+
+     Чтобы вернуть: заменить внутри <section id="why"> узел
+     <div class="why__scroller">…</div> на блок ниже.
+     Белые карточки используют общий .glow-card (контур за курсором). -->
+<div class="why-bento" data-reveal-stagger>
+  <article class="why-bento__card why-bento__card--expert glow-card">
+    <h3 class="why-bento__title">Экспертный опыт</h3>
+    <p class="why-bento__text">Многолетний опыт интеграции CRM, ERP, 1С и платёжных систем в единую среду.</p>
+    <ul class="why-bento__chips">
+      <li class="why-bento__chip">CRM</li>
+      <li class="why-bento__chip">ERP</li>
+      <li class="why-bento__chip">1С</li>
+    </ul>
+  </article>
+
+  <figure class="why-bento__media why-bento__media--small">
+    <img src="assets/img/audience/ai-puzzle.webp" alt="" loading="lazy" />
+    <figcaption class="why-bento__overlay">
+      <span class="why-bento__overlay-title">Бесшовная интеграция</span>
+      <span class="why-bento__overlay-text">Надёжный обмен данными между системами — без ручного переноса и дублей.</span>
+    </figcaption>
+  </figure>
+
+  <article class="why-bento__card why-bento__card--individual glow-card">
+    <h3 class="why-bento__title">Индивидуальные решения</h3>
+    <p class="why-bento__text">Проектируем интеграцию под процессы бизнеса, а не под шаблон платформы.</p>
+    <ul class="why-bento__chips">
+      <li class="why-bento__chip">Под вас</li>
+      <li class="why-bento__chip">Гибко</li>
+      <li class="why-bento__chip">Точно</li>
+    </ul>
+  </article>
+
+  <figure class="why-bento__media why-bento__media--tall">
+    <img src="assets/img/audience/ai-bulb.webp" alt="" loading="lazy" />
+    <span class="why-bento__badge">Итач-софт</span>
+    <figcaption class="why-bento__overlay">
+      <span class="why-bento__overlay-title">Современные технологии</span>
+      <span class="why-bento__overlay-text">Передовые методы и инструменты интеграции: API, очереди, ETL.</span>
+    </figcaption>
+  </figure>
+
+  <article class="why-bento__card why-bento__card--complex glow-card">
+    <h3 class="why-bento__title">Комплексный подход</h3>
+    <p class="why-bento__text">Полный цикл: анализ, архитектура, реализация и поддержка после запуска.</p>
+    <ul class="why-bento__chips">
+      <li class="why-bento__chip">Аналитика</li>
+      <li class="why-bento__chip">Архитектура</li>
+      <li class="why-bento__chip">Поддержка</li>
+    </ul>
+  </article>
+
+  <article class="why-bento__card why-bento__card--cost">
+    <div class="why-bento__cost-head">
+      <svg class="why-bento__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 7l6 6 4-4 7 7" />
+        <path d="M20 10v6h-6" />
+      </svg>
+      <span>Снижение затрат</span>
+    </div>
+    <div class="why-bento__cost-body">
+      <p class="why-bento__value">0<span class="why-bento__unit">%</span></p>
+      <p class="why-bento__caption">ручного переноса данных — обмен идёт автоматически</p>
+    </div>
+  </article>
+</div>
