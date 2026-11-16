@@ -11,11 +11,8 @@ import re
 
 IMAGES = [
     "assets/img/audience/ai-audience.webp",
-    "assets/img/audience/ai-waves.webp",
-    "assets/img/audience/ai-brain.webp",
-    "assets/img/audience/ai-puzzle.webp",
-    "assets/img/audience/ai-search.webp",
     "assets/img/audience/ai-bulb.webp",
+    "assets/img/audience/ai-puzzle.webp",
 ]
 COMMENT = (
     "        <!-- Кому подходит: карусель в стиле «What's new?». Слайды листаются\n"
