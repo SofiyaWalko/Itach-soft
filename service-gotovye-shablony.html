@@ -1116,67 +1116,86 @@
           </div>
         </section>
 
-        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
-             переключение наведением на десктопе и кликом везде -->
+        <!-- Кому подходит: карусель в стиле «What's new?». Слайды листаются
+             автоматически и перетаскиванием; изображение пока общее для всех страниц -->
         <section class="audience" aria-labelledby="segments-title">
           <div class="container">
             <h2 class="section-title" data-reveal id="segments-title">
               Кому <span class="section-title__muted">подходит</span>
             </h2>
-            <div class="audience-picker" data-audience-picker data-reveal>
-              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
-                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
-                  <span class="audience-tab__text">Малому и среднему бизнесу</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
-                  <span class="audience-tab__text">Стартапам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
-                  <span class="audience-tab__text">Сезонным проектам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям с ограниченным бюджетом</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
-                  <span class="audience-tab__text">Тем, кто сменил подрядчика</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
-                  <span class="audience-tab__text">Тем, кто ценит скорость</span>
-                </button>
-              </div>
-              <div class="audience-picker__panels">
-                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Малый и средний <span class="audience-panel__line audience-panel__muted">бизнес</span></h3>
-                  <p class="audience-panel__text">Получить рабочий сайт быстро и без переплат — с адаптацией под бренд. Готовая структура и оформление не требуют разработки с нуля.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Стартапы <span class="audience-panel__line audience-panel__muted">с проверкой спроса</span></h3>
-                  <p class="audience-panel__text">Проверить спрос на продукт и начать продавать раньше конкурентов. Шаблон закрывает базовые разделы, дальше сайт развивается по спросу.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Сезонные <span class="audience-panel__line audience-panel__muted">проекты</span></h3>
-                  <p class="audience-panel__text">Сайт под акцию, сезон или мероприятие — быстро и без лишнего. Собираем страницы к нужной дате и позже достраиваем под задачи.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Компании с ограниченным бюджетом</h3>
-                  <p class="audience-panel__text">Запустить сайт сейчас, а развивать и дорабатывать — по мере роста. Стартовый бюджет уходит на запуск, а не на инфраструктуру.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Смена <span class="audience-panel__line audience-panel__muted">подрядчика</span></h3>
-                  <p class="audience-panel__text">Быстро восстановить сайт и перезапустить продажи. Переносим контент и структуру, чтобы не потерять поисковые позиции.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Скорость <span class="audience-panel__line audience-panel__muted">запуска</span></h3>
-                  <p class="audience-panel__text">Проверенная платформа и запуск за недели вместо месяцев ожидания. Скорость не мешает качеству: адаптив и базовые интеграции включены.</p>
-                </div>
-              </div>
+          </div>
+          <div class="audience-carousel" data-audience-carousel data-reveal>
+            <div class="audience-carousel__viewport" data-audience-viewport tabindex="0" role="region" aria-roledescription="карусель" aria-label="Кому подходит">
+              <ul class="audience-carousel__track" data-audience-track>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="1 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Малому и среднему бизнесу</span>
+                    <h3 class="audience-slide__title">Малый и средний бизнес</h3>
+                    <p class="audience-slide__text">Получить рабочий сайт быстро и без переплат — с адаптацией под бренд. Готовая структура и оформление не требуют разработки с нуля.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="2 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Стартапам</span>
+                    <h3 class="audience-slide__title">Стартапы с проверкой спроса</h3>
+                    <p class="audience-slide__text">Проверить спрос на продукт и начать продавать раньше конкурентов. Шаблон закрывает базовые разделы, дальше сайт развивается по спросу.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="3 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Сезонным проектам</span>
+                    <h3 class="audience-slide__title">Сезонные проекты</h3>
+                    <p class="audience-slide__text">Сайт под акцию, сезон или мероприятие — быстро и без лишнего. Собираем страницы к нужной дате и позже достраиваем под задачи.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="4 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Компаниям с ограниченным бюджетом</span>
+                    <h3 class="audience-slide__title">Компании с ограниченным бюджетом</h3>
+                    <p class="audience-slide__text">Запустить сайт сейчас, а развивать и дорабатывать — по мере роста. Стартовый бюджет уходит на запуск, а не на инфраструктуру.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="5 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Тем, кто сменил подрядчика</span>
+                    <h3 class="audience-slide__title">Смена подрядчика</h3>
+                    <p class="audience-slide__text">Быстро восстановить сайт и перезапустить продажи. Переносим контент и структуру, чтобы не потерять поисковые позиции.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="6 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Тем, кто ценит скорость</span>
+                    <h3 class="audience-slide__title">Скорость запуска</h3>
+                    <p class="audience-slide__text">Проверенная платформа и запуск за недели вместо месяцев ожидания. Скорость не мешает качеству: адаптив и базовые интеграции включены.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+              </ul>
             </div>
+          </div>
         </section>
 
         <!-- 8. Наши достижения: сертификаты и награды -->

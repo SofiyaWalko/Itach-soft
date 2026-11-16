@@ -1116,67 +1116,86 @@
           </div>
         </section>
 
-        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
-             переключение наведением на десктопе и кликом везде -->
+        <!-- Кому подходит: карусель в стиле «What's new?». Слайды листаются
+             автоматически и перетаскиванием; изображение пока общее для всех страниц -->
         <section class="audience" aria-labelledby="segments-title">
           <div class="container">
             <h2 class="section-title" data-reveal id="segments-title">
               Кому <span class="section-title__muted">подходит</span>
             </h2>
-            <div class="audience-picker" data-audience-picker data-reveal>
-              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
-                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
-                  <span class="audience-tab__text">Владельцам сайтов</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
-                  <span class="audience-tab__text">Маркетинговым командам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям перед редизайном</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям перед продвижением</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям перед сменой подрядчика</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
-                  <span class="audience-tab__text">Интернет-магазинам</span>
-                </button>
-              </div>
-              <div class="audience-picker__panels">
-                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Владельцы <span class="audience-panel__line audience-panel__muted">сайтов</span></h3>
-                  <p class="audience-panel__text">Понять, что мешает сайту продавать, и получить план исправлений. Сначала цифры и приоритеты, потом работы.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Маркетинговые <span class="audience-panel__line audience-panel__muted">команды</span></h3>
-                  <p class="audience-panel__text">Аргументы и приоритеты для плана развития сайта на год. Руководителю проще обосновать бюджет, команде — распределить задачи.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Компании <span class="audience-panel__line audience-panel__muted">перед редизайном</span></h3>
-                  <p class="audience-panel__text">Заложить фундамент: аудит показывает, что сохранить, а что переработать. Редизайн не сносит то, что уже работает.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Компании <span class="audience-panel__line audience-panel__muted">перед продвижением</span></h3>
-                  <p class="audience-panel__text">Устранить технические барьеры, чтобы бюджет на SEO не сгорал. Скорость, индексация и структура проверяются до запуска кампаний.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Компании <span class="audience-panel__line audience-panel__muted">перед сменой подрядчика</span></h3>
-                  <p class="audience-panel__text">Объективная картина состояния сайта и кодовой базы. С ней можно принимать нового подрядчика или продолжать со своим.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Интернет- <span class="audience-panel__line audience-panel__muted">магазины</span></h3>
-                  <p class="audience-panel__text">Найти, где магазин теряет заказы: скорость, корзина, оформление. Каждая ошибка в сценарии — это недополученная выручка.</p>
-                </div>
-              </div>
+          </div>
+          <div class="audience-carousel" data-audience-carousel data-reveal>
+            <div class="audience-carousel__viewport" data-audience-viewport tabindex="0" role="region" aria-roledescription="карусель" aria-label="Кому подходит">
+              <ul class="audience-carousel__track" data-audience-track>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="1 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Владельцам сайтов</span>
+                    <h3 class="audience-slide__title">Владельцы сайтов</h3>
+                    <p class="audience-slide__text">Понять, что мешает сайту продавать, и получить план исправлений. Сначала цифры и приоритеты, потом работы.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="2 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Маркетинговым командам</span>
+                    <h3 class="audience-slide__title">Маркетинговые команды</h3>
+                    <p class="audience-slide__text">Аргументы и приоритеты для плана развития сайта на год. Руководителю проще обосновать бюджет, команде — распределить задачи.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="3 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Компаниям перед редизайном</span>
+                    <h3 class="audience-slide__title">Компании перед редизайном</h3>
+                    <p class="audience-slide__text">Заложить фундамент: аудит показывает, что сохранить, а что переработать. Редизайн не сносит то, что уже работает.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="4 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Компаниям перед продвижением</span>
+                    <h3 class="audience-slide__title">Компании перед продвижением</h3>
+                    <p class="audience-slide__text">Устранить технические барьеры, чтобы бюджет на SEO не сгорал. Скорость, индексация и структура проверяются до запуска кампаний.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="5 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Компаниям перед сменой подрядчика</span>
+                    <h3 class="audience-slide__title">Компании перед сменой подрядчика</h3>
+                    <p class="audience-slide__text">Объективная картина состояния сайта и кодовой базы. С ней можно принимать нового подрядчика или продолжать со своим.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="6 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Интернет-магазинам</span>
+                    <h3 class="audience-slide__title">Интернет-магазины</h3>
+                    <p class="audience-slide__text">Найти, где магазин теряет заказы: скорость, корзина, оформление. Каждая ошибка в сценарии — это недополученная выручка.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+              </ul>
             </div>
+          </div>
         </section>
 
         <!-- 8. Наши достижения: сертификаты и награды -->

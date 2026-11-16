@@ -1116,67 +1116,86 @@
           </div>
         </section>
 
-        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
-             переключение наведением на десктопе и кликом везде -->
+        <!-- Кому подходит: карусель в стиле «What's new?». Слайды листаются
+             автоматически и перетаскиванием; изображение пока общее для всех страниц -->
         <section class="audience" aria-labelledby="segments-title">
           <div class="container">
             <h2 class="section-title" data-reveal id="segments-title">
               Кому <span class="section-title__muted">подходит</span>
             </h2>
-            <div class="audience-picker" data-audience-picker data-reveal>
-              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
-                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
-                  <span class="audience-tab__text">Розничным магазинам и сетям</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
-                  <span class="audience-tab__text">Производителям и дистрибьюторам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
-                  <span class="audience-tab__text">Оптовым компаниям</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
-                  <span class="audience-tab__text">Собственным брендам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
-                  <span class="audience-tab__text">Продавцам на маркетплейсах</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
-                  <span class="audience-tab__text">Новым игрокам e-commerce</span>
-                </button>
-              </div>
-              <div class="audience-picker__panels">
-                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Розничные магазины <span class="audience-panel__line audience-panel__muted">и сети</span></h3>
-                  <p class="audience-panel__text">Вывести ассортимент в онлайн и собирать заказы круглосуточно — без увеличения штата. Витрина, корзина и оплата работают сами, а менеджеры занимаются сложными заказами.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Производители <span class="audience-panel__line audience-panel__muted">и дистрибьюторы</span></h3>
-                  <p class="audience-panel__text">Продавать напрямую конечному покупателю: каталог, цены, заказы и аналитика в одном месте. Прямые продажи дают маржу и данные о спросе, которых нет у дистрибуции.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Оптовые <span class="audience-panel__line audience-panel__muted">компании</span></h3>
-                  <p class="audience-panel__text">Организовать оптовые продажи онлайн: заявки, личные цены и документы без звонков и переписки. Партнёр видит условия и оформляет заказ сам.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Собственные <span class="audience-panel__line audience-panel__muted">бренды</span></h3>
-                  <p class="audience-panel__text">Витрина бренда под полным контролем: ассортимент, цены и прямой контакт с покупателем. Контент и акции живут по вашим правилам, а не по правилам маркетплейса.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Продавцы на <span class="audience-panel__line audience-panel__muted">маркетплейсах</span></h3>
-                  <p class="audience-panel__text">Свой канал продаж рядом с маркетплейсами: повторные продажи и лояльная аудитория. Клиенты остаются с вами, а не теряются между чужими витринами.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Выход <span class="audience-panel__line audience-panel__muted">в e-commerce</span></h3>
-                  <p class="audience-panel__text">Запустить онлайн-продажи с нуля — от аналитики ниши до первых заказов. Помогаем выбрать модель, собрать магазин и настроить оплату и доставку.</p>
-                </div>
-              </div>
+          </div>
+          <div class="audience-carousel" data-audience-carousel data-reveal>
+            <div class="audience-carousel__viewport" data-audience-viewport tabindex="0" role="region" aria-roledescription="карусель" aria-label="Кому подходит">
+              <ul class="audience-carousel__track" data-audience-track>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="1 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Розничным магазинам и сетям</span>
+                    <h3 class="audience-slide__title">Розничные магазины и сети</h3>
+                    <p class="audience-slide__text">Вывести ассортимент в онлайн и собирать заказы круглосуточно — без увеличения штата. Витрина, корзина и оплата работают сами, а менеджеры занимаются сложными заказами.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="2 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Производителям и дистрибьюторам</span>
+                    <h3 class="audience-slide__title">Производители и дистрибьюторы</h3>
+                    <p class="audience-slide__text">Продавать напрямую конечному покупателю: каталог, цены, заказы и аналитика в одном месте. Прямые продажи дают маржу и данные о спросе, которых нет у дистрибуции.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="3 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Оптовым компаниям</span>
+                    <h3 class="audience-slide__title">Оптовые компании</h3>
+                    <p class="audience-slide__text">Организовать оптовые продажи онлайн: заявки, личные цены и документы без звонков и переписки. Партнёр видит условия и оформляет заказ сам.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="4 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Собственным брендам</span>
+                    <h3 class="audience-slide__title">Собственные бренды</h3>
+                    <p class="audience-slide__text">Витрина бренда под полным контролем: ассортимент, цены и прямой контакт с покупателем. Контент и акции живут по вашим правилам, а не по правилам маркетплейса.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="5 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Продавцам на маркетплейсах</span>
+                    <h3 class="audience-slide__title">Продавцы на маркетплейсах</h3>
+                    <p class="audience-slide__text">Свой канал продаж рядом с маркетплейсами: повторные продажи и лояльная аудитория. Клиенты остаются с вами, а не теряются между чужими витринами.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="6 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Новым игрокам e-commerce</span>
+                    <h3 class="audience-slide__title">Выход в e-commerce</h3>
+                    <p class="audience-slide__text">Запустить онлайн-продажи с нуля — от аналитики ниши до первых заказов. Помогаем выбрать модель, собрать магазин и настроить оплату и доставку.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+              </ul>
             </div>
+          </div>
         </section>
 
         <!-- 8. Наши достижения: сертификаты и награды -->

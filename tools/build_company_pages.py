@@ -605,6 +605,40 @@ ABOUT = f"""      <section class="about-hero" aria-labelledby="about-title">
           </div>
         </section>
 
+        <!-- Галерея: 3D-карусель, фотографии листаются перетаскиванием и стрелками клавиатуры -->
+        <section class="gallery" aria-labelledby="gallery-title">
+          <div class="container">
+            <h2 class="section-title" id="gallery-title" data-reveal>
+              Жизнь <span class="section-title__muted">компании</span>
+            </h2>
+          </div>
+          <div class="gallery__viewport" data-coverflow data-reveal tabindex="0" role="region" aria-roledescription="карусель" aria-label="Галерея компании">
+            <div class="gallery__stage" data-coverflow-stage>
+              <figure class="gallery__card" data-caption="Офис в Минске">
+                <img src="assets/img/gallery/office.webp" alt="Сотрудники в офисе Итач-софт" width="720" height="720" loading="lazy" draggable="false" />
+              </figure>
+              <figure class="gallery__card" data-caption="Проектируем интерфейсы">
+                <img src="assets/img/gallery/whiteboard.webp" alt="Проектирование интерфейсов на доске" width="720" height="720" loading="lazy" draggable="false" />
+              </figure>
+              <figure class="gallery__card" data-caption="Обсуждаем проект">
+                <img src="assets/img/gallery/meeting.webp" alt="Команда обсуждает проект" width="720" height="720" loading="lazy" draggable="false" />
+              </figure>
+              <figure class="gallery__card" data-caption="Рабочее место разработчика">
+                <img src="assets/img/gallery/desk.webp" alt="Рабочее место разработчика" width="720" height="720" loading="lazy" draggable="false" />
+              </figure>
+              <figure class="gallery__card" data-caption="Перерыв на кофе">
+                <img src="assets/img/gallery/lounge.webp" alt="Сотрудники за кофе в офисе" width="720" height="720" loading="lazy" draggable="false" />
+              </figure>
+              <figure class="gallery__card" data-caption="Запуск проекта">
+                <img src="assets/img/gallery/launch.webp" alt="Команда отмечает запуск проекта" width="720" height="720" loading="lazy" draggable="false" />
+              </figure>
+            </div>
+          </div>
+          <div class="gallery__foot">
+            <p class="gallery__caption" data-coverflow-caption aria-live="polite"></p>
+          </div>
+        </section>
+
         <section class="team" aria-labelledby="team-title">
           <div class="container">
             <h2 class="section-title" data-reveal id="team-title">

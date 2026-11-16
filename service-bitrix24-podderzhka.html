@@ -924,67 +924,86 @@
           </div>
         </section>
 
-        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
-             переключение наведением на десктопе и кликом везде -->
+        <!-- Кому подходит: карусель в стиле «What's new?». Слайды листаются
+             автоматически и перетаскиванием; изображение пока общее для всех страниц -->
         <section class="audience" aria-labelledby="segments-title">
           <div class="container">
             <h2 class="section-title" data-reveal id="segments-title">
               Кому <span class="section-title__muted">подходит</span>
             </h2>
-            <div class="audience-picker" data-audience-picker data-reveal>
-              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
-                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
-                  <span class="audience-tab__text">Компаниям без ИТ-отдела</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям с коробкой</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
-                  <span class="audience-tab__text">Крупным порталам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям после внедрения</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
-                  <span class="audience-tab__text">Интеграторам</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
-                  <span class="audience-tab__text">Всем, кому нужен SLA</span>
-                </button>
-              </div>
-              <div class="audience-picker__panels">
-                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Без своего ИТ-отдела</h3>
-                  <p class="audience-panel__text">Полноценная поддержка портала без найма системного администратора и разработчика. Заявки закрываются по регламенту.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Коробочная версия</h3>
-                  <p class="audience-panel__text">Администрирование сервера, базы данных и обновлений коробочного портала. Резервные копии и восстановление — на нашей стороне.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Крупные порталы</h3>
-                  <p class="audience-panel__text">Мониторинг производительности и профилактика проблем до того, как их заметят пользователи. Портал не тормозит в пик работы.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Компании после внедрения</h3>
-                  <p class="audience-panel__text">Сопровождение на старте: донастройка по обратной связи команды и помощь пользователям. Внедрение не заканчивается подписанием акта.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Партнёрам-интеграторам</h3>
-                  <p class="audience-panel__text">Резервная команда разработки и администрирования для ваших проектов на Битрикс24. Мощности подключаются под объём.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Нужен SLA</h3>
-                  <p class="audience-panel__text">Регламент с фиксированным временем реакции — поддержка 24/7, включая выходные. SLA понятен и проверяем.</p>
-                </div>
-              </div>
+          </div>
+          <div class="audience-carousel" data-audience-carousel data-reveal>
+            <div class="audience-carousel__viewport" data-audience-viewport tabindex="0" role="region" aria-roledescription="карусель" aria-label="Кому подходит">
+              <ul class="audience-carousel__track" data-audience-track>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="1 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Компаниям без ИТ-отдела</span>
+                    <h3 class="audience-slide__title">Без своего ИТ-отдела</h3>
+                    <p class="audience-slide__text">Полноценная поддержка портала без найма системного администратора и разработчика. Заявки закрываются по регламенту.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="2 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Компаниям с коробкой</span>
+                    <h3 class="audience-slide__title">Коробочная версия</h3>
+                    <p class="audience-slide__text">Администрирование сервера, базы данных и обновлений коробочного портала. Резервные копии и восстановление — на нашей стороне.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="3 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Крупным порталам</span>
+                    <h3 class="audience-slide__title">Крупные порталы</h3>
+                    <p class="audience-slide__text">Мониторинг производительности и профилактика проблем до того, как их заметят пользователи. Портал не тормозит в пик работы.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="4 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Компаниям после внедрения</span>
+                    <h3 class="audience-slide__title">Компании после внедрения</h3>
+                    <p class="audience-slide__text">Сопровождение на старте: донастройка по обратной связи команды и помощь пользователям. Внедрение не заканчивается подписанием акта.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="5 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Интеграторам</span>
+                    <h3 class="audience-slide__title">Партнёрам-интеграторам</h3>
+                    <p class="audience-slide__text">Резервная команда разработки и администрирования для ваших проектов на Битрикс24. Мощности подключаются под объём.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="6 из 6">
+                  <div class="audience-slide__media">
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Всем, кому нужен SLA</span>
+                    <h3 class="audience-slide__title">Нужен SLA</h3>
+                    <p class="audience-slide__text">Регламент с фиксированным временем реакции — поддержка 24/7, включая выходные. SLA понятен и проверяем.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+              </ul>
             </div>
+          </div>
         </section>
 
         <!-- 8. Наши достижения: сертификаты и награды -->

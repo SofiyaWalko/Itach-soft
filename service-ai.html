@@ -1156,66 +1156,90 @@
           </div>
         </section>
 
-        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
-             переключение наведением на десктопе и кликом везде -->
+        <!-- Кому подходит: карусель в стиле «What's new?». Слайды листаются
+             автоматически и перетаскиванием; пока во всех слайдах одно изображение -->
         <section class="audience" aria-labelledby="segments-title">
           <div class="container">
             <h2 class="section-title" data-reveal id="segments-title">
               Кому <span class="section-title__muted">подходит</span>
             </h2>
-            <div class="audience-picker" data-audience-picker data-reveal>
-              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
-                <button class="audience-tab glow-card is-active" type="button" role="tab" id="aud-tab-1" aria-selected="true" aria-controls="aud-panel-1">
-                  <span class="audience-tab__text">Компаниям с данными</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-2" aria-selected="false" aria-controls="aud-panel-2" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям с потоком обращений</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-3" aria-selected="false" aria-controls="aud-panel-3" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям с базой знаний</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-4" aria-selected="false" aria-controls="aud-panel-4" tabindex="-1">
-                  <span class="audience-tab__text">Владельцам цифровых продуктов</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-5" aria-selected="false" aria-controls="aud-panel-5" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям с IT-инфраструктурой</span>
-                </button>
-                <button class="audience-tab glow-card" type="button" role="tab" id="aud-tab-6" aria-selected="false" aria-controls="aud-panel-6" tabindex="-1">
-                  <span class="audience-tab__text">Компаниям с пилотом</span>
-                </button>
-              </div>
-              <div class="audience-picker__panels">
-                <div class="audience-panel glow-card is-active" role="tabpanel" id="aud-panel-1" aria-labelledby="aud-tab-1">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Компании с накопленными данными</h3>
-                  <p class="audience-panel__text">Использовать историю продаж, обращений и операций для поиска закономерностей. AI помогает принимать управленческие решения на основе данных, а не догадок.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-2" aria-labelledby="aud-tab-2">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Бизнес с большим потоком коммуникаций</h3>
-                  <p class="audience-panel__text">При множестве запросов, переписок и звонков AI снимает нагрузку с продаж и клиентского сервиса. Сотрудники занимаются сложными случаями, а не типовыми ответами.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-3" aria-labelledby="aud-tab-3">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Компании с большой базой знаний</h3>
-                  <p class="audience-panel__text">Инструкции, регламенты, договоры и технические материалы собраны в один поиск. Нужный ответ находится за секунды вместо долгих запросов коллегам.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-4" aria-labelledby="aud-tab-4">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Владельцы цифровых продуктов</h3>
-                  <p class="audience-panel__text">Добавить интеллектуальные функции в сайт, приложение, личный кабинет или онлайн-платформу. Помощник работает на вашу аудиторию, а не по общему сценарию.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-5" aria-labelledby="aud-tab-5">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Организации с развитой IT-инфраструктурой</h3>
-                  <p class="audience-panel__text">AI-модуль встраивается в существующие системы с учётом данных, ролей пользователей и требований к доступу. Строить всё с нуля не приходится.</p>
-                </div>
-                <div class="audience-panel glow-card" role="tabpanel" id="aud-panel-6" aria-labelledby="aud-tab-6">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">Компании, готовые начать с пилота</h3>
-                  <p class="audience-panel__text">Проверить пользу AI на ограниченном участке бизнеса, прежде чем масштабировать решение. Считаем эффект до того, как вкладываться в большую систему.</p>
-                </div>
-              </div>
+          </div>
+          <div class="audience-carousel" data-audience-carousel data-reveal>
+            <div class="audience-carousel__viewport" data-audience-viewport tabindex="0" role="region" aria-roledescription="карусель" aria-label="Кому подходит">
+              <ul class="audience-carousel__track" data-audience-track>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="1 из 6">
+                  <div class="audience-slide__media">
+                    <!-- Одно изображение на все слайды: заменить на фотографии аудиторий -->
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Данные</span>
+                    <h3 class="audience-slide__title">Компаниям с данными</h3>
+                    <p class="audience-slide__text">Использовать историю продаж, обращений и операций для поиска закономерностей. AI помогает принимать управленческие решения на основе данных, а не догадок.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="2 из 6">
+                  <div class="audience-slide__media">
+                    <!-- Одно изображение на все слайды: заменить на фотографии аудиторий -->
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Коммуникации</span>
+                    <h3 class="audience-slide__title">Компаниям с потоком обращений</h3>
+                    <p class="audience-slide__text">При множестве запросов, переписок и звонков AI снимает нагрузку с продаж и клиентского сервиса. Сотрудники занимаются сложными случаями, а не типовыми ответами.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="3 из 6">
+                  <div class="audience-slide__media">
+                    <!-- Одно изображение на все слайды: заменить на фотографии аудиторий -->
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">База знаний</span>
+                    <h3 class="audience-slide__title">Компаниям с базой знаний</h3>
+                    <p class="audience-slide__text">Инструкции, регламенты, договоры и технические материалы собраны в один поиск. Нужный ответ находится за секунды вместо долгих запросов коллегам.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="4 из 6">
+                  <div class="audience-slide__media">
+                    <!-- Одно изображение на все слайды: заменить на фотографии аудиторий -->
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Продукт</span>
+                    <h3 class="audience-slide__title">Владельцам цифровых продуктов</h3>
+                    <p class="audience-slide__text">Добавить интеллектуальные функции в сайт, приложение, личный кабинет или онлайн-платформу. Помощник работает на вашу аудиторию, а не по общему сценарию.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="5 из 6">
+                  <div class="audience-slide__media">
+                    <!-- Одно изображение на все слайды: заменить на фотографии аудиторий -->
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Инфраструктура</span>
+                    <h3 class="audience-slide__title">Компаниям с IT-инфраструктурой</h3>
+                    <p class="audience-slide__text">AI-модуль встраивается в существующие системы с учётом данных, ролей пользователей и требований к доступу. Строить всё с нуля не приходится.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="6 из 6">
+                  <div class="audience-slide__media">
+                    <!-- Одно изображение на все слайды: заменить на фотографии аудиторий -->
+                    <img src="assets/img/audience/ai-audience.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="audience-slide__body">
+                    <span class="audience-slide__tag">Пилот</span>
+                    <h3 class="audience-slide__title">Компаниям с пилотом</h3>
+                    <p class="audience-slide__text">Проверить пользу AI на ограниченном участке бизнеса, прежде чем масштабировать решение. Считаем эффект до того, как вкладываться в большую систему.</p>
+                    <a class="audience-slide__link" href="#lead">Обсудить проект <svg class="icon icon--gradient" aria-hidden="true"><use href="#icon-arrow-up-right" /></svg></a>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </section>

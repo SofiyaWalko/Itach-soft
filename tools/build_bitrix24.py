@@ -15,6 +15,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import audience_carousel  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 BASE_FILE = ROOT / "service-internet-magaziny.html"
 B24_FILE = ROOT / "service-bitrix24.html"
@@ -295,7 +297,7 @@ M_MAIN = "    <main id=\"main\">"
 M_CLIENTS = "      <!-- Лента логотипов клиентов"
 M_SECTIONS = '      <div class="service-sections">\n'
 M_CALC = "        <!-- Калькулятор стоимости -->"
-M_AUDIENCE = "        <!-- Кому подходит: селектор аудиторий"
+M_AUDIENCE = "        <!-- Кому подходит: карусель"
 M_PROCESS = "        <!-- 4. Процесс -->"
 M_TEAM = "        <!-- 5. Команда -->"
 M_TECH = "        <!-- 6. Технологии -->"
@@ -427,38 +429,8 @@ def problems(p):
 '''
 
 def audience(p):
-    tabs = "\n".join(
-        f'''                <button class="audience-tab glow-card{' is-active' if i == 0 else ''}" type="button" role="tab" id="aud-tab-{i+1}" aria-selected="{'true' if i == 0 else 'false'}" aria-controls="aud-panel-{i+1}"{' tabindex="-1"' if i else ''}>
-                  <span class="audience-tab__text">{tab}</span>
-                </button>'''
-        for i, (tab, _, _) in enumerate(p["audience"])
-    )
-    panels = "\n".join(
-        f'''                <div class="audience-panel glow-card{' is-active' if i == 0 else ''}" role="tabpanel" id="aud-panel-{i+1}" aria-labelledby="aud-tab-{i+1}">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">{title}</h3>
-                  <p class="audience-panel__text">{text}</p>
-                </div>'''
-        for i, (_, title, text) in enumerate(p["audience"])
-    )
-    return f'''        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;
-             переключение наведением на десктопе и кликом везде -->
-        <section class="audience" aria-labelledby="segments-title">
-          <div class="container">
-            <h2 class="section-title" data-reveal id="segments-title">
-              Кому <span class="section-title__muted">подходит</span>
-            </h2>
-            <div class="audience-picker" data-audience-picker data-reveal>
-              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">
-{tabs}
-              </div>
-              <div class="audience-picker__panels">
-{panels}
-              </div>
-            </div>
-        </section>
-
-'''
+    segments = [(tab, title, text) for tab, title, text in p["audience"]]
+    return audience_carousel.COMMENT + "\n" + audience_carousel.build_section(segments) + "\n\n"
 
 def cases(p):
     if not p.get("cases"):

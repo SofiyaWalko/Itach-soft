@@ -1379,6 +1379,358 @@ function initToolsSweep() {
   items.forEach((item) => observer.observe(item));
 }
 
+// «Кому подходит» на странице AI: карусель в стиле «What's new?» — автопрокрутка,
+// перетаскивание вбок и управление стрелками с клавиатуры
+function initAudienceCarousel() {
+  const root = document.querySelector("[data-audience-carousel]");
+  if (!root) return;
+  const viewport = root.querySelector("[data-audience-viewport]");
+  const track = root.querySelector("[data-audience-track]");
+  const slides = [...track.children];
+  const count = slides.length;
+  if (!count) return;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  const INTERVAL = 5000;
+
+  let index = 0;
+  let step = 0;
+  let timer = null;
+
+  // Клон первого слайда нужен, чтобы переход с последнего на первый был бесшовным
+  const clone = slides[0].cloneNode(true);
+  clone.setAttribute("aria-hidden", "true");
+  clone.inert = true;
+  track.append(clone);
+  const allSlides = [...track.children];
+
+  const apply = (animate = true) => {
+    track.style.transition = animate && !reduced.matches ? "" : "none";
+    track.style.transform = `translate3d(${-index * step}px, 0, 0)`;
+    if (!animate) {
+      void track.offsetWidth;
+      track.style.transition = "";
+    }
+
+    allSlides.forEach((slide, i) => {
+      const active = i === index;
+      slide.inert = !active;
+      slide.setAttribute("aria-hidden", String(!active));
+    });
+  };
+
+  const go = (next) => {
+    index = next;
+    apply(true);
+  };
+
+  const advance = () => {
+    if (index >= count) return;
+    // index === count — это клон первого слайда, дальше сработает transitionend
+    go(index + 1);
+  };
+
+  const stop = () => {
+    clearInterval(timer);
+    timer = null;
+  };
+
+  const start = () => {
+    stop();
+    if (reduced.matches) return;
+    timer = setInterval(advance, INTERVAL);
+  };
+
+  // Автопрокрутка на паузе, пока курсор или клавиатурный фокус внутри блока
+  const paused = () =>
+    root.matches(":hover") ||
+    document.hidden ||
+    (root.contains(document.activeElement) && document.activeElement.matches(":focus-visible"));
+
+  const restart = () => {
+    stop();
+    if (!paused()) start();
+  };
+
+  const measure = () => {
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    step = slides[0].offsetWidth + gap;
+    apply(false);
+  };
+
+  track.addEventListener("transitionend", (event) => {
+    if (event.propertyName !== "transform" || index < count) return;
+    // Доехали до клона первого слайда — мгновенно возвращаемся в начало
+    index = 0;
+    apply(false);
+  });
+
+  viewport.addEventListener("keydown", (event) => {
+    const direction = { ArrowLeft: -1, ArrowRight: 1 }[event.key];
+    if (!direction) return;
+    event.preventDefault();
+    stop();
+    go((index + direction + count) % count);
+    restart();
+  });
+
+  // Ручное листание: тянем ленту вбок, отпускаем — доводим до ближайшего слайда.
+  // Клик по ссылке после протяжки отменяем, иначе он сработает случайно
+  let drag = null;
+  let lastDragEnd = 0;
+  const DRAG_THRESHOLD = 8;
+
+  const endDrag = (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const { moved, offset } = drag;
+    drag = null;
+    root.classList.remove("is-dragging");
+    if (!moved) {
+      restart();
+      return;
+    }
+    lastDragEnd = performance.now();
+    const threshold = Math.min(step * 0.12, 96);
+    if (offset <= -threshold) {
+      go(Math.min(index + 1, count));
+    } else if (offset >= threshold) {
+      // Назад с первого слайда — через копию последнего, чтобы прокрутка была бесшовной
+      if (index === 0) {
+        index = count;
+        apply(false);
+      }
+      go(index - 1);
+    } else {
+      go(index);
+    }
+    restart();
+  };
+
+  viewport.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    // Если палец опустился во время перехода на копию, начинаем с реального первого слайда
+    if (index >= count) {
+      index = 0;
+      apply(false);
+    }
+    drag = { id: event.pointerId, startX: event.clientX, startY: event.clientY, moved: false, offset: 0 };
+    stop();
+  });
+
+  viewport.addEventListener("pointermove", (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const dx = event.clientX - drag.startX;
+    const dy = event.clientY - drag.startY;
+    if (!drag.moved) {
+      // Вертикальный жест оставляем странице: она прокручивается, лента не едет
+      if (Math.abs(dy) > Math.abs(dx)) {
+        drag = null;
+        restart();
+        return;
+      }
+      if (Math.abs(dx) < DRAG_THRESHOLD) return;
+      drag.moved = true;
+      viewport.setPointerCapture(event.pointerId);
+      root.classList.add("is-dragging");
+      track.style.transition = "none";
+    }
+    drag.offset = dx;
+    track.style.transform = `translate3d(${-index * step + dx}px, 0, 0)`;
+  });
+
+  viewport.addEventListener("pointerup", endDrag);
+  viewport.addEventListener("pointercancel", endDrag);
+
+  viewport.addEventListener(
+    "click",
+    (event) => {
+      if (performance.now() - lastDragEnd > 300) return;
+      event.preventDefault();
+      event.stopPropagation();
+    },
+    true,
+  );
+
+  root.addEventListener("pointerenter", stop);
+  root.addEventListener("pointerleave", restart);
+  root.addEventListener("focusin", stop);
+  root.addEventListener("focusout", restart);
+  document.addEventListener("visibilitychange", restart);
+
+  reduced.addEventListener?.("change", () => {
+    apply(false);
+    restart();
+  });
+
+  new ResizeObserver(measure).observe(viewport);
+
+  measure();
+  apply(false);
+  start();
+}
+
+// Галерея «Жизнь компании»: coverflow-карусель. Смещение в карточках
+// считаем в долях индекса, соседей разворачиваем и уводим в глубину.
+// Листается перетаскиванием, стрелками, кнопками и точками; лента зациклена
+function initCoverflow() {
+  const root = document.querySelector("[data-coverflow]");
+  if (!root) return;
+  const stage = root.querySelector("[data-coverflow-stage]");
+  const cards = [...stage.querySelectorAll(".gallery__card")];
+  if (!cards.length) return;
+  const caption = document.querySelector("[data-coverflow-caption]");
+  const count = cards.length;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  const ROTATE = 44;
+  const DEPTH = 0.6;
+  const FALLOFF = 0.56;
+  const FADE = 0.1;
+  const GAP = 0.05;
+
+  let pos = 0;
+  let target = 0;
+  let width = 0;
+  let frame = null;
+  let drag = null;
+  let suppressClick = false;
+
+  const indexAt = (value) => ((Math.round(value) % count) + count) % count;
+
+  const paint = () => {
+    if (!width) return;
+    const pitch = width * (1 + GAP);
+    cards.forEach((card, index) => {
+      // Складываем расстояние по короткой стороне кольца
+      let offset = index - pos;
+      offset = ((offset % count) + count) % count;
+      if (offset > count / 2) offset -= count;
+
+      const distance = Math.abs(offset);
+      const ramp = Math.pow(distance, FALLOFF);
+      const tilt = Math.min(ROTATE * ramp, 82) * Math.sign(offset);
+
+      card.style.transform =
+        `translateX(calc(-50% + ${offset * pitch}px)) ` +
+        `translateZ(${-DEPTH * width * ramp}px) rotateY(${-tilt}deg)`;
+
+      // На половине оборота карточка телепортируется на другую сторону —
+      // к этому моменту она уже должна быть невидима
+      const edge = Math.min(1, Math.max(0, count / 2 - distance));
+      card.style.opacity = String(Math.max(0, 1 - FADE * distance) * edge);
+      card.style.zIndex = String(100 - Math.round(distance));
+    });
+  };
+
+  const select = (index) => {
+    if (caption) caption.textContent = cards[index].dataset.caption ?? "";
+  };
+
+  const settle = (value) => {
+    target = value;
+    select(indexAt(target));
+
+    if (reduced.matches) {
+      pos = target;
+      paint();
+      return;
+    }
+
+    cancelAnimationFrame(frame);
+    const step = () => {
+      const remaining = target - pos;
+      if (Math.abs(remaining) < 0.0004) {
+        pos = target;
+        paint();
+        frame = null;
+        return;
+      }
+      pos += remaining * 0.16;
+      paint();
+      frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+  };
+
+  // Идём к цели по короткой стороне кольца, а не прокручиваем весь круг
+  const goTo = (index) => settle(index + Math.round((target - index) / count) * count);
+  const nudge = (by) => settle(Math.round(target) + by);
+
+  root.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      nudge(-1);
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      nudge(1);
+    }
+  });
+
+  root.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    cancelAnimationFrame(frame);
+    frame = null;
+    root.setPointerCapture(event.pointerId);
+    target = pos;
+    drag = {
+      id: event.pointerId,
+      x: event.clientX,
+      pos,
+      velocity: 0,
+      time: performance.now(),
+    };
+    suppressClick = false;
+  });
+
+  root.addEventListener("pointermove", (event) => {
+    if (!drag || drag.id !== event.pointerId) return;
+    const pitch = width * (1 + GAP);
+    if (!pitch) return;
+    const now = performance.now();
+    const before = pos;
+    pos = drag.pos - (event.clientX - drag.x) / pitch;
+    drag.velocity = ((pos - before) / Math.max(now - drag.time, 1)) * 1000;
+    drag.time = now;
+    if (Math.abs(event.clientX - drag.x) > 6) suppressClick = true;
+    select(indexAt(pos));
+    paint();
+  });
+
+  const endDrag = (event) => {
+    if (!drag || drag.id !== event.pointerId) return;
+    const velocity = drag.velocity;
+    drag = null;
+    // Бросок переносит не больше двух карточек
+    const carried = Math.max(-2, Math.min(2, velocity * 0.18));
+    settle(Math.round(pos + carried));
+    // Клик, который браузер пришлёт после drag, не должен переставлять слайды
+    setTimeout(() => {
+      suppressClick = false;
+    }, 0);
+  };
+
+  root.addEventListener("pointerup", endDrag);
+  root.addEventListener("pointercancel", endDrag);
+
+  // Клик по боковой карточке ставит её в центр; после свайпа клик не считаем
+  cards.forEach((card, index) => {
+    card.addEventListener("click", () => {
+      if (suppressClick) {
+        suppressClick = false;
+        return;
+      }
+      if (index !== indexAt(pos)) goTo(index);
+    });
+  });
+
+  const measure = () => {
+    width = cards[0].offsetWidth;
+    paint();
+  };
+
+  measure();
+  new ResizeObserver(measure).observe(root);
+  select(0);
+}
+
 // История на «О компании»: пока страница прокручивается, блок закреплён,
 // а горизонтальная лента проезжает влево на длину своего переполнения
 function initHistoryTimeline() {
@@ -1453,6 +1805,8 @@ initGlowCards();
 initGlowFocus();
 initToolsSweep();
 initAudiencePicker();
+initAudienceCarousel();
+initCoverflow();
 initSites();
 initServiceStack();
 document.querySelectorAll("[data-drag-scroll]").forEach(initDragScroll);

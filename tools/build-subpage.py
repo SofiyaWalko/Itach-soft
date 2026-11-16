@@ -14,6 +14,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "service-corporate-sites.html"
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import audience_carousel  # noqa: E402
+
 _spec = importlib.util.spec_from_file_location(
     "subpage_content_sites", Path(__file__).parent / "subpage_content_sites.py"
 )
@@ -65,33 +68,8 @@ def build_steps(steps):
 
 
 def build_audience(audiences):
-    tabs, panels = [], []
-    for i, (tab, title_dark, title_line, desc) in enumerate(audiences, 1):
-        active = i == 1
-        tab_cls = "audience-tab glow-card is-active" if active else "audience-tab glow-card"
-        sel = "true" if active else "false"
-        tabindex = "" if active else ' tabindex="-1"'
-        tabs.append(
-            f"""                <button class="{tab_cls}" type="button" role="tab" id="aud-tab-{i}" aria-selected="{sel}" aria-controls="aud-panel-{i}"{tabindex}>
-                  <span class="audience-tab__text">{tab}</span>
-                </button>"""
-        )
-        panel_cls = "audience-panel glow-card is-active" if active else "audience-panel glow-card"
-        panels.append(
-            f"""                <div class="{panel_cls}" role="tabpanel" id="aud-panel-{i}" aria-labelledby="aud-tab-{i}">
-                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />
-                  <h3 class="audience-panel__title">{title_dark} <span class="audience-panel__line audience-panel__muted">{title_line}</span></h3>
-                  <p class="audience-panel__text">{desc}</p>
-                </div>"""
-        )
-    return (
-        '<div class="audience-picker" data-audience-picker data-reveal>\n'
-        '              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">\n'
-        + "\n".join(tabs)
-        + '\n              </div>\n              <div class="audience-picker__panels">\n'
-        + "\n".join(panels)
-        + "\n              </div>\n            </div>"
-    )
+    segments = [(tab, f"{title_dark} {title_line}", desc) for tab, title_dark, title_line, desc in audiences]
+    return audience_carousel.build_section(segments)
 
 
 def build_related(items, self_slug):
@@ -166,9 +144,9 @@ def generate(slug, c):
                lambda m: m.group(1) + "\n" + build_steps(steps) + "\n            " + m.group(2),
                s, count=1, flags=re.DOTALL)
 
-    # Аудитории: заменяем пикер целиком (до закрытия секции)
-    s = re.sub(r'<div class="audience-picker" data-audience-picker data-reveal>.*?\n        </section>',
-               build_audience(c["audience"]) + "\n        </section>",
+    # Аудитории: заменяем секцию целиком — карусель та же, контент свой
+    s = re.sub(r'\n        <section class="audience".*?</section>',
+               lambda m: "\n" + build_audience(c["audience"]),
                s, count=1, flags=re.DOTALL)
 
     # Форматы

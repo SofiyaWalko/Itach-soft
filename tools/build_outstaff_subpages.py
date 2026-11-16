@@ -16,6 +16,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import audience_carousel  # noqa: E402
 import build_bitrix24 as b  # noqa: E402
 import build_web_services_subpages as w  # noqa: E402  (берём общие билдеры блоков)
 
@@ -38,45 +39,8 @@ AUTSTAFFING_TEAM = [
 
 
 def build_audience(segments):
-    """«Кому подходит» — селектор аудиторий, как на подстраницах Битрикс24:
-    список слева, панель выбранной аудитории справа."""
-    tabs = []
-    panels = []
-    for i, (tab, title, text) in enumerate(segments, 1):
-        active = " is-active" if i == 1 else ""
-        selected = "true" if i == 1 else "false"
-        tabindex = "" if i == 1 else ' tabindex="-1"'
-        tabs.append(
-            f'                <button class="audience-tab glow-card{active}" type="button" role="tab" id="aud-tab-{i}" aria-selected="{selected}" aria-controls="aud-panel-{i}"{tabindex}>\n'
-            f'                  <span class="audience-tab__text">{tab}</span>\n'
-            f'                </button>'
-        )
-        panels.append(
-            f'                <div class="audience-panel glow-card{active}" role="tabpanel" id="aud-panel-{i}" aria-labelledby="aud-tab-{i}">\n'
-            f'                  <img class="audience-panel__art" src="assets/img/audience-wave.png" alt="" aria-hidden="true" loading="lazy" />\n'
-            f'                  <h3 class="audience-panel__title">{title}</h3>\n'
-            f'                  <p class="audience-panel__text">{text}</p>\n'
-            f'                </div>'
-        )
-    return (
-        '        <!-- Кому подходит: селектор аудиторий. Список слева, панель выбранного справа;\n'
-        '             переключение наведением на десктопе и кликом везде -->\n'
-        '        <section class="audience" aria-labelledby="segments-title">\n'
-        '          <div class="container">\n'
-        '            <h2 class="section-title" data-reveal id="segments-title">\n'
-        '              Кому <span class="section-title__muted">подходит</span>\n'
-        '            </h2>\n'
-        '            <div class="audience-picker" data-audience-picker data-reveal>\n'
-        '              <div class="audience-picker__list" role="tablist" aria-label="Аудитории">\n'
-        + "\n".join(tabs)
-        + "\n              </div>\n"
-        '              <div class="audience-picker__panels">\n'
-        + "\n".join(panels)
-        + "\n              </div>\n"
-        "            </div>\n"
-        "          </div>\n"
-        "        </section>"
-    )
+    """«Кому подходит» — общая карусель, контент страницы свой."""
+    return audience_carousel.COMMENT + "\n" + audience_carousel.build_section(segments)
 
 
 # Та же шестёрка ролей для страницы подбора, но описания — под её тему:
