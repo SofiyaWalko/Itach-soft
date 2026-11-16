@@ -2059,7 +2059,7 @@
 }
 
 /* ---------- Форма заявки ---------- */
-/* Светлая панель в цветах сайта: оранжево-розовая «капля» поверх белого, как ткань в hero */
+/* Тот же мягкий градиент, что у панели стоимости в калькуляторе */
 .lead__panel {
   position: relative;
   isolation: isolate;
@@ -2068,10 +2068,7 @@
   padding: var(--space-4) var(--space-3);
   overflow: hidden;
   border-radius: calc(var(--radius-lg) + 0.5rem);
-  background:
-    radial-gradient(60% 90% at 100% 0%, color-mix(in srgb, var(--color-drop-orange) 38%, transparent), transparent 70%),
-    radial-gradient(55% 80% at 0% 100%, color-mix(in srgb, var(--color-drop-pink) 42%, transparent), transparent 70%),
-    linear-gradient(135deg, color-mix(in srgb, var(--color-drop-orange) 16%, var(--color-bg)), color-mix(in srgb, var(--color-drop-pink) 20%, var(--color-bg)));
+  background: var(--gradient-panel);
   color: var(--color-text);
 }
 
@@ -3330,12 +3327,7 @@ html:has(.detail[open]) {
   padding: var(--space-4);
   border: 1px solid color-mix(in srgb, var(--color-drop-orange) 16%, var(--color-line));
   border-radius: calc(var(--radius-lg) + 0.5rem);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--color-drop-orange) 16%, var(--color-bg)) 0%,
-    color-mix(in srgb, var(--color-drop-pink) 20%, var(--color-bg)) 55%,
-    color-mix(in srgb, #8b7bf7 18%, var(--color-bg)) 100%
-  );
+  background: var(--gradient-panel);
 }
 
 .calc__price-eyebrow {

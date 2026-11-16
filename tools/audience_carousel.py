@@ -5,15 +5,21 @@
 контейнера, следующий выглядывает справа, снизу индикатора нет. Меняется
 только контент: сегменты передаются списком (tag, title, text).
 
-Изображение пока одно на все слайды и страницы: фотографии аудиторий
-заказчик пришлёт позже.
+Изображения чередуются по слайдам и повторяются по кругу.
 """
 import re
 
-IMAGE = "assets/img/audience/ai-audience.webp"
+IMAGES = [
+    "assets/img/audience/ai-audience.webp",
+    "assets/img/audience/ai-waves.webp",
+    "assets/img/audience/ai-brain.webp",
+    "assets/img/audience/ai-puzzle.webp",
+    "assets/img/audience/ai-search.webp",
+    "assets/img/audience/ai-bulb.webp",
+]
 COMMENT = (
     "        <!-- Кому подходит: карусель в стиле «What's new?». Слайды листаются\n"
-    "             автоматически и перетаскиванием; изображение пока общее для всех страниц -->"
+    "             автоматически и перетаскиванием; изображения чередуются по слайдам -->"
 )
 LINK = (
     '<a class="audience-slide__link" href="#lead">Обсудить проект '
@@ -34,10 +40,11 @@ def build_section(segments):
     slides = []
     total = len(segments)
     for i, (tag, title, text) in enumerate(segments, 1):
+        image = IMAGES[(i - 1) % len(IMAGES)]
         slides.append(
             f'                <li class="audience-slide glow-card" role="group" aria-roledescription="слайд" aria-label="{i} из {total}">\n'
             '                  <div class="audience-slide__media">\n'
-            f'                    <img src="{IMAGE}" alt="" aria-hidden="true" loading="lazy" decoding="async" />\n'
+            f'                    <img src="{image}" alt="" aria-hidden="true" loading="lazy" decoding="async" />\n'
             '                  </div>\n'
             '                  <div class="audience-slide__body">\n'
             f'                    <span class="audience-slide__tag">{plain(tag)}</span>\n'
